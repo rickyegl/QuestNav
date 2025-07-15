@@ -41,7 +41,7 @@ public class QuestNav {
   /** Protobuf instance for Command */
   private final CommandProto commandProto = new CommandProto();
 
-  /** Protobuf instance for Pose2d */  
+  /** Protobuf instance for Pose2d */
   private final Pose2dProto pose2dProto = new Pose2dProto();
 
   /** Protobuf instance for device data */
@@ -107,7 +107,8 @@ public class QuestNav {
             .setType(Commands.QuestNavCommandType.CALIBRATE_TAG)
             .setCommandId(++lastSentRequestId)
             .setApriltagIndexPayload(cachedIntPayload)
-            .setPoseResetPayload(cachedPoseCalibrationPayload.clear().setTargetPose(cachedProtoPose));
+            .setPoseResetPayload(
+                cachedPoseCalibrationPayload.clear().setTargetPose(cachedProtoPose));
 
     request.set(requestToSend);
   }
