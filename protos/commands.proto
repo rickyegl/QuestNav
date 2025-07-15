@@ -11,6 +11,9 @@ import "geometry2d.proto";
 enum QuestNavCommandType {
   COMMAND_TYPE_UNSPECIFIED = 0;  // Default value required in proto3
   POSE_RESET = 1;                // Reset robot pose to target pose
+  SET_FIELD_INDEX = 5;          // Set the field index
+  SET_FIELD_LAYOUT_INDEX = 6;   // Set the field layout index
+  CALIBRATE_TAG = 7;   // Set the field layout index
   // Future commands can be added here:
 }
 
@@ -18,6 +21,10 @@ enum QuestNavCommandType {
 message ProtobufQuestNavPoseResetPayload {
   // Target pose in field-relative WPILib coordinate space (x forward, y left, rotation CCW+)
   wpi.proto.ProtobufPose2d target_pose = 1;
+}
+
+message IntPayload {
+  int32 value = 1;
 }
 
 // Main Command message
@@ -31,6 +38,9 @@ message ProtobufQuestNavCommand {
   // Command-specific payload (only one will be set based on command type)
   oneof payload {
     ProtobufQuestNavPoseResetPayload pose_reset_payload = 10;
+    IntPayload field_index_payload = 15;
+    IntPayload field_layout_index_payload = 16;
+    IntPayload apriltag_index_payload = 17;
     // Future payloads can be added here:
     // (Commands with no payload don't need an entry)
   }

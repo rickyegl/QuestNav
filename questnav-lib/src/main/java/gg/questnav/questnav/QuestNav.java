@@ -41,7 +41,7 @@ public class QuestNav {
   /** Protobuf instance for Command */
   private final CommandProto commandProto = new CommandProto();
 
-  /** Protobuf instance for Pose2d */
+  /** Protobuf instance for Pose2d */  
   private final Pose2dProto pose2dProto = new Pose2dProto();
 
   /** Protobuf instance for device data */
@@ -80,8 +80,13 @@ public class QuestNav {
   private final Commands.ProtobufQuestNavPoseResetPayload cachedPoseResetPayload =
       Commands.ProtobufQuestNavPoseResetPayload.newInstance();
 
+  private final Commands.ProtobufQuestNavPoseResetPayload cachedPoseCalibrationPayload =
+      Commands.ProtobufQuestNavPoseResetPayload.newInstance();
+
   /** Cached proto pose (for reset requests) to lessen GC pressure */
   private final Geometry2D.ProtobufPose2d cachedProtoPose = Geometry2D.ProtobufPose2d.newInstance();
+
+  private final Commands.IntPayload cachedIntPayload = Commands.IntPayload.newInstance();
 
   /** Last sent request id */
   private int lastSentRequestId = 0; // Should be the same on the backend
@@ -91,6 +96,45 @@ public class QuestNav {
 
   /** Creates a new QuestNav implementation */
   public QuestNav() {}
+
+  public void calibrateTag(int tagId, Pose2d pose) {
+    cachedProtoPose.clear();
+    pose2dProto.pack(cachedProtoPose, pose);
+    cachedIntPayload.clear().setValue(tagId);
+    cachedCommandRequest.clear();
+    var requestToSend =
+        cachedCommandRequest
+            .setType(Commands.QuestNavCommandType.CALIBRATE_TAG)
+            .setCommandId(++lastSentRequestId)
+            .setApriltagIndexPayload(cachedIntPayload)
+            .setPoseResetPayload(cachedPoseCalibrationPayload.clear().setTargetPose(cachedProtoPose));
+
+    request.set(requestToSend);
+  }
+
+  public void setField(int fieldIndex) {
+    cachedIntPayload.clear().setValue(fieldIndex); // Clear instead of creating new
+    cachedCommandRequest.clear();
+    var requestToSend =
+        cachedCommandRequest
+            .setType(Commands.QuestNavCommandType.SET_FIELD_INDEX)
+            .setCommandId(++lastSentRequestId)
+            .setFieldIndexPayload(cachedIntPayload);
+
+    request.set(requestToSend);
+  }
+
+  public void setLayout(int layoutIndex) {
+    cachedIntPayload.clear().setValue(layoutIndex); // Clear instead of creating new
+    cachedCommandRequest.clear();
+    var requestToSend =
+        cachedCommandRequest
+            .setType(Commands.QuestNavCommandType.SET_FIELD_LAYOUT_INDEX)
+            .setCommandId(++lastSentRequestId)
+            .setFieldLayoutIndexPayload(cachedIntPayload);
+
+    request.set(requestToSend);
+  }
 
   /**
    * Sets the field-relative pose of the Quest. This is the position of the Quest, not the robot.
