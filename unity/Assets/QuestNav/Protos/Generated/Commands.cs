@@ -27,22 +27,30 @@ namespace QuestNav.Protos.Generated {
             "Cg5jb21tYW5kcy5wcm90bxIYcXVlc3RuYXYucHJvdG9zLmNvbW1hbmRzGhBn",
             "ZW9tZXRyeTJkLnByb3RvIlIKIFByb3RvYnVmUXVlc3ROYXZQb3NlUmVzZXRQ",
             "YXlsb2FkEi4KC3RhcmdldF9wb3NlGAEgASgLMhkud3BpLnByb3RvLlByb3Rv",
-            "YnVmUG9zZTJkIs8BChdQcm90b2J1ZlF1ZXN0TmF2Q29tbWFuZBI7CgR0eXBl",
-            "GAEgASgOMi0ucXVlc3RuYXYucHJvdG9zLmNvbW1hbmRzLlF1ZXN0TmF2Q29t",
-            "bWFuZFR5cGUSEgoKY29tbWFuZF9pZBgCIAEoDRJYChJwb3NlX3Jlc2V0X3Bh",
-            "eWxvYWQYCiABKAsyOi5xdWVzdG5hdi5wcm90b3MuY29tbWFuZHMuUHJvdG9i",
-            "dWZRdWVzdE5hdlBvc2VSZXNldFBheWxvYWRIAEIJCgdwYXlsb2FkIl0KH1By",
-            "b3RvYnVmUXVlc3ROYXZDb21tYW5kUmVzcG9uc2USEgoKY29tbWFuZF9pZBgB",
-            "IAEoDRIPCgdzdWNjZXNzGAIgASgIEhUKDWVycm9yX21lc3NhZ2UYAyABKAkq",
-            "QwoTUXVlc3ROYXZDb21tYW5kVHlwZRIcChhDT01NQU5EX1RZUEVfVU5TUEVD",
-            "SUZJRUQQABIOCgpQT1NFX1JFU0VUEAFCQwolZ2cucXVlc3RuYXYucXVlc3Ru",
+            "YnVmUG9zZTJkIhsKCkludFBheWxvYWQSDQoFdmFsdWUYASABKAUiqAMKF1By",
+            "b3RvYnVmUXVlc3ROYXZDb21tYW5kEjsKBHR5cGUYASABKA4yLS5xdWVzdG5h",
+            "di5wcm90b3MuY29tbWFuZHMuUXVlc3ROYXZDb21tYW5kVHlwZRISCgpjb21t",
+            "YW5kX2lkGAIgASgNElgKEnBvc2VfcmVzZXRfcGF5bG9hZBgKIAEoCzI6LnF1",
+            "ZXN0bmF2LnByb3Rvcy5jb21tYW5kcy5Qcm90b2J1ZlF1ZXN0TmF2UG9zZVJl",
+            "c2V0UGF5bG9hZEgAEkMKE2ZpZWxkX2luZGV4X3BheWxvYWQYDyABKAsyJC5x",
+            "dWVzdG5hdi5wcm90b3MuY29tbWFuZHMuSW50UGF5bG9hZEgAEkoKGmZpZWxk",
+            "X2xheW91dF9pbmRleF9wYXlsb2FkGBAgASgLMiQucXVlc3RuYXYucHJvdG9z",
+            "LmNvbW1hbmRzLkludFBheWxvYWRIABJGChZhcHJpbHRhZ19pbmRleF9wYXls",
+            "b2FkGBEgASgLMiQucXVlc3RuYXYucHJvdG9zLmNvbW1hbmRzLkludFBheWxv",
+            "YWRIAEIJCgdwYXlsb2FkIl0KH1Byb3RvYnVmUXVlc3ROYXZDb21tYW5kUmVz",
+            "cG9uc2USEgoKY29tbWFuZF9pZBgBIAEoDRIPCgdzdWNjZXNzGAIgASgIEhUK",
+            "DWVycm9yX21lc3NhZ2UYAyABKAkqhwEKE1F1ZXN0TmF2Q29tbWFuZFR5cGUS",
+            "HAoYQ09NTUFORF9UWVBFX1VOU1BFQ0lGSUVEEAASDgoKUE9TRV9SRVNFVBAB",
+            "EhMKD1NFVF9GSUVMRF9JTkRFWBAFEhoKFlNFVF9GSUVMRF9MQVlPVVRfSU5E",
+            "RVgQBhIRCg1DQUxJQlJBVEVfVEFHEAdCQwolZ2cucXVlc3RuYXYucXVlc3Ru",
             "YXYucHJvdG9zLmdlbmVyYXRlZKoCGVF1ZXN0TmF2LlByb3Rvcy5HZW5lcmF0",
             "ZWRiBnByb3RvMw=="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { global::Wpi.Proto.Geometry2DReflection.Descriptor, },
           new pbr::GeneratedClrTypeInfo(new[] {typeof(global::QuestNav.Protos.Generated.QuestNavCommandType), }, null, new pbr::GeneratedClrTypeInfo[] {
             new pbr::GeneratedClrTypeInfo(typeof(global::QuestNav.Protos.Generated.ProtobufQuestNavPoseResetPayload), global::QuestNav.Protos.Generated.ProtobufQuestNavPoseResetPayload.Parser, new[]{ "TargetPose" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::QuestNav.Protos.Generated.ProtobufQuestNavCommand), global::QuestNav.Protos.Generated.ProtobufQuestNavCommand.Parser, new[]{ "Type", "CommandId", "PoseResetPayload" }, new[]{ "Payload" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::QuestNav.Protos.Generated.IntPayload), global::QuestNav.Protos.Generated.IntPayload.Parser, new[]{ "Value" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::QuestNav.Protos.Generated.ProtobufQuestNavCommand), global::QuestNav.Protos.Generated.ProtobufQuestNavCommand.Parser, new[]{ "Type", "CommandId", "PoseResetPayload", "FieldIndexPayload", "FieldLayoutIndexPayload", "ApriltagIndexPayload" }, new[]{ "Payload" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::QuestNav.Protos.Generated.ProtobufQuestNavCommandResponse), global::QuestNav.Protos.Generated.ProtobufQuestNavCommandResponse.Parser, new[]{ "CommandId", "Success", "ErrorMessage" }, null, null, null, null)
           }));
     }
@@ -62,6 +70,18 @@ namespace QuestNav.Protos.Generated {
     /// Reset robot pose to target pose
     /// </summary>
     [pbr::OriginalName("POSE_RESET")] PoseReset = 1,
+    /// <summary>
+    /// Set the field index
+    /// </summary>
+    [pbr::OriginalName("SET_FIELD_INDEX")] SetFieldIndex = 5,
+    /// <summary>
+    /// Set the field layout index
+    /// </summary>
+    [pbr::OriginalName("SET_FIELD_LAYOUT_INDEX")] SetFieldLayoutIndex = 6,
+    /// <summary>
+    /// Set the field layout index
+    /// </summary>
+    [pbr::OriginalName("CALIBRATE_TAG")] CalibrateTag = 7,
   }
 
   #endregion
@@ -271,6 +291,195 @@ namespace QuestNav.Protos.Generated {
 
   }
 
+  public sealed partial class IntPayload : pb::IMessage<IntPayload>
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      , pb::IBufferMessage
+  #endif
+  {
+    private static readonly pb::MessageParser<IntPayload> _parser = new pb::MessageParser<IntPayload>(() => new IntPayload());
+    private pb::UnknownFieldSet _unknownFields;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public static pb::MessageParser<IntPayload> Parser { get { return _parser; } }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::QuestNav.Protos.Generated.CommandsReflection.Descriptor.MessageTypes[1]; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public IntPayload() {
+      OnConstruction();
+    }
+
+    partial void OnConstruction();
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public IntPayload(IntPayload other) : this() {
+      value_ = other.value_;
+      _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public IntPayload Clone() {
+      return new IntPayload(this);
+    }
+
+    /// <summary>Field number for the "value" field.</summary>
+    public const int ValueFieldNumber = 1;
+    private int value_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public int Value {
+      get { return value_; }
+      set {
+        value_ = value;
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override bool Equals(object other) {
+      return Equals(other as IntPayload);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool Equals(IntPayload other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      if (Value != other.Value) return false;
+      return Equals(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override int GetHashCode() {
+      int hash = 1;
+      if (Value != 0) hash ^= Value.GetHashCode();
+      if (_unknownFields != null) {
+        hash ^= _unknownFields.GetHashCode();
+      }
+      return hash;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override string ToString() {
+      return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void WriteTo(pb::CodedOutputStream output) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      output.WriteRawMessage(this);
+    #else
+      if (Value != 0) {
+        output.WriteRawTag(8);
+        output.WriteInt32(Value);
+      }
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(output);
+      }
+    #endif
+    }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
+      if (Value != 0) {
+        output.WriteRawTag(8);
+        output.WriteInt32(Value);
+      }
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(ref output);
+      }
+    }
+    #endif
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public int CalculateSize() {
+      int size = 0;
+      if (Value != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(Value);
+      }
+      if (_unknownFields != null) {
+        size += _unknownFields.CalculateSize();
+      }
+      return size;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void MergeFrom(IntPayload other) {
+      if (other == null) {
+        return;
+      }
+      if (other.Value != 0) {
+        Value = other.Value;
+      }
+      _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void MergeFrom(pb::CodedInputStream input) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      input.ReadRawMessage(this);
+    #else
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+            break;
+          case 8: {
+            Value = input.ReadInt32();
+            break;
+          }
+        }
+      }
+    #endif
+    }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
+            break;
+          case 8: {
+            Value = input.ReadInt32();
+            break;
+          }
+        }
+      }
+    }
+    #endif
+
+  }
+
   /// <summary>
   /// Main Command message
   /// </summary>
@@ -288,7 +497,7 @@ namespace QuestNav.Protos.Generated {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::QuestNav.Protos.Generated.CommandsReflection.Descriptor.MessageTypes[1]; }
+      get { return global::QuestNav.Protos.Generated.CommandsReflection.Descriptor.MessageTypes[2]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -313,6 +522,15 @@ namespace QuestNav.Protos.Generated {
       switch (other.PayloadCase) {
         case PayloadOneofCase.PoseResetPayload:
           PoseResetPayload = other.PoseResetPayload.Clone();
+          break;
+        case PayloadOneofCase.FieldIndexPayload:
+          FieldIndexPayload = other.FieldIndexPayload.Clone();
+          break;
+        case PayloadOneofCase.FieldLayoutIndexPayload:
+          FieldLayoutIndexPayload = other.FieldLayoutIndexPayload.Clone();
+          break;
+        case PayloadOneofCase.ApriltagIndexPayload:
+          ApriltagIndexPayload = other.ApriltagIndexPayload.Clone();
           break;
       }
 
@@ -357,10 +575,6 @@ namespace QuestNav.Protos.Generated {
 
     /// <summary>Field number for the "pose_reset_payload" field.</summary>
     public const int PoseResetPayloadFieldNumber = 10;
-    /// <summary>
-    /// Future payloads can be added here:
-    /// (Commands with no payload don't need an entry)
-    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public global::QuestNav.Protos.Generated.ProtobufQuestNavPoseResetPayload PoseResetPayload {
@@ -371,11 +585,54 @@ namespace QuestNav.Protos.Generated {
       }
     }
 
+    /// <summary>Field number for the "field_index_payload" field.</summary>
+    public const int FieldIndexPayloadFieldNumber = 15;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public global::QuestNav.Protos.Generated.IntPayload FieldIndexPayload {
+      get { return payloadCase_ == PayloadOneofCase.FieldIndexPayload ? (global::QuestNav.Protos.Generated.IntPayload) payload_ : null; }
+      set {
+        payload_ = value;
+        payloadCase_ = value == null ? PayloadOneofCase.None : PayloadOneofCase.FieldIndexPayload;
+      }
+    }
+
+    /// <summary>Field number for the "field_layout_index_payload" field.</summary>
+    public const int FieldLayoutIndexPayloadFieldNumber = 16;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public global::QuestNav.Protos.Generated.IntPayload FieldLayoutIndexPayload {
+      get { return payloadCase_ == PayloadOneofCase.FieldLayoutIndexPayload ? (global::QuestNav.Protos.Generated.IntPayload) payload_ : null; }
+      set {
+        payload_ = value;
+        payloadCase_ = value == null ? PayloadOneofCase.None : PayloadOneofCase.FieldLayoutIndexPayload;
+      }
+    }
+
+    /// <summary>Field number for the "apriltag_index_payload" field.</summary>
+    public const int ApriltagIndexPayloadFieldNumber = 17;
+    /// <summary>
+    /// Future payloads can be added here:
+    /// (Commands with no payload don't need an entry)
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public global::QuestNav.Protos.Generated.IntPayload ApriltagIndexPayload {
+      get { return payloadCase_ == PayloadOneofCase.ApriltagIndexPayload ? (global::QuestNav.Protos.Generated.IntPayload) payload_ : null; }
+      set {
+        payload_ = value;
+        payloadCase_ = value == null ? PayloadOneofCase.None : PayloadOneofCase.ApriltagIndexPayload;
+      }
+    }
+
     private object payload_;
     /// <summary>Enum of possible cases for the "payload" oneof.</summary>
     public enum PayloadOneofCase {
       None = 0,
       PoseResetPayload = 10,
+      FieldIndexPayload = 15,
+      FieldLayoutIndexPayload = 16,
+      ApriltagIndexPayload = 17,
     }
     private PayloadOneofCase payloadCase_ = PayloadOneofCase.None;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -409,6 +666,9 @@ namespace QuestNav.Protos.Generated {
       if (Type != other.Type) return false;
       if (CommandId != other.CommandId) return false;
       if (!object.Equals(PoseResetPayload, other.PoseResetPayload)) return false;
+      if (!object.Equals(FieldIndexPayload, other.FieldIndexPayload)) return false;
+      if (!object.Equals(FieldLayoutIndexPayload, other.FieldLayoutIndexPayload)) return false;
+      if (!object.Equals(ApriltagIndexPayload, other.ApriltagIndexPayload)) return false;
       if (PayloadCase != other.PayloadCase) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
@@ -420,6 +680,9 @@ namespace QuestNav.Protos.Generated {
       if (Type != global::QuestNav.Protos.Generated.QuestNavCommandType.CommandTypeUnspecified) hash ^= Type.GetHashCode();
       if (CommandId != 0) hash ^= CommandId.GetHashCode();
       if (payloadCase_ == PayloadOneofCase.PoseResetPayload) hash ^= PoseResetPayload.GetHashCode();
+      if (payloadCase_ == PayloadOneofCase.FieldIndexPayload) hash ^= FieldIndexPayload.GetHashCode();
+      if (payloadCase_ == PayloadOneofCase.FieldLayoutIndexPayload) hash ^= FieldLayoutIndexPayload.GetHashCode();
+      if (payloadCase_ == PayloadOneofCase.ApriltagIndexPayload) hash ^= ApriltagIndexPayload.GetHashCode();
       hash ^= (int) payloadCase_;
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
@@ -451,6 +714,18 @@ namespace QuestNav.Protos.Generated {
         output.WriteRawTag(82);
         output.WriteMessage(PoseResetPayload);
       }
+      if (payloadCase_ == PayloadOneofCase.FieldIndexPayload) {
+        output.WriteRawTag(122);
+        output.WriteMessage(FieldIndexPayload);
+      }
+      if (payloadCase_ == PayloadOneofCase.FieldLayoutIndexPayload) {
+        output.WriteRawTag(130, 1);
+        output.WriteMessage(FieldLayoutIndexPayload);
+      }
+      if (payloadCase_ == PayloadOneofCase.ApriltagIndexPayload) {
+        output.WriteRawTag(138, 1);
+        output.WriteMessage(ApriltagIndexPayload);
+      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
       }
@@ -473,6 +748,18 @@ namespace QuestNav.Protos.Generated {
         output.WriteRawTag(82);
         output.WriteMessage(PoseResetPayload);
       }
+      if (payloadCase_ == PayloadOneofCase.FieldIndexPayload) {
+        output.WriteRawTag(122);
+        output.WriteMessage(FieldIndexPayload);
+      }
+      if (payloadCase_ == PayloadOneofCase.FieldLayoutIndexPayload) {
+        output.WriteRawTag(130, 1);
+        output.WriteMessage(FieldLayoutIndexPayload);
+      }
+      if (payloadCase_ == PayloadOneofCase.ApriltagIndexPayload) {
+        output.WriteRawTag(138, 1);
+        output.WriteMessage(ApriltagIndexPayload);
+      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
       }
@@ -491,6 +778,15 @@ namespace QuestNav.Protos.Generated {
       }
       if (payloadCase_ == PayloadOneofCase.PoseResetPayload) {
         size += 1 + pb::CodedOutputStream.ComputeMessageSize(PoseResetPayload);
+      }
+      if (payloadCase_ == PayloadOneofCase.FieldIndexPayload) {
+        size += 1 + pb::CodedOutputStream.ComputeMessageSize(FieldIndexPayload);
+      }
+      if (payloadCase_ == PayloadOneofCase.FieldLayoutIndexPayload) {
+        size += 2 + pb::CodedOutputStream.ComputeMessageSize(FieldLayoutIndexPayload);
+      }
+      if (payloadCase_ == PayloadOneofCase.ApriltagIndexPayload) {
+        size += 2 + pb::CodedOutputStream.ComputeMessageSize(ApriltagIndexPayload);
       }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
@@ -516,6 +812,24 @@ namespace QuestNav.Protos.Generated {
             PoseResetPayload = new global::QuestNav.Protos.Generated.ProtobufQuestNavPoseResetPayload();
           }
           PoseResetPayload.MergeFrom(other.PoseResetPayload);
+          break;
+        case PayloadOneofCase.FieldIndexPayload:
+          if (FieldIndexPayload == null) {
+            FieldIndexPayload = new global::QuestNav.Protos.Generated.IntPayload();
+          }
+          FieldIndexPayload.MergeFrom(other.FieldIndexPayload);
+          break;
+        case PayloadOneofCase.FieldLayoutIndexPayload:
+          if (FieldLayoutIndexPayload == null) {
+            FieldLayoutIndexPayload = new global::QuestNav.Protos.Generated.IntPayload();
+          }
+          FieldLayoutIndexPayload.MergeFrom(other.FieldLayoutIndexPayload);
+          break;
+        case PayloadOneofCase.ApriltagIndexPayload:
+          if (ApriltagIndexPayload == null) {
+            ApriltagIndexPayload = new global::QuestNav.Protos.Generated.IntPayload();
+          }
+          ApriltagIndexPayload.MergeFrom(other.ApriltagIndexPayload);
           break;
       }
 
@@ -551,6 +865,33 @@ namespace QuestNav.Protos.Generated {
             PoseResetPayload = subBuilder;
             break;
           }
+          case 122: {
+            global::QuestNav.Protos.Generated.IntPayload subBuilder = new global::QuestNav.Protos.Generated.IntPayload();
+            if (payloadCase_ == PayloadOneofCase.FieldIndexPayload) {
+              subBuilder.MergeFrom(FieldIndexPayload);
+            }
+            input.ReadMessage(subBuilder);
+            FieldIndexPayload = subBuilder;
+            break;
+          }
+          case 130: {
+            global::QuestNav.Protos.Generated.IntPayload subBuilder = new global::QuestNav.Protos.Generated.IntPayload();
+            if (payloadCase_ == PayloadOneofCase.FieldLayoutIndexPayload) {
+              subBuilder.MergeFrom(FieldLayoutIndexPayload);
+            }
+            input.ReadMessage(subBuilder);
+            FieldLayoutIndexPayload = subBuilder;
+            break;
+          }
+          case 138: {
+            global::QuestNav.Protos.Generated.IntPayload subBuilder = new global::QuestNav.Protos.Generated.IntPayload();
+            if (payloadCase_ == PayloadOneofCase.ApriltagIndexPayload) {
+              subBuilder.MergeFrom(ApriltagIndexPayload);
+            }
+            input.ReadMessage(subBuilder);
+            ApriltagIndexPayload = subBuilder;
+            break;
+          }
         }
       }
     #endif
@@ -583,6 +924,33 @@ namespace QuestNav.Protos.Generated {
             PoseResetPayload = subBuilder;
             break;
           }
+          case 122: {
+            global::QuestNav.Protos.Generated.IntPayload subBuilder = new global::QuestNav.Protos.Generated.IntPayload();
+            if (payloadCase_ == PayloadOneofCase.FieldIndexPayload) {
+              subBuilder.MergeFrom(FieldIndexPayload);
+            }
+            input.ReadMessage(subBuilder);
+            FieldIndexPayload = subBuilder;
+            break;
+          }
+          case 130: {
+            global::QuestNav.Protos.Generated.IntPayload subBuilder = new global::QuestNav.Protos.Generated.IntPayload();
+            if (payloadCase_ == PayloadOneofCase.FieldLayoutIndexPayload) {
+              subBuilder.MergeFrom(FieldLayoutIndexPayload);
+            }
+            input.ReadMessage(subBuilder);
+            FieldLayoutIndexPayload = subBuilder;
+            break;
+          }
+          case 138: {
+            global::QuestNav.Protos.Generated.IntPayload subBuilder = new global::QuestNav.Protos.Generated.IntPayload();
+            if (payloadCase_ == PayloadOneofCase.ApriltagIndexPayload) {
+              subBuilder.MergeFrom(ApriltagIndexPayload);
+            }
+            input.ReadMessage(subBuilder);
+            ApriltagIndexPayload = subBuilder;
+            break;
+          }
         }
       }
     }
@@ -607,7 +975,7 @@ namespace QuestNav.Protos.Generated {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::QuestNav.Protos.Generated.CommandsReflection.Descriptor.MessageTypes[2]; }
+      get { return global::QuestNav.Protos.Generated.CommandsReflection.Descriptor.MessageTypes[3]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]

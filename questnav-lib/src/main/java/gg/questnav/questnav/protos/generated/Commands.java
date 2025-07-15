@@ -18,49 +18,65 @@ import us.hebi.quickbuf.RepeatedByte;
 import us.hebi.quickbuf.Utf8String;
 
 public final class Commands {
-    private static final RepeatedByte descriptorData = ProtoUtil.decodeBase64(2020,
+    private static final RepeatedByte descriptorData = ProtoUtil.decodeBase64(2858,
         "Cg5jb21tYW5kcy5wcm90bxIYcXVlc3RuYXYucHJvdG9zLmNvbW1hbmRzGhBnZW9tZXRyeTJkLnByb3Rv" + 
         "Il4KIFByb3RvYnVmUXVlc3ROYXZQb3NlUmVzZXRQYXlsb2FkEjoKC3RhcmdldF9wb3NlGAEgASgLMhku" + 
-        "d3BpLnByb3RvLlByb3RvYnVmUG9zZTJkUgp0YXJnZXRQb3NlIvIBChdQcm90b2J1ZlF1ZXN0TmF2Q29t" + 
-        "bWFuZBJBCgR0eXBlGAEgASgOMi0ucXVlc3RuYXYucHJvdG9zLmNvbW1hbmRzLlF1ZXN0TmF2Q29tbWFu" + 
-        "ZFR5cGVSBHR5cGUSHQoKY29tbWFuZF9pZBgCIAEoDVIJY29tbWFuZElkEmoKEnBvc2VfcmVzZXRfcGF5" + 
-        "bG9hZBgKIAEoCzI6LnF1ZXN0bmF2LnByb3Rvcy5jb21tYW5kcy5Qcm90b2J1ZlF1ZXN0TmF2UG9zZVJl" + 
-        "c2V0UGF5bG9hZEgAUhBwb3NlUmVzZXRQYXlsb2FkQgkKB3BheWxvYWQifwofUHJvdG9idWZRdWVzdE5h" + 
-        "dkNvbW1hbmRSZXNwb25zZRIdCgpjb21tYW5kX2lkGAEgASgNUgljb21tYW5kSWQSGAoHc3VjY2VzcxgC" + 
-        "IAEoCFIHc3VjY2VzcxIjCg1lcnJvcl9tZXNzYWdlGAMgASgJUgxlcnJvck1lc3NhZ2UqQwoTUXVlc3RO" + 
-        "YXZDb21tYW5kVHlwZRIcChhDT01NQU5EX1RZUEVfVU5TUEVDSUZJRUQQABIOCgpQT1NFX1JFU0VUEAFC" + 
-        "QwolZ2cucXVlc3RuYXYucXVlc3RuYXYucHJvdG9zLmdlbmVyYXRlZKoCGVF1ZXN0TmF2LlByb3Rvcy5H" + 
-        "ZW5lcmF0ZWRKvQoKBhIEAAMwAQoICgEMEgMAAxUKCAoBAhIDAgAhCggKAQgSAwMANgoJCgIIJRIDAwA2" + 
-        "CggKAQgSAwQAPgoJCgIIARIDBAA+CiUKAgMAEgMHABoaGiBJbXBvcnQgZ2VvbWV0cnkgbWVzc2FnZXMK" + 
-        "CkUKAgUAEgQKAA4BGjkgRW51bSBmb3IgY29tbWFuZCB0eXBlcyAoZXh0ZW5zaWJsZSBmb3IgZnV0dXJl" + 
-        "IGNvbW1hbmRzKQoKCgoDBQABEgMKBRgKLwoEBQACABIDCwIfIiIgRGVmYXVsdCB2YWx1ZSByZXF1aXJl" + 
-        "ZCBpbiBwcm90bzMKCgwKBQUAAgABEgMLAhoKDAoFBQACAAISAwsdHgouCgQFAAIBEgMMAhEiISBSZXNl" + 
-        "dCByb2JvdCBwb3NlIHRvIHRhcmdldCBwb3NlCgoMCgUFAAIBARIDDAIMCgwKBQUAAgECEgMMDxAKLAoC" + 
-        "BAASBBEAFAEaICBQYXlsb2FkIGZvciBwb3NlIHJlc2V0IGNvbW1hbmQKCgoKAwQAARIDEQgoCmcKBAQA" + 
-        "AgASAxMCKxpaIFRhcmdldCBwb3NlIGluIGZpZWxkLXJlbGF0aXZlIFdQSUxpYiBjb29yZGluYXRlIHNw" + 
-        "YWNlICh4IGZvcndhcmQsIHkgbGVmdCwgcm90YXRpb24gQ0NXKykKCgwKBQQAAgAGEgMTAhoKDAoFBAAC",
-        "AAESAxMbJgoMCgUEAAIAAxIDEykqCiIKAgQBEgQXACQBGhYgTWFpbiBDb21tYW5kIG1lc3NhZ2UKCgoK" + 
-        "AwQBARIDFwgfCiIKBAQBAgASAxkCHxoVIFRoZSB0eXBlIG9mIGNvbW1hbmQKCgwKBQQBAgAGEgMZAhUK" + 
-        "DAoFBAECAAESAxkWGgoMCgUEAQIAAxIDGR0eCjAKBAQBAgESAxwCGBojIENvbW1hbmQgSUQgZm9yIHRy" + 
-        "YWNraW5nL3Jlc3BvbnNlcwoKDAoFBAECAQUSAxwCCAoMCgUEAQIBARIDHAkTCgwKBQQBAgEDEgMcFhcK" + 
-        "VQoEBAEIABIEHwIjAxpHIENvbW1hbmQtc3BlY2lmaWMgcGF5bG9hZCAob25seSBvbmUgd2lsbCBiZSBz" + 
-        "ZXQgYmFzZWQgb24gY29tbWFuZCB0eXBlKQoKDAoFBAEIAAESAx8IDwphCgQEAQICEgMgBD0iVCBGdXR1" + 
-        "cmUgcGF5bG9hZHMgY2FuIGJlIGFkZGVkIGhlcmU6CiAoQ29tbWFuZHMgd2l0aCBubyBwYXlsb2FkIGRv" + 
-        "bid0IG5lZWQgYW4gZW50cnkpCgoMCgUEAQICBhIDIAQkCgwKBQQBAgIBEgMgJTcKDAoFBAECAgMSAyA6" + 
-        "PAorCgIEAhIEJwAwARofIFJlc3BvbnNlIG1lc3NhZ2UgZm9yIGNvbW1hbmRzCgoKCgMEAgESAycIJwou" + 
-        "CgQEAgIAEgMpAhgaISBNYXRjaGVzIHRoZSBvcmlnaW5hbCBjb21tYW5kIElECgoMCgUEAgIABRIDKQII" + 
-        "CgwKBQQCAgABEgMpCRMKDAoFBAICAAMSAykWFwoxCgQEAgIBEgMsAhMaJCBXaGV0aGVyIHRoZSBjb21t" + 
-        "YW5kIHdhcyBzdWNjZXNzZnVsCgoMCgUEAgIBBRIDLAIGCgwKBQQCAgEBEgMsBw4KDAoFBAICAQMSAywR" + 
-        "EgovCgQEAgICEgMvAhsaIiBFcnJvciBtZXNzYWdlIGlmIHN1Y2Nlc3MgPSBmYWxzZQoKDAoFBAICAgUS" + 
-        "Ay8CCAoMCgUEAgICARIDLwkWCgwKBQQCAgIDEgMvGRpiBnByb3RvMw==");
+        "d3BpLnByb3RvLlByb3RvYnVmUG9zZTJkUgp0YXJnZXRQb3NlIiIKCkludFBheWxvYWQSFAoFdmFsdWUY" + 
+        "ASABKAVSBXZhbHVlIo0EChdQcm90b2J1ZlF1ZXN0TmF2Q29tbWFuZBJBCgR0eXBlGAEgASgOMi0ucXVl" + 
+        "c3RuYXYucHJvdG9zLmNvbW1hbmRzLlF1ZXN0TmF2Q29tbWFuZFR5cGVSBHR5cGUSHQoKY29tbWFuZF9p" + 
+        "ZBgCIAEoDVIJY29tbWFuZElkEmoKEnBvc2VfcmVzZXRfcGF5bG9hZBgKIAEoCzI6LnF1ZXN0bmF2LnBy" + 
+        "b3Rvcy5jb21tYW5kcy5Qcm90b2J1ZlF1ZXN0TmF2UG9zZVJlc2V0UGF5bG9hZEgAUhBwb3NlUmVzZXRQ" + 
+        "YXlsb2FkElYKE2ZpZWxkX2luZGV4X3BheWxvYWQYDyABKAsyJC5xdWVzdG5hdi5wcm90b3MuY29tbWFu" + 
+        "ZHMuSW50UGF5bG9hZEgAUhFmaWVsZEluZGV4UGF5bG9hZBJjChpmaWVsZF9sYXlvdXRfaW5kZXhfcGF5" + 
+        "bG9hZBgQIAEoCzIkLnF1ZXN0bmF2LnByb3Rvcy5jb21tYW5kcy5JbnRQYXlsb2FkSABSF2ZpZWxkTGF5" + 
+        "b3V0SW5kZXhQYXlsb2FkElwKFmFwcmlsdGFnX2luZGV4X3BheWxvYWQYESABKAsyJC5xdWVzdG5hdi5w" + 
+        "cm90b3MuY29tbWFuZHMuSW50UGF5bG9hZEgAUhRhcHJpbHRhZ0luZGV4UGF5bG9hZEIJCgdwYXlsb2Fk" + 
+        "In8KH1Byb3RvYnVmUXVlc3ROYXZDb21tYW5kUmVzcG9uc2USHQoKY29tbWFuZF9pZBgBIAEoDVIJY29t" + 
+        "bWFuZElkEhgKB3N1Y2Nlc3MYAiABKAhSB3N1Y2Nlc3MSIwoNZXJyb3JfbWVzc2FnZRgDIAEoCVIMZXJy" + 
+        "b3JNZXNzYWdlKocBChNRdWVzdE5hdkNvbW1hbmRUeXBlEhwKGENPTU1BTkRfVFlQRV9VTlNQRUNJRklF" + 
+        "RBAAEg4KClBPU0VfUkVTRVQQARITCg9TRVRfRklFTERfSU5ERVgQBRIaChZTRVRfRklFTERfTEFZT1VU" + 
+        "X0lOREVYEAYSEQoNQ0FMSUJSQVRFX1RBRxAHQkMKJWdnLnF1ZXN0bmF2LnF1ZXN0bmF2LnByb3Rvcy5n" + 
+        "ZW5lcmF0ZWSqAhlRdWVzdE5hdi5Qcm90b3MuR2VuZXJhdGVkSv8NCgYSBAADOgEKCAoBDBIDAAMVCggK" + 
+        "AQISAwIAIQoICgEIEgMDADYKCQoCCCUSAwMANgoICgEIEgMEAD4KCQoCCAESAwQAPgolCgIDABIDBwAa" + 
+        "GhogSW1wb3J0IGdlb21ldHJ5IG1lc3NhZ2VzCgpFCgIFABIECgARARo5IEVudW0gZm9yIGNvbW1hbmQg",
+        "dHlwZXMgKGV4dGVuc2libGUgZm9yIGZ1dHVyZSBjb21tYW5kcykKCgoKAwUAARIDCgUYCi8KBAUAAgAS" + 
+        "AwsCHyIiIERlZmF1bHQgdmFsdWUgcmVxdWlyZWQgaW4gcHJvdG8zCgoMCgUFAAIAARIDCwIaCgwKBQUA" + 
+        "AgACEgMLHR4KLgoEBQACARIDDAIRIiEgUmVzZXQgcm9ib3QgcG9zZSB0byB0YXJnZXQgcG9zZQoKDAoF" + 
+        "BQACAQESAwwCDAoMCgUFAAIBAhIDDA8QCiIKBAUAAgISAw0CFiIVIFNldCB0aGUgZmllbGQgaW5kZXgK" + 
+        "CgwKBQUAAgIBEgMNAhEKDAoFBQACAgISAw0UFQopCgQFAAIDEgMOAh0iHCBTZXQgdGhlIGZpZWxkIGxh" + 
+        "eW91dCBpbmRleAoKDAoFBQACAwESAw4CGAoMCgUFAAIDAhIDDhscCikKBAUAAgQSAw8CFCIcIFNldCB0" + 
+        "aGUgZmllbGQgbGF5b3V0IGluZGV4CgoMCgUFAAIEARIDDwIPCgwKBQUAAgQCEgMPEhMKLAoCBAASBBQA" + 
+        "FwEaICBQYXlsb2FkIGZvciBwb3NlIHJlc2V0IGNvbW1hbmQKCgoKAwQAARIDFAgoCmcKBAQAAgASAxYC" + 
+        "KxpaIFRhcmdldCBwb3NlIGluIGZpZWxkLXJlbGF0aXZlIFdQSUxpYiBjb29yZGluYXRlIHNwYWNlICh4" + 
+        "IGZvcndhcmQsIHkgbGVmdCwgcm90YXRpb24gQ0NXKykKCgwKBQQAAgAGEgMWAhoKDAoFBAACAAESAxYb" + 
+        "JgoMCgUEAAIAAxIDFikqCgoKAgQBEgQZABsBCgoKAwQBARIDGQgSCgsKBAQBAgASAxoCEgoMCgUEAQIA" + 
+        "BRIDGgIHCgwKBQQBAgABEgMaCA0KDAoFBAECAAMSAxoQEQoiCgIEAhIEHgAuARoWIE1haW4gQ29tbWFu" + 
+        "ZCBtZXNzYWdlCgoKCgMEAgESAx4IHwoiCgQEAgIAEgMgAh8aFSBUaGUgdHlwZSBvZiBjb21tYW5kCgoM" + 
+        "CgUEAgIABhIDIAIVCgwKBQQCAgABEgMgFhoKDAoFBAICAAMSAyAdHgowCgQEAgIBEgMjAhgaIyBDb21t" + 
+        "YW5kIElEIGZvciB0cmFja2luZy9yZXNwb25zZXMKCgwKBQQCAgEFEgMjAggKDAoFBAICAQESAyMJEwoM" + 
+        "CgUEAgIBAxIDIxYXClUKBAQCCAASBCYCLQMaRyBDb21tYW5kLXNwZWNpZmljIHBheWxvYWQgKG9ubHkg" + 
+        "b25lIHdpbGwgYmUgc2V0IGJhc2VkIG9uIGNvbW1hbmQgdHlwZSkKCgwKBQQCCAABEgMmCA8KCwoEBAIC" + 
+        "AhIDJwQ9CgwKBQQCAgIGEgMnBCQKDAoFBAICAgESAyclNwoMCgUEAgICAxIDJzo8CgsKBAQCAgMSAygE" + 
+        "KAoMCgUEAgIDBhIDKAQOCgwKBQQCAgMBEgMoDyIKDAoFBAICAwMSAyglJwoLCgQEAgIEEgMpBC8KDAoF" + 
+        "BAICBAYSAykEDgoMCgUEAgIEARIDKQ8pCgwKBQQCAgQDEgMpLC4KYQoEBAICBRIDKgQrIlQgRnV0dXJl",
+        "IHBheWxvYWRzIGNhbiBiZSBhZGRlZCBoZXJlOgogKENvbW1hbmRzIHdpdGggbm8gcGF5bG9hZCBkb24n" + 
+        "dCBuZWVkIGFuIGVudHJ5KQoKDAoFBAICBQYSAyoEDgoMCgUEAgIFARIDKg8lCgwKBQQCAgUDEgMqKCoK" + 
+        "KwoCBAMSBDEAOgEaHyBSZXNwb25zZSBtZXNzYWdlIGZvciBjb21tYW5kcwoKCgoDBAMBEgMxCCcKLgoE" + 
+        "BAMCABIDMwIYGiEgTWF0Y2hlcyB0aGUgb3JpZ2luYWwgY29tbWFuZCBJRAoKDAoFBAMCAAUSAzMCCAoM" + 
+        "CgUEAwIAARIDMwkTCgwKBQQDAgADEgMzFhcKMQoEBAMCARIDNgITGiQgV2hldGhlciB0aGUgY29tbWFu" + 
+        "ZCB3YXMgc3VjY2Vzc2Z1bAoKDAoFBAMCAQUSAzYCBgoMCgUEAwIBARIDNgcOCgwKBQQDAgEDEgM2ERIK" + 
+        "LwoEBAMCAhIDOQIbGiIgRXJyb3IgbWVzc2FnZSBpZiBzdWNjZXNzID0gZmFsc2UKCgwKBQQDAgIFEgM5" + 
+        "AggKDAoFBAMCAgESAzkJFgoMCgUEAwICAxIDORkaYgZwcm90bzM=");
 
     static final Descriptors.FileDescriptor descriptor = Descriptors.FileDescriptor.internalBuildGeneratedFileFrom("commands.proto", "questnav.protos.commands", descriptorData, Geometry2D.getDescriptor());
 
     static final Descriptors.Descriptor questnav_protos_commands_ProtobufQuestNavPoseResetPayload_descriptor = descriptor.internalContainedType(62, 94, "ProtobufQuestNavPoseResetPayload", "questnav.protos.commands.ProtobufQuestNavPoseResetPayload");
 
-    static final Descriptors.Descriptor questnav_protos_commands_ProtobufQuestNavCommand_descriptor = descriptor.internalContainedType(159, 242, "ProtobufQuestNavCommand", "questnav.protos.commands.ProtobufQuestNavCommand");
+    static final Descriptors.Descriptor questnav_protos_commands_IntPayload_descriptor = descriptor.internalContainedType(158, 34, "IntPayload", "questnav.protos.commands.IntPayload");
 
-    static final Descriptors.Descriptor questnav_protos_commands_ProtobufQuestNavCommandResponse_descriptor = descriptor.internalContainedType(403, 127, "ProtobufQuestNavCommandResponse", "questnav.protos.commands.ProtobufQuestNavCommandResponse");
+    static final Descriptors.Descriptor questnav_protos_commands_ProtobufQuestNavCommand_descriptor = descriptor.internalContainedType(195, 525, "ProtobufQuestNavCommand", "questnav.protos.commands.ProtobufQuestNavCommand");
+
+    static final Descriptors.Descriptor questnav_protos_commands_ProtobufQuestNavCommandResponse_descriptor = descriptor.internalContainedType(722, 127, "ProtobufQuestNavCommandResponse", "questnav.protos.commands.ProtobufQuestNavCommandResponse");
 
     /**
      * @return this proto file's descriptor.
@@ -93,7 +109,34 @@ public final class Commands {
          *
          * <code>POSE_RESET = 1;</code>
          */
-        POSE_RESET("POSE_RESET", 1);
+        POSE_RESET("POSE_RESET", 1),
+
+        /**
+         * <pre>
+         *  Set the field index
+         * </pre>
+         *
+         * <code>SET_FIELD_INDEX = 5;</code>
+         */
+        SET_FIELD_INDEX("SET_FIELD_INDEX", 5),
+
+        /**
+         * <pre>
+         *  Set the field layout index
+         * </pre>
+         *
+         * <code>SET_FIELD_LAYOUT_INDEX = 6;</code>
+         */
+        SET_FIELD_LAYOUT_INDEX("SET_FIELD_LAYOUT_INDEX", 6),
+
+        /**
+         * <pre>
+         *  Set the field layout index
+         * </pre>
+         *
+         * <code>CALIBRATE_TAG = 7;</code>
+         */
+        CALIBRATE_TAG("CALIBRATE_TAG", 7);
 
         /**
          * <pre>
@@ -112,6 +155,33 @@ public final class Commands {
          * <code>POSE_RESET = 1;</code>
          */
         public static final int POSE_RESET_VALUE = 1;
+
+        /**
+         * <pre>
+         *  Set the field index
+         * </pre>
+         *
+         * <code>SET_FIELD_INDEX = 5;</code>
+         */
+        public static final int SET_FIELD_INDEX_VALUE = 5;
+
+        /**
+         * <pre>
+         *  Set the field layout index
+         * </pre>
+         *
+         * <code>SET_FIELD_LAYOUT_INDEX = 6;</code>
+         */
+        public static final int SET_FIELD_LAYOUT_INDEX_VALUE = 6;
+
+        /**
+         * <pre>
+         *  Set the field layout index
+         * </pre>
+         *
+         * <code>CALIBRATE_TAG = 7;</code>
+         */
+        public static final int CALIBRATE_TAG_VALUE = 7;
 
         private final String name;
 
@@ -166,11 +236,14 @@ public final class Commands {
         enum QuestNavCommandTypeConverter implements ProtoEnum.EnumConverter<QuestNavCommandType> {
             INSTANCE;
 
-            private static final QuestNavCommandType[] lookup = new QuestNavCommandType[2];
+            private static final QuestNavCommandType[] lookup = new QuestNavCommandType[8];
 
             static {
                 lookup[0] = COMMAND_TYPE_UNSPECIFIED;
                 lookup[1] = POSE_RESET;
+                lookup[5] = SET_FIELD_INDEX;
+                lookup[6] = SET_FIELD_LAYOUT_INDEX;
+                lookup[7] = CALIBRATE_TAG;
             }
 
             @Override
@@ -183,14 +256,36 @@ public final class Commands {
 
             @Override
             public final QuestNavCommandType forName(final CharSequence value) {
-                if (value.length() == 10) {
-                    if (ProtoUtil.isEqual("POSE_RESET", value)) {
-                        return POSE_RESET;
+                switch (value.length()) {
+                    case 10: {
+                        if (ProtoUtil.isEqual("POSE_RESET", value)) {
+                            return POSE_RESET;
+                        }
+                        break;
                     }
-                }
-                if (value.length() == 24) {
-                    if (ProtoUtil.isEqual("COMMAND_TYPE_UNSPECIFIED", value)) {
-                        return COMMAND_TYPE_UNSPECIFIED;
+                    case 13: {
+                        if (ProtoUtil.isEqual("CALIBRATE_TAG", value)) {
+                            return CALIBRATE_TAG;
+                        }
+                        break;
+                    }
+                    case 15: {
+                        if (ProtoUtil.isEqual("SET_FIELD_INDEX", value)) {
+                            return SET_FIELD_INDEX;
+                        }
+                        break;
+                    }
+                    case 22: {
+                        if (ProtoUtil.isEqual("SET_FIELD_LAYOUT_INDEX", value)) {
+                            return SET_FIELD_LAYOUT_INDEX;
+                        }
+                        break;
+                    }
+                    case 24: {
+                        if (ProtoUtil.isEqual("COMMAND_TYPE_UNSPECIFIED", value)) {
+                            return COMMAND_TYPE_UNSPECIFIED;
+                        }
+                        break;
                     }
                 }
                 return null;
@@ -512,6 +607,258 @@ public final class Commands {
     }
 
     /**
+     * Protobuf type {@code IntPayload}
+     */
+    public static final class IntPayload extends ProtoMessage<IntPayload> implements Cloneable {
+        private static final long serialVersionUID = 0L;
+
+        /**
+         * <code>optional int32 value = 1;</code>
+         */
+        private int value_;
+
+        private IntPayload() {
+        }
+
+        /**
+         * @return a new empty instance of {@code IntPayload}
+         */
+        public static IntPayload newInstance() {
+            return new IntPayload();
+        }
+
+        /**
+         * <code>optional int32 value = 1;</code>
+         * @return whether the value_ field is set
+         */
+        public boolean hasValue() {
+            return (bitField0_ & 0x00000001) != 0;
+        }
+
+        /**
+         * <code>optional int32 value = 1;</code>
+         * @return this
+         */
+        public IntPayload clearValue() {
+            bitField0_ &= ~0x00000001;
+            value_ = 0;
+            return this;
+        }
+
+        /**
+         * <code>optional int32 value = 1;</code>
+         * @return the value_
+         */
+        public int getValue() {
+            return value_;
+        }
+
+        /**
+         * <code>optional int32 value = 1;</code>
+         * @param value the value_ to set
+         * @return this
+         */
+        public IntPayload setValue(final int value) {
+            bitField0_ |= 0x00000001;
+            value_ = value;
+            return this;
+        }
+
+        @Override
+        public IntPayload copyFrom(final IntPayload other) {
+            cachedSize = other.cachedSize;
+            if ((bitField0_ | other.bitField0_) != 0) {
+                bitField0_ = other.bitField0_;
+                value_ = other.value_;
+            }
+            return this;
+        }
+
+        @Override
+        public IntPayload mergeFrom(final IntPayload other) {
+            if (other.isEmpty()) {
+                return this;
+            }
+            cachedSize = -1;
+            if (other.hasValue()) {
+                setValue(other.value_);
+            }
+            return this;
+        }
+
+        @Override
+        public IntPayload clear() {
+            if (isEmpty()) {
+                return this;
+            }
+            cachedSize = -1;
+            bitField0_ = 0;
+            value_ = 0;
+            return this;
+        }
+
+        @Override
+        public IntPayload clearQuick() {
+            if (isEmpty()) {
+                return this;
+            }
+            cachedSize = -1;
+            bitField0_ = 0;
+            return this;
+        }
+
+        @Override
+        public boolean equals(Object o) {
+            if (o == this) {
+                return true;
+            }
+            if (!(o instanceof IntPayload)) {
+                return false;
+            }
+            IntPayload other = (IntPayload) o;
+            return bitField0_ == other.bitField0_
+                && (!hasValue() || value_ == other.value_);
+        }
+
+        @Override
+        public void writeTo(final ProtoSink output) throws IOException {
+            if ((bitField0_ & 0x00000001) != 0) {
+                output.writeRawByte((byte) 8);
+                output.writeInt32NoTag(value_);
+            }
+        }
+
+        @Override
+        protected int computeSerializedSize() {
+            int size = 0;
+            if ((bitField0_ & 0x00000001) != 0) {
+                size += 1 + ProtoSink.computeInt32SizeNoTag(value_);
+            }
+            return size;
+        }
+
+        @Override
+        @SuppressWarnings("fallthrough")
+        public IntPayload mergeFrom(final ProtoSource input) throws IOException {
+            // Enabled Fall-Through Optimization (QuickBuffers)
+            int tag = input.readTag();
+            while (true) {
+                switch (tag) {
+                    case 8: {
+                        // value_
+                        value_ = input.readInt32();
+                        bitField0_ |= 0x00000001;
+                        tag = input.readTag();
+                        if (tag != 0) {
+                            break;
+                        }
+                    }
+                    case 0: {
+                        return this;
+                    }
+                    default: {
+                        if (!input.skipField(tag)) {
+                            return this;
+                        }
+                        tag = input.readTag();
+                        break;
+                    }
+                }
+            }
+        }
+
+        @Override
+        public void writeTo(final JsonSink output) throws IOException {
+            output.beginObject();
+            if ((bitField0_ & 0x00000001) != 0) {
+                output.writeInt32(FieldNames.value_, value_);
+            }
+            output.endObject();
+        }
+
+        @Override
+        public IntPayload mergeFrom(final JsonSource input) throws IOException {
+            if (!input.beginObject()) {
+                return this;
+            }
+            while (!input.isAtEnd()) {
+                switch (input.readFieldHash()) {
+                    case 111972721: {
+                        if (input.isAtField(FieldNames.value_)) {
+                            if (!input.trySkipNullValue()) {
+                                value_ = input.readInt32();
+                                bitField0_ |= 0x00000001;
+                            }
+                        } else {
+                            input.skipUnknownField();
+                        }
+                        break;
+                    }
+                    default: {
+                        input.skipUnknownField();
+                        break;
+                    }
+                }
+            }
+            input.endObject();
+            return this;
+        }
+
+        @Override
+        public IntPayload clone() {
+            return new IntPayload().copyFrom(this);
+        }
+
+        @Override
+        public boolean isEmpty() {
+            return ((bitField0_) == 0);
+        }
+
+        public static IntPayload parseFrom(final byte[] data) throws
+                InvalidProtocolBufferException {
+            return ProtoMessage.mergeFrom(new IntPayload(), data).checkInitialized();
+        }
+
+        public static IntPayload parseFrom(final ProtoSource input) throws IOException {
+            return ProtoMessage.mergeFrom(new IntPayload(), input).checkInitialized();
+        }
+
+        public static IntPayload parseFrom(final JsonSource input) throws IOException {
+            return ProtoMessage.mergeFrom(new IntPayload(), input).checkInitialized();
+        }
+
+        /**
+         * @return factory for creating IntPayload messages
+         */
+        public static MessageFactory<IntPayload> getFactory() {
+            return IntPayloadFactory.INSTANCE;
+        }
+
+        /**
+         * @return this type's descriptor.
+         */
+        public static Descriptors.Descriptor getDescriptor() {
+            return Commands.questnav_protos_commands_IntPayload_descriptor;
+        }
+
+        private enum IntPayloadFactory implements MessageFactory<IntPayload> {
+            INSTANCE;
+
+            @Override
+            public IntPayload create() {
+                return IntPayload.newInstance();
+            }
+        }
+
+        /**
+         * Contains name constants used for serializing JSON
+         */
+        static class FieldNames {
+            static final FieldName value_ = FieldName.forField("value");
+        }
+    }
+
+    /**
      * <pre>
      *  Main Command message
      * </pre>
@@ -540,14 +887,29 @@ public final class Commands {
         private int type;
 
         /**
+         * <code>optional .questnav.protos.commands.ProtobufQuestNavPoseResetPayload pose_reset_payload = 10;</code>
+         */
+        private final ProtobufQuestNavPoseResetPayload poseResetPayload = ProtobufQuestNavPoseResetPayload.newInstance();
+
+        /**
+         * <code>optional .questnav.protos.commands.IntPayload field_index_payload = 15;</code>
+         */
+        private final IntPayload fieldIndexPayload = IntPayload.newInstance();
+
+        /**
+         * <code>optional .questnav.protos.commands.IntPayload field_layout_index_payload = 16;</code>
+         */
+        private final IntPayload fieldLayoutIndexPayload = IntPayload.newInstance();
+
+        /**
          * <pre>
          *  Future payloads can be added here:
          *  (Commands with no payload don't need an entry)
          * </pre>
          *
-         * <code>optional .questnav.protos.commands.ProtobufQuestNavPoseResetPayload pose_reset_payload = 10;</code>
+         * <code>optional .questnav.protos.commands.IntPayload apriltag_index_payload = 17;</code>
          */
-        private final ProtobufQuestNavPoseResetPayload poseResetPayload = ProtobufQuestNavPoseResetPayload.newInstance();
+        private final IntPayload apriltagIndexPayload = IntPayload.newInstance();
 
         private ProtobufQuestNavCommand() {
         }
@@ -564,14 +926,49 @@ public final class Commands {
         }
 
         public boolean hasPayload() {
-            return (((bitField0_ & 0x00000001)) != 0);
+            return (((bitField0_ & 0x0000000f)) != 0);
         }
 
         public ProtobufQuestNavCommand clearPayload() {
             if (hasPayload()) {
                 clearPoseResetPayload();
+                clearFieldIndexPayload();
+                clearFieldLayoutIndexPayload();
+                clearApriltagIndexPayload();
             }
             return this;
+        }
+
+        private void clearPayloadOtherPoseResetPayload() {
+            if ((((bitField0_ & 0x0000000e)) != 0)) {
+                clearFieldIndexPayload();
+                clearFieldLayoutIndexPayload();
+                clearApriltagIndexPayload();
+            }
+        }
+
+        private void clearPayloadOtherFieldIndexPayload() {
+            if ((((bitField0_ & 0x0000000d)) != 0)) {
+                clearPoseResetPayload();
+                clearFieldLayoutIndexPayload();
+                clearApriltagIndexPayload();
+            }
+        }
+
+        private void clearPayloadOtherFieldLayoutIndexPayload() {
+            if ((((bitField0_ & 0x0000000b)) != 0)) {
+                clearPoseResetPayload();
+                clearFieldIndexPayload();
+                clearApriltagIndexPayload();
+            }
+        }
+
+        private void clearPayloadOtherApriltagIndexPayload() {
+            if ((((bitField0_ & 0x00000007)) != 0)) {
+                clearPoseResetPayload();
+                clearFieldIndexPayload();
+                clearFieldLayoutIndexPayload();
+            }
         }
 
         /**
@@ -583,7 +980,7 @@ public final class Commands {
          * @return whether the commandId field is set
          */
         public boolean hasCommandId() {
-            return (bitField0_ & 0x00000002) != 0;
+            return (bitField0_ & 0x00000010) != 0;
         }
 
         /**
@@ -595,7 +992,7 @@ public final class Commands {
          * @return this
          */
         public ProtobufQuestNavCommand clearCommandId() {
-            bitField0_ &= ~0x00000002;
+            bitField0_ &= ~0x00000010;
             commandId = 0;
             return this;
         }
@@ -622,7 +1019,7 @@ public final class Commands {
          * @return this
          */
         public ProtobufQuestNavCommand setCommandId(final int value) {
-            bitField0_ |= 0x00000002;
+            bitField0_ |= 0x00000010;
             commandId = value;
             return this;
         }
@@ -636,7 +1033,7 @@ public final class Commands {
          * @return whether the type field is set
          */
         public boolean hasType() {
-            return (bitField0_ & 0x00000004) != 0;
+            return (bitField0_ & 0x00000020) != 0;
         }
 
         /**
@@ -648,7 +1045,7 @@ public final class Commands {
          * @return this
          */
         public ProtobufQuestNavCommand clearType() {
-            bitField0_ &= ~0x00000004;
+            bitField0_ &= ~0x00000020;
             type = 0;
             return this;
         }
@@ -685,7 +1082,7 @@ public final class Commands {
          * @return this
          */
         public ProtobufQuestNavCommand setTypeValue(final int value) {
-            bitField0_ |= 0x00000004;
+            bitField0_ |= 0x00000020;
             type = value;
             return this;
         }
@@ -700,17 +1097,12 @@ public final class Commands {
          * @return this
          */
         public ProtobufQuestNavCommand setType(final QuestNavCommandType value) {
-            bitField0_ |= 0x00000004;
+            bitField0_ |= 0x00000020;
             type = value.getNumber();
             return this;
         }
 
         /**
-         * <pre>
-         *  Future payloads can be added here:
-         *  (Commands with no payload don't need an entry)
-         * </pre>
-         *
          * <code>optional .questnav.protos.commands.ProtobufQuestNavPoseResetPayload pose_reset_payload = 10;</code>
          * @return whether the poseResetPayload field is set
          */
@@ -719,11 +1111,6 @@ public final class Commands {
         }
 
         /**
-         * <pre>
-         *  Future payloads can be added here:
-         *  (Commands with no payload don't need an entry)
-         * </pre>
-         *
          * <code>optional .questnav.protos.commands.ProtobufQuestNavPoseResetPayload pose_reset_payload = 10;</code>
          * @return this
          */
@@ -734,11 +1121,6 @@ public final class Commands {
         }
 
         /**
-         * <pre>
-         *  Future payloads can be added here:
-         *  (Commands with no payload don't need an entry)
-         * </pre>
-         *
          * <code>optional .questnav.protos.commands.ProtobufQuestNavPoseResetPayload pose_reset_payload = 10;</code>
          *
          * This method returns the internal storage object without modifying any has state.
@@ -753,11 +1135,6 @@ public final class Commands {
         }
 
         /**
-         * <pre>
-         *  Future payloads can be added here:
-         *  (Commands with no payload don't need an entry)
-         * </pre>
-         *
          * <code>optional .questnav.protos.commands.ProtobufQuestNavPoseResetPayload pose_reset_payload = 10;</code>
          *
          * This method returns the internal storage object and sets the corresponding
@@ -767,8 +1144,140 @@ public final class Commands {
          * @return internal storage object for modifications
          */
         public ProtobufQuestNavPoseResetPayload getMutablePoseResetPayload() {
+            clearPayloadOtherPoseResetPayload();
             bitField0_ |= 0x00000001;
             return poseResetPayload;
+        }
+
+        /**
+         * <code>optional .questnav.protos.commands.ProtobufQuestNavPoseResetPayload pose_reset_payload = 10;</code>
+         * @param value the poseResetPayload to set
+         * @return this
+         */
+        public ProtobufQuestNavCommand setPoseResetPayload(
+                final ProtobufQuestNavPoseResetPayload value) {
+            clearPayloadOtherPoseResetPayload();
+            bitField0_ |= 0x00000001;
+            poseResetPayload.copyFrom(value);
+            return this;
+        }
+
+        /**
+         * <code>optional .questnav.protos.commands.IntPayload field_index_payload = 15;</code>
+         * @return whether the fieldIndexPayload field is set
+         */
+        public boolean hasFieldIndexPayload() {
+            return (bitField0_ & 0x00000002) != 0;
+        }
+
+        /**
+         * <code>optional .questnav.protos.commands.IntPayload field_index_payload = 15;</code>
+         * @return this
+         */
+        public ProtobufQuestNavCommand clearFieldIndexPayload() {
+            bitField0_ &= ~0x00000002;
+            fieldIndexPayload.clear();
+            return this;
+        }
+
+        /**
+         * <code>optional .questnav.protos.commands.IntPayload field_index_payload = 15;</code>
+         *
+         * This method returns the internal storage object without modifying any has state.
+         * The returned object should not be modified and be treated as read-only.
+         *
+         * Use {@link #getMutableFieldIndexPayload()} if you want to modify it.
+         *
+         * @return internal storage object for reading
+         */
+        public IntPayload getFieldIndexPayload() {
+            return fieldIndexPayload;
+        }
+
+        /**
+         * <code>optional .questnav.protos.commands.IntPayload field_index_payload = 15;</code>
+         *
+         * This method returns the internal storage object and sets the corresponding
+         * has state. The returned object will become part of this message and its
+         * contents may be modified as long as the has state is not cleared.
+         *
+         * @return internal storage object for modifications
+         */
+        public IntPayload getMutableFieldIndexPayload() {
+            clearPayloadOtherFieldIndexPayload();
+            bitField0_ |= 0x00000002;
+            return fieldIndexPayload;
+        }
+
+        /**
+         * <code>optional .questnav.protos.commands.IntPayload field_index_payload = 15;</code>
+         * @param value the fieldIndexPayload to set
+         * @return this
+         */
+        public ProtobufQuestNavCommand setFieldIndexPayload(final IntPayload value) {
+            clearPayloadOtherFieldIndexPayload();
+            bitField0_ |= 0x00000002;
+            fieldIndexPayload.copyFrom(value);
+            return this;
+        }
+
+        /**
+         * <code>optional .questnav.protos.commands.IntPayload field_layout_index_payload = 16;</code>
+         * @return whether the fieldLayoutIndexPayload field is set
+         */
+        public boolean hasFieldLayoutIndexPayload() {
+            return (bitField0_ & 0x00000004) != 0;
+        }
+
+        /**
+         * <code>optional .questnav.protos.commands.IntPayload field_layout_index_payload = 16;</code>
+         * @return this
+         */
+        public ProtobufQuestNavCommand clearFieldLayoutIndexPayload() {
+            bitField0_ &= ~0x00000004;
+            fieldLayoutIndexPayload.clear();
+            return this;
+        }
+
+        /**
+         * <code>optional .questnav.protos.commands.IntPayload field_layout_index_payload = 16;</code>
+         *
+         * This method returns the internal storage object without modifying any has state.
+         * The returned object should not be modified and be treated as read-only.
+         *
+         * Use {@link #getMutableFieldLayoutIndexPayload()} if you want to modify it.
+         *
+         * @return internal storage object for reading
+         */
+        public IntPayload getFieldLayoutIndexPayload() {
+            return fieldLayoutIndexPayload;
+        }
+
+        /**
+         * <code>optional .questnav.protos.commands.IntPayload field_layout_index_payload = 16;</code>
+         *
+         * This method returns the internal storage object and sets the corresponding
+         * has state. The returned object will become part of this message and its
+         * contents may be modified as long as the has state is not cleared.
+         *
+         * @return internal storage object for modifications
+         */
+        public IntPayload getMutableFieldLayoutIndexPayload() {
+            clearPayloadOtherFieldLayoutIndexPayload();
+            bitField0_ |= 0x00000004;
+            return fieldLayoutIndexPayload;
+        }
+
+        /**
+         * <code>optional .questnav.protos.commands.IntPayload field_layout_index_payload = 16;</code>
+         * @param value the fieldLayoutIndexPayload to set
+         * @return this
+         */
+        public ProtobufQuestNavCommand setFieldLayoutIndexPayload(final IntPayload value) {
+            clearPayloadOtherFieldLayoutIndexPayload();
+            bitField0_ |= 0x00000004;
+            fieldLayoutIndexPayload.copyFrom(value);
+            return this;
         }
 
         /**
@@ -777,14 +1286,81 @@ public final class Commands {
          *  (Commands with no payload don't need an entry)
          * </pre>
          *
-         * <code>optional .questnav.protos.commands.ProtobufQuestNavPoseResetPayload pose_reset_payload = 10;</code>
-         * @param value the poseResetPayload to set
+         * <code>optional .questnav.protos.commands.IntPayload apriltag_index_payload = 17;</code>
+         * @return whether the apriltagIndexPayload field is set
+         */
+        public boolean hasApriltagIndexPayload() {
+            return (bitField0_ & 0x00000008) != 0;
+        }
+
+        /**
+         * <pre>
+         *  Future payloads can be added here:
+         *  (Commands with no payload don't need an entry)
+         * </pre>
+         *
+         * <code>optional .questnav.protos.commands.IntPayload apriltag_index_payload = 17;</code>
          * @return this
          */
-        public ProtobufQuestNavCommand setPoseResetPayload(
-                final ProtobufQuestNavPoseResetPayload value) {
-            bitField0_ |= 0x00000001;
-            poseResetPayload.copyFrom(value);
+        public ProtobufQuestNavCommand clearApriltagIndexPayload() {
+            bitField0_ &= ~0x00000008;
+            apriltagIndexPayload.clear();
+            return this;
+        }
+
+        /**
+         * <pre>
+         *  Future payloads can be added here:
+         *  (Commands with no payload don't need an entry)
+         * </pre>
+         *
+         * <code>optional .questnav.protos.commands.IntPayload apriltag_index_payload = 17;</code>
+         *
+         * This method returns the internal storage object without modifying any has state.
+         * The returned object should not be modified and be treated as read-only.
+         *
+         * Use {@link #getMutableApriltagIndexPayload()} if you want to modify it.
+         *
+         * @return internal storage object for reading
+         */
+        public IntPayload getApriltagIndexPayload() {
+            return apriltagIndexPayload;
+        }
+
+        /**
+         * <pre>
+         *  Future payloads can be added here:
+         *  (Commands with no payload don't need an entry)
+         * </pre>
+         *
+         * <code>optional .questnav.protos.commands.IntPayload apriltag_index_payload = 17;</code>
+         *
+         * This method returns the internal storage object and sets the corresponding
+         * has state. The returned object will become part of this message and its
+         * contents may be modified as long as the has state is not cleared.
+         *
+         * @return internal storage object for modifications
+         */
+        public IntPayload getMutableApriltagIndexPayload() {
+            clearPayloadOtherApriltagIndexPayload();
+            bitField0_ |= 0x00000008;
+            return apriltagIndexPayload;
+        }
+
+        /**
+         * <pre>
+         *  Future payloads can be added here:
+         *  (Commands with no payload don't need an entry)
+         * </pre>
+         *
+         * <code>optional .questnav.protos.commands.IntPayload apriltag_index_payload = 17;</code>
+         * @param value the apriltagIndexPayload to set
+         * @return this
+         */
+        public ProtobufQuestNavCommand setApriltagIndexPayload(final IntPayload value) {
+            clearPayloadOtherApriltagIndexPayload();
+            bitField0_ |= 0x00000008;
+            apriltagIndexPayload.copyFrom(value);
             return this;
         }
 
@@ -796,6 +1372,9 @@ public final class Commands {
                 commandId = other.commandId;
                 type = other.type;
                 poseResetPayload.copyFrom(other.poseResetPayload);
+                fieldIndexPayload.copyFrom(other.fieldIndexPayload);
+                fieldLayoutIndexPayload.copyFrom(other.fieldLayoutIndexPayload);
+                apriltagIndexPayload.copyFrom(other.apriltagIndexPayload);
             }
             return this;
         }
@@ -815,6 +1394,15 @@ public final class Commands {
             if (other.hasPoseResetPayload()) {
                 getMutablePoseResetPayload().mergeFrom(other.poseResetPayload);
             }
+            if (other.hasFieldIndexPayload()) {
+                getMutableFieldIndexPayload().mergeFrom(other.fieldIndexPayload);
+            }
+            if (other.hasFieldLayoutIndexPayload()) {
+                getMutableFieldLayoutIndexPayload().mergeFrom(other.fieldLayoutIndexPayload);
+            }
+            if (other.hasApriltagIndexPayload()) {
+                getMutableApriltagIndexPayload().mergeFrom(other.apriltagIndexPayload);
+            }
             return this;
         }
 
@@ -828,6 +1416,9 @@ public final class Commands {
             commandId = 0;
             type = 0;
             poseResetPayload.clear();
+            fieldIndexPayload.clear();
+            fieldLayoutIndexPayload.clear();
+            apriltagIndexPayload.clear();
             return this;
         }
 
@@ -839,6 +1430,9 @@ public final class Commands {
             cachedSize = -1;
             bitField0_ = 0;
             poseResetPayload.clearQuick();
+            fieldIndexPayload.clearQuick();
+            fieldLayoutIndexPayload.clearQuick();
+            apriltagIndexPayload.clearQuick();
             return this;
         }
 
@@ -854,16 +1448,19 @@ public final class Commands {
             return bitField0_ == other.bitField0_
                 && (!hasCommandId() || commandId == other.commandId)
                 && (!hasType() || type == other.type)
-                && (!hasPoseResetPayload() || poseResetPayload.equals(other.poseResetPayload));
+                && (!hasPoseResetPayload() || poseResetPayload.equals(other.poseResetPayload))
+                && (!hasFieldIndexPayload() || fieldIndexPayload.equals(other.fieldIndexPayload))
+                && (!hasFieldLayoutIndexPayload() || fieldLayoutIndexPayload.equals(other.fieldLayoutIndexPayload))
+                && (!hasApriltagIndexPayload() || apriltagIndexPayload.equals(other.apriltagIndexPayload));
         }
 
         @Override
         public void writeTo(final ProtoSink output) throws IOException {
-            if ((bitField0_ & 0x00000002) != 0) {
+            if ((bitField0_ & 0x00000010) != 0) {
                 output.writeRawByte((byte) 16);
                 output.writeUInt32NoTag(commandId);
             }
-            if ((bitField0_ & 0x00000004) != 0) {
+            if ((bitField0_ & 0x00000020) != 0) {
                 output.writeRawByte((byte) 8);
                 output.writeEnumNoTag(type);
             }
@@ -871,19 +1468,40 @@ public final class Commands {
                 output.writeRawByte((byte) 82);
                 output.writeMessageNoTag(poseResetPayload);
             }
+            if ((bitField0_ & 0x00000002) != 0) {
+                output.writeRawByte((byte) 122);
+                output.writeMessageNoTag(fieldIndexPayload);
+            }
+            if ((bitField0_ & 0x00000004) != 0) {
+                output.writeRawLittleEndian16((short) 386);
+                output.writeMessageNoTag(fieldLayoutIndexPayload);
+            }
+            if ((bitField0_ & 0x00000008) != 0) {
+                output.writeRawLittleEndian16((short) 394);
+                output.writeMessageNoTag(apriltagIndexPayload);
+            }
         }
 
         @Override
         protected int computeSerializedSize() {
             int size = 0;
-            if ((bitField0_ & 0x00000002) != 0) {
+            if ((bitField0_ & 0x00000010) != 0) {
                 size += 1 + ProtoSink.computeUInt32SizeNoTag(commandId);
             }
-            if ((bitField0_ & 0x00000004) != 0) {
+            if ((bitField0_ & 0x00000020) != 0) {
                 size += 1 + ProtoSink.computeEnumSizeNoTag(type);
             }
             if ((bitField0_ & 0x00000001) != 0) {
                 size += 1 + ProtoSink.computeMessageSizeNoTag(poseResetPayload);
+            }
+            if ((bitField0_ & 0x00000002) != 0) {
+                size += 1 + ProtoSink.computeMessageSizeNoTag(fieldIndexPayload);
+            }
+            if ((bitField0_ & 0x00000004) != 0) {
+                size += 2 + ProtoSink.computeMessageSizeNoTag(fieldLayoutIndexPayload);
+            }
+            if ((bitField0_ & 0x00000008) != 0) {
+                size += 2 + ProtoSink.computeMessageSizeNoTag(apriltagIndexPayload);
             }
             return size;
         }
@@ -898,7 +1516,7 @@ public final class Commands {
                     case 16: {
                         // commandId
                         commandId = input.readUInt32();
-                        bitField0_ |= 0x00000002;
+                        bitField0_ |= 0x00000010;
                         tag = input.readTag();
                         if (tag != 8) {
                             break;
@@ -909,7 +1527,7 @@ public final class Commands {
                         final int value = input.readInt32();
                         if (QuestNavCommandType.forNumber(value) != null) {
                             type = value;
-                            bitField0_ |= 0x00000004;
+                            bitField0_ |= 0x00000020;
                         }
                         tag = input.readTag();
                         if (tag != 82) {
@@ -918,8 +1536,39 @@ public final class Commands {
                     }
                     case 82: {
                         // poseResetPayload
+                        clearPayloadOtherPoseResetPayload();
                         input.readMessage(poseResetPayload);
                         bitField0_ |= 0x00000001;
+                        tag = input.readTag();
+                        if (tag != 122) {
+                            break;
+                        }
+                    }
+                    case 122: {
+                        // fieldIndexPayload
+                        clearPayloadOtherFieldIndexPayload();
+                        input.readMessage(fieldIndexPayload);
+                        bitField0_ |= 0x00000002;
+                        tag = input.readTag();
+                        if (tag != 130) {
+                            break;
+                        }
+                    }
+                    case 130: {
+                        // fieldLayoutIndexPayload
+                        clearPayloadOtherFieldLayoutIndexPayload();
+                        input.readMessage(fieldLayoutIndexPayload);
+                        bitField0_ |= 0x00000004;
+                        tag = input.readTag();
+                        if (tag != 138) {
+                            break;
+                        }
+                    }
+                    case 138: {
+                        // apriltagIndexPayload
+                        clearPayloadOtherApriltagIndexPayload();
+                        input.readMessage(apriltagIndexPayload);
+                        bitField0_ |= 0x00000008;
                         tag = input.readTag();
                         if (tag != 0) {
                             break;
@@ -942,14 +1591,23 @@ public final class Commands {
         @Override
         public void writeTo(final JsonSink output) throws IOException {
             output.beginObject();
-            if ((bitField0_ & 0x00000002) != 0) {
+            if ((bitField0_ & 0x00000010) != 0) {
                 output.writeUInt32(FieldNames.commandId, commandId);
             }
-            if ((bitField0_ & 0x00000004) != 0) {
+            if ((bitField0_ & 0x00000020) != 0) {
                 output.writeEnum(FieldNames.type, type, QuestNavCommandType.converter());
             }
             if ((bitField0_ & 0x00000001) != 0) {
                 output.writeMessage(FieldNames.poseResetPayload, poseResetPayload);
+            }
+            if ((bitField0_ & 0x00000002) != 0) {
+                output.writeMessage(FieldNames.fieldIndexPayload, fieldIndexPayload);
+            }
+            if ((bitField0_ & 0x00000004) != 0) {
+                output.writeMessage(FieldNames.fieldLayoutIndexPayload, fieldLayoutIndexPayload);
+            }
+            if ((bitField0_ & 0x00000008) != 0) {
+                output.writeMessage(FieldNames.apriltagIndexPayload, apriltagIndexPayload);
             }
             output.endObject();
         }
@@ -966,7 +1624,7 @@ public final class Commands {
                         if (input.isAtField(FieldNames.commandId)) {
                             if (!input.trySkipNullValue()) {
                                 commandId = input.readUInt32();
-                                bitField0_ |= 0x00000002;
+                                bitField0_ |= 0x00000010;
                             }
                         } else {
                             input.skipUnknownField();
@@ -979,7 +1637,7 @@ public final class Commands {
                                 final QuestNavCommandType value = input.readEnum(QuestNavCommandType.converter());
                                 if (value != null) {
                                     type = value.getNumber();
-                                    bitField0_ |= 0x00000004;
+                                    bitField0_ |= 0x00000020;
                                 } else {
                                     input.skipUnknownEnumValue();
                                 }
@@ -993,8 +1651,48 @@ public final class Commands {
                     case -1565360272: {
                         if (input.isAtField(FieldNames.poseResetPayload)) {
                             if (!input.trySkipNullValue()) {
+                                clearPayloadOtherPoseResetPayload();
                                 input.readMessage(poseResetPayload);
                                 bitField0_ |= 0x00000001;
+                            }
+                        } else {
+                            input.skipUnknownField();
+                        }
+                        break;
+                    }
+                    case -1907265930:
+                    case 57406620: {
+                        if (input.isAtField(FieldNames.fieldIndexPayload)) {
+                            if (!input.trySkipNullValue()) {
+                                clearPayloadOtherFieldIndexPayload();
+                                input.readMessage(fieldIndexPayload);
+                                bitField0_ |= 0x00000002;
+                            }
+                        } else {
+                            input.skipUnknownField();
+                        }
+                        break;
+                    }
+                    case -1899637952:
+                    case -1712884495: {
+                        if (input.isAtField(FieldNames.fieldLayoutIndexPayload)) {
+                            if (!input.trySkipNullValue()) {
+                                clearPayloadOtherFieldLayoutIndexPayload();
+                                input.readMessage(fieldLayoutIndexPayload);
+                                bitField0_ |= 0x00000004;
+                            }
+                        } else {
+                            input.skipUnknownField();
+                        }
+                        break;
+                    }
+                    case -944441904:
+                    case 1913326966: {
+                        if (input.isAtField(FieldNames.apriltagIndexPayload)) {
+                            if (!input.trySkipNullValue()) {
+                                clearPayloadOtherApriltagIndexPayload();
+                                input.readMessage(apriltagIndexPayload);
+                                bitField0_ |= 0x00000008;
                             }
                         } else {
                             input.skipUnknownField();
@@ -1067,6 +1765,12 @@ public final class Commands {
             static final FieldName type = FieldName.forField("type");
 
             static final FieldName poseResetPayload = FieldName.forField("poseResetPayload", "pose_reset_payload");
+
+            static final FieldName fieldIndexPayload = FieldName.forField("fieldIndexPayload", "field_index_payload");
+
+            static final FieldName fieldLayoutIndexPayload = FieldName.forField("fieldLayoutIndexPayload", "field_layout_index_payload");
+
+            static final FieldName apriltagIndexPayload = FieldName.forField("apriltagIndexPayload", "apriltag_index_payload");
         }
     }
 
