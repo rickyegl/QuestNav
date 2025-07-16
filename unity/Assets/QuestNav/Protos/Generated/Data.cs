@@ -27,16 +27,21 @@ namespace QuestNav.Protos.Generated {
             "CgpkYXRhLnByb3RvEhRxdWVzdG5hdi5wcm90b3MuZGF0YRoQZ2VvbWV0cnky",
             "ZC5wcm90byJuChlQcm90b2J1ZlF1ZXN0TmF2RnJhbWVEYXRhEhMKC2ZyYW1l",
             "X2NvdW50GAEgASgFEhEKCXRpbWVzdGFtcBgCIAEoARIpCgZwb3NlMmQYAyAB",
-            "KAsyGS53cGkucHJvdG8uUHJvdG9idWZQb3NlMmQicAoaUHJvdG9idWZRdWVz",
-            "dE5hdkRldmljZURhdGESHQoVdHJhY2tpbmdfbG9zdF9jb3VudGVyGAEgASgF",
-            "EhoKEmN1cnJlbnRseV90cmFja2luZxgCIAEoCBIXCg9iYXR0ZXJ5X3BlcmNl",
-            "bnQYAyABKAVCQwolZ2cucXVlc3RuYXYucXVlc3RuYXYucHJvdG9zLmdlbmVy",
-            "YXRlZKoCGVF1ZXN0TmF2LlByb3Rvcy5HZW5lcmF0ZWRiBnByb3RvMw=="));
+            "KAsyGS53cGkucHJvdG8uUHJvdG9idWZQb3NlMmQiuAIKGlByb3RvYnVmUXVl",
+            "c3ROYXZEZXZpY2VEYXRhEh0KFXRyYWNraW5nX2xvc3RfY291bnRlchgBIAEo",
+            "BRIaChJjdXJyZW50bHlfdHJhY2tpbmcYAiABKAgSFwoPYmF0dGVyeV9wZXJj",
+            "ZW50GAMgASgFEhIKCmFjdGl2ZV90YWcYBCABKAUSFQoNYWN0aXZlX2xheW91",
+            "dBgFIAEoBRIUCgxhY3RpdmVfZmllbGQYBiABKAUSUwoKc2F2ZWRfdGFncxgH",
+            "IAMoCzI/LnF1ZXN0bmF2LnByb3Rvcy5kYXRhLlByb3RvYnVmUXVlc3ROYXZE",
+            "ZXZpY2VEYXRhLlNhdmVkVGFnc0VudHJ5GjAKDlNhdmVkVGFnc0VudHJ5EgsK",
+            "A2tleRgBIAEoBRINCgV2YWx1ZRgCIAEoBToCOAFCQwolZ2cucXVlc3RuYXYu",
+            "cXVlc3RuYXYucHJvdG9zLmdlbmVyYXRlZKoCGVF1ZXN0TmF2LlByb3Rvcy5H",
+            "ZW5lcmF0ZWRiBnByb3RvMw=="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { global::Wpi.Proto.Geometry2DReflection.Descriptor, },
           new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {
             new pbr::GeneratedClrTypeInfo(typeof(global::QuestNav.Protos.Generated.ProtobufQuestNavFrameData), global::QuestNav.Protos.Generated.ProtobufQuestNavFrameData.Parser, new[]{ "FrameCount", "Timestamp", "Pose2D" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::QuestNav.Protos.Generated.ProtobufQuestNavDeviceData), global::QuestNav.Protos.Generated.ProtobufQuestNavDeviceData.Parser, new[]{ "TrackingLostCounter", "CurrentlyTracking", "BatteryPercent" }, null, null, null, null)
+            new pbr::GeneratedClrTypeInfo(typeof(global::QuestNav.Protos.Generated.ProtobufQuestNavDeviceData), global::QuestNav.Protos.Generated.ProtobufQuestNavDeviceData.Parser, new[]{ "TrackingLostCounter", "CurrentlyTracking", "BatteryPercent", "ActiveTag", "ActiveLayout", "ActiveField", "SavedTags" }, null, null, null, new pbr::GeneratedClrTypeInfo[] { null, })
           }));
     }
     #endregion
@@ -367,6 +372,10 @@ namespace QuestNav.Protos.Generated {
       trackingLostCounter_ = other.trackingLostCounter_;
       currentlyTracking_ = other.currentlyTracking_;
       batteryPercent_ = other.batteryPercent_;
+      activeTag_ = other.activeTag_;
+      activeLayout_ = other.activeLayout_;
+      activeField_ = other.activeField_;
+      savedTags_ = other.savedTags_.Clone();
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -421,6 +430,65 @@ namespace QuestNav.Protos.Generated {
       }
     }
 
+    /// <summary>Field number for the "active_tag" field.</summary>
+    public const int ActiveTagFieldNumber = 4;
+    private int activeTag_;
+    /// <summary>
+    /// The index of the active tag
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public int ActiveTag {
+      get { return activeTag_; }
+      set {
+        activeTag_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "active_layout" field.</summary>
+    public const int ActiveLayoutFieldNumber = 5;
+    private int activeLayout_;
+    /// <summary>
+    /// The index of the active tag layout
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public int ActiveLayout {
+      get { return activeLayout_; }
+      set {
+        activeLayout_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "active_field" field.</summary>
+    public const int ActiveFieldFieldNumber = 6;
+    private int activeField_;
+    /// <summary>
+    /// The index of the active field profile
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public int ActiveField {
+      get { return activeField_; }
+      set {
+        activeField_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "saved_tags" field.</summary>
+    public const int SavedTagsFieldNumber = 7;
+    private static readonly pbc::MapField<int, int>.Codec _map_savedTags_codec
+        = new pbc::MapField<int, int>.Codec(pb::FieldCodec.ForInt32(8, 0), pb::FieldCodec.ForInt32(16, 0), 58);
+    private readonly pbc::MapField<int, int> savedTags_ = new pbc::MapField<int, int>();
+    /// <summary>
+    /// The array of all saved tags
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public pbc::MapField<int, int> SavedTags {
+      get { return savedTags_; }
+    }
+
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public override bool Equals(object other) {
@@ -439,6 +507,10 @@ namespace QuestNav.Protos.Generated {
       if (TrackingLostCounter != other.TrackingLostCounter) return false;
       if (CurrentlyTracking != other.CurrentlyTracking) return false;
       if (BatteryPercent != other.BatteryPercent) return false;
+      if (ActiveTag != other.ActiveTag) return false;
+      if (ActiveLayout != other.ActiveLayout) return false;
+      if (ActiveField != other.ActiveField) return false;
+      if (!SavedTags.Equals(other.SavedTags)) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
@@ -449,6 +521,10 @@ namespace QuestNav.Protos.Generated {
       if (TrackingLostCounter != 0) hash ^= TrackingLostCounter.GetHashCode();
       if (CurrentlyTracking != false) hash ^= CurrentlyTracking.GetHashCode();
       if (BatteryPercent != 0) hash ^= BatteryPercent.GetHashCode();
+      if (ActiveTag != 0) hash ^= ActiveTag.GetHashCode();
+      if (ActiveLayout != 0) hash ^= ActiveLayout.GetHashCode();
+      if (ActiveField != 0) hash ^= ActiveField.GetHashCode();
+      hash ^= SavedTags.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -479,6 +555,19 @@ namespace QuestNav.Protos.Generated {
         output.WriteRawTag(24);
         output.WriteInt32(BatteryPercent);
       }
+      if (ActiveTag != 0) {
+        output.WriteRawTag(32);
+        output.WriteInt32(ActiveTag);
+      }
+      if (ActiveLayout != 0) {
+        output.WriteRawTag(40);
+        output.WriteInt32(ActiveLayout);
+      }
+      if (ActiveField != 0) {
+        output.WriteRawTag(48);
+        output.WriteInt32(ActiveField);
+      }
+      savedTags_.WriteTo(output, _map_savedTags_codec);
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
       }
@@ -501,6 +590,19 @@ namespace QuestNav.Protos.Generated {
         output.WriteRawTag(24);
         output.WriteInt32(BatteryPercent);
       }
+      if (ActiveTag != 0) {
+        output.WriteRawTag(32);
+        output.WriteInt32(ActiveTag);
+      }
+      if (ActiveLayout != 0) {
+        output.WriteRawTag(40);
+        output.WriteInt32(ActiveLayout);
+      }
+      if (ActiveField != 0) {
+        output.WriteRawTag(48);
+        output.WriteInt32(ActiveField);
+      }
+      savedTags_.WriteTo(ref output, _map_savedTags_codec);
       if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
       }
@@ -520,6 +622,16 @@ namespace QuestNav.Protos.Generated {
       if (BatteryPercent != 0) {
         size += 1 + pb::CodedOutputStream.ComputeInt32Size(BatteryPercent);
       }
+      if (ActiveTag != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(ActiveTag);
+      }
+      if (ActiveLayout != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(ActiveLayout);
+      }
+      if (ActiveField != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(ActiveField);
+      }
+      size += savedTags_.CalculateSize(_map_savedTags_codec);
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
       }
@@ -541,6 +653,16 @@ namespace QuestNav.Protos.Generated {
       if (other.BatteryPercent != 0) {
         BatteryPercent = other.BatteryPercent;
       }
+      if (other.ActiveTag != 0) {
+        ActiveTag = other.ActiveTag;
+      }
+      if (other.ActiveLayout != 0) {
+        ActiveLayout = other.ActiveLayout;
+      }
+      if (other.ActiveField != 0) {
+        ActiveField = other.ActiveField;
+      }
+      savedTags_.MergeFrom(other.savedTags_);
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
 
@@ -568,6 +690,22 @@ namespace QuestNav.Protos.Generated {
             BatteryPercent = input.ReadInt32();
             break;
           }
+          case 32: {
+            ActiveTag = input.ReadInt32();
+            break;
+          }
+          case 40: {
+            ActiveLayout = input.ReadInt32();
+            break;
+          }
+          case 48: {
+            ActiveField = input.ReadInt32();
+            break;
+          }
+          case 58: {
+            savedTags_.AddEntriesFrom(input, _map_savedTags_codec);
+            break;
+          }
         }
       }
     #endif
@@ -593,6 +731,22 @@ namespace QuestNav.Protos.Generated {
           }
           case 24: {
             BatteryPercent = input.ReadInt32();
+            break;
+          }
+          case 32: {
+            ActiveTag = input.ReadInt32();
+            break;
+          }
+          case 40: {
+            ActiveLayout = input.ReadInt32();
+            break;
+          }
+          case 48: {
+            ActiveField = input.ReadInt32();
+            break;
+          }
+          case 58: {
+            savedTags_.AddEntriesFrom(ref input, _map_savedTags_codec);
             break;
           }
         }

@@ -14,37 +14,51 @@ import us.hebi.quickbuf.ProtoSink;
 import us.hebi.quickbuf.ProtoSource;
 import us.hebi.quickbuf.ProtoUtil;
 import us.hebi.quickbuf.RepeatedByte;
+import us.hebi.quickbuf.RepeatedMessage;
 
 public final class Data {
-    private static final RepeatedByte descriptorData = ProtoUtil.decodeBase64(1315,
+    private static final RepeatedByte descriptorData = ProtoUtil.decodeBase64(1937,
         "CgpkYXRhLnByb3RvEhRxdWVzdG5hdi5wcm90b3MuZGF0YRoQZ2VvbWV0cnkyZC5wcm90byKNAQoZUHJv" + 
         "dG9idWZRdWVzdE5hdkZyYW1lRGF0YRIfCgtmcmFtZV9jb3VudBgBIAEoBVIKZnJhbWVDb3VudBIcCgl0" + 
         "aW1lc3RhbXAYAiABKAFSCXRpbWVzdGFtcBIxCgZwb3NlMmQYAyABKAsyGS53cGkucHJvdG8uUHJvdG9i" + 
-        "dWZQb3NlMmRSBnBvc2UyZCKoAQoaUHJvdG9idWZRdWVzdE5hdkRldmljZURhdGESMgoVdHJhY2tpbmdf" + 
+        "dWZQb3NlMmRSBnBvc2UyZCKtAwoaUHJvdG9idWZRdWVzdE5hdkRldmljZURhdGESMgoVdHJhY2tpbmdf" + 
         "bG9zdF9jb3VudGVyGAEgASgFUhN0cmFja2luZ0xvc3RDb3VudGVyEi0KEmN1cnJlbnRseV90cmFja2lu" + 
         "ZxgCIAEoCFIRY3VycmVudGx5VHJhY2tpbmcSJwoPYmF0dGVyeV9wZXJjZW50GAMgASgFUg5iYXR0ZXJ5" + 
-        "UGVyY2VudEJDCiVnZy5xdWVzdG5hdi5xdWVzdG5hdi5wcm90b3MuZ2VuZXJhdGVkqgIZUXVlc3ROYXYu" + 
-        "UHJvdG9zLkdlbmVyYXRlZErkBgoGEgQAAx8BCggKAQwSAwADFQoICgECEgMCAB0KCAoBCBIDAwA2CgkK" + 
-        "AgglEgMDADYKCAoBCBIDBAA+CgkKAggBEgMEAD4KJQoCAwASAwcAGhoaIEltcG9ydCBnZW9tZXRyeSBt" + 
-        "ZXNzYWdlcwoKMwoCBAASBAoAEwEaJyBUcmFja2luZyBkYXRhIHRoYXQgaXMgc2VudCBldmVyeSBsb29w" + 
-        "CgoKCgMEAAESAwoIIQo2CgQEAAIAEgMMAhgaKSBOdW1iZXIgb2YgZnJhbWVzIHByb2Nlc3NlZCBieSB0" + 
-        "aGUgUXVlc3QKCgwKBQQAAgAFEgMMAgcKDAoFBAACAAESAwwIEwoMCgUEAAIAAxIDDBYXCj8KBAQAAgES" + 
-        "Aw8CFxoyIFRpbWUgKGluIHNlY29uZHMpIHNpbmNlIHRoZSBRdWVzdE5hdiBhcHAgc3RhcnRlZAoKDAoF" + 
-        "BAACAQUSAw8CCAoMCgUEAAIBARIDDwkSCgwKBQQAAgEDEgMPFRYKOgoEBAACAhIDEgImGi0gVGhlIDJk" + 
-        "IGZpZWxkLXJlbGF0aXZlIHBvc2l0aW9uIG9mIHRoZSBxdWVzdAoKDAoFBAACAgYSAxICGgoMCgUEAAIC" + 
-        "ARIDEhshCgwKBQQAAgIDEgMSJCUKLQoCBAESBBYAHwEaISBEZXZpY2UgZGF0YSB0aGF0IGlzIHNlbnQg" + 
-        "c2xvd2VyCgoKCgMEAQESAxYIIgpgCgQEAQIAEgMYAiIaUyBOdW1iZXIgb2YgdGltZXMgdGhlIFF1ZXN0" + 
-        "IGhhcyBsb3N0IHRyYWNraW5nIGFmdGVyIGhhdmluZyBpdCBzaW5jZSB0aGUgYXBwIHN0YXJ0ZWQKCgwK" + 
-        "BQQBAgAFEgMYAgcKDAoFBAECAAESAxgIHQoMCgUEAQIAAxIDGCAhCjIKBAQBAgESAxsCHholIElmIHRo" + 
-        "ZSBRdWVzdCBpcyBjdXJyZW50bHkgdHJhY2tpbmc/CgoMCgUEAQIBBRIDGwIGCgwKBQQBAgEBEgMbBxkK",
-        "DAoFBAECAQMSAxscHQoyCgQEAQICEgMeAhwaJSBUaGUgYmF0dGVyeSBwZXJjZW50YWdlIG9mIHRoZSBR" + 
-        "dWVzdAoKDAoFBAECAgUSAx4CBwoMCgUEAQICARIDHggXCgwKBQQBAgIDEgMeGhtiBnByb3RvMw==");
+        "UGVyY2VudBIdCgphY3RpdmVfdGFnGAQgASgFUglhY3RpdmVUYWcSIwoNYWN0aXZlX2xheW91dBgFIAEo" + 
+        "BVIMYWN0aXZlTGF5b3V0EiEKDGFjdGl2ZV9maWVsZBgGIAEoBVILYWN0aXZlRmllbGQSXgoKc2F2ZWRf" + 
+        "dGFncxgHIAMoCzI/LnF1ZXN0bmF2LnByb3Rvcy5kYXRhLlByb3RvYnVmUXVlc3ROYXZEZXZpY2VEYXRh" + 
+        "LlNhdmVkVGFnc0VudHJ5UglzYXZlZFRhZ3MaPAoOU2F2ZWRUYWdzRW50cnkSEAoDa2V5GAEgASgFUgNr" + 
+        "ZXkSFAoFdmFsdWUYAiABKAVSBXZhbHVlOgI4AUJDCiVnZy5xdWVzdG5hdi5xdWVzdG5hdi5wcm90b3Mu" + 
+        "Z2VuZXJhdGVkqgIZUXVlc3ROYXYuUHJvdG9zLkdlbmVyYXRlZErNCQoGEgQAAy0BCggKAQwSAwADFQoI" + 
+        "CgECEgMCAB0KCAoBCBIDAwA2CgkKAgglEgMDADYKCAoBCBIDBAA+CgkKAggBEgMEAD4KJQoCAwASAwcA" + 
+        "GhoaIEltcG9ydCBnZW9tZXRyeSBtZXNzYWdlcwoKMwoCBAASBAoAEwEaJyBUcmFja2luZyBkYXRhIHRo" + 
+        "YXQgaXMgc2VudCBldmVyeSBsb29wCgoKCgMEAAESAwoIIQo2CgQEAAIAEgMMAhgaKSBOdW1iZXIgb2Yg" + 
+        "ZnJhbWVzIHByb2Nlc3NlZCBieSB0aGUgUXVlc3QKCgwKBQQAAgAFEgMMAgcKDAoFBAACAAESAwwIEwoM" + 
+        "CgUEAAIAAxIDDBYXCj8KBAQAAgESAw8CFxoyIFRpbWUgKGluIHNlY29uZHMpIHNpbmNlIHRoZSBRdWVz" + 
+        "dE5hdiBhcHAgc3RhcnRlZAoKDAoFBAACAQUSAw8CCAoMCgUEAAIBARIDDwkSCgwKBQQAAgEDEgMPFRYK" + 
+        "OgoEBAACAhIDEgImGi0gVGhlIDJkIGZpZWxkLXJlbGF0aXZlIHBvc2l0aW9uIG9mIHRoZSBxdWVzdAoK" + 
+        "DAoFBAACAgYSAxICGgoMCgUEAAICARIDEhshCgwKBQQAAgIDEgMSJCUKLQoCBAESBBYALQEaISBEZXZp",
+        "Y2UgZGF0YSB0aGF0IGlzIHNlbnQgc2xvd2VyCgoKCgMEAQESAxYIIgpgCgQEAQIAEgMYAiIaUyBOdW1i" + 
+        "ZXIgb2YgdGltZXMgdGhlIFF1ZXN0IGhhcyBsb3N0IHRyYWNraW5nIGFmdGVyIGhhdmluZyBpdCBzaW5j" + 
+        "ZSB0aGUgYXBwIHN0YXJ0ZWQKCgwKBQQBAgAFEgMYAgcKDAoFBAECAAESAxgIHQoMCgUEAQIAAxIDGCAh" + 
+        "CjIKBAQBAgESAxsCHholIElmIHRoZSBRdWVzdCBpcyBjdXJyZW50bHkgdHJhY2tpbmc/CgoMCgUEAQIB" + 
+        "BRIDGwIGCgwKBQQBAgEBEgMbBxkKDAoFBAECAQMSAxscHQoyCgQEAQICEgMeAhwaJSBUaGUgYmF0dGVy" + 
+        "eSBwZXJjZW50YWdlIG9mIHRoZSBRdWVzdAoKDAoFBAECAgUSAx4CBwoMCgUEAQICARIDHggXCgwKBQQB" + 
+        "AgIDEgMeGhsKKgoEBAECAxIDIQIXGh0gVGhlIGluZGV4IG9mIHRoZSBhY3RpdmUgdGFnCgoMCgUEAQID" + 
+        "BRIDIQIHCgwKBQQBAgMBEgMhCBIKDAoFBAECAwMSAyEVFgoxCgQEAQIEEgMkAhoaJCBUaGUgaW5kZXgg" + 
+        "b2YgdGhlIGFjdGl2ZSB0YWcgbGF5b3V0CgoMCgUEAQIEBRIDJAIHCgwKBQQBAgQBEgMkCBUKDAoFBAEC" + 
+        "BAMSAyQYGQo0CgQEAQIFEgMnAhkaJyBUaGUgaW5kZXggb2YgdGhlIGFjdGl2ZSBmaWVsZCBwcm9maWxl" + 
+        "CgoMCgUEAQIFBRIDJwIHCgwKBQQBAgUBEgMnCBQKDAoFBAECBQMSAycXGAoqCgQEAQIGEgMqAiMaHSBU" + 
+        "aGUgYXJyYXkgb2YgYWxsIHNhdmVkIHRhZ3MKCgwKBQQBAgYGEgMqAhMKDAoFBAECBgESAyoUHgoMCgUE" + 
+        "AQIGAxIDKiEiYgZwcm90bzM=");
 
     static final Descriptors.FileDescriptor descriptor = Descriptors.FileDescriptor.internalBuildGeneratedFileFrom("data.proto", "questnav.protos.data", descriptorData, Geometry2D.getDescriptor());
 
     static final Descriptors.Descriptor questnav_protos_data_ProtobufQuestNavFrameData_descriptor = descriptor.internalContainedType(55, 141, "ProtobufQuestNavFrameData", "questnav.protos.data.ProtobufQuestNavFrameData");
 
-    static final Descriptors.Descriptor questnav_protos_data_ProtobufQuestNavDeviceData_descriptor = descriptor.internalContainedType(199, 168, "ProtobufQuestNavDeviceData", "questnav.protos.data.ProtobufQuestNavDeviceData");
+    static final Descriptors.Descriptor questnav_protos_data_ProtobufQuestNavDeviceData_descriptor = descriptor.internalContainedType(199, 429, "ProtobufQuestNavDeviceData", "questnav.protos.data.ProtobufQuestNavDeviceData");
+
+    static final Descriptors.Descriptor questnav_protos_data_ProtobufQuestNavDeviceData_SavedTagsEntry_descriptor = descriptor.internalContainedType(568, 60, "SavedTagsEntry", "questnav.protos.data.ProtobufQuestNavDeviceData.SavedTagsEntry");
 
     /**
      * @return this proto file's descriptor.
@@ -591,12 +605,48 @@ public final class Data {
 
         /**
          * <pre>
+         *  The index of the active tag
+         * </pre>
+         *
+         * <code>optional int32 active_tag = 4;</code>
+         */
+        private int activeTag;
+
+        /**
+         * <pre>
+         *  The index of the active tag layout
+         * </pre>
+         *
+         * <code>optional int32 active_layout = 5;</code>
+         */
+        private int activeLayout;
+
+        /**
+         * <pre>
+         *  The index of the active field profile
+         * </pre>
+         *
+         * <code>optional int32 active_field = 6;</code>
+         */
+        private int activeField;
+
+        /**
+         * <pre>
          *  If the Quest is currently tracking?
          * </pre>
          *
          * <code>optional bool currently_tracking = 2;</code>
          */
         private boolean currentlyTracking;
+
+        /**
+         * <pre>
+         *  The array of all saved tags
+         * </pre>
+         *
+         * <code>repeated .questnav.protos.data.ProtobufQuestNavDeviceData.SavedTagsEntry saved_tags = 7;</code>
+         */
+        private final RepeatedMessage<SavedTagsEntry> savedTags = RepeatedMessage.newEmptyInstance(SavedTagsEntry.getFactory());
 
         private ProtobufQuestNavDeviceData() {
         }
@@ -720,6 +770,165 @@ public final class Data {
 
         /**
          * <pre>
+         *  The index of the active tag
+         * </pre>
+         *
+         * <code>optional int32 active_tag = 4;</code>
+         * @return whether the activeTag field is set
+         */
+        public boolean hasActiveTag() {
+            return (bitField0_ & 0x00000004) != 0;
+        }
+
+        /**
+         * <pre>
+         *  The index of the active tag
+         * </pre>
+         *
+         * <code>optional int32 active_tag = 4;</code>
+         * @return this
+         */
+        public ProtobufQuestNavDeviceData clearActiveTag() {
+            bitField0_ &= ~0x00000004;
+            activeTag = 0;
+            return this;
+        }
+
+        /**
+         * <pre>
+         *  The index of the active tag
+         * </pre>
+         *
+         * <code>optional int32 active_tag = 4;</code>
+         * @return the activeTag
+         */
+        public int getActiveTag() {
+            return activeTag;
+        }
+
+        /**
+         * <pre>
+         *  The index of the active tag
+         * </pre>
+         *
+         * <code>optional int32 active_tag = 4;</code>
+         * @param value the activeTag to set
+         * @return this
+         */
+        public ProtobufQuestNavDeviceData setActiveTag(final int value) {
+            bitField0_ |= 0x00000004;
+            activeTag = value;
+            return this;
+        }
+
+        /**
+         * <pre>
+         *  The index of the active tag layout
+         * </pre>
+         *
+         * <code>optional int32 active_layout = 5;</code>
+         * @return whether the activeLayout field is set
+         */
+        public boolean hasActiveLayout() {
+            return (bitField0_ & 0x00000008) != 0;
+        }
+
+        /**
+         * <pre>
+         *  The index of the active tag layout
+         * </pre>
+         *
+         * <code>optional int32 active_layout = 5;</code>
+         * @return this
+         */
+        public ProtobufQuestNavDeviceData clearActiveLayout() {
+            bitField0_ &= ~0x00000008;
+            activeLayout = 0;
+            return this;
+        }
+
+        /**
+         * <pre>
+         *  The index of the active tag layout
+         * </pre>
+         *
+         * <code>optional int32 active_layout = 5;</code>
+         * @return the activeLayout
+         */
+        public int getActiveLayout() {
+            return activeLayout;
+        }
+
+        /**
+         * <pre>
+         *  The index of the active tag layout
+         * </pre>
+         *
+         * <code>optional int32 active_layout = 5;</code>
+         * @param value the activeLayout to set
+         * @return this
+         */
+        public ProtobufQuestNavDeviceData setActiveLayout(final int value) {
+            bitField0_ |= 0x00000008;
+            activeLayout = value;
+            return this;
+        }
+
+        /**
+         * <pre>
+         *  The index of the active field profile
+         * </pre>
+         *
+         * <code>optional int32 active_field = 6;</code>
+         * @return whether the activeField field is set
+         */
+        public boolean hasActiveField() {
+            return (bitField0_ & 0x00000010) != 0;
+        }
+
+        /**
+         * <pre>
+         *  The index of the active field profile
+         * </pre>
+         *
+         * <code>optional int32 active_field = 6;</code>
+         * @return this
+         */
+        public ProtobufQuestNavDeviceData clearActiveField() {
+            bitField0_ &= ~0x00000010;
+            activeField = 0;
+            return this;
+        }
+
+        /**
+         * <pre>
+         *  The index of the active field profile
+         * </pre>
+         *
+         * <code>optional int32 active_field = 6;</code>
+         * @return the activeField
+         */
+        public int getActiveField() {
+            return activeField;
+        }
+
+        /**
+         * <pre>
+         *  The index of the active field profile
+         * </pre>
+         *
+         * <code>optional int32 active_field = 6;</code>
+         * @param value the activeField to set
+         * @return this
+         */
+        public ProtobufQuestNavDeviceData setActiveField(final int value) {
+            bitField0_ |= 0x00000010;
+            activeField = value;
+            return this;
+        }
+
+        /**
+         * <pre>
          *  If the Quest is currently tracking?
          * </pre>
          *
@@ -727,7 +936,7 @@ public final class Data {
          * @return whether the currentlyTracking field is set
          */
         public boolean hasCurrentlyTracking() {
-            return (bitField0_ & 0x00000004) != 0;
+            return (bitField0_ & 0x00000020) != 0;
         }
 
         /**
@@ -739,7 +948,7 @@ public final class Data {
          * @return this
          */
         public ProtobufQuestNavDeviceData clearCurrentlyTracking() {
-            bitField0_ &= ~0x00000004;
+            bitField0_ &= ~0x00000020;
             currentlyTracking = false;
             return this;
         }
@@ -766,8 +975,100 @@ public final class Data {
          * @return this
          */
         public ProtobufQuestNavDeviceData setCurrentlyTracking(final boolean value) {
-            bitField0_ |= 0x00000004;
+            bitField0_ |= 0x00000020;
             currentlyTracking = value;
+            return this;
+        }
+
+        /**
+         * <pre>
+         *  The array of all saved tags
+         * </pre>
+         *
+         * <code>repeated .questnav.protos.data.ProtobufQuestNavDeviceData.SavedTagsEntry saved_tags = 7;</code>
+         * @return whether the savedTags field is set
+         */
+        public boolean hasSavedTags() {
+            return (bitField0_ & 0x00000040) != 0;
+        }
+
+        /**
+         * <pre>
+         *  The array of all saved tags
+         * </pre>
+         *
+         * <code>repeated .questnav.protos.data.ProtobufQuestNavDeviceData.SavedTagsEntry saved_tags = 7;</code>
+         * @return this
+         */
+        public ProtobufQuestNavDeviceData clearSavedTags() {
+            bitField0_ &= ~0x00000040;
+            savedTags.clear();
+            return this;
+        }
+
+        /**
+         * <pre>
+         *  The array of all saved tags
+         * </pre>
+         *
+         * <code>repeated .questnav.protos.data.ProtobufQuestNavDeviceData.SavedTagsEntry saved_tags = 7;</code>
+         *
+         * This method returns the internal storage object without modifying any has state.
+         * The returned object should not be modified and be treated as read-only.
+         *
+         * Use {@link #getMutableSavedTags()} if you want to modify it.
+         *
+         * @return internal storage object for reading
+         */
+        public RepeatedMessage<SavedTagsEntry> getSavedTags() {
+            return savedTags;
+        }
+
+        /**
+         * <pre>
+         *  The array of all saved tags
+         * </pre>
+         *
+         * <code>repeated .questnav.protos.data.ProtobufQuestNavDeviceData.SavedTagsEntry saved_tags = 7;</code>
+         *
+         * This method returns the internal storage object and sets the corresponding
+         * has state. The returned object will become part of this message and its
+         * contents may be modified as long as the has state is not cleared.
+         *
+         * @return internal storage object for modifications
+         */
+        public RepeatedMessage<SavedTagsEntry> getMutableSavedTags() {
+            bitField0_ |= 0x00000040;
+            return savedTags;
+        }
+
+        /**
+         * <pre>
+         *  The array of all saved tags
+         * </pre>
+         *
+         * <code>repeated .questnav.protos.data.ProtobufQuestNavDeviceData.SavedTagsEntry saved_tags = 7;</code>
+         * @param value the savedTags to add
+         * @return this
+         */
+        public ProtobufQuestNavDeviceData addSavedTags(final SavedTagsEntry value) {
+            bitField0_ |= 0x00000040;
+            savedTags.add(value);
+            return this;
+        }
+
+        /**
+         * <pre>
+         *  The array of all saved tags
+         * </pre>
+         *
+         * <code>repeated .questnav.protos.data.ProtobufQuestNavDeviceData.SavedTagsEntry saved_tags = 7;</code>
+         * @param values the savedTags to add
+         * @return this
+         */
+        public ProtobufQuestNavDeviceData addAllSavedTags(final SavedTagsEntry... values) {
+            bitField0_ |= 0x00000040;
+            savedTags.addAll(values);
             return this;
         }
 
@@ -778,7 +1079,11 @@ public final class Data {
                 bitField0_ = other.bitField0_;
                 trackingLostCounter = other.trackingLostCounter;
                 batteryPercent = other.batteryPercent;
+                activeTag = other.activeTag;
+                activeLayout = other.activeLayout;
+                activeField = other.activeField;
                 currentlyTracking = other.currentlyTracking;
+                savedTags.copyFrom(other.savedTags);
             }
             return this;
         }
@@ -795,8 +1100,20 @@ public final class Data {
             if (other.hasBatteryPercent()) {
                 setBatteryPercent(other.batteryPercent);
             }
+            if (other.hasActiveTag()) {
+                setActiveTag(other.activeTag);
+            }
+            if (other.hasActiveLayout()) {
+                setActiveLayout(other.activeLayout);
+            }
+            if (other.hasActiveField()) {
+                setActiveField(other.activeField);
+            }
             if (other.hasCurrentlyTracking()) {
                 setCurrentlyTracking(other.currentlyTracking);
+            }
+            if (other.hasSavedTags()) {
+                getMutableSavedTags().addAll(other.savedTags);
             }
             return this;
         }
@@ -810,7 +1127,11 @@ public final class Data {
             bitField0_ = 0;
             trackingLostCounter = 0;
             batteryPercent = 0;
+            activeTag = 0;
+            activeLayout = 0;
+            activeField = 0;
             currentlyTracking = false;
+            savedTags.clear();
             return this;
         }
 
@@ -821,6 +1142,7 @@ public final class Data {
             }
             cachedSize = -1;
             bitField0_ = 0;
+            savedTags.clearQuick();
             return this;
         }
 
@@ -836,7 +1158,11 @@ public final class Data {
             return bitField0_ == other.bitField0_
                 && (!hasTrackingLostCounter() || trackingLostCounter == other.trackingLostCounter)
                 && (!hasBatteryPercent() || batteryPercent == other.batteryPercent)
-                && (!hasCurrentlyTracking() || currentlyTracking == other.currentlyTracking);
+                && (!hasActiveTag() || activeTag == other.activeTag)
+                && (!hasActiveLayout() || activeLayout == other.activeLayout)
+                && (!hasActiveField() || activeField == other.activeField)
+                && (!hasCurrentlyTracking() || currentlyTracking == other.currentlyTracking)
+                && (!hasSavedTags() || savedTags.equals(other.savedTags));
         }
 
         @Override
@@ -850,8 +1176,26 @@ public final class Data {
                 output.writeInt32NoTag(batteryPercent);
             }
             if ((bitField0_ & 0x00000004) != 0) {
+                output.writeRawByte((byte) 32);
+                output.writeInt32NoTag(activeTag);
+            }
+            if ((bitField0_ & 0x00000008) != 0) {
+                output.writeRawByte((byte) 40);
+                output.writeInt32NoTag(activeLayout);
+            }
+            if ((bitField0_ & 0x00000010) != 0) {
+                output.writeRawByte((byte) 48);
+                output.writeInt32NoTag(activeField);
+            }
+            if ((bitField0_ & 0x00000020) != 0) {
                 output.writeRawByte((byte) 16);
                 output.writeBoolNoTag(currentlyTracking);
+            }
+            if ((bitField0_ & 0x00000040) != 0) {
+                for (int i = 0; i < savedTags.length(); i++) {
+                    output.writeRawByte((byte) 58);
+                    output.writeMessageNoTag(savedTags.get(i));
+                }
             }
         }
 
@@ -865,7 +1209,19 @@ public final class Data {
                 size += 1 + ProtoSink.computeInt32SizeNoTag(batteryPercent);
             }
             if ((bitField0_ & 0x00000004) != 0) {
+                size += 1 + ProtoSink.computeInt32SizeNoTag(activeTag);
+            }
+            if ((bitField0_ & 0x00000008) != 0) {
+                size += 1 + ProtoSink.computeInt32SizeNoTag(activeLayout);
+            }
+            if ((bitField0_ & 0x00000010) != 0) {
+                size += 1 + ProtoSink.computeInt32SizeNoTag(activeField);
+            }
+            if ((bitField0_ & 0x00000020) != 0) {
                 size += 2;
+            }
+            if ((bitField0_ & 0x00000040) != 0) {
+                size += (1 * savedTags.length()) + ProtoSink.computeRepeatedMessageSizeNoTag(savedTags);
             }
             return size;
         }
@@ -891,6 +1247,33 @@ public final class Data {
                         batteryPercent = input.readInt32();
                         bitField0_ |= 0x00000002;
                         tag = input.readTag();
+                        if (tag != 32) {
+                            break;
+                        }
+                    }
+                    case 32: {
+                        // activeTag
+                        activeTag = input.readInt32();
+                        bitField0_ |= 0x00000004;
+                        tag = input.readTag();
+                        if (tag != 40) {
+                            break;
+                        }
+                    }
+                    case 40: {
+                        // activeLayout
+                        activeLayout = input.readInt32();
+                        bitField0_ |= 0x00000008;
+                        tag = input.readTag();
+                        if (tag != 48) {
+                            break;
+                        }
+                    }
+                    case 48: {
+                        // activeField
+                        activeField = input.readInt32();
+                        bitField0_ |= 0x00000010;
+                        tag = input.readTag();
                         if (tag != 16) {
                             break;
                         }
@@ -898,8 +1281,16 @@ public final class Data {
                     case 16: {
                         // currentlyTracking
                         currentlyTracking = input.readBool();
-                        bitField0_ |= 0x00000004;
+                        bitField0_ |= 0x00000020;
                         tag = input.readTag();
+                        if (tag != 58) {
+                            break;
+                        }
+                    }
+                    case 58: {
+                        // savedTags
+                        tag = input.readRepeatedMessage(savedTags, tag);
+                        bitField0_ |= 0x00000040;
                         if (tag != 0) {
                             break;
                         }
@@ -928,7 +1319,19 @@ public final class Data {
                 output.writeInt32(FieldNames.batteryPercent, batteryPercent);
             }
             if ((bitField0_ & 0x00000004) != 0) {
+                output.writeInt32(FieldNames.activeTag, activeTag);
+            }
+            if ((bitField0_ & 0x00000008) != 0) {
+                output.writeInt32(FieldNames.activeLayout, activeLayout);
+            }
+            if ((bitField0_ & 0x00000010) != 0) {
+                output.writeInt32(FieldNames.activeField, activeField);
+            }
+            if ((bitField0_ & 0x00000020) != 0) {
                 output.writeBool(FieldNames.currentlyTracking, currentlyTracking);
+            }
+            if ((bitField0_ & 0x00000040) != 0) {
+                output.writeRepeatedMessage(FieldNames.savedTags, savedTags);
             }
             output.endObject();
         }
@@ -964,12 +1367,60 @@ public final class Data {
                         }
                         break;
                     }
+                    case 204481204:
+                    case 2044295905: {
+                        if (input.isAtField(FieldNames.activeTag)) {
+                            if (!input.trySkipNullValue()) {
+                                activeTag = input.readInt32();
+                                bitField0_ |= 0x00000004;
+                            }
+                        } else {
+                            input.skipUnknownField();
+                        }
+                        break;
+                    }
+                    case 1207536080:
+                    case -1245337981: {
+                        if (input.isAtField(FieldNames.activeLayout)) {
+                            if (!input.trySkipNullValue()) {
+                                activeLayout = input.readInt32();
+                                bitField0_ |= 0x00000008;
+                            }
+                        } else {
+                            input.skipUnknownField();
+                        }
+                        break;
+                    }
+                    case -1074748012:
+                    case 1755620993: {
+                        if (input.isAtField(FieldNames.activeField)) {
+                            if (!input.trySkipNullValue()) {
+                                activeField = input.readInt32();
+                                bitField0_ |= 0x00000010;
+                            }
+                        } else {
+                            input.skipUnknownField();
+                        }
+                        break;
+                    }
                     case 879013277:
                     case 106200592: {
                         if (input.isAtField(FieldNames.currentlyTracking)) {
                             if (!input.trySkipNullValue()) {
                                 currentlyTracking = input.readBool();
-                                bitField0_ |= 0x00000004;
+                                bitField0_ |= 0x00000020;
+                            }
+                        } else {
+                            input.skipUnknownField();
+                        }
+                        break;
+                    }
+                    case 187792192:
+                    case 1537309393: {
+                        if (input.isAtField(FieldNames.savedTags)) {
+                            if (!input.trySkipNullValue()) {
+                                input.readRepeatedMessage(savedTags);
+                                bitField0_ |= 0x00000040;
                             }
                         } else {
                             input.skipUnknownField();
@@ -1025,6 +1476,338 @@ public final class Data {
             return Data.questnav_protos_data_ProtobufQuestNavDeviceData_descriptor;
         }
 
+        /**
+         * Protobuf type {@code SavedTagsEntry}
+         */
+        public static final class SavedTagsEntry extends ProtoMessage<SavedTagsEntry> implements Cloneable {
+            private static final long serialVersionUID = 0L;
+
+            /**
+             * <code>optional int32 key = 1;</code>
+             */
+            private int key;
+
+            /**
+             * <code>optional int32 value = 2;</code>
+             */
+            private int value_;
+
+            private SavedTagsEntry() {
+            }
+
+            /**
+             * @return a new empty instance of {@code SavedTagsEntry}
+             */
+            public static SavedTagsEntry newInstance() {
+                return new SavedTagsEntry();
+            }
+
+            /**
+             * <code>optional int32 key = 1;</code>
+             * @return whether the key field is set
+             */
+            public boolean hasKey() {
+                return (bitField0_ & 0x00000001) != 0;
+            }
+
+            /**
+             * <code>optional int32 key = 1;</code>
+             * @return this
+             */
+            public SavedTagsEntry clearKey() {
+                bitField0_ &= ~0x00000001;
+                key = 0;
+                return this;
+            }
+
+            /**
+             * <code>optional int32 key = 1;</code>
+             * @return the key
+             */
+            public int getKey() {
+                return key;
+            }
+
+            /**
+             * <code>optional int32 key = 1;</code>
+             * @param value the key to set
+             * @return this
+             */
+            public SavedTagsEntry setKey(final int value) {
+                bitField0_ |= 0x00000001;
+                key = value;
+                return this;
+            }
+
+            /**
+             * <code>optional int32 value = 2;</code>
+             * @return whether the value_ field is set
+             */
+            public boolean hasValue() {
+                return (bitField0_ & 0x00000002) != 0;
+            }
+
+            /**
+             * <code>optional int32 value = 2;</code>
+             * @return this
+             */
+            public SavedTagsEntry clearValue() {
+                bitField0_ &= ~0x00000002;
+                value_ = 0;
+                return this;
+            }
+
+            /**
+             * <code>optional int32 value = 2;</code>
+             * @return the value_
+             */
+            public int getValue() {
+                return value_;
+            }
+
+            /**
+             * <code>optional int32 value = 2;</code>
+             * @param value the value_ to set
+             * @return this
+             */
+            public SavedTagsEntry setValue(final int value) {
+                bitField0_ |= 0x00000002;
+                value_ = value;
+                return this;
+            }
+
+            @Override
+            public SavedTagsEntry copyFrom(final SavedTagsEntry other) {
+                cachedSize = other.cachedSize;
+                if ((bitField0_ | other.bitField0_) != 0) {
+                    bitField0_ = other.bitField0_;
+                    key = other.key;
+                    value_ = other.value_;
+                }
+                return this;
+            }
+
+            @Override
+            public SavedTagsEntry mergeFrom(final SavedTagsEntry other) {
+                if (other.isEmpty()) {
+                    return this;
+                }
+                cachedSize = -1;
+                if (other.hasKey()) {
+                    setKey(other.key);
+                }
+                if (other.hasValue()) {
+                    setValue(other.value_);
+                }
+                return this;
+            }
+
+            @Override
+            public SavedTagsEntry clear() {
+                if (isEmpty()) {
+                    return this;
+                }
+                cachedSize = -1;
+                bitField0_ = 0;
+                key = 0;
+                value_ = 0;
+                return this;
+            }
+
+            @Override
+            public SavedTagsEntry clearQuick() {
+                if (isEmpty()) {
+                    return this;
+                }
+                cachedSize = -1;
+                bitField0_ = 0;
+                return this;
+            }
+
+            @Override
+            public boolean equals(Object o) {
+                if (o == this) {
+                    return true;
+                }
+                if (!(o instanceof SavedTagsEntry)) {
+                    return false;
+                }
+                SavedTagsEntry other = (SavedTagsEntry) o;
+                return bitField0_ == other.bitField0_
+                    && (!hasKey() || key == other.key)
+                    && (!hasValue() || value_ == other.value_);
+            }
+
+            @Override
+            public void writeTo(final ProtoSink output) throws IOException {
+                if ((bitField0_ & 0x00000001) != 0) {
+                    output.writeRawByte((byte) 8);
+                    output.writeInt32NoTag(key);
+                }
+                if ((bitField0_ & 0x00000002) != 0) {
+                    output.writeRawByte((byte) 16);
+                    output.writeInt32NoTag(value_);
+                }
+            }
+
+            @Override
+            protected int computeSerializedSize() {
+                int size = 0;
+                if ((bitField0_ & 0x00000001) != 0) {
+                    size += 1 + ProtoSink.computeInt32SizeNoTag(key);
+                }
+                if ((bitField0_ & 0x00000002) != 0) {
+                    size += 1 + ProtoSink.computeInt32SizeNoTag(value_);
+                }
+                return size;
+            }
+
+            @Override
+            @SuppressWarnings("fallthrough")
+            public SavedTagsEntry mergeFrom(final ProtoSource input) throws IOException {
+                // Enabled Fall-Through Optimization (QuickBuffers)
+                int tag = input.readTag();
+                while (true) {
+                    switch (tag) {
+                        case 8: {
+                            // key
+                            key = input.readInt32();
+                            bitField0_ |= 0x00000001;
+                            tag = input.readTag();
+                            if (tag != 16) {
+                                break;
+                            }
+                        }
+                        case 16: {
+                            // value_
+                            value_ = input.readInt32();
+                            bitField0_ |= 0x00000002;
+                            tag = input.readTag();
+                            if (tag != 0) {
+                                break;
+                            }
+                        }
+                        case 0: {
+                            return this;
+                        }
+                        default: {
+                            if (!input.skipField(tag)) {
+                                return this;
+                            }
+                            tag = input.readTag();
+                            break;
+                        }
+                    }
+                }
+            }
+
+            @Override
+            public void writeTo(final JsonSink output) throws IOException {
+                output.beginObject();
+                if ((bitField0_ & 0x00000001) != 0) {
+                    output.writeInt32(FieldNames.key, key);
+                }
+                if ((bitField0_ & 0x00000002) != 0) {
+                    output.writeInt32(FieldNames.value_, value_);
+                }
+                output.endObject();
+            }
+
+            @Override
+            public SavedTagsEntry mergeFrom(final JsonSource input) throws IOException {
+                if (!input.beginObject()) {
+                    return this;
+                }
+                while (!input.isAtEnd()) {
+                    switch (input.readFieldHash()) {
+                        case 106079: {
+                            if (input.isAtField(FieldNames.key)) {
+                                if (!input.trySkipNullValue()) {
+                                    key = input.readInt32();
+                                    bitField0_ |= 0x00000001;
+                                }
+                            } else {
+                                input.skipUnknownField();
+                            }
+                            break;
+                        }
+                        case 111972721: {
+                            if (input.isAtField(FieldNames.value_)) {
+                                if (!input.trySkipNullValue()) {
+                                    value_ = input.readInt32();
+                                    bitField0_ |= 0x00000002;
+                                }
+                            } else {
+                                input.skipUnknownField();
+                            }
+                            break;
+                        }
+                        default: {
+                            input.skipUnknownField();
+                            break;
+                        }
+                    }
+                }
+                input.endObject();
+                return this;
+            }
+
+            @Override
+            public SavedTagsEntry clone() {
+                return new SavedTagsEntry().copyFrom(this);
+            }
+
+            @Override
+            public boolean isEmpty() {
+                return ((bitField0_) == 0);
+            }
+
+            public static SavedTagsEntry parseFrom(final byte[] data) throws
+                    InvalidProtocolBufferException {
+                return ProtoMessage.mergeFrom(new SavedTagsEntry(), data).checkInitialized();
+            }
+
+            public static SavedTagsEntry parseFrom(final ProtoSource input) throws IOException {
+                return ProtoMessage.mergeFrom(new SavedTagsEntry(), input).checkInitialized();
+            }
+
+            public static SavedTagsEntry parseFrom(final JsonSource input) throws IOException {
+                return ProtoMessage.mergeFrom(new SavedTagsEntry(), input).checkInitialized();
+            }
+
+            /**
+             * @return factory for creating SavedTagsEntry messages
+             */
+            public static MessageFactory<SavedTagsEntry> getFactory() {
+                return SavedTagsEntryFactory.INSTANCE;
+            }
+
+            /**
+             * @return this type's descriptor.
+             */
+            public static Descriptors.Descriptor getDescriptor() {
+                return Data.questnav_protos_data_ProtobufQuestNavDeviceData_SavedTagsEntry_descriptor;
+            }
+
+            private enum SavedTagsEntryFactory implements MessageFactory<SavedTagsEntry> {
+                INSTANCE;
+
+                @Override
+                public SavedTagsEntry create() {
+                    return SavedTagsEntry.newInstance();
+                }
+            }
+
+            /**
+             * Contains name constants used for serializing JSON
+             */
+            static class FieldNames {
+                static final FieldName key = FieldName.forField("key");
+
+                static final FieldName value_ = FieldName.forField("value");
+            }
+        }
+
         private enum ProtobufQuestNavDeviceDataFactory implements MessageFactory<ProtobufQuestNavDeviceData> {
             INSTANCE;
 
@@ -1042,7 +1825,15 @@ public final class Data {
 
             static final FieldName batteryPercent = FieldName.forField("batteryPercent", "battery_percent");
 
+            static final FieldName activeTag = FieldName.forField("activeTag", "active_tag");
+
+            static final FieldName activeLayout = FieldName.forField("activeLayout", "active_layout");
+
+            static final FieldName activeField = FieldName.forField("activeField", "active_field");
+
             static final FieldName currentlyTracking = FieldName.forField("currentlyTracking", "currently_tracking");
+
+            static final FieldName savedTags = FieldName.forField("savedTags", "saved_tags");
         }
     }
 }
