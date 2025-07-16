@@ -146,7 +146,8 @@ namespace QuestNav.Core
                 networkTableConnection,
                 vrCamera,
                 vrCameraRoot,
-                resetTransform
+                resetTransform,
+                calibrator
             );
             uiManager = new UIManager(
                 networkTableConnection,

@@ -14,6 +14,7 @@ enum QuestNavCommandType {
   SET_FIELD_INDEX = 5;          // Set the field index
   SET_FIELD_LAYOUT_INDEX = 6;   // Set the field layout index
   CALIBRATE_TAG = 7;   // Set the field layout index
+  SET_ACTIVE_TAG = 8;   // Set the field layout index
   // Future commands can be added here:
 }
 

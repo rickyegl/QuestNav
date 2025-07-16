@@ -482,6 +482,7 @@ public class Calibrator : MonoBehaviour
     {
         print("Tag ID: " + tagData.ID);
         selectedTag = tagData;
+        TrackedTag = selectedTag.ID;
 
     }
 
@@ -490,10 +491,11 @@ public class Calibrator : MonoBehaviour
         return activeFieldLayoutData.tags.Find(tag => tag.ID == id);
     }
 
-    void SetSelectedTag(int tagId)
+    public void SetSelectedTag(int tagId)
     {
         // Find the tag in the active layout data
         selectedTag = activeFieldLayoutData.tags.Find(tag => tag.ID == tagId);
+        TrackedTag = tagId;
         if (selectedTag != null)
         {
             //Debug.Log("Selected tag ID: " + selectedTag.ID);

@@ -23,6 +23,7 @@ namespace QuestNav.Commands
 
         // Commands
         private PoseResetCommand poseResetCommand;
+        private SetActiveTagCommand setActiveTagCommand;
 
         // Processed command variable
         private uint lastCommandIdProcessed;
@@ -31,7 +32,8 @@ namespace QuestNav.Commands
             NetworkTableConnection networkTableConnection,
             Transform vrCamera,
             Transform vrCameraRoot,
-            Transform resetTransform
+            Transform resetTransform,
+            Calibrator calibrator
         )
         {
             // Command context
@@ -44,6 +46,7 @@ namespace QuestNav.Commands
                 vrCameraRoot,
                 resetTransform
             );
+            setActiveTagCommand = new SetActiveTagCommand(networkTableConnection, calibrator);
         }
 
         public void ProcessCommands()

@@ -198,6 +198,7 @@ public class QuestNav {
     Data.ProtobufQuestNavDeviceData latestDeviceData = deviceData.get();
     if (latestDeviceData != null) {
       HashMap<Integer, Integer> intMap = new HashMap<Integer, Integer>();
+      // System.out.println("Length: " + latestDeviceData.getSavedTags().length());
       for (int i = 0; i < latestDeviceData.getSavedTags().length(); i++) {
         intMap.put(
             latestDeviceData.getSavedTags().get(i).getKey(),
