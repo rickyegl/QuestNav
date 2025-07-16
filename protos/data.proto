@@ -29,4 +29,18 @@ message ProtobufQuestNavDeviceData {
   
   // The battery percentage of the Quest
   int32 battery_percent = 3;
+
+  // The index of the active tag
+  int32 active_tag = 4;
+
+  // The index of the active tag layout
+  int32 active_layout = 5;
+
+  // The index of the active field profile
+  int32 active_layout = 6;
+
+  // The array of all saved tags
+  map<int32, int32> saved_tags = 7;
+  
+
 }
