@@ -1,4 +1,6 @@
 using System;
+using System.Collections.Generic;
+using Google.Protobuf.Collections;
 using QuestNav.Core;
 using QuestNav.Native.NTCore;
 using QuestNav.Network;
@@ -44,7 +46,7 @@ namespace QuestNav.Network
         /// <param name="currentlyTracking">Is the quest tracking currently</param>
         /// <param name="trackingLostCounter">Number of tracking lost events this session</param>
         /// <param name="batteryPercent">Current battery percentage</param>
-        void PublishDeviceData(bool currentlyTracking, int trackingLostCounter, int batteryPercent);
+        void PublishDeviceData(bool currentlyTracking, int trackingLostCounter, int batteryPercent, int activeTag, int activeLayout, int activeField, MapField<int, int> savedTags);
 
         /// <summary>
         /// Updates the team number.
@@ -196,12 +198,21 @@ public class NetworkTableConnection : INetworkTableConnection
     public void PublishDeviceData(
         bool currentlyTracking,
         int trackingLostCounter,
-        int batteryPercent
+        int batteryPercent,
+        int activeTag,
+        int activeLayout,
+        int activeField,
+        MapField<int, int> savedTags
     )
     {
         deviceData.CurrentlyTracking = currentlyTracking;
         deviceData.TrackingLostCounter = trackingLostCounter;
         deviceData.BatteryPercent = batteryPercent;
+        deviceData.ActiveTag = activeTag;
+        deviceData.ActiveLayout = activeLayout;
+        deviceData.ActiveField = activeField;
+        deviceData.SavedTags.Clear();
+        deviceData.SavedTags.Add(savedTags);
 
         // Publish data
         deviceDataPublisher.Set(deviceData);

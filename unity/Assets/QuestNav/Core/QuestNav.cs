@@ -87,6 +87,9 @@ namespace QuestNav.Core
         [SerializeField]
         private Transform resetTransform;
 
+        [SerializeField]
+        private Calibrator calibrator;
+
         /// <summary>
         /// Current battery percentage of the device
         /// </summary>
@@ -191,7 +194,12 @@ namespace QuestNav.Core
             networkTableConnection.PublishDeviceData(
                 currentlyTracking,
                 trackingLostEvents,
-                batteryPercent
+                batteryPercent,
+                calibrator.TrackedTag,
+                calibrator.activeFieldLayoutIndex,
+                calibrator.activeFieldIndex,
+                calibrator.GetPoseMap()
+
             );
 
             // Flush logs

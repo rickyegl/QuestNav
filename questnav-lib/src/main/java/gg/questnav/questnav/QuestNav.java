@@ -22,6 +22,7 @@ import gg.questnav.questnav.protos.wpilib.CommandProto;
 import gg.questnav.questnav.protos.wpilib.CommandResponseProto;
 import gg.questnav.questnav.protos.wpilib.DeviceDataProto;
 import gg.questnav.questnav.protos.wpilib.FrameDataProto;
+import java.util.HashMap;
 
 /**
  * The QuestNav class provides an interface to communicate with an Oculus/Meta Quest VR headset for
@@ -167,6 +168,44 @@ public class QuestNav {
       return latestDeviceData.getBatteryPercent();
     }
     return -1; // Return -1 to indicate no data available
+  }
+
+  public int getActiveTag() {
+    Data.ProtobufQuestNavDeviceData latestDeviceData = deviceData.get();
+    if (latestDeviceData != null) {
+      return latestDeviceData.getActiveTag();
+    }
+    return -1;
+  }
+
+  public int getActiveLayout() {
+    Data.ProtobufQuestNavDeviceData latestDeviceData = deviceData.get();
+    if (latestDeviceData != null) {
+      return latestDeviceData.getActiveLayout();
+    }
+    return -1;
+  }
+
+  public int getActiveField() {
+    Data.ProtobufQuestNavDeviceData latestDeviceData = deviceData.get();
+    if (latestDeviceData != null) {
+      return latestDeviceData.getActiveField();
+    }
+    return -1;
+  }
+
+  public HashMap<Integer, Integer> getSavedTags() {
+    Data.ProtobufQuestNavDeviceData latestDeviceData = deviceData.get();
+    if (latestDeviceData != null) {
+      HashMap<Integer, Integer> intMap = new HashMap<Integer, Integer>();
+      for (int i = 0; i < latestDeviceData.getSavedTags().length(); i++) {
+        intMap.put(
+            latestDeviceData.getSavedTags().get(i).getKey(),
+            latestDeviceData.getSavedTags().get(i).getValue());
+      }
+      return intMap;
+    }
+    return new HashMap<Integer, Integer>();
   }
 
   /**

@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Google.Protobuf.Collections;
 using Oculus.Interaction;
 using Oculus.Interaction.Surfaces;
 using QuestNav.Utils;
@@ -46,6 +47,7 @@ public class Calibrator : MonoBehaviour
     [SerializeField]
     private LineRenderer lineRenderer;
     private FieldLayoutData activeFieldLayoutData;
+    public int activeFieldLayoutIndex;
 
     [SerializeField]
     private Button createFieldButton;
@@ -56,6 +58,7 @@ public class Calibrator : MonoBehaviour
     private List<Field> fields;
 
     private Field activeField;
+    public int activeFieldIndex;
 
     [SerializeField]
     private TMP_Dropdown fieldSelector;
@@ -151,6 +154,7 @@ public class Calibrator : MonoBehaviour
             updateTagSelection(activeField.layoutIndex);
             showExistingTags();
             LoadFieldAnchors();
+            activeFieldIndex = index;
         }
         else
         {
@@ -356,6 +360,22 @@ public class Calibrator : MonoBehaviour
 
     private Dictionary<int, OVRSpatialAnchor.UnboundAnchor> _unboundAnchorMap = new Dictionary<int, OVRSpatialAnchor.UnboundAnchor>();
     private Dictionary<int, Pose> poseMap = new Dictionary<int, Pose>();
+
+    public MapField<int, int> GetPoseMap()
+    {
+        MapField<int, int> map = new MapField<int, int>();
+        foreach (var kvp in activeFieldLayoutData.tags)
+        {
+            int state = 0;
+            int tagId = kvp.ID;
+            if (poseMap.ContainsKey(tagId))
+            {
+                state = 1;
+            }
+            map.Add(tagId, state);
+        }
+        return map;
+    }
     public async void LoadFieldAnchors()
     {
         List<Guid> guids = new List<Guid>();
@@ -447,6 +467,7 @@ public class Calibrator : MonoBehaviour
         }
         activeFieldLayoutData = JsonUtility.FromJson<FieldLayoutData>(jsons[index].text);
         print("Showing " + activeFieldLayoutData.tags.Count + " tags");
+        activeFieldLayoutIndex = index;
         for (int i = 0; i < activeFieldLayoutData.tags.Count; i++)
         {
             GameObject button = Instantiate(buttonPrefab, buttonsList.transform);
