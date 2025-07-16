@@ -72,6 +72,9 @@ namespace QuestNav.Core
         [SerializeField]
         private Transform vrCamera;
 
+        [SerializeField]
+        private Transform fieldTransform;
+
         /// <summary>
         /// Reference to the VR camera root transform
         /// </summary>
@@ -164,6 +167,7 @@ namespace QuestNav.Core
         {
             // Collect and publish current frame data
             UpdateFrameData();
+            GetPoseRelativeTo(fieldTransform, cameraRig.centerEyeAnchor, out position, out rotation);
             networkTableConnection.PublishFrameData(frameCount, timeStamp, position, rotation);
 
             // Process robot commands
@@ -234,5 +238,37 @@ namespace QuestNav.Core
             hadTracking = currentlyTracking;
         }
         #endregion
+
+        public static void GetPoseRelativeTo(Transform fieldTransform, Transform targetTransform, out Vector3 relativePosition, out Quaternion relativeRotation)
+        {
+            Transform offsetTransform = new GameObject().transform;
+            //offsetTransform.rotation = fieldTransform.rotation;
+            //Vector3 offsetTransformEuler = offsetTransform.eulerAngles;
+            //offsetTransformEuler.y = offsetTransformEuler.y - 90f;
+            //offsetTransform.rotation = Quaternion.Euler(offsetTransformEuler);
+            //offsetTransform.position = fieldTransform.position;
+            if (fieldTransform == null)
+            {
+                Debug.LogError("Field Transform is null. Cannot calculate relative pose.");
+                relativePosition = Vector3.zero;
+                relativeRotation = Quaternion.identity;
+                return;
+            }
+            if (targetTransform == null)
+            {
+                Debug.LogError("Target Transform is null. Cannot calculate relative pose.");
+                relativePosition = Vector3.zero;
+                relativeRotation = Quaternion.identity;
+                return;
+            }
+
+            // Relative Position
+            relativePosition = fieldTransform.InverseTransformPoint(targetTransform.position);
+
+            // Relative Rotation
+            // relativeRotation = Inverse(fieldRotation) * targetRotation
+            relativeRotation = Quaternion.Inverse(fieldTransform.rotation) * targetTransform.rotation;
+            //Debug.Log($"Field Yaw: {fieldTransform.eulerAngles.y}, Target Yaw: {targetTransform.eulerAngles.y}, Relative Yaw: {relativeRotation.eulerAngles.y}");
+        }
     }
 }

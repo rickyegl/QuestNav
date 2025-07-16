@@ -40,6 +40,65 @@ namespace QuestNav.Utils
             return (unityPosition, unityRotation);
         }
 
+        public static Vector3 FrcTranslationToUnity(
+            Vector3 frcPose3d
+        )
+        {
+            // Convert position: FRC X→Unity Z, FRC Y→Unity -X
+            Vector3 unityPosition = new Vector3(
+                (float)-frcPose3d.y, // FRC Y → Unity -X
+                frcPose3d.z, // Maintain current height
+                (float)frcPose3d.x // FRC X → Unity Z
+            );
+
+            return unityPosition;
+        }
+
+        public static Pose FrcPoseToUnity(
+            Vector3 frcPose3d,
+            Quaternion frcQuaternion
+        )
+        {
+            // Convert position: FRC X→Unity Z, FRC Y→Unity -X
+            Vector3 unityPosition = FrcTranslationToUnity(frcPose3d);
+
+            // Convert rotation: preserve current pitch/roll, set yaw from FRC
+            Quaternion newQuaternion = FrcQuaternionToUnity(frcQuaternion);
+
+            return new Pose(unityPosition, newQuaternion);
+        }
+
+        public static Vector3 FrcEulerToUnity(
+            Vector3 frcEulerRadians
+        )
+        {
+            // Convert rotation: preserve current pitch/roll, set yaw from FRC
+            Vector3 newEuler = new Vector3(
+                (float)(frcEulerRadians.x * Mathf.Rad2Deg), // TODO: Fix
+                (float)(-frcEulerRadians.y * Mathf.Rad2Deg), // Set yaw from FRC
+                (float)(frcEulerRadians.z * Mathf.Rad2Deg) // TODO: Fix
+            );
+
+            return newEuler;
+        }
+
+        public static Quaternion FrcQuaternionToUnity(
+            Quaternion frcQuaternion
+        )
+        {
+
+            Quaternion newQuaternion = new Quaternion(
+            (float)frcQuaternion.x,
+            (float)frcQuaternion.z, // JSON Z-axis (up for JSON) part maps to Unity Y-axis
+            (float)frcQuaternion.y, // JSON Y-axis (f orward for JSON) part maps to Unity Z-axis
+            (float)frcQuaternion.w
+            );
+            Vector3 eulerAngles = newQuaternion.eulerAngles;
+            eulerAngles.y = -eulerAngles.y; // Negate yaw
+
+            return Quaternion.Euler(eulerAngles);
+        }
+
         /// <summary>
         /// Converts from Unity coordinate system to FRC coordinate system.
         /// </summary>
