@@ -37,7 +37,7 @@ message ProtobufQuestNavDeviceData {
   int32 active_layout = 5;
 
   // The index of the active field profile
-  int32 active_layout = 6;
+  int32 active_field = 6;
 
   // The array of all saved tags
   map<int32, int32> saved_tags = 7;
