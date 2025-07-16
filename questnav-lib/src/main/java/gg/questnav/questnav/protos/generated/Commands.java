@@ -18,7 +18,7 @@ import us.hebi.quickbuf.RepeatedByte;
 import us.hebi.quickbuf.Utf8String;
 
 public final class Commands {
-    private static final RepeatedByte descriptorData = ProtoUtil.decodeBase64(2858,
+    private static final RepeatedByte descriptorData = ProtoUtil.decodeBase64(2949,
         "Cg5jb21tYW5kcy5wcm90bxIYcXVlc3RuYXYucHJvdG9zLmNvbW1hbmRzGhBnZW9tZXRyeTJkLnByb3Rv" + 
         "Il4KIFByb3RvYnVmUXVlc3ROYXZQb3NlUmVzZXRQYXlsb2FkEjoKC3RhcmdldF9wb3NlGAEgASgLMhku" + 
         "d3BpLnByb3RvLlByb3RvYnVmUG9zZTJkUgp0YXJnZXRQb3NlIiIKCkludFBheWxvYWQSFAoFdmFsdWUY" + 
@@ -33,40 +33,42 @@ public final class Commands {
         "cm90b3MuY29tbWFuZHMuSW50UGF5bG9hZEgAUhRhcHJpbHRhZ0luZGV4UGF5bG9hZEIJCgdwYXlsb2Fk" + 
         "In8KH1Byb3RvYnVmUXVlc3ROYXZDb21tYW5kUmVzcG9uc2USHQoKY29tbWFuZF9pZBgBIAEoDVIJY29t" + 
         "bWFuZElkEhgKB3N1Y2Nlc3MYAiABKAhSB3N1Y2Nlc3MSIwoNZXJyb3JfbWVzc2FnZRgDIAEoCVIMZXJy" + 
-        "b3JNZXNzYWdlKocBChNRdWVzdE5hdkNvbW1hbmRUeXBlEhwKGENPTU1BTkRfVFlQRV9VTlNQRUNJRklF" + 
+        "b3JNZXNzYWdlKpsBChNRdWVzdE5hdkNvbW1hbmRUeXBlEhwKGENPTU1BTkRfVFlQRV9VTlNQRUNJRklF" + 
         "RBAAEg4KClBPU0VfUkVTRVQQARITCg9TRVRfRklFTERfSU5ERVgQBRIaChZTRVRfRklFTERfTEFZT1VU" + 
-        "X0lOREVYEAYSEQoNQ0FMSUJSQVRFX1RBRxAHQkMKJWdnLnF1ZXN0bmF2LnF1ZXN0bmF2LnByb3Rvcy5n" + 
-        "ZW5lcmF0ZWSqAhlRdWVzdE5hdi5Qcm90b3MuR2VuZXJhdGVkSv8NCgYSBAADOgEKCAoBDBIDAAMVCggK" + 
-        "AQISAwIAIQoICgEIEgMDADYKCQoCCCUSAwMANgoICgEIEgMEAD4KCQoCCAESAwQAPgolCgIDABIDBwAa" + 
-        "GhogSW1wb3J0IGdlb21ldHJ5IG1lc3NhZ2VzCgpFCgIFABIECgARARo5IEVudW0gZm9yIGNvbW1hbmQg",
-        "dHlwZXMgKGV4dGVuc2libGUgZm9yIGZ1dHVyZSBjb21tYW5kcykKCgoKAwUAARIDCgUYCi8KBAUAAgAS" + 
-        "AwsCHyIiIERlZmF1bHQgdmFsdWUgcmVxdWlyZWQgaW4gcHJvdG8zCgoMCgUFAAIAARIDCwIaCgwKBQUA" + 
-        "AgACEgMLHR4KLgoEBQACARIDDAIRIiEgUmVzZXQgcm9ib3QgcG9zZSB0byB0YXJnZXQgcG9zZQoKDAoF" + 
-        "BQACAQESAwwCDAoMCgUFAAIBAhIDDA8QCiIKBAUAAgISAw0CFiIVIFNldCB0aGUgZmllbGQgaW5kZXgK" + 
-        "CgwKBQUAAgIBEgMNAhEKDAoFBQACAgISAw0UFQopCgQFAAIDEgMOAh0iHCBTZXQgdGhlIGZpZWxkIGxh" + 
-        "eW91dCBpbmRleAoKDAoFBQACAwESAw4CGAoMCgUFAAIDAhIDDhscCikKBAUAAgQSAw8CFCIcIFNldCB0" + 
-        "aGUgZmllbGQgbGF5b3V0IGluZGV4CgoMCgUFAAIEARIDDwIPCgwKBQUAAgQCEgMPEhMKLAoCBAASBBQA" + 
-        "FwEaICBQYXlsb2FkIGZvciBwb3NlIHJlc2V0IGNvbW1hbmQKCgoKAwQAARIDFAgoCmcKBAQAAgASAxYC" + 
-        "KxpaIFRhcmdldCBwb3NlIGluIGZpZWxkLXJlbGF0aXZlIFdQSUxpYiBjb29yZGluYXRlIHNwYWNlICh4" + 
-        "IGZvcndhcmQsIHkgbGVmdCwgcm90YXRpb24gQ0NXKykKCgwKBQQAAgAGEgMWAhoKDAoFBAACAAESAxYb" + 
-        "JgoMCgUEAAIAAxIDFikqCgoKAgQBEgQZABsBCgoKAwQBARIDGQgSCgsKBAQBAgASAxoCEgoMCgUEAQIA" + 
-        "BRIDGgIHCgwKBQQBAgABEgMaCA0KDAoFBAECAAMSAxoQEQoiCgIEAhIEHgAuARoWIE1haW4gQ29tbWFu" + 
-        "ZCBtZXNzYWdlCgoKCgMEAgESAx4IHwoiCgQEAgIAEgMgAh8aFSBUaGUgdHlwZSBvZiBjb21tYW5kCgoM" + 
-        "CgUEAgIABhIDIAIVCgwKBQQCAgABEgMgFhoKDAoFBAICAAMSAyAdHgowCgQEAgIBEgMjAhgaIyBDb21t" + 
-        "YW5kIElEIGZvciB0cmFja2luZy9yZXNwb25zZXMKCgwKBQQCAgEFEgMjAggKDAoFBAICAQESAyMJEwoM" + 
-        "CgUEAgIBAxIDIxYXClUKBAQCCAASBCYCLQMaRyBDb21tYW5kLXNwZWNpZmljIHBheWxvYWQgKG9ubHkg" + 
-        "b25lIHdpbGwgYmUgc2V0IGJhc2VkIG9uIGNvbW1hbmQgdHlwZSkKCgwKBQQCCAABEgMmCA8KCwoEBAIC" + 
-        "AhIDJwQ9CgwKBQQCAgIGEgMnBCQKDAoFBAICAgESAyclNwoMCgUEAgICAxIDJzo8CgsKBAQCAgMSAygE" + 
-        "KAoMCgUEAgIDBhIDKAQOCgwKBQQCAgMBEgMoDyIKDAoFBAICAwMSAyglJwoLCgQEAgIEEgMpBC8KDAoF" + 
-        "BAICBAYSAykEDgoMCgUEAgIEARIDKQ8pCgwKBQQCAgQDEgMpLC4KYQoEBAICBRIDKgQrIlQgRnV0dXJl",
-        "IHBheWxvYWRzIGNhbiBiZSBhZGRlZCBoZXJlOgogKENvbW1hbmRzIHdpdGggbm8gcGF5bG9hZCBkb24n" + 
-        "dCBuZWVkIGFuIGVudHJ5KQoKDAoFBAICBQYSAyoEDgoMCgUEAgIFARIDKg8lCgwKBQQCAgUDEgMqKCoK" + 
-        "KwoCBAMSBDEAOgEaHyBSZXNwb25zZSBtZXNzYWdlIGZvciBjb21tYW5kcwoKCgoDBAMBEgMxCCcKLgoE" + 
-        "BAMCABIDMwIYGiEgTWF0Y2hlcyB0aGUgb3JpZ2luYWwgY29tbWFuZCBJRAoKDAoFBAMCAAUSAzMCCAoM" + 
-        "CgUEAwIAARIDMwkTCgwKBQQDAgADEgMzFhcKMQoEBAMCARIDNgITGiQgV2hldGhlciB0aGUgY29tbWFu" + 
-        "ZCB3YXMgc3VjY2Vzc2Z1bAoKDAoFBAMCAQUSAzYCBgoMCgUEAwIBARIDNgcOCgwKBQQDAgEDEgM2ERIK" + 
-        "LwoEBAMCAhIDOQIbGiIgRXJyb3IgbWVzc2FnZSBpZiBzdWNjZXNzID0gZmFsc2UKCgwKBQQDAgIFEgM5" + 
-        "AggKDAoFBAMCAgESAzkJFgoMCgUEAwICAxIDORkaYgZwcm90bzM=");
+        "X0lOREVYEAYSEQoNQ0FMSUJSQVRFX1RBRxAHEhIKDlNFVF9BQ1RJVkVfVEFHEAhCQwolZ2cucXVlc3Ru" + 
+        "YXYucXVlc3RuYXYucHJvdG9zLmdlbmVyYXRlZKoCGVF1ZXN0TmF2LlByb3Rvcy5HZW5lcmF0ZWRKxg4K" + 
+        "BhIEAAM7AQoICgEMEgMAAxUKCAoBAhIDAgAhCggKAQgSAwMANgoJCgIIJRIDAwA2CggKAQgSAwQAPgoJ" + 
+        "CgIIARIDBAA+CiUKAgMAEgMHABoaGiBJbXBvcnQgZ2VvbWV0cnkgbWVzc2FnZXMKCkUKAgUAEgQKABIB",
+        "GjkgRW51bSBmb3IgY29tbWFuZCB0eXBlcyAoZXh0ZW5zaWJsZSBmb3IgZnV0dXJlIGNvbW1hbmRzKQoK" + 
+        "CgoDBQABEgMKBRgKLwoEBQACABIDCwIfIiIgRGVmYXVsdCB2YWx1ZSByZXF1aXJlZCBpbiBwcm90bzMK" + 
+        "CgwKBQUAAgABEgMLAhoKDAoFBQACAAISAwsdHgouCgQFAAIBEgMMAhEiISBSZXNldCByb2JvdCBwb3Nl" + 
+        "IHRvIHRhcmdldCBwb3NlCgoMCgUFAAIBARIDDAIMCgwKBQUAAgECEgMMDxAKIgoEBQACAhIDDQIWIhUg" + 
+        "U2V0IHRoZSBmaWVsZCBpbmRleAoKDAoFBQACAgESAw0CEQoMCgUFAAICAhIDDRQVCikKBAUAAgMSAw4C" + 
+        "HSIcIFNldCB0aGUgZmllbGQgbGF5b3V0IGluZGV4CgoMCgUFAAIDARIDDgIYCgwKBQUAAgMCEgMOGxwK" + 
+        "KQoEBQACBBIDDwIUIhwgU2V0IHRoZSBmaWVsZCBsYXlvdXQgaW5kZXgKCgwKBQUAAgQBEgMPAg8KDAoF" + 
+        "BQACBAISAw8SEwopCgQFAAIFEgMQAhUiHCBTZXQgdGhlIGZpZWxkIGxheW91dCBpbmRleAoKDAoFBQAC" + 
+        "BQESAxACEAoMCgUFAAIFAhIDEBMUCiwKAgQAEgQVABgBGiAgUGF5bG9hZCBmb3IgcG9zZSByZXNldCBj" + 
+        "b21tYW5kCgoKCgMEAAESAxUIKApnCgQEAAIAEgMXAisaWiBUYXJnZXQgcG9zZSBpbiBmaWVsZC1yZWxh" + 
+        "dGl2ZSBXUElMaWIgY29vcmRpbmF0ZSBzcGFjZSAoeCBmb3J3YXJkLCB5IGxlZnQsIHJvdGF0aW9uIEND" + 
+        "VyspCgoMCgUEAAIABhIDFwIaCgwKBQQAAgABEgMXGyYKDAoFBAACAAMSAxcpKgoKCgIEARIEGgAcAQoK" + 
+        "CgMEAQESAxoIEgoLCgQEAQIAEgMbAhIKDAoFBAECAAUSAxsCBwoMCgUEAQIAARIDGwgNCgwKBQQBAgAD" + 
+        "EgMbEBEKIgoCBAISBB8ALwEaFiBNYWluIENvbW1hbmQgbWVzc2FnZQoKCgoDBAIBEgMfCB8KIgoEBAIC" + 
+        "ABIDIQIfGhUgVGhlIHR5cGUgb2YgY29tbWFuZAoKDAoFBAICAAYSAyECFQoMCgUEAgIAARIDIRYaCgwK" + 
+        "BQQCAgADEgMhHR4KMAoEBAICARIDJAIYGiMgQ29tbWFuZCBJRCBmb3IgdHJhY2tpbmcvcmVzcG9uc2Vz" + 
+        "CgoMCgUEAgIBBRIDJAIICgwKBQQCAgEBEgMkCRMKDAoFBAICAQMSAyQWFwpVCgQEAggAEgQnAi4DGkcg" + 
+        "Q29tbWFuZC1zcGVjaWZpYyBwYXlsb2FkIChvbmx5IG9uZSB3aWxsIGJlIHNldCBiYXNlZCBvbiBjb21t" + 
+        "YW5kIHR5cGUpCgoMCgUEAggAARIDJwgPCgsKBAQCAgISAygEPQoMCgUEAgICBhIDKAQkCgwKBQQCAgIB" + 
+        "EgMoJTcKDAoFBAICAgMSAyg6PAoLCgQEAgIDEgMpBCgKDAoFBAICAwYSAykEDgoMCgUEAgIDARIDKQ8i",
+        "CgwKBQQCAgMDEgMpJScKCwoEBAICBBIDKgQvCgwKBQQCAgQGEgMqBA4KDAoFBAICBAESAyoPKQoMCgUE" + 
+        "AgIEAxIDKiwuCmEKBAQCAgUSAysEKyJUIEZ1dHVyZSBwYXlsb2FkcyBjYW4gYmUgYWRkZWQgaGVyZToK" + 
+        "IChDb21tYW5kcyB3aXRoIG5vIHBheWxvYWQgZG9uJ3QgbmVlZCBhbiBlbnRyeSkKCgwKBQQCAgUGEgMr" + 
+        "BA4KDAoFBAICBQESAysPJQoMCgUEAgIFAxIDKygqCisKAgQDEgQyADsBGh8gUmVzcG9uc2UgbWVzc2Fn" + 
+        "ZSBmb3IgY29tbWFuZHMKCgoKAwQDARIDMggnCi4KBAQDAgASAzQCGBohIE1hdGNoZXMgdGhlIG9yaWdp" + 
+        "bmFsIGNvbW1hbmQgSUQKCgwKBQQDAgAFEgM0AggKDAoFBAMCAAESAzQJEwoMCgUEAwIAAxIDNBYXCjEK" + 
+        "BAQDAgESAzcCExokIFdoZXRoZXIgdGhlIGNvbW1hbmQgd2FzIHN1Y2Nlc3NmdWwKCgwKBQQDAgEFEgM3" + 
+        "AgYKDAoFBAMCAQESAzcHDgoMCgUEAwIBAxIDNxESCi8KBAQDAgISAzoCGxoiIEVycm9yIG1lc3NhZ2Ug" + 
+        "aWYgc3VjY2VzcyA9IGZhbHNlCgoMCgUEAwICBRIDOgIICgwKBQQDAgIBEgM6CRYKDAoFBAMCAgMSAzoZ" + 
+        "GmIGcHJvdG8z");
 
     static final Descriptors.FileDescriptor descriptor = Descriptors.FileDescriptor.internalBuildGeneratedFileFrom("commands.proto", "questnav.protos.commands", descriptorData, Geometry2D.getDescriptor());
 
@@ -136,7 +138,16 @@ public final class Commands {
          *
          * <code>CALIBRATE_TAG = 7;</code>
          */
-        CALIBRATE_TAG("CALIBRATE_TAG", 7);
+        CALIBRATE_TAG("CALIBRATE_TAG", 7),
+
+        /**
+         * <pre>
+         *  Set the field layout index
+         * </pre>
+         *
+         * <code>SET_ACTIVE_TAG = 8;</code>
+         */
+        SET_ACTIVE_TAG("SET_ACTIVE_TAG", 8);
 
         /**
          * <pre>
@@ -182,6 +193,15 @@ public final class Commands {
          * <code>CALIBRATE_TAG = 7;</code>
          */
         public static final int CALIBRATE_TAG_VALUE = 7;
+
+        /**
+         * <pre>
+         *  Set the field layout index
+         * </pre>
+         *
+         * <code>SET_ACTIVE_TAG = 8;</code>
+         */
+        public static final int SET_ACTIVE_TAG_VALUE = 8;
 
         private final String name;
 
@@ -236,7 +256,7 @@ public final class Commands {
         enum QuestNavCommandTypeConverter implements ProtoEnum.EnumConverter<QuestNavCommandType> {
             INSTANCE;
 
-            private static final QuestNavCommandType[] lookup = new QuestNavCommandType[8];
+            private static final QuestNavCommandType[] lookup = new QuestNavCommandType[9];
 
             static {
                 lookup[0] = COMMAND_TYPE_UNSPECIFIED;
@@ -244,6 +264,7 @@ public final class Commands {
                 lookup[5] = SET_FIELD_INDEX;
                 lookup[6] = SET_FIELD_LAYOUT_INDEX;
                 lookup[7] = CALIBRATE_TAG;
+                lookup[8] = SET_ACTIVE_TAG;
             }
 
             @Override
@@ -266,6 +287,12 @@ public final class Commands {
                     case 13: {
                         if (ProtoUtil.isEqual("CALIBRATE_TAG", value)) {
                             return CALIBRATE_TAG;
+                        }
+                        break;
+                    }
+                    case 14: {
+                        if (ProtoUtil.isEqual("SET_ACTIVE_TAG", value)) {
+                            return SET_ACTIVE_TAG;
                         }
                         break;
                     }

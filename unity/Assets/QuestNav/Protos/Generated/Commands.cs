@@ -39,12 +39,12 @@ namespace QuestNav.Protos.Generated {
             "b2FkGBEgASgLMiQucXVlc3RuYXYucHJvdG9zLmNvbW1hbmRzLkludFBheWxv",
             "YWRIAEIJCgdwYXlsb2FkIl0KH1Byb3RvYnVmUXVlc3ROYXZDb21tYW5kUmVz",
             "cG9uc2USEgoKY29tbWFuZF9pZBgBIAEoDRIPCgdzdWNjZXNzGAIgASgIEhUK",
-            "DWVycm9yX21lc3NhZ2UYAyABKAkqhwEKE1F1ZXN0TmF2Q29tbWFuZFR5cGUS",
+            "DWVycm9yX21lc3NhZ2UYAyABKAkqmwEKE1F1ZXN0TmF2Q29tbWFuZFR5cGUS",
             "HAoYQ09NTUFORF9UWVBFX1VOU1BFQ0lGSUVEEAASDgoKUE9TRV9SRVNFVBAB",
             "EhMKD1NFVF9GSUVMRF9JTkRFWBAFEhoKFlNFVF9GSUVMRF9MQVlPVVRfSU5E",
-            "RVgQBhIRCg1DQUxJQlJBVEVfVEFHEAdCQwolZ2cucXVlc3RuYXYucXVlc3Ru",
-            "YXYucHJvdG9zLmdlbmVyYXRlZKoCGVF1ZXN0TmF2LlByb3Rvcy5HZW5lcmF0",
-            "ZWRiBnByb3RvMw=="));
+            "RVgQBhIRCg1DQUxJQlJBVEVfVEFHEAcSEgoOU0VUX0FDVElWRV9UQUcQCEJD",
+            "CiVnZy5xdWVzdG5hdi5xdWVzdG5hdi5wcm90b3MuZ2VuZXJhdGVkqgIZUXVl",
+            "c3ROYXYuUHJvdG9zLkdlbmVyYXRlZGIGcHJvdG8z"));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { global::Wpi.Proto.Geometry2DReflection.Descriptor, },
           new pbr::GeneratedClrTypeInfo(new[] {typeof(global::QuestNav.Protos.Generated.QuestNavCommandType), }, null, new pbr::GeneratedClrTypeInfo[] {
@@ -82,6 +82,10 @@ namespace QuestNav.Protos.Generated {
     /// Set the field layout index
     /// </summary>
     [pbr::OriginalName("CALIBRATE_TAG")] CalibrateTag = 7,
+    /// <summary>
+    /// Set the field layout index
+    /// </summary>
+    [pbr::OriginalName("SET_ACTIVE_TAG")] SetActiveTag = 8,
   }
 
   #endregion
