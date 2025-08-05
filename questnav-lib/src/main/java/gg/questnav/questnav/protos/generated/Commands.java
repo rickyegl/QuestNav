@@ -18,63 +18,61 @@ import us.hebi.quickbuf.RepeatedByte;
 import us.hebi.quickbuf.Utf8String;
 
 public final class Commands {
-    private static final RepeatedByte descriptorData = ProtoUtil.decodeBase64(3338,
+    private static final RepeatedByte descriptorData = ProtoUtil.decodeBase64(3226,
         "Cg5jb21tYW5kcy5wcm90bxIYcXVlc3RuYXYucHJvdG9zLmNvbW1hbmRzGhBnZW9tZXRyeTJkLnByb3Rv" + 
         "Il4KIFByb3RvYnVmUXVlc3ROYXZQb3NlUmVzZXRQYXlsb2FkEjoKC3RhcmdldF9wb3NlGAEgASgLMhku" + 
         "d3BpLnByb3RvLlByb3RvYnVmUG9zZTJkUgp0YXJnZXRQb3NlIiIKCkludFBheWxvYWQSFAoFdmFsdWUY" + 
-        "ASABKAVSBXZhbHVlImkKEkNhbGlicmF0aW9uUGF5bG9hZBIVCgZ0YWdfaWQYASABKAVSBXRhZ0lkEjwK" + 
-        "DGhlYWRzZXRfcG9zZRgCIAEoCzIZLndwaS5wcm90by5Qcm90b2J1ZlBvc2UyZFILaGVhZHNldFBvc2Ui" + 
-        "7gQKF1Byb3RvYnVmUXVlc3ROYXZDb21tYW5kEkEKBHR5cGUYASABKA4yLS5xdWVzdG5hdi5wcm90b3Mu" + 
-        "Y29tbWFuZHMuUXVlc3ROYXZDb21tYW5kVHlwZVIEdHlwZRIdCgpjb21tYW5kX2lkGAIgASgNUgljb21t" + 
-        "YW5kSWQSagoScG9zZV9yZXNldF9wYXlsb2FkGAogASgLMjoucXVlc3RuYXYucHJvdG9zLmNvbW1hbmRz" + 
-        "LlByb3RvYnVmUXVlc3ROYXZQb3NlUmVzZXRQYXlsb2FkSABSEHBvc2VSZXNldFBheWxvYWQSVgoTZmll" + 
-        "bGRfaW5kZXhfcGF5bG9hZBgPIAEoCzIkLnF1ZXN0bmF2LnByb3Rvcy5jb21tYW5kcy5JbnRQYXlsb2Fk" + 
-        "SABSEWZpZWxkSW5kZXhQYXlsb2FkEmMKGmZpZWxkX2xheW91dF9pbmRleF9wYXlsb2FkGBAgASgLMiQu" + 
-        "cXVlc3RuYXYucHJvdG9zLmNvbW1hbmRzLkludFBheWxvYWRIAFIXZmllbGRMYXlvdXRJbmRleFBheWxv" + 
-        "YWQSXAoWYXByaWx0YWdfaW5kZXhfcGF5bG9hZBgRIAEoCzIkLnF1ZXN0bmF2LnByb3Rvcy5jb21tYW5k" + 
-        "cy5JbnRQYXlsb2FkSABSFGFwcmlsdGFnSW5kZXhQYXlsb2FkEl8KE2NhbGlicmF0aW9uX3BheWxvYWQY" + 
-        "EiABKAsyLC5xdWVzdG5hdi5wcm90b3MuY29tbWFuZHMuQ2FsaWJyYXRpb25QYXlsb2FkSABSEmNhbGli" + 
-        "cmF0aW9uUGF5bG9hZEIJCgdwYXlsb2FkIn8KH1Byb3RvYnVmUXVlc3ROYXZDb21tYW5kUmVzcG9uc2US" + 
-        "HQoKY29tbWFuZF9pZBgBIAEoDVIJY29tbWFuZElkEhgKB3N1Y2Nlc3MYAiABKAhSB3N1Y2Nlc3MSIwoN" + 
-        "ZXJyb3JfbWVzc2FnZRgDIAEoCVIMZXJyb3JNZXNzYWdlKpsBChNRdWVzdE5hdkNvbW1hbmRUeXBlEhwK" + 
-        "GENPTU1BTkRfVFlQRV9VTlNQRUNJRklFRBAAEg4KClBPU0VfUkVTRVQQARITCg9TRVRfRklFTERfSU5E" + 
-        "RVgQBRIaChZTRVRfRklFTERfTEFZT1VUX0lOREVYEAYSEQoNQ0FMSUJSQVRFX1RBRxAHEhIKDlNFVF9B",
-        "Q1RJVkVfVEFHEAhCQwolZ2cucXVlc3RuYXYucXVlc3RuYXYucHJvdG9zLmdlbmVyYXRlZKoCGVF1ZXN0" + 
-        "TmF2LlByb3Rvcy5HZW5lcmF0ZWRK/w8KBhIEAANBAQoICgEMEgMAAxUKCAoBAhIDAgAhCggKAQgSAwMA" + 
-        "NgoJCgIIJRIDAwA2CggKAQgSAwQAPgoJCgIIARIDBAA+CiUKAgMAEgMHABoaGiBJbXBvcnQgZ2VvbWV0" + 
-        "cnkgbWVzc2FnZXMKCkUKAgUAEgQKABIBGjkgRW51bSBmb3IgY29tbWFuZCB0eXBlcyAoZXh0ZW5zaWJs" + 
-        "ZSBmb3IgZnV0dXJlIGNvbW1hbmRzKQoKCgoDBQABEgMKBRgKLwoEBQACABIDCwIfIiIgRGVmYXVsdCB2" + 
-        "YWx1ZSByZXF1aXJlZCBpbiBwcm90bzMKCgwKBQUAAgABEgMLAhoKDAoFBQACAAISAwsdHgouCgQFAAIB" + 
-        "EgMMAhEiISBSZXNldCByb2JvdCBwb3NlIHRvIHRhcmdldCBwb3NlCgoMCgUFAAIBARIDDAIMCgwKBQUA" + 
-        "AgECEgMMDxAKIgoEBQACAhIDDQIWIhUgU2V0IHRoZSBmaWVsZCBpbmRleAoKDAoFBQACAgESAw0CEQoM" + 
-        "CgUFAAICAhIDDRQVCikKBAUAAgMSAw4CHSIcIFNldCB0aGUgZmllbGQgbGF5b3V0IGluZGV4CgoMCgUF" + 
-        "AAIDARIDDgIYCgwKBQUAAgMCEgMOGxwKKQoEBQACBBIDDwIUIhwgU2V0IHRoZSBmaWVsZCBsYXlvdXQg" + 
-        "aW5kZXgKCgwKBQUAAgQBEgMPAg8KDAoFBQACBAISAw8SEwopCgQFAAIFEgMQAhUiHCBTZXQgdGhlIGZp" + 
-        "ZWxkIGxheW91dCBpbmRleAoKDAoFBQACBQESAxACEAoMCgUFAAIFAhIDEBMUCiwKAgQAEgQVABgBGiAg" + 
-        "UGF5bG9hZCBmb3IgcG9zZSByZXNldCBjb21tYW5kCgoKCgMEAAESAxUIKApnCgQEAAIAEgMXAisaWiBU" + 
-        "YXJnZXQgcG9zZSBpbiBmaWVsZC1yZWxhdGl2ZSBXUElMaWIgY29vcmRpbmF0ZSBzcGFjZSAoeCBmb3J3" + 
-        "YXJkLCB5IGxlZnQsIHJvdGF0aW9uIENDVyspCgoMCgUEAAIABhIDFwIaCgwKBQQAAgABEgMXGyYKDAoF" + 
-        "BAACAAMSAxcpKgoKCgIEARIEGgAcAQoKCgMEAQESAxoIEgoLCgQEAQIAEgMbAhIKDAoFBAECAAUSAxsC" + 
-        "BwoMCgUEAQIAARIDGwgNCgwKBQQBAgADEgMbEBEKCgoCBAISBB4AIQEKCgoDBAIBEgMeCBoKLQoEBAIC" + 
-        "ABIDHwITIiAgVGhlIElEIG9mIHRoZSB0YWcgdG8gY2FsaWJyYXRlCgoMCgUEAgIABRIDHwIHCgwKBQQC" + 
-        "AgABEgMfCA4KDAoFBAICAAMSAx8REgoaCgQEAgIBEgMgAiwiDSBUaGUgcG9zZSBvZgoKDAoFBAICAQYS" + 
-        "AyACGgoMCgUEAgIBARIDIBsnCgwKBQQCAgEDEgMgKisKIgoCBAMSBCQANQEaFiBNYWluIENvbW1hbmQg",
-        "bWVzc2FnZQoKCgoDBAMBEgMkCB8KIgoEBAMCABIDJgIfGhUgVGhlIHR5cGUgb2YgY29tbWFuZAoKDAoF" + 
-        "BAMCAAYSAyYCFQoMCgUEAwIAARIDJhYaCgwKBQQDAgADEgMmHR4KMAoEBAMCARIDKQIYGiMgQ29tbWFu" + 
-        "ZCBJRCBmb3IgdHJhY2tpbmcvcmVzcG9uc2VzCgoMCgUEAwIBBRIDKQIICgwKBQQDAgEBEgMpCRMKDAoF" + 
-        "BAMCAQMSAykWFwpVCgQEAwgAEgQsAjQDGkcgQ29tbWFuZC1zcGVjaWZpYyBwYXlsb2FkIChvbmx5IG9u" + 
-        "ZSB3aWxsIGJlIHNldCBiYXNlZCBvbiBjb21tYW5kIHR5cGUpCgoMCgUEAwgAARIDLAgPCgsKBAQDAgIS" + 
-        "Ay0EPQoMCgUEAwICBhIDLQQkCgwKBQQDAgIBEgMtJTcKDAoFBAMCAgMSAy06PAoLCgQEAwIDEgMuBCgK" + 
-        "DAoFBAMCAwYSAy4EDgoMCgUEAwIDARIDLg8iCgwKBQQDAgMDEgMuJScKCwoEBAMCBBIDLwQvCgwKBQQD" + 
-        "AgQGEgMvBA4KDAoFBAMCBAESAy8PKQoMCgUEAwIEAxIDLywuCgsKBAQDAgUSAzAEKwoMCgUEAwIFBhID" + 
-        "MAQOCgwKBQQDAgUBEgMwDyUKDAoFBAMCBQMSAzAoKgosCgQEAwIGEgMxBDAiHyBQYXlsb2FkIGZvciBj" + 
-        "YWxpYnJhdGluZyBhIHRhZwoKDAoFBAMCBgYSAzEEFgoMCgUEAwIGARIDMRcqCgwKBQQDAgYDEgMxLS8K" + 
-        "KwoCBAQSBDgAQQEaHyBSZXNwb25zZSBtZXNzYWdlIGZvciBjb21tYW5kcwoKCgoDBAQBEgM4CCcKLgoE" + 
-        "BAQCABIDOgIYGiEgTWF0Y2hlcyB0aGUgb3JpZ2luYWwgY29tbWFuZCBJRAoKDAoFBAQCAAUSAzoCCAoM" + 
-        "CgUEBAIAARIDOgkTCgwKBQQEAgADEgM6FhcKMQoEBAQCARIDPQITGiQgV2hldGhlciB0aGUgY29tbWFu" + 
-        "ZCB3YXMgc3VjY2Vzc2Z1bAoKDAoFBAQCAQUSAz0CBgoMCgUEBAIBARIDPQcOCgwKBQQEAgEDEgM9ERIK" + 
-        "LwoEBAQCAhIDQAIbGiIgRXJyb3IgbWVzc2FnZSBpZiBzdWNjZXNzID0gZmFsc2UKCgwKBQQEAgIFEgNA" + 
-        "AggKDAoFBAQCAgESA0AJFgoMCgUEBAICAxIDQBkaYgZwcm90bzM=");
+        "ASABKAVSBXZhbHVlIlIKEkNhbGlicmF0aW9uUGF5bG9hZBI8CgxoZWFkc2V0X3Bvc2UYAiABKAsyGS53" + 
+        "cGkucHJvdG8uUHJvdG9idWZQb3NlMmRSC2hlYWRzZXRQb3NlIu4EChdQcm90b2J1ZlF1ZXN0TmF2Q29t" + 
+        "bWFuZBJBCgR0eXBlGAEgASgOMi0ucXVlc3RuYXYucHJvdG9zLmNvbW1hbmRzLlF1ZXN0TmF2Q29tbWFu" + 
+        "ZFR5cGVSBHR5cGUSHQoKY29tbWFuZF9pZBgCIAEoDVIJY29tbWFuZElkEmoKEnBvc2VfcmVzZXRfcGF5" + 
+        "bG9hZBgKIAEoCzI6LnF1ZXN0bmF2LnByb3Rvcy5jb21tYW5kcy5Qcm90b2J1ZlF1ZXN0TmF2UG9zZVJl" + 
+        "c2V0UGF5bG9hZEgAUhBwb3NlUmVzZXRQYXlsb2FkElYKE2ZpZWxkX2luZGV4X3BheWxvYWQYDyABKAsy" + 
+        "JC5xdWVzdG5hdi5wcm90b3MuY29tbWFuZHMuSW50UGF5bG9hZEgAUhFmaWVsZEluZGV4UGF5bG9hZBJj" + 
+        "ChpmaWVsZF9sYXlvdXRfaW5kZXhfcGF5bG9hZBgQIAEoCzIkLnF1ZXN0bmF2LnByb3Rvcy5jb21tYW5k" + 
+        "cy5JbnRQYXlsb2FkSABSF2ZpZWxkTGF5b3V0SW5kZXhQYXlsb2FkElwKFmFwcmlsdGFnX2luZGV4X3Bh" + 
+        "eWxvYWQYESABKAsyJC5xdWVzdG5hdi5wcm90b3MuY29tbWFuZHMuSW50UGF5bG9hZEgAUhRhcHJpbHRh" + 
+        "Z0luZGV4UGF5bG9hZBJfChNjYWxpYnJhdGlvbl9wYXlsb2FkGBIgASgLMiwucXVlc3RuYXYucHJvdG9z" + 
+        "LmNvbW1hbmRzLkNhbGlicmF0aW9uUGF5bG9hZEgAUhJjYWxpYnJhdGlvblBheWxvYWRCCQoHcGF5bG9h" + 
+        "ZCJ/Ch9Qcm90b2J1ZlF1ZXN0TmF2Q29tbWFuZFJlc3BvbnNlEh0KCmNvbW1hbmRfaWQYASABKA1SCWNv" + 
+        "bW1hbmRJZBIYCgdzdWNjZXNzGAIgASgIUgdzdWNjZXNzEiMKDWVycm9yX21lc3NhZ2UYAyABKAlSDGVy" + 
+        "cm9yTWVzc2FnZSqbAQoTUXVlc3ROYXZDb21tYW5kVHlwZRIcChhDT01NQU5EX1RZUEVfVU5TUEVDSUZJ" + 
+        "RUQQABIOCgpQT1NFX1JFU0VUEAESEwoPU0VUX0ZJRUxEX0lOREVYEAUSGgoWU0VUX0ZJRUxEX0xBWU9V" + 
+        "VF9JTkRFWBAGEhEKDUNBTElCUkFURV9UQUcQBxISCg5TRVRfQUNUSVZFX1RBRxAIQkMKJWdnLnF1ZXN0",
+        "bmF2LnF1ZXN0bmF2LnByb3Rvcy5nZW5lcmF0ZWSqAhlRdWVzdE5hdi5Qcm90b3MuR2VuZXJhdGVkSqYP" + 
+        "CgYSBAADQAEKCAoBDBIDAAMVCggKAQISAwIAIQoICgEIEgMDADYKCQoCCCUSAwMANgoICgEIEgMEAD4K" + 
+        "CQoCCAESAwQAPgolCgIDABIDBwAaGhogSW1wb3J0IGdlb21ldHJ5IG1lc3NhZ2VzCgpFCgIFABIECgAS" + 
+        "ARo5IEVudW0gZm9yIGNvbW1hbmQgdHlwZXMgKGV4dGVuc2libGUgZm9yIGZ1dHVyZSBjb21tYW5kcykK" + 
+        "CgoKAwUAARIDCgUYCi8KBAUAAgASAwsCHyIiIERlZmF1bHQgdmFsdWUgcmVxdWlyZWQgaW4gcHJvdG8z" + 
+        "CgoMCgUFAAIAARIDCwIaCgwKBQUAAgACEgMLHR4KLgoEBQACARIDDAIRIiEgUmVzZXQgcm9ib3QgcG9z" + 
+        "ZSB0byB0YXJnZXQgcG9zZQoKDAoFBQACAQESAwwCDAoMCgUFAAIBAhIDDA8QCiIKBAUAAgISAw0CFiIV" + 
+        "IFNldCB0aGUgZmllbGQgaW5kZXgKCgwKBQUAAgIBEgMNAhEKDAoFBQACAgISAw0UFQopCgQFAAIDEgMO" + 
+        "Ah0iHCBTZXQgdGhlIGZpZWxkIGxheW91dCBpbmRleAoKDAoFBQACAwESAw4CGAoMCgUFAAIDAhIDDhsc" + 
+        "CikKBAUAAgQSAw8CFCIcIFNldCB0aGUgZmllbGQgbGF5b3V0IGluZGV4CgoMCgUFAAIEARIDDwIPCgwK" + 
+        "BQUAAgQCEgMPEhMKKQoEBQACBRIDEAIVIhwgU2V0IHRoZSBmaWVsZCBsYXlvdXQgaW5kZXgKCgwKBQUA" + 
+        "AgUBEgMQAhAKDAoFBQACBQISAxATFAosCgIEABIEFQAYARogIFBheWxvYWQgZm9yIHBvc2UgcmVzZXQg" + 
+        "Y29tbWFuZAoKCgoDBAABEgMVCCgKZwoEBAACABIDFwIrGlogVGFyZ2V0IHBvc2UgaW4gZmllbGQtcmVs" + 
+        "YXRpdmUgV1BJTGliIGNvb3JkaW5hdGUgc3BhY2UgKHggZm9yd2FyZCwgeSBsZWZ0LCByb3RhdGlvbiBD" + 
+        "Q1crKQoKDAoFBAACAAYSAxcCGgoMCgUEAAIAARIDFxsmCgwKBQQAAgADEgMXKSoKCgoCBAESBBoAHAEK" + 
+        "CgoDBAEBEgMaCBIKCwoEBAECABIDGwISCgwKBQQBAgAFEgMbAgcKDAoFBAECAAESAxsIDQoMCgUEAQIA" + 
+        "AxIDGxARCgoKAgQCEgQeACABCgoKAwQCARIDHggaChoKBAQCAgASAx8CLCINIFRoZSBwb3NlIG9mCgoM" + 
+        "CgUEAgIABhIDHwIaCgwKBQQCAgABEgMfGycKDAoFBAICAAMSAx8qKwoiCgIEAxIEIwA0ARoWIE1haW4g" + 
+        "Q29tbWFuZCBtZXNzYWdlCgoKCgMEAwESAyMIHwoiCgQEAwIAEgMlAh8aFSBUaGUgdHlwZSBvZiBjb21t" + 
+        "YW5kCgoMCgUEAwIABhIDJQIVCgwKBQQDAgABEgMlFhoKDAoFBAMCAAMSAyUdHgowCgQEAwIBEgMoAhga",
+        "IyBDb21tYW5kIElEIGZvciB0cmFja2luZy9yZXNwb25zZXMKCgwKBQQDAgEFEgMoAggKDAoFBAMCAQES" + 
+        "AygJEwoMCgUEAwIBAxIDKBYXClUKBAQDCAASBCsCMwMaRyBDb21tYW5kLXNwZWNpZmljIHBheWxvYWQg" + 
+        "KG9ubHkgb25lIHdpbGwgYmUgc2V0IGJhc2VkIG9uIGNvbW1hbmQgdHlwZSkKCgwKBQQDCAABEgMrCA8K" + 
+        "CwoEBAMCAhIDLAQ9CgwKBQQDAgIGEgMsBCQKDAoFBAMCAgESAywlNwoMCgUEAwICAxIDLDo8CgsKBAQD" + 
+        "AgMSAy0EKAoMCgUEAwIDBhIDLQQOCgwKBQQDAgMBEgMtDyIKDAoFBAMCAwMSAy0lJwoLCgQEAwIEEgMu" + 
+        "BC8KDAoFBAMCBAYSAy4EDgoMCgUEAwIEARIDLg8pCgwKBQQDAgQDEgMuLC4KCwoEBAMCBRIDLwQrCgwK" + 
+        "BQQDAgUGEgMvBA4KDAoFBAMCBQESAy8PJQoMCgUEAwIFAxIDLygqCiwKBAQDAgYSAzAEMCIfIFBheWxv" + 
+        "YWQgZm9yIGNhbGlicmF0aW5nIGEgdGFnCgoMCgUEAwIGBhIDMAQWCgwKBQQDAgYBEgMwFyoKDAoFBAMC" + 
+        "BgMSAzAtLworCgIEBBIENwBAARofIFJlc3BvbnNlIG1lc3NhZ2UgZm9yIGNvbW1hbmRzCgoKCgMEBAES" + 
+        "AzcIJwouCgQEBAIAEgM5AhgaISBNYXRjaGVzIHRoZSBvcmlnaW5hbCBjb21tYW5kIElECgoMCgUEBAIA" + 
+        "BRIDOQIICgwKBQQEAgABEgM5CRMKDAoFBAQCAAMSAzkWFwoxCgQEBAIBEgM8AhMaJCBXaGV0aGVyIHRo" + 
+        "ZSBjb21tYW5kIHdhcyBzdWNjZXNzZnVsCgoMCgUEBAIBBRIDPAIGCgwKBQQEAgEBEgM8Bw4KDAoFBAQC" + 
+        "AQMSAzwREgovCgQEBAICEgM/AhsaIiBFcnJvciBtZXNzYWdlIGlmIHN1Y2Nlc3MgPSBmYWxzZQoKDAoF" + 
+        "BAQCAgUSAz8CCAoMCgUEBAICARIDPwkWCgwKBQQEAgIDEgM/GRpiBnByb3RvMw==");
 
     static final Descriptors.FileDescriptor descriptor = Descriptors.FileDescriptor.internalBuildGeneratedFileFrom("commands.proto", "questnav.protos.commands", descriptorData, Geometry2D.getDescriptor());
 
@@ -82,11 +80,11 @@ public final class Commands {
 
     static final Descriptors.Descriptor questnav_protos_commands_IntPayload_descriptor = descriptor.internalContainedType(158, 34, "IntPayload", "questnav.protos.commands.IntPayload");
 
-    static final Descriptors.Descriptor questnav_protos_commands_CalibrationPayload_descriptor = descriptor.internalContainedType(194, 105, "CalibrationPayload", "questnav.protos.commands.CalibrationPayload");
+    static final Descriptors.Descriptor questnav_protos_commands_CalibrationPayload_descriptor = descriptor.internalContainedType(194, 82, "CalibrationPayload", "questnav.protos.commands.CalibrationPayload");
 
-    static final Descriptors.Descriptor questnav_protos_commands_ProtobufQuestNavCommand_descriptor = descriptor.internalContainedType(302, 622, "ProtobufQuestNavCommand", "questnav.protos.commands.ProtobufQuestNavCommand");
+    static final Descriptors.Descriptor questnav_protos_commands_ProtobufQuestNavCommand_descriptor = descriptor.internalContainedType(279, 622, "ProtobufQuestNavCommand", "questnav.protos.commands.ProtobufQuestNavCommand");
 
-    static final Descriptors.Descriptor questnav_protos_commands_ProtobufQuestNavCommandResponse_descriptor = descriptor.internalContainedType(926, 127, "ProtobufQuestNavCommandResponse", "questnav.protos.commands.ProtobufQuestNavCommandResponse");
+    static final Descriptors.Descriptor questnav_protos_commands_ProtobufQuestNavCommandResponse_descriptor = descriptor.internalContainedType(903, 127, "ProtobufQuestNavCommandResponse", "questnav.protos.commands.ProtobufQuestNavCommandResponse");
 
     /**
      * @return this proto file's descriptor.
@@ -901,15 +899,6 @@ public final class Commands {
 
         /**
          * <pre>
-         *  The ID of the tag to calibrate
-         * </pre>
-         *
-         * <code>optional int32 tag_id = 1;</code>
-         */
-        private int tagId;
-
-        /**
-         * <pre>
          *  The pose of
          * </pre>
          *
@@ -929,59 +918,6 @@ public final class Commands {
 
         /**
          * <pre>
-         *  The ID of the tag to calibrate
-         * </pre>
-         *
-         * <code>optional int32 tag_id = 1;</code>
-         * @return whether the tagId field is set
-         */
-        public boolean hasTagId() {
-            return (bitField0_ & 0x00000001) != 0;
-        }
-
-        /**
-         * <pre>
-         *  The ID of the tag to calibrate
-         * </pre>
-         *
-         * <code>optional int32 tag_id = 1;</code>
-         * @return this
-         */
-        public CalibrationPayload clearTagId() {
-            bitField0_ &= ~0x00000001;
-            tagId = 0;
-            return this;
-        }
-
-        /**
-         * <pre>
-         *  The ID of the tag to calibrate
-         * </pre>
-         *
-         * <code>optional int32 tag_id = 1;</code>
-         * @return the tagId
-         */
-        public int getTagId() {
-            return tagId;
-        }
-
-        /**
-         * <pre>
-         *  The ID of the tag to calibrate
-         * </pre>
-         *
-         * <code>optional int32 tag_id = 1;</code>
-         * @param value the tagId to set
-         * @return this
-         */
-        public CalibrationPayload setTagId(final int value) {
-            bitField0_ |= 0x00000001;
-            tagId = value;
-            return this;
-        }
-
-        /**
-         * <pre>
          *  The pose of
          * </pre>
          *
@@ -989,7 +925,7 @@ public final class Commands {
          * @return whether the headsetPose field is set
          */
         public boolean hasHeadsetPose() {
-            return (bitField0_ & 0x00000002) != 0;
+            return (bitField0_ & 0x00000001) != 0;
         }
 
         /**
@@ -1001,7 +937,7 @@ public final class Commands {
          * @return this
          */
         public CalibrationPayload clearHeadsetPose() {
-            bitField0_ &= ~0x00000002;
+            bitField0_ &= ~0x00000001;
             headsetPose.clear();
             return this;
         }
@@ -1038,7 +974,7 @@ public final class Commands {
          * @return internal storage object for modifications
          */
         public Geometry2D.ProtobufPose2d getMutableHeadsetPose() {
-            bitField0_ |= 0x00000002;
+            bitField0_ |= 0x00000001;
             return headsetPose;
         }
 
@@ -1052,7 +988,7 @@ public final class Commands {
          * @return this
          */
         public CalibrationPayload setHeadsetPose(final Geometry2D.ProtobufPose2d value) {
-            bitField0_ |= 0x00000002;
+            bitField0_ |= 0x00000001;
             headsetPose.copyFrom(value);
             return this;
         }
@@ -1062,7 +998,6 @@ public final class Commands {
             cachedSize = other.cachedSize;
             if ((bitField0_ | other.bitField0_) != 0) {
                 bitField0_ = other.bitField0_;
-                tagId = other.tagId;
                 headsetPose.copyFrom(other.headsetPose);
             }
             return this;
@@ -1074,9 +1009,6 @@ public final class Commands {
                 return this;
             }
             cachedSize = -1;
-            if (other.hasTagId()) {
-                setTagId(other.tagId);
-            }
             if (other.hasHeadsetPose()) {
                 getMutableHeadsetPose().mergeFrom(other.headsetPose);
             }
@@ -1090,7 +1022,6 @@ public final class Commands {
             }
             cachedSize = -1;
             bitField0_ = 0;
-            tagId = 0;
             headsetPose.clear();
             return this;
         }
@@ -1116,17 +1047,12 @@ public final class Commands {
             }
             CalibrationPayload other = (CalibrationPayload) o;
             return bitField0_ == other.bitField0_
-                && (!hasTagId() || tagId == other.tagId)
                 && (!hasHeadsetPose() || headsetPose.equals(other.headsetPose));
         }
 
         @Override
         public void writeTo(final ProtoSink output) throws IOException {
             if ((bitField0_ & 0x00000001) != 0) {
-                output.writeRawByte((byte) 8);
-                output.writeInt32NoTag(tagId);
-            }
-            if ((bitField0_ & 0x00000002) != 0) {
                 output.writeRawByte((byte) 18);
                 output.writeMessageNoTag(headsetPose);
             }
@@ -1136,9 +1062,6 @@ public final class Commands {
         protected int computeSerializedSize() {
             int size = 0;
             if ((bitField0_ & 0x00000001) != 0) {
-                size += 1 + ProtoSink.computeInt32SizeNoTag(tagId);
-            }
-            if ((bitField0_ & 0x00000002) != 0) {
                 size += 1 + ProtoSink.computeMessageSizeNoTag(headsetPose);
             }
             return size;
@@ -1151,19 +1074,10 @@ public final class Commands {
             int tag = input.readTag();
             while (true) {
                 switch (tag) {
-                    case 8: {
-                        // tagId
-                        tagId = input.readInt32();
-                        bitField0_ |= 0x00000001;
-                        tag = input.readTag();
-                        if (tag != 18) {
-                            break;
-                        }
-                    }
                     case 18: {
                         // headsetPose
                         input.readMessage(headsetPose);
-                        bitField0_ |= 0x00000002;
+                        bitField0_ |= 0x00000001;
                         tag = input.readTag();
                         if (tag != 0) {
                             break;
@@ -1187,9 +1101,6 @@ public final class Commands {
         public void writeTo(final JsonSink output) throws IOException {
             output.beginObject();
             if ((bitField0_ & 0x00000001) != 0) {
-                output.writeInt32(FieldNames.tagId, tagId);
-            }
-            if ((bitField0_ & 0x00000002) != 0) {
                 output.writeMessage(FieldNames.headsetPose, headsetPose);
             }
             output.endObject();
@@ -1202,24 +1113,12 @@ public final class Commands {
             }
             while (!input.isAtEnd()) {
                 switch (input.readFieldHash()) {
-                    case 110119509:
-                    case -881241120: {
-                        if (input.isAtField(FieldNames.tagId)) {
-                            if (!input.trySkipNullValue()) {
-                                tagId = input.readInt32();
-                                bitField0_ |= 0x00000001;
-                            }
-                        } else {
-                            input.skipUnknownField();
-                        }
-                        break;
-                    }
                     case 370449971:
                     case -1387073490: {
                         if (input.isAtField(FieldNames.headsetPose)) {
                             if (!input.trySkipNullValue()) {
                                 input.readMessage(headsetPose);
-                                bitField0_ |= 0x00000002;
+                                bitField0_ |= 0x00000001;
                             }
                         } else {
                             input.skipUnknownField();
@@ -1286,8 +1185,6 @@ public final class Commands {
          * Contains name constants used for serializing JSON
          */
         static class FieldNames {
-            static final FieldName tagId = FieldName.forField("tagId", "tag_id");
-
             static final FieldName headsetPose = FieldName.forField("headsetPose", "headset_pose");
         }
     }
