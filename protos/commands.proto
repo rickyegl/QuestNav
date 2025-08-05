@@ -28,6 +28,11 @@ message IntPayload {
   int32 value = 1;
 }
 
+message CalibrationPayload {
+  int32 tag_id = 1; // The ID of the tag to calibrate
+  wpi.proto.ProtobufPose2d headset_pose = 2; // The pose of
+}
+
 // Main Command message
 message ProtobufQuestNavCommand {
   // The type of command
@@ -42,6 +47,7 @@ message ProtobufQuestNavCommand {
     IntPayload field_index_payload = 15;
     IntPayload field_layout_index_payload = 16;
     IntPayload apriltag_index_payload = 17;
+    CalibrationPayload calibration_payload = 18; // Payload for calibrating a tag
     // Future payloads can be added here:
     // (Commands with no payload don't need an entry)
   }
