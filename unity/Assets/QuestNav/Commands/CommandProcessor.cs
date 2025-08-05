@@ -62,9 +62,13 @@ namespace QuestNav.Commands
                         QueuedLogger.Log("Executing Pose Reset Command");
                         poseResetCommand.Execute(receivedCommand);
                         break;
+                    case QuestNavCommandType.SetActiveTag:
+                        QueuedLogger.Log("Executing Set Active Tag Command");
+                        setActiveTagCommand.Execute(receivedCommand);
+                        break;
                     default:
                         QueuedLogger.Log(
-                            "Execute called with unknown command",
+                            "Execute called with unknown command type: " + receivedCommand.Type,
                             QueuedLogger.LogLevel.Warning
                         );
                         break;
