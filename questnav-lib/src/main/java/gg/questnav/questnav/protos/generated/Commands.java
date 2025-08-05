@@ -18,57 +18,63 @@ import us.hebi.quickbuf.RepeatedByte;
 import us.hebi.quickbuf.Utf8String;
 
 public final class Commands {
-    private static final RepeatedByte descriptorData = ProtoUtil.decodeBase64(2949,
+    private static final RepeatedByte descriptorData = ProtoUtil.decodeBase64(3338,
         "Cg5jb21tYW5kcy5wcm90bxIYcXVlc3RuYXYucHJvdG9zLmNvbW1hbmRzGhBnZW9tZXRyeTJkLnByb3Rv" + 
         "Il4KIFByb3RvYnVmUXVlc3ROYXZQb3NlUmVzZXRQYXlsb2FkEjoKC3RhcmdldF9wb3NlGAEgASgLMhku" + 
         "d3BpLnByb3RvLlByb3RvYnVmUG9zZTJkUgp0YXJnZXRQb3NlIiIKCkludFBheWxvYWQSFAoFdmFsdWUY" + 
-        "ASABKAVSBXZhbHVlIo0EChdQcm90b2J1ZlF1ZXN0TmF2Q29tbWFuZBJBCgR0eXBlGAEgASgOMi0ucXVl" + 
-        "c3RuYXYucHJvdG9zLmNvbW1hbmRzLlF1ZXN0TmF2Q29tbWFuZFR5cGVSBHR5cGUSHQoKY29tbWFuZF9p" + 
-        "ZBgCIAEoDVIJY29tbWFuZElkEmoKEnBvc2VfcmVzZXRfcGF5bG9hZBgKIAEoCzI6LnF1ZXN0bmF2LnBy" + 
-        "b3Rvcy5jb21tYW5kcy5Qcm90b2J1ZlF1ZXN0TmF2UG9zZVJlc2V0UGF5bG9hZEgAUhBwb3NlUmVzZXRQ" + 
-        "YXlsb2FkElYKE2ZpZWxkX2luZGV4X3BheWxvYWQYDyABKAsyJC5xdWVzdG5hdi5wcm90b3MuY29tbWFu" + 
-        "ZHMuSW50UGF5bG9hZEgAUhFmaWVsZEluZGV4UGF5bG9hZBJjChpmaWVsZF9sYXlvdXRfaW5kZXhfcGF5" + 
-        "bG9hZBgQIAEoCzIkLnF1ZXN0bmF2LnByb3Rvcy5jb21tYW5kcy5JbnRQYXlsb2FkSABSF2ZpZWxkTGF5" + 
-        "b3V0SW5kZXhQYXlsb2FkElwKFmFwcmlsdGFnX2luZGV4X3BheWxvYWQYESABKAsyJC5xdWVzdG5hdi5w" + 
-        "cm90b3MuY29tbWFuZHMuSW50UGF5bG9hZEgAUhRhcHJpbHRhZ0luZGV4UGF5bG9hZEIJCgdwYXlsb2Fk" + 
-        "In8KH1Byb3RvYnVmUXVlc3ROYXZDb21tYW5kUmVzcG9uc2USHQoKY29tbWFuZF9pZBgBIAEoDVIJY29t" + 
-        "bWFuZElkEhgKB3N1Y2Nlc3MYAiABKAhSB3N1Y2Nlc3MSIwoNZXJyb3JfbWVzc2FnZRgDIAEoCVIMZXJy" + 
-        "b3JNZXNzYWdlKpsBChNRdWVzdE5hdkNvbW1hbmRUeXBlEhwKGENPTU1BTkRfVFlQRV9VTlNQRUNJRklF" + 
-        "RBAAEg4KClBPU0VfUkVTRVQQARITCg9TRVRfRklFTERfSU5ERVgQBRIaChZTRVRfRklFTERfTEFZT1VU" + 
-        "X0lOREVYEAYSEQoNQ0FMSUJSQVRFX1RBRxAHEhIKDlNFVF9BQ1RJVkVfVEFHEAhCQwolZ2cucXVlc3Ru" + 
-        "YXYucXVlc3RuYXYucHJvdG9zLmdlbmVyYXRlZKoCGVF1ZXN0TmF2LlByb3Rvcy5HZW5lcmF0ZWRKxg4K" + 
-        "BhIEAAM7AQoICgEMEgMAAxUKCAoBAhIDAgAhCggKAQgSAwMANgoJCgIIJRIDAwA2CggKAQgSAwQAPgoJ" + 
-        "CgIIARIDBAA+CiUKAgMAEgMHABoaGiBJbXBvcnQgZ2VvbWV0cnkgbWVzc2FnZXMKCkUKAgUAEgQKABIB",
-        "GjkgRW51bSBmb3IgY29tbWFuZCB0eXBlcyAoZXh0ZW5zaWJsZSBmb3IgZnV0dXJlIGNvbW1hbmRzKQoK" + 
-        "CgoDBQABEgMKBRgKLwoEBQACABIDCwIfIiIgRGVmYXVsdCB2YWx1ZSByZXF1aXJlZCBpbiBwcm90bzMK" + 
-        "CgwKBQUAAgABEgMLAhoKDAoFBQACAAISAwsdHgouCgQFAAIBEgMMAhEiISBSZXNldCByb2JvdCBwb3Nl" + 
-        "IHRvIHRhcmdldCBwb3NlCgoMCgUFAAIBARIDDAIMCgwKBQUAAgECEgMMDxAKIgoEBQACAhIDDQIWIhUg" + 
-        "U2V0IHRoZSBmaWVsZCBpbmRleAoKDAoFBQACAgESAw0CEQoMCgUFAAICAhIDDRQVCikKBAUAAgMSAw4C" + 
-        "HSIcIFNldCB0aGUgZmllbGQgbGF5b3V0IGluZGV4CgoMCgUFAAIDARIDDgIYCgwKBQUAAgMCEgMOGxwK" + 
-        "KQoEBQACBBIDDwIUIhwgU2V0IHRoZSBmaWVsZCBsYXlvdXQgaW5kZXgKCgwKBQUAAgQBEgMPAg8KDAoF" + 
-        "BQACBAISAw8SEwopCgQFAAIFEgMQAhUiHCBTZXQgdGhlIGZpZWxkIGxheW91dCBpbmRleAoKDAoFBQAC" + 
-        "BQESAxACEAoMCgUFAAIFAhIDEBMUCiwKAgQAEgQVABgBGiAgUGF5bG9hZCBmb3IgcG9zZSByZXNldCBj" + 
-        "b21tYW5kCgoKCgMEAAESAxUIKApnCgQEAAIAEgMXAisaWiBUYXJnZXQgcG9zZSBpbiBmaWVsZC1yZWxh" + 
-        "dGl2ZSBXUElMaWIgY29vcmRpbmF0ZSBzcGFjZSAoeCBmb3J3YXJkLCB5IGxlZnQsIHJvdGF0aW9uIEND" + 
-        "VyspCgoMCgUEAAIABhIDFwIaCgwKBQQAAgABEgMXGyYKDAoFBAACAAMSAxcpKgoKCgIEARIEGgAcAQoK" + 
-        "CgMEAQESAxoIEgoLCgQEAQIAEgMbAhIKDAoFBAECAAUSAxsCBwoMCgUEAQIAARIDGwgNCgwKBQQBAgAD" + 
-        "EgMbEBEKIgoCBAISBB8ALwEaFiBNYWluIENvbW1hbmQgbWVzc2FnZQoKCgoDBAIBEgMfCB8KIgoEBAIC" + 
-        "ABIDIQIfGhUgVGhlIHR5cGUgb2YgY29tbWFuZAoKDAoFBAICAAYSAyECFQoMCgUEAgIAARIDIRYaCgwK" + 
-        "BQQCAgADEgMhHR4KMAoEBAICARIDJAIYGiMgQ29tbWFuZCBJRCBmb3IgdHJhY2tpbmcvcmVzcG9uc2Vz" + 
-        "CgoMCgUEAgIBBRIDJAIICgwKBQQCAgEBEgMkCRMKDAoFBAICAQMSAyQWFwpVCgQEAggAEgQnAi4DGkcg" + 
-        "Q29tbWFuZC1zcGVjaWZpYyBwYXlsb2FkIChvbmx5IG9uZSB3aWxsIGJlIHNldCBiYXNlZCBvbiBjb21t" + 
-        "YW5kIHR5cGUpCgoMCgUEAggAARIDJwgPCgsKBAQCAgISAygEPQoMCgUEAgICBhIDKAQkCgwKBQQCAgIB" + 
-        "EgMoJTcKDAoFBAICAgMSAyg6PAoLCgQEAgIDEgMpBCgKDAoFBAICAwYSAykEDgoMCgUEAgIDARIDKQ8i",
-        "CgwKBQQCAgMDEgMpJScKCwoEBAICBBIDKgQvCgwKBQQCAgQGEgMqBA4KDAoFBAICBAESAyoPKQoMCgUE" + 
-        "AgIEAxIDKiwuCmEKBAQCAgUSAysEKyJUIEZ1dHVyZSBwYXlsb2FkcyBjYW4gYmUgYWRkZWQgaGVyZToK" + 
-        "IChDb21tYW5kcyB3aXRoIG5vIHBheWxvYWQgZG9uJ3QgbmVlZCBhbiBlbnRyeSkKCgwKBQQCAgUGEgMr" + 
-        "BA4KDAoFBAICBQESAysPJQoMCgUEAgIFAxIDKygqCisKAgQDEgQyADsBGh8gUmVzcG9uc2UgbWVzc2Fn" + 
-        "ZSBmb3IgY29tbWFuZHMKCgoKAwQDARIDMggnCi4KBAQDAgASAzQCGBohIE1hdGNoZXMgdGhlIG9yaWdp" + 
-        "bmFsIGNvbW1hbmQgSUQKCgwKBQQDAgAFEgM0AggKDAoFBAMCAAESAzQJEwoMCgUEAwIAAxIDNBYXCjEK" + 
-        "BAQDAgESAzcCExokIFdoZXRoZXIgdGhlIGNvbW1hbmQgd2FzIHN1Y2Nlc3NmdWwKCgwKBQQDAgEFEgM3" + 
-        "AgYKDAoFBAMCAQESAzcHDgoMCgUEAwIBAxIDNxESCi8KBAQDAgISAzoCGxoiIEVycm9yIG1lc3NhZ2Ug" + 
-        "aWYgc3VjY2VzcyA9IGZhbHNlCgoMCgUEAwICBRIDOgIICgwKBQQDAgIBEgM6CRYKDAoFBAMCAgMSAzoZ" + 
-        "GmIGcHJvdG8z");
+        "ASABKAVSBXZhbHVlImkKEkNhbGlicmF0aW9uUGF5bG9hZBIVCgZ0YWdfaWQYASABKAVSBXRhZ0lkEjwK" + 
+        "DGhlYWRzZXRfcG9zZRgCIAEoCzIZLndwaS5wcm90by5Qcm90b2J1ZlBvc2UyZFILaGVhZHNldFBvc2Ui" + 
+        "7gQKF1Byb3RvYnVmUXVlc3ROYXZDb21tYW5kEkEKBHR5cGUYASABKA4yLS5xdWVzdG5hdi5wcm90b3Mu" + 
+        "Y29tbWFuZHMuUXVlc3ROYXZDb21tYW5kVHlwZVIEdHlwZRIdCgpjb21tYW5kX2lkGAIgASgNUgljb21t" + 
+        "YW5kSWQSagoScG9zZV9yZXNldF9wYXlsb2FkGAogASgLMjoucXVlc3RuYXYucHJvdG9zLmNvbW1hbmRz" + 
+        "LlByb3RvYnVmUXVlc3ROYXZQb3NlUmVzZXRQYXlsb2FkSABSEHBvc2VSZXNldFBheWxvYWQSVgoTZmll" + 
+        "bGRfaW5kZXhfcGF5bG9hZBgPIAEoCzIkLnF1ZXN0bmF2LnByb3Rvcy5jb21tYW5kcy5JbnRQYXlsb2Fk" + 
+        "SABSEWZpZWxkSW5kZXhQYXlsb2FkEmMKGmZpZWxkX2xheW91dF9pbmRleF9wYXlsb2FkGBAgASgLMiQu" + 
+        "cXVlc3RuYXYucHJvdG9zLmNvbW1hbmRzLkludFBheWxvYWRIAFIXZmllbGRMYXlvdXRJbmRleFBheWxv" + 
+        "YWQSXAoWYXByaWx0YWdfaW5kZXhfcGF5bG9hZBgRIAEoCzIkLnF1ZXN0bmF2LnByb3Rvcy5jb21tYW5k" + 
+        "cy5JbnRQYXlsb2FkSABSFGFwcmlsdGFnSW5kZXhQYXlsb2FkEl8KE2NhbGlicmF0aW9uX3BheWxvYWQY" + 
+        "EiABKAsyLC5xdWVzdG5hdi5wcm90b3MuY29tbWFuZHMuQ2FsaWJyYXRpb25QYXlsb2FkSABSEmNhbGli" + 
+        "cmF0aW9uUGF5bG9hZEIJCgdwYXlsb2FkIn8KH1Byb3RvYnVmUXVlc3ROYXZDb21tYW5kUmVzcG9uc2US" + 
+        "HQoKY29tbWFuZF9pZBgBIAEoDVIJY29tbWFuZElkEhgKB3N1Y2Nlc3MYAiABKAhSB3N1Y2Nlc3MSIwoN" + 
+        "ZXJyb3JfbWVzc2FnZRgDIAEoCVIMZXJyb3JNZXNzYWdlKpsBChNRdWVzdE5hdkNvbW1hbmRUeXBlEhwK" + 
+        "GENPTU1BTkRfVFlQRV9VTlNQRUNJRklFRBAAEg4KClBPU0VfUkVTRVQQARITCg9TRVRfRklFTERfSU5E" + 
+        "RVgQBRIaChZTRVRfRklFTERfTEFZT1VUX0lOREVYEAYSEQoNQ0FMSUJSQVRFX1RBRxAHEhIKDlNFVF9B",
+        "Q1RJVkVfVEFHEAhCQwolZ2cucXVlc3RuYXYucXVlc3RuYXYucHJvdG9zLmdlbmVyYXRlZKoCGVF1ZXN0" + 
+        "TmF2LlByb3Rvcy5HZW5lcmF0ZWRK/w8KBhIEAANBAQoICgEMEgMAAxUKCAoBAhIDAgAhCggKAQgSAwMA" + 
+        "NgoJCgIIJRIDAwA2CggKAQgSAwQAPgoJCgIIARIDBAA+CiUKAgMAEgMHABoaGiBJbXBvcnQgZ2VvbWV0" + 
+        "cnkgbWVzc2FnZXMKCkUKAgUAEgQKABIBGjkgRW51bSBmb3IgY29tbWFuZCB0eXBlcyAoZXh0ZW5zaWJs" + 
+        "ZSBmb3IgZnV0dXJlIGNvbW1hbmRzKQoKCgoDBQABEgMKBRgKLwoEBQACABIDCwIfIiIgRGVmYXVsdCB2" + 
+        "YWx1ZSByZXF1aXJlZCBpbiBwcm90bzMKCgwKBQUAAgABEgMLAhoKDAoFBQACAAISAwsdHgouCgQFAAIB" + 
+        "EgMMAhEiISBSZXNldCByb2JvdCBwb3NlIHRvIHRhcmdldCBwb3NlCgoMCgUFAAIBARIDDAIMCgwKBQUA" + 
+        "AgECEgMMDxAKIgoEBQACAhIDDQIWIhUgU2V0IHRoZSBmaWVsZCBpbmRleAoKDAoFBQACAgESAw0CEQoM" + 
+        "CgUFAAICAhIDDRQVCikKBAUAAgMSAw4CHSIcIFNldCB0aGUgZmllbGQgbGF5b3V0IGluZGV4CgoMCgUF" + 
+        "AAIDARIDDgIYCgwKBQUAAgMCEgMOGxwKKQoEBQACBBIDDwIUIhwgU2V0IHRoZSBmaWVsZCBsYXlvdXQg" + 
+        "aW5kZXgKCgwKBQUAAgQBEgMPAg8KDAoFBQACBAISAw8SEwopCgQFAAIFEgMQAhUiHCBTZXQgdGhlIGZp" + 
+        "ZWxkIGxheW91dCBpbmRleAoKDAoFBQACBQESAxACEAoMCgUFAAIFAhIDEBMUCiwKAgQAEgQVABgBGiAg" + 
+        "UGF5bG9hZCBmb3IgcG9zZSByZXNldCBjb21tYW5kCgoKCgMEAAESAxUIKApnCgQEAAIAEgMXAisaWiBU" + 
+        "YXJnZXQgcG9zZSBpbiBmaWVsZC1yZWxhdGl2ZSBXUElMaWIgY29vcmRpbmF0ZSBzcGFjZSAoeCBmb3J3" + 
+        "YXJkLCB5IGxlZnQsIHJvdGF0aW9uIENDVyspCgoMCgUEAAIABhIDFwIaCgwKBQQAAgABEgMXGyYKDAoF" + 
+        "BAACAAMSAxcpKgoKCgIEARIEGgAcAQoKCgMEAQESAxoIEgoLCgQEAQIAEgMbAhIKDAoFBAECAAUSAxsC" + 
+        "BwoMCgUEAQIAARIDGwgNCgwKBQQBAgADEgMbEBEKCgoCBAISBB4AIQEKCgoDBAIBEgMeCBoKLQoEBAIC" + 
+        "ABIDHwITIiAgVGhlIElEIG9mIHRoZSB0YWcgdG8gY2FsaWJyYXRlCgoMCgUEAgIABRIDHwIHCgwKBQQC" + 
+        "AgABEgMfCA4KDAoFBAICAAMSAx8REgoaCgQEAgIBEgMgAiwiDSBUaGUgcG9zZSBvZgoKDAoFBAICAQYS" + 
+        "AyACGgoMCgUEAgIBARIDIBsnCgwKBQQCAgEDEgMgKisKIgoCBAMSBCQANQEaFiBNYWluIENvbW1hbmQg",
+        "bWVzc2FnZQoKCgoDBAMBEgMkCB8KIgoEBAMCABIDJgIfGhUgVGhlIHR5cGUgb2YgY29tbWFuZAoKDAoF" + 
+        "BAMCAAYSAyYCFQoMCgUEAwIAARIDJhYaCgwKBQQDAgADEgMmHR4KMAoEBAMCARIDKQIYGiMgQ29tbWFu" + 
+        "ZCBJRCBmb3IgdHJhY2tpbmcvcmVzcG9uc2VzCgoMCgUEAwIBBRIDKQIICgwKBQQDAgEBEgMpCRMKDAoF" + 
+        "BAMCAQMSAykWFwpVCgQEAwgAEgQsAjQDGkcgQ29tbWFuZC1zcGVjaWZpYyBwYXlsb2FkIChvbmx5IG9u" + 
+        "ZSB3aWxsIGJlIHNldCBiYXNlZCBvbiBjb21tYW5kIHR5cGUpCgoMCgUEAwgAARIDLAgPCgsKBAQDAgIS" + 
+        "Ay0EPQoMCgUEAwICBhIDLQQkCgwKBQQDAgIBEgMtJTcKDAoFBAMCAgMSAy06PAoLCgQEAwIDEgMuBCgK" + 
+        "DAoFBAMCAwYSAy4EDgoMCgUEAwIDARIDLg8iCgwKBQQDAgMDEgMuJScKCwoEBAMCBBIDLwQvCgwKBQQD" + 
+        "AgQGEgMvBA4KDAoFBAMCBAESAy8PKQoMCgUEAwIEAxIDLywuCgsKBAQDAgUSAzAEKwoMCgUEAwIFBhID" + 
+        "MAQOCgwKBQQDAgUBEgMwDyUKDAoFBAMCBQMSAzAoKgosCgQEAwIGEgMxBDAiHyBQYXlsb2FkIGZvciBj" + 
+        "YWxpYnJhdGluZyBhIHRhZwoKDAoFBAMCBgYSAzEEFgoMCgUEAwIGARIDMRcqCgwKBQQDAgYDEgMxLS8K" + 
+        "KwoCBAQSBDgAQQEaHyBSZXNwb25zZSBtZXNzYWdlIGZvciBjb21tYW5kcwoKCgoDBAQBEgM4CCcKLgoE" + 
+        "BAQCABIDOgIYGiEgTWF0Y2hlcyB0aGUgb3JpZ2luYWwgY29tbWFuZCBJRAoKDAoFBAQCAAUSAzoCCAoM" + 
+        "CgUEBAIAARIDOgkTCgwKBQQEAgADEgM6FhcKMQoEBAQCARIDPQITGiQgV2hldGhlciB0aGUgY29tbWFu" + 
+        "ZCB3YXMgc3VjY2Vzc2Z1bAoKDAoFBAQCAQUSAz0CBgoMCgUEBAIBARIDPQcOCgwKBQQEAgEDEgM9ERIK" + 
+        "LwoEBAQCAhIDQAIbGiIgRXJyb3IgbWVzc2FnZSBpZiBzdWNjZXNzID0gZmFsc2UKCgwKBQQEAgIFEgNA" + 
+        "AggKDAoFBAQCAgESA0AJFgoMCgUEBAICAxIDQBkaYgZwcm90bzM=");
 
     static final Descriptors.FileDescriptor descriptor = Descriptors.FileDescriptor.internalBuildGeneratedFileFrom("commands.proto", "questnav.protos.commands", descriptorData, Geometry2D.getDescriptor());
 
@@ -76,9 +82,11 @@ public final class Commands {
 
     static final Descriptors.Descriptor questnav_protos_commands_IntPayload_descriptor = descriptor.internalContainedType(158, 34, "IntPayload", "questnav.protos.commands.IntPayload");
 
-    static final Descriptors.Descriptor questnav_protos_commands_ProtobufQuestNavCommand_descriptor = descriptor.internalContainedType(195, 525, "ProtobufQuestNavCommand", "questnav.protos.commands.ProtobufQuestNavCommand");
+    static final Descriptors.Descriptor questnav_protos_commands_CalibrationPayload_descriptor = descriptor.internalContainedType(194, 105, "CalibrationPayload", "questnav.protos.commands.CalibrationPayload");
 
-    static final Descriptors.Descriptor questnav_protos_commands_ProtobufQuestNavCommandResponse_descriptor = descriptor.internalContainedType(722, 127, "ProtobufQuestNavCommandResponse", "questnav.protos.commands.ProtobufQuestNavCommandResponse");
+    static final Descriptors.Descriptor questnav_protos_commands_ProtobufQuestNavCommand_descriptor = descriptor.internalContainedType(302, 622, "ProtobufQuestNavCommand", "questnav.protos.commands.ProtobufQuestNavCommand");
+
+    static final Descriptors.Descriptor questnav_protos_commands_ProtobufQuestNavCommandResponse_descriptor = descriptor.internalContainedType(926, 127, "ProtobufQuestNavCommandResponse", "questnav.protos.commands.ProtobufQuestNavCommandResponse");
 
     /**
      * @return this proto file's descriptor.
@@ -886,6 +894,405 @@ public final class Commands {
     }
 
     /**
+     * Protobuf type {@code CalibrationPayload}
+     */
+    public static final class CalibrationPayload extends ProtoMessage<CalibrationPayload> implements Cloneable {
+        private static final long serialVersionUID = 0L;
+
+        /**
+         * <pre>
+         *  The ID of the tag to calibrate
+         * </pre>
+         *
+         * <code>optional int32 tag_id = 1;</code>
+         */
+        private int tagId;
+
+        /**
+         * <pre>
+         *  The pose of
+         * </pre>
+         *
+         * <code>optional .wpi.proto.ProtobufPose2d headset_pose = 2;</code>
+         */
+        private final Geometry2D.ProtobufPose2d headsetPose = Geometry2D.ProtobufPose2d.newInstance();
+
+        private CalibrationPayload() {
+        }
+
+        /**
+         * @return a new empty instance of {@code CalibrationPayload}
+         */
+        public static CalibrationPayload newInstance() {
+            return new CalibrationPayload();
+        }
+
+        /**
+         * <pre>
+         *  The ID of the tag to calibrate
+         * </pre>
+         *
+         * <code>optional int32 tag_id = 1;</code>
+         * @return whether the tagId field is set
+         */
+        public boolean hasTagId() {
+            return (bitField0_ & 0x00000001) != 0;
+        }
+
+        /**
+         * <pre>
+         *  The ID of the tag to calibrate
+         * </pre>
+         *
+         * <code>optional int32 tag_id = 1;</code>
+         * @return this
+         */
+        public CalibrationPayload clearTagId() {
+            bitField0_ &= ~0x00000001;
+            tagId = 0;
+            return this;
+        }
+
+        /**
+         * <pre>
+         *  The ID of the tag to calibrate
+         * </pre>
+         *
+         * <code>optional int32 tag_id = 1;</code>
+         * @return the tagId
+         */
+        public int getTagId() {
+            return tagId;
+        }
+
+        /**
+         * <pre>
+         *  The ID of the tag to calibrate
+         * </pre>
+         *
+         * <code>optional int32 tag_id = 1;</code>
+         * @param value the tagId to set
+         * @return this
+         */
+        public CalibrationPayload setTagId(final int value) {
+            bitField0_ |= 0x00000001;
+            tagId = value;
+            return this;
+        }
+
+        /**
+         * <pre>
+         *  The pose of
+         * </pre>
+         *
+         * <code>optional .wpi.proto.ProtobufPose2d headset_pose = 2;</code>
+         * @return whether the headsetPose field is set
+         */
+        public boolean hasHeadsetPose() {
+            return (bitField0_ & 0x00000002) != 0;
+        }
+
+        /**
+         * <pre>
+         *  The pose of
+         * </pre>
+         *
+         * <code>optional .wpi.proto.ProtobufPose2d headset_pose = 2;</code>
+         * @return this
+         */
+        public CalibrationPayload clearHeadsetPose() {
+            bitField0_ &= ~0x00000002;
+            headsetPose.clear();
+            return this;
+        }
+
+        /**
+         * <pre>
+         *  The pose of
+         * </pre>
+         *
+         * <code>optional .wpi.proto.ProtobufPose2d headset_pose = 2;</code>
+         *
+         * This method returns the internal storage object without modifying any has state.
+         * The returned object should not be modified and be treated as read-only.
+         *
+         * Use {@link #getMutableHeadsetPose()} if you want to modify it.
+         *
+         * @return internal storage object for reading
+         */
+        public Geometry2D.ProtobufPose2d getHeadsetPose() {
+            return headsetPose;
+        }
+
+        /**
+         * <pre>
+         *  The pose of
+         * </pre>
+         *
+         * <code>optional .wpi.proto.ProtobufPose2d headset_pose = 2;</code>
+         *
+         * This method returns the internal storage object and sets the corresponding
+         * has state. The returned object will become part of this message and its
+         * contents may be modified as long as the has state is not cleared.
+         *
+         * @return internal storage object for modifications
+         */
+        public Geometry2D.ProtobufPose2d getMutableHeadsetPose() {
+            bitField0_ |= 0x00000002;
+            return headsetPose;
+        }
+
+        /**
+         * <pre>
+         *  The pose of
+         * </pre>
+         *
+         * <code>optional .wpi.proto.ProtobufPose2d headset_pose = 2;</code>
+         * @param value the headsetPose to set
+         * @return this
+         */
+        public CalibrationPayload setHeadsetPose(final Geometry2D.ProtobufPose2d value) {
+            bitField0_ |= 0x00000002;
+            headsetPose.copyFrom(value);
+            return this;
+        }
+
+        @Override
+        public CalibrationPayload copyFrom(final CalibrationPayload other) {
+            cachedSize = other.cachedSize;
+            if ((bitField0_ | other.bitField0_) != 0) {
+                bitField0_ = other.bitField0_;
+                tagId = other.tagId;
+                headsetPose.copyFrom(other.headsetPose);
+            }
+            return this;
+        }
+
+        @Override
+        public CalibrationPayload mergeFrom(final CalibrationPayload other) {
+            if (other.isEmpty()) {
+                return this;
+            }
+            cachedSize = -1;
+            if (other.hasTagId()) {
+                setTagId(other.tagId);
+            }
+            if (other.hasHeadsetPose()) {
+                getMutableHeadsetPose().mergeFrom(other.headsetPose);
+            }
+            return this;
+        }
+
+        @Override
+        public CalibrationPayload clear() {
+            if (isEmpty()) {
+                return this;
+            }
+            cachedSize = -1;
+            bitField0_ = 0;
+            tagId = 0;
+            headsetPose.clear();
+            return this;
+        }
+
+        @Override
+        public CalibrationPayload clearQuick() {
+            if (isEmpty()) {
+                return this;
+            }
+            cachedSize = -1;
+            bitField0_ = 0;
+            headsetPose.clearQuick();
+            return this;
+        }
+
+        @Override
+        public boolean equals(Object o) {
+            if (o == this) {
+                return true;
+            }
+            if (!(o instanceof CalibrationPayload)) {
+                return false;
+            }
+            CalibrationPayload other = (CalibrationPayload) o;
+            return bitField0_ == other.bitField0_
+                && (!hasTagId() || tagId == other.tagId)
+                && (!hasHeadsetPose() || headsetPose.equals(other.headsetPose));
+        }
+
+        @Override
+        public void writeTo(final ProtoSink output) throws IOException {
+            if ((bitField0_ & 0x00000001) != 0) {
+                output.writeRawByte((byte) 8);
+                output.writeInt32NoTag(tagId);
+            }
+            if ((bitField0_ & 0x00000002) != 0) {
+                output.writeRawByte((byte) 18);
+                output.writeMessageNoTag(headsetPose);
+            }
+        }
+
+        @Override
+        protected int computeSerializedSize() {
+            int size = 0;
+            if ((bitField0_ & 0x00000001) != 0) {
+                size += 1 + ProtoSink.computeInt32SizeNoTag(tagId);
+            }
+            if ((bitField0_ & 0x00000002) != 0) {
+                size += 1 + ProtoSink.computeMessageSizeNoTag(headsetPose);
+            }
+            return size;
+        }
+
+        @Override
+        @SuppressWarnings("fallthrough")
+        public CalibrationPayload mergeFrom(final ProtoSource input) throws IOException {
+            // Enabled Fall-Through Optimization (QuickBuffers)
+            int tag = input.readTag();
+            while (true) {
+                switch (tag) {
+                    case 8: {
+                        // tagId
+                        tagId = input.readInt32();
+                        bitField0_ |= 0x00000001;
+                        tag = input.readTag();
+                        if (tag != 18) {
+                            break;
+                        }
+                    }
+                    case 18: {
+                        // headsetPose
+                        input.readMessage(headsetPose);
+                        bitField0_ |= 0x00000002;
+                        tag = input.readTag();
+                        if (tag != 0) {
+                            break;
+                        }
+                    }
+                    case 0: {
+                        return this;
+                    }
+                    default: {
+                        if (!input.skipField(tag)) {
+                            return this;
+                        }
+                        tag = input.readTag();
+                        break;
+                    }
+                }
+            }
+        }
+
+        @Override
+        public void writeTo(final JsonSink output) throws IOException {
+            output.beginObject();
+            if ((bitField0_ & 0x00000001) != 0) {
+                output.writeInt32(FieldNames.tagId, tagId);
+            }
+            if ((bitField0_ & 0x00000002) != 0) {
+                output.writeMessage(FieldNames.headsetPose, headsetPose);
+            }
+            output.endObject();
+        }
+
+        @Override
+        public CalibrationPayload mergeFrom(final JsonSource input) throws IOException {
+            if (!input.beginObject()) {
+                return this;
+            }
+            while (!input.isAtEnd()) {
+                switch (input.readFieldHash()) {
+                    case 110119509:
+                    case -881241120: {
+                        if (input.isAtField(FieldNames.tagId)) {
+                            if (!input.trySkipNullValue()) {
+                                tagId = input.readInt32();
+                                bitField0_ |= 0x00000001;
+                            }
+                        } else {
+                            input.skipUnknownField();
+                        }
+                        break;
+                    }
+                    case 370449971:
+                    case -1387073490: {
+                        if (input.isAtField(FieldNames.headsetPose)) {
+                            if (!input.trySkipNullValue()) {
+                                input.readMessage(headsetPose);
+                                bitField0_ |= 0x00000002;
+                            }
+                        } else {
+                            input.skipUnknownField();
+                        }
+                        break;
+                    }
+                    default: {
+                        input.skipUnknownField();
+                        break;
+                    }
+                }
+            }
+            input.endObject();
+            return this;
+        }
+
+        @Override
+        public CalibrationPayload clone() {
+            return new CalibrationPayload().copyFrom(this);
+        }
+
+        @Override
+        public boolean isEmpty() {
+            return ((bitField0_) == 0);
+        }
+
+        public static CalibrationPayload parseFrom(final byte[] data) throws
+                InvalidProtocolBufferException {
+            return ProtoMessage.mergeFrom(new CalibrationPayload(), data).checkInitialized();
+        }
+
+        public static CalibrationPayload parseFrom(final ProtoSource input) throws IOException {
+            return ProtoMessage.mergeFrom(new CalibrationPayload(), input).checkInitialized();
+        }
+
+        public static CalibrationPayload parseFrom(final JsonSource input) throws IOException {
+            return ProtoMessage.mergeFrom(new CalibrationPayload(), input).checkInitialized();
+        }
+
+        /**
+         * @return factory for creating CalibrationPayload messages
+         */
+        public static MessageFactory<CalibrationPayload> getFactory() {
+            return CalibrationPayloadFactory.INSTANCE;
+        }
+
+        /**
+         * @return this type's descriptor.
+         */
+        public static Descriptors.Descriptor getDescriptor() {
+            return Commands.questnav_protos_commands_CalibrationPayload_descriptor;
+        }
+
+        private enum CalibrationPayloadFactory implements MessageFactory<CalibrationPayload> {
+            INSTANCE;
+
+            @Override
+            public CalibrationPayload create() {
+                return CalibrationPayload.newInstance();
+            }
+        }
+
+        /**
+         * Contains name constants used for serializing JSON
+         */
+        static class FieldNames {
+            static final FieldName tagId = FieldName.forField("tagId", "tag_id");
+
+            static final FieldName headsetPose = FieldName.forField("headsetPose", "headset_pose");
+        }
+    }
+
+    /**
      * <pre>
      *  Main Command message
      * </pre>
@@ -929,14 +1336,18 @@ public final class Commands {
         private final IntPayload fieldLayoutIndexPayload = IntPayload.newInstance();
 
         /**
-         * <pre>
-         *  Future payloads can be added here:
-         *  (Commands with no payload don't need an entry)
-         * </pre>
-         *
          * <code>optional .questnav.protos.commands.IntPayload apriltag_index_payload = 17;</code>
          */
         private final IntPayload apriltagIndexPayload = IntPayload.newInstance();
+
+        /**
+         * <pre>
+         *  Payload for calibrating a tag
+         * </pre>
+         *
+         * <code>optional .questnav.protos.commands.CalibrationPayload calibration_payload = 18;</code>
+         */
+        private final CalibrationPayload calibrationPayload = CalibrationPayload.newInstance();
 
         private ProtobufQuestNavCommand() {
         }
@@ -953,7 +1364,7 @@ public final class Commands {
         }
 
         public boolean hasPayload() {
-            return (((bitField0_ & 0x0000000f)) != 0);
+            return (((bitField0_ & 0x0000001f)) != 0);
         }
 
         public ProtobufQuestNavCommand clearPayload() {
@@ -962,39 +1373,53 @@ public final class Commands {
                 clearFieldIndexPayload();
                 clearFieldLayoutIndexPayload();
                 clearApriltagIndexPayload();
+                clearCalibrationPayload();
             }
             return this;
         }
 
         private void clearPayloadOtherPoseResetPayload() {
-            if ((((bitField0_ & 0x0000000e)) != 0)) {
+            if ((((bitField0_ & 0x0000001e)) != 0)) {
                 clearFieldIndexPayload();
                 clearFieldLayoutIndexPayload();
                 clearApriltagIndexPayload();
+                clearCalibrationPayload();
             }
         }
 
         private void clearPayloadOtherFieldIndexPayload() {
-            if ((((bitField0_ & 0x0000000d)) != 0)) {
+            if ((((bitField0_ & 0x0000001d)) != 0)) {
                 clearPoseResetPayload();
                 clearFieldLayoutIndexPayload();
                 clearApriltagIndexPayload();
+                clearCalibrationPayload();
             }
         }
 
         private void clearPayloadOtherFieldLayoutIndexPayload() {
-            if ((((bitField0_ & 0x0000000b)) != 0)) {
+            if ((((bitField0_ & 0x0000001b)) != 0)) {
                 clearPoseResetPayload();
                 clearFieldIndexPayload();
                 clearApriltagIndexPayload();
+                clearCalibrationPayload();
             }
         }
 
         private void clearPayloadOtherApriltagIndexPayload() {
-            if ((((bitField0_ & 0x00000007)) != 0)) {
+            if ((((bitField0_ & 0x00000017)) != 0)) {
                 clearPoseResetPayload();
                 clearFieldIndexPayload();
                 clearFieldLayoutIndexPayload();
+                clearCalibrationPayload();
+            }
+        }
+
+        private void clearPayloadOtherCalibrationPayload() {
+            if ((((bitField0_ & 0x0000000f)) != 0)) {
+                clearPoseResetPayload();
+                clearFieldIndexPayload();
+                clearFieldLayoutIndexPayload();
+                clearApriltagIndexPayload();
             }
         }
 
@@ -1007,7 +1432,7 @@ public final class Commands {
          * @return whether the commandId field is set
          */
         public boolean hasCommandId() {
-            return (bitField0_ & 0x00000010) != 0;
+            return (bitField0_ & 0x00000020) != 0;
         }
 
         /**
@@ -1019,7 +1444,7 @@ public final class Commands {
          * @return this
          */
         public ProtobufQuestNavCommand clearCommandId() {
-            bitField0_ &= ~0x00000010;
+            bitField0_ &= ~0x00000020;
             commandId = 0;
             return this;
         }
@@ -1046,7 +1471,7 @@ public final class Commands {
          * @return this
          */
         public ProtobufQuestNavCommand setCommandId(final int value) {
-            bitField0_ |= 0x00000010;
+            bitField0_ |= 0x00000020;
             commandId = value;
             return this;
         }
@@ -1060,7 +1485,7 @@ public final class Commands {
          * @return whether the type field is set
          */
         public boolean hasType() {
-            return (bitField0_ & 0x00000020) != 0;
+            return (bitField0_ & 0x00000040) != 0;
         }
 
         /**
@@ -1072,7 +1497,7 @@ public final class Commands {
          * @return this
          */
         public ProtobufQuestNavCommand clearType() {
-            bitField0_ &= ~0x00000020;
+            bitField0_ &= ~0x00000040;
             type = 0;
             return this;
         }
@@ -1109,7 +1534,7 @@ public final class Commands {
          * @return this
          */
         public ProtobufQuestNavCommand setTypeValue(final int value) {
-            bitField0_ |= 0x00000020;
+            bitField0_ |= 0x00000040;
             type = value;
             return this;
         }
@@ -1124,7 +1549,7 @@ public final class Commands {
          * @return this
          */
         public ProtobufQuestNavCommand setType(final QuestNavCommandType value) {
-            bitField0_ |= 0x00000020;
+            bitField0_ |= 0x00000040;
             type = value.getNumber();
             return this;
         }
@@ -1308,11 +1733,6 @@ public final class Commands {
         }
 
         /**
-         * <pre>
-         *  Future payloads can be added here:
-         *  (Commands with no payload don't need an entry)
-         * </pre>
-         *
          * <code>optional .questnav.protos.commands.IntPayload apriltag_index_payload = 17;</code>
          * @return whether the apriltagIndexPayload field is set
          */
@@ -1321,11 +1741,6 @@ public final class Commands {
         }
 
         /**
-         * <pre>
-         *  Future payloads can be added here:
-         *  (Commands with no payload don't need an entry)
-         * </pre>
-         *
          * <code>optional .questnav.protos.commands.IntPayload apriltag_index_payload = 17;</code>
          * @return this
          */
@@ -1336,11 +1751,6 @@ public final class Commands {
         }
 
         /**
-         * <pre>
-         *  Future payloads can be added here:
-         *  (Commands with no payload don't need an entry)
-         * </pre>
-         *
          * <code>optional .questnav.protos.commands.IntPayload apriltag_index_payload = 17;</code>
          *
          * This method returns the internal storage object without modifying any has state.
@@ -1355,11 +1765,6 @@ public final class Commands {
         }
 
         /**
-         * <pre>
-         *  Future payloads can be added here:
-         *  (Commands with no payload don't need an entry)
-         * </pre>
-         *
          * <code>optional .questnav.protos.commands.IntPayload apriltag_index_payload = 17;</code>
          *
          * This method returns the internal storage object and sets the corresponding
@@ -1375,11 +1780,6 @@ public final class Commands {
         }
 
         /**
-         * <pre>
-         *  Future payloads can be added here:
-         *  (Commands with no payload don't need an entry)
-         * </pre>
-         *
          * <code>optional .questnav.protos.commands.IntPayload apriltag_index_payload = 17;</code>
          * @param value the apriltagIndexPayload to set
          * @return this
@@ -1388,6 +1788,85 @@ public final class Commands {
             clearPayloadOtherApriltagIndexPayload();
             bitField0_ |= 0x00000008;
             apriltagIndexPayload.copyFrom(value);
+            return this;
+        }
+
+        /**
+         * <pre>
+         *  Payload for calibrating a tag
+         * </pre>
+         *
+         * <code>optional .questnav.protos.commands.CalibrationPayload calibration_payload = 18;</code>
+         * @return whether the calibrationPayload field is set
+         */
+        public boolean hasCalibrationPayload() {
+            return (bitField0_ & 0x00000010) != 0;
+        }
+
+        /**
+         * <pre>
+         *  Payload for calibrating a tag
+         * </pre>
+         *
+         * <code>optional .questnav.protos.commands.CalibrationPayload calibration_payload = 18;</code>
+         * @return this
+         */
+        public ProtobufQuestNavCommand clearCalibrationPayload() {
+            bitField0_ &= ~0x00000010;
+            calibrationPayload.clear();
+            return this;
+        }
+
+        /**
+         * <pre>
+         *  Payload for calibrating a tag
+         * </pre>
+         *
+         * <code>optional .questnav.protos.commands.CalibrationPayload calibration_payload = 18;</code>
+         *
+         * This method returns the internal storage object without modifying any has state.
+         * The returned object should not be modified and be treated as read-only.
+         *
+         * Use {@link #getMutableCalibrationPayload()} if you want to modify it.
+         *
+         * @return internal storage object for reading
+         */
+        public CalibrationPayload getCalibrationPayload() {
+            return calibrationPayload;
+        }
+
+        /**
+         * <pre>
+         *  Payload for calibrating a tag
+         * </pre>
+         *
+         * <code>optional .questnav.protos.commands.CalibrationPayload calibration_payload = 18;</code>
+         *
+         * This method returns the internal storage object and sets the corresponding
+         * has state. The returned object will become part of this message and its
+         * contents may be modified as long as the has state is not cleared.
+         *
+         * @return internal storage object for modifications
+         */
+        public CalibrationPayload getMutableCalibrationPayload() {
+            clearPayloadOtherCalibrationPayload();
+            bitField0_ |= 0x00000010;
+            return calibrationPayload;
+        }
+
+        /**
+         * <pre>
+         *  Payload for calibrating a tag
+         * </pre>
+         *
+         * <code>optional .questnav.protos.commands.CalibrationPayload calibration_payload = 18;</code>
+         * @param value the calibrationPayload to set
+         * @return this
+         */
+        public ProtobufQuestNavCommand setCalibrationPayload(final CalibrationPayload value) {
+            clearPayloadOtherCalibrationPayload();
+            bitField0_ |= 0x00000010;
+            calibrationPayload.copyFrom(value);
             return this;
         }
 
@@ -1402,6 +1881,7 @@ public final class Commands {
                 fieldIndexPayload.copyFrom(other.fieldIndexPayload);
                 fieldLayoutIndexPayload.copyFrom(other.fieldLayoutIndexPayload);
                 apriltagIndexPayload.copyFrom(other.apriltagIndexPayload);
+                calibrationPayload.copyFrom(other.calibrationPayload);
             }
             return this;
         }
@@ -1430,6 +1910,9 @@ public final class Commands {
             if (other.hasApriltagIndexPayload()) {
                 getMutableApriltagIndexPayload().mergeFrom(other.apriltagIndexPayload);
             }
+            if (other.hasCalibrationPayload()) {
+                getMutableCalibrationPayload().mergeFrom(other.calibrationPayload);
+            }
             return this;
         }
 
@@ -1446,6 +1929,7 @@ public final class Commands {
             fieldIndexPayload.clear();
             fieldLayoutIndexPayload.clear();
             apriltagIndexPayload.clear();
+            calibrationPayload.clear();
             return this;
         }
 
@@ -1460,6 +1944,7 @@ public final class Commands {
             fieldIndexPayload.clearQuick();
             fieldLayoutIndexPayload.clearQuick();
             apriltagIndexPayload.clearQuick();
+            calibrationPayload.clearQuick();
             return this;
         }
 
@@ -1478,16 +1963,17 @@ public final class Commands {
                 && (!hasPoseResetPayload() || poseResetPayload.equals(other.poseResetPayload))
                 && (!hasFieldIndexPayload() || fieldIndexPayload.equals(other.fieldIndexPayload))
                 && (!hasFieldLayoutIndexPayload() || fieldLayoutIndexPayload.equals(other.fieldLayoutIndexPayload))
-                && (!hasApriltagIndexPayload() || apriltagIndexPayload.equals(other.apriltagIndexPayload));
+                && (!hasApriltagIndexPayload() || apriltagIndexPayload.equals(other.apriltagIndexPayload))
+                && (!hasCalibrationPayload() || calibrationPayload.equals(other.calibrationPayload));
         }
 
         @Override
         public void writeTo(final ProtoSink output) throws IOException {
-            if ((bitField0_ & 0x00000010) != 0) {
+            if ((bitField0_ & 0x00000020) != 0) {
                 output.writeRawByte((byte) 16);
                 output.writeUInt32NoTag(commandId);
             }
-            if ((bitField0_ & 0x00000020) != 0) {
+            if ((bitField0_ & 0x00000040) != 0) {
                 output.writeRawByte((byte) 8);
                 output.writeEnumNoTag(type);
             }
@@ -1507,15 +1993,19 @@ public final class Commands {
                 output.writeRawLittleEndian16((short) 394);
                 output.writeMessageNoTag(apriltagIndexPayload);
             }
+            if ((bitField0_ & 0x00000010) != 0) {
+                output.writeRawLittleEndian16((short) 402);
+                output.writeMessageNoTag(calibrationPayload);
+            }
         }
 
         @Override
         protected int computeSerializedSize() {
             int size = 0;
-            if ((bitField0_ & 0x00000010) != 0) {
+            if ((bitField0_ & 0x00000020) != 0) {
                 size += 1 + ProtoSink.computeUInt32SizeNoTag(commandId);
             }
-            if ((bitField0_ & 0x00000020) != 0) {
+            if ((bitField0_ & 0x00000040) != 0) {
                 size += 1 + ProtoSink.computeEnumSizeNoTag(type);
             }
             if ((bitField0_ & 0x00000001) != 0) {
@@ -1530,6 +2020,9 @@ public final class Commands {
             if ((bitField0_ & 0x00000008) != 0) {
                 size += 2 + ProtoSink.computeMessageSizeNoTag(apriltagIndexPayload);
             }
+            if ((bitField0_ & 0x00000010) != 0) {
+                size += 2 + ProtoSink.computeMessageSizeNoTag(calibrationPayload);
+            }
             return size;
         }
 
@@ -1543,7 +2036,7 @@ public final class Commands {
                     case 16: {
                         // commandId
                         commandId = input.readUInt32();
-                        bitField0_ |= 0x00000010;
+                        bitField0_ |= 0x00000020;
                         tag = input.readTag();
                         if (tag != 8) {
                             break;
@@ -1554,7 +2047,7 @@ public final class Commands {
                         final int value = input.readInt32();
                         if (QuestNavCommandType.forNumber(value) != null) {
                             type = value;
-                            bitField0_ |= 0x00000020;
+                            bitField0_ |= 0x00000040;
                         }
                         tag = input.readTag();
                         if (tag != 82) {
@@ -1597,6 +2090,16 @@ public final class Commands {
                         input.readMessage(apriltagIndexPayload);
                         bitField0_ |= 0x00000008;
                         tag = input.readTag();
+                        if (tag != 146) {
+                            break;
+                        }
+                    }
+                    case 146: {
+                        // calibrationPayload
+                        clearPayloadOtherCalibrationPayload();
+                        input.readMessage(calibrationPayload);
+                        bitField0_ |= 0x00000010;
+                        tag = input.readTag();
                         if (tag != 0) {
                             break;
                         }
@@ -1618,10 +2121,10 @@ public final class Commands {
         @Override
         public void writeTo(final JsonSink output) throws IOException {
             output.beginObject();
-            if ((bitField0_ & 0x00000010) != 0) {
+            if ((bitField0_ & 0x00000020) != 0) {
                 output.writeUInt32(FieldNames.commandId, commandId);
             }
-            if ((bitField0_ & 0x00000020) != 0) {
+            if ((bitField0_ & 0x00000040) != 0) {
                 output.writeEnum(FieldNames.type, type, QuestNavCommandType.converter());
             }
             if ((bitField0_ & 0x00000001) != 0) {
@@ -1635,6 +2138,9 @@ public final class Commands {
             }
             if ((bitField0_ & 0x00000008) != 0) {
                 output.writeMessage(FieldNames.apriltagIndexPayload, apriltagIndexPayload);
+            }
+            if ((bitField0_ & 0x00000010) != 0) {
+                output.writeMessage(FieldNames.calibrationPayload, calibrationPayload);
             }
             output.endObject();
         }
@@ -1651,7 +2157,7 @@ public final class Commands {
                         if (input.isAtField(FieldNames.commandId)) {
                             if (!input.trySkipNullValue()) {
                                 commandId = input.readUInt32();
-                                bitField0_ |= 0x00000010;
+                                bitField0_ |= 0x00000020;
                             }
                         } else {
                             input.skipUnknownField();
@@ -1664,7 +2170,7 @@ public final class Commands {
                                 final QuestNavCommandType value = input.readEnum(QuestNavCommandType.converter());
                                 if (value != null) {
                                     type = value.getNumber();
-                                    bitField0_ |= 0x00000020;
+                                    bitField0_ |= 0x00000040;
                                 } else {
                                     input.skipUnknownEnumValue();
                                 }
@@ -1720,6 +2226,19 @@ public final class Commands {
                                 clearPayloadOtherApriltagIndexPayload();
                                 input.readMessage(apriltagIndexPayload);
                                 bitField0_ |= 0x00000008;
+                            }
+                        } else {
+                            input.skipUnknownField();
+                        }
+                        break;
+                    }
+                    case -77478844:
+                    case 2017957945: {
+                        if (input.isAtField(FieldNames.calibrationPayload)) {
+                            if (!input.trySkipNullValue()) {
+                                clearPayloadOtherCalibrationPayload();
+                                input.readMessage(calibrationPayload);
+                                bitField0_ |= 0x00000010;
                             }
                         } else {
                             input.skipUnknownField();
@@ -1798,6 +2317,8 @@ public final class Commands {
             static final FieldName fieldLayoutIndexPayload = FieldName.forField("fieldLayoutIndexPayload", "field_layout_index_payload");
 
             static final FieldName apriltagIndexPayload = FieldName.forField("apriltagIndexPayload", "apriltag_index_payload");
+
+            static final FieldName calibrationPayload = FieldName.forField("calibrationPayload", "calibration_payload");
         }
     }
 
