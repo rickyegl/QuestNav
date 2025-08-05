@@ -130,7 +130,7 @@ public class Calibrator : MonoBehaviour
             saveActiveField();
             Debug.Log("No fields found, created default field: " + activeField.fieldName);
         }
-    
+
         Debug.Log("Loaded " + fields.Count + " fields");
     }
 
@@ -284,7 +284,7 @@ public class Calibrator : MonoBehaviour
 
         if (OVRInput.Get(button))
         {
-            
+
         }
 
         if (OVRInput.GetDown(button))
@@ -597,7 +597,7 @@ public class Calibrator : MonoBehaviour
     void setField(Pose worldPose, Pose originPose)
     {
         // 5. Apply to the fieldObject
-        
+
         fieldObject.transform.position = originPose.position;
         fieldObject.transform.rotation = originPose.rotation;
         //Debug.Log("Set field position to: " + vrCameraRoot.transform.position + " and rotation to: " + vrCameraRoot.transform.rotation);
@@ -616,6 +616,93 @@ public class Calibrator : MonoBehaviour
         Guid guid = await SetupAnchorAsync(anchor, true);
         Debug.Log("Created anchor with UUID: " + guid);
         return guid;
+    }
+
+    /// <summary>
+    /// Given a tagId and the current real-world headset pose (2D on floor + yaw),
+    /// compute the real-world pose of the tag using the known field-layout pose,
+    /// create an anchor there, and save it to the active field.
+    /// 
+    /// headsetWorldPose: the headset/world pose when the tag was observed. If you only have 2D+Yaw,
+    /// provide position.y=0 and rotation=(0,yaw,0). We will align the tag's world Y to the tag's field Y height.
+    /// </summary>
+    public async Task<bool> CalibrateTagFromHeadset2DAsync(int tagId, Pose headsetWorldPose)
+    {
+        if (activeFieldLayoutData == null)
+        {
+            Debug.LogWarning("No activeFieldLayoutData set.");
+            return false;
+        }
+        var tag = getTagFromId(tagId);
+        if (tag == null)
+        {
+            Debug.LogWarning($"Tag {tagId} not found in active layout.");
+            return false;
+        }
+        if (activeField == null)
+        {
+            Debug.LogWarning("No active field selected.");
+            return false;
+        }
+
+        // Tag pose in field coordinates (Unity)
+        Vector3 tagPosField = Conversions.FrcTranslationToUnity(tag.pose.translation.toVector3());
+        Quaternion tagRotField = Conversions.FrcQuaternionToUnity(tag.pose.rotation.toQuaternion());
+        Pose tagFieldPose = new Pose(tagPosField, tagRotField);
+
+        // We only have headset 2D+Yaw; we rely on tag's field Y as the correct world elevation.
+        // Construct a headset pose constrained to floor (keep provided X,Z,Yaw)
+        Vector3 headsetPosWorld = headsetWorldPose.position;
+        Quaternion headsetRotWorld = headsetWorldPose.rotation;
+
+        // Compute field origin from a single tag observation:
+        // worldTagPose = fieldOrigin * tagFieldPose  =>  fieldOrigin = worldTagPose * Inverse(tagFieldPose)
+        // Here, we treat the headset pose as the world "measurement" of the tag. If you intend
+        // the headset pose to be the measured TAG pose directly, use it as-is. If it's the camera pose,
+        // you need an extrinsic from camera->tag; since you asked for 2D headset pose, we assume
+        // you're using that as the tag's measured world pose.
+        Pose measuredTagWorldPose = new Pose(headsetPosWorld, headsetRotWorld);
+
+        // Align the measured tag world Y to the tag's field Y (keeps floor-based 2D but corrects height)
+        measuredTagWorldPose.position = new Vector3(
+            measuredTagWorldPose.position.x,
+            tagPosField.y,
+            measuredTagWorldPose.position.z
+        );
+
+        // Save a visual for debugging
+        if (debugAprilTag != null)
+        {
+            debugAprilTag.transform.position = measuredTagWorldPose.position;
+            debugAprilTag.transform.rotation = measuredTagWorldPose.rotation;
+            foreach (Transform c in debugAprilTag.transform) c.gameObject.SetActive(false);
+        }
+
+        // The final pose we want to anchor is the measured tag world pose
+        poseMap[tagId] = measuredTagWorldPose;
+
+        try
+        {
+            Guid guid = await CreateAnchorAt(measuredTagWorldPose);
+            // Replace existing entry for this tag in the field
+            var existing = activeField.tags.Find(t => t.ID == tagId);
+            if (existing != null) activeField.tags.Remove(existing);
+
+            activeField.tags.Add(new TagData
+            {
+                ID = tagId,
+                anchorUuid = guid.ToString(),
+            });
+
+            saveActiveField();
+            TrackedTag = tagId;
+            return true;
+        }
+        catch (Exception e)
+        {
+            Debug.LogError($"Failed to create/save anchor for tag {tagId}: {e}");
+            return false;
+        }
     }
 
 }
