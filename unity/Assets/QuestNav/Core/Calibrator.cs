@@ -626,17 +626,11 @@ public class Calibrator : MonoBehaviour
     /// headsetWorldPose: the headset/world pose when the tag was observed. If you only have 2D+Yaw,
     /// provide position.y=0 and rotation=(0,yaw,0). We will align the tag's world Y to the tag's field Y height.
     /// </summary>
-    public async Task<bool> CalibrateTagFromHeadset2DAsync(int tagId, Pose headsetWorldPose)
+    public async Task<bool> CalibrateTagFromHeadset2DAsync(Pose headsetWorldPose)
     {
         if (activeFieldLayoutData == null)
         {
             Debug.LogWarning("No activeFieldLayoutData set.");
-            return false;
-        }
-        var tag = getTagFromId(tagId);
-        if (tag == null)
-        {
-            Debug.LogWarning($"Tag {tagId} not found in active layout.");
             return false;
         }
         if (activeField == null)
@@ -644,33 +638,34 @@ public class Calibrator : MonoBehaviour
             Debug.LogWarning("No active field selected.");
             return false;
         }
+        if (selectedTag == null)
+        {
+            Debug.LogWarning("No active tag selected. Please select a tag first.");
+            return false;
+        }
+
+
+        int tagId = selectedTag.ID;
 
         // Tag pose in field coordinates (Unity)
-        Vector3 tagPosField = Conversions.FrcTranslationToUnity(tag.pose.translation.toVector3());
-        Quaternion tagRotField = Conversions.FrcQuaternionToUnity(tag.pose.rotation.toQuaternion());
+        Vector3 tagPosField = Conversions.FrcTranslationToUnity(selectedTag.pose.translation.toVector3());
+        Quaternion tagRotField = Conversions.FrcQuaternionToUnity(selectedTag.pose.rotation.toQuaternion());
         Pose tagFieldPose = new Pose(tagPosField, tagRotField);
 
-        // We only have headset 2D+Yaw; we rely on tag's field Y as the correct world elevation.
-        // Construct a headset pose constrained to floor (keep provided X,Z,Yaw)
+        // Use provided 2D+Yaw headset pose as the measured tag world pose.
         Vector3 headsetPosWorld = headsetWorldPose.position;
         Quaternion headsetRotWorld = headsetWorldPose.rotation;
 
-        // Compute field origin from a single tag observation:
-        // worldTagPose = fieldOrigin * tagFieldPose  =>  fieldOrigin = worldTagPose * Inverse(tagFieldPose)
-        // Here, we treat the headset pose as the world "measurement" of the tag. If you intend
-        // the headset pose to be the measured TAG pose directly, use it as-is. If it's the camera pose,
-        // you need an extrinsic from camera->tag; since you asked for 2D headset pose, we assume
-        // you're using that as the tag's measured world pose.
         Pose measuredTagWorldPose = new Pose(headsetPosWorld, headsetRotWorld);
 
-        // Align the measured tag world Y to the tag's field Y (keeps floor-based 2D but corrects height)
+        // Align the measured tag world Y to the tag's field Y
         measuredTagWorldPose.position = new Vector3(
             measuredTagWorldPose.position.x,
             tagPosField.y,
             measuredTagWorldPose.position.z
         );
 
-        // Save a visual for debugging
+        // Debug visualization
         if (debugAprilTag != null)
         {
             debugAprilTag.transform.position = measuredTagWorldPose.position;
@@ -678,12 +673,13 @@ public class Calibrator : MonoBehaviour
             foreach (Transform c in debugAprilTag.transform) c.gameObject.SetActive(false);
         }
 
-        // The final pose we want to anchor is the measured tag world pose
+        // Save pose
         poseMap[tagId] = measuredTagWorldPose;
 
         try
         {
             Guid guid = await CreateAnchorAt(measuredTagWorldPose);
+
             // Replace existing entry for this tag in the field
             var existing = activeField.tags.Find(t => t.ID == tagId);
             if (existing != null) activeField.tags.Remove(existing);
@@ -703,8 +699,8 @@ public class Calibrator : MonoBehaviour
             Debug.LogError($"Failed to create/save anchor for tag {tagId}: {e}");
             return false;
         }
-    }
 
+    }
 }
 
 

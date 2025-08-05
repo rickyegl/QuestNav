@@ -37,20 +37,17 @@ namespace QuestNav.Commands.Commands
             QueuedLogger.Log("Received active tag set request, initiating reset...");
 
             // Read pose data from network tables
-            int tagId = receivedCommand.CalibrationPayload.TagId;
             double xWorld = receivedCommand.CalibrationPayload.HeadsetPose.Translation.X;
             double yWorld = receivedCommand.CalibrationPayload.HeadsetPose.Translation.Y;
             double yawDeg = receivedCommand.CalibrationPayload.HeadsetPose.Rotation.Value;
             
-            calibrator.SetSelectedTag(tagId);
-
             Pose pose = Conversions.FrcPoseToUnity(new Vector3((float)xWorld, (float)yWorld, 0f), Quaternion.Euler(0f, 0f, (float)yawDeg));
 
             Vector3 posXZ = pose.position;
             Quaternion yawOnly = pose.rotation;
             Pose headsetPose2D = new Pose(posXZ, yawOnly);
 
-            calibrator.CalibrateTagFromHeadset2DAsync(tagId, headsetPose2D);
+            calibrator.CalibrateTagFromHeadset2DAsync(headsetPose2D);
         }
     }
 }
