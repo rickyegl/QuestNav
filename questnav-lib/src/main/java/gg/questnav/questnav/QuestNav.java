@@ -98,10 +98,9 @@ public class QuestNav {
   /** Creates a new QuestNav implementation */
   public QuestNav() {}
 
-  public void calibrateTag(int tagId, Pose2d pose) {
+  public void calibrateTag(Pose2d pose) {
     cachedProtoPose.clear();
     pose2dProto.pack(cachedProtoPose, pose);
-    cachedIntPayload.clear().setValue(tagId);
     cachedCommandRequest.clear();
     var requestToSend =
         cachedCommandRequest

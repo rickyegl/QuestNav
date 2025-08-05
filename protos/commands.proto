@@ -29,7 +29,6 @@ message IntPayload {
 }
 
 message CalibrationPayload {
-  int32 tag_id = 1; // The ID of the tag to calibrate
   wpi.proto.ProtobufPose2d headset_pose = 2; // The pose of
 }
 
