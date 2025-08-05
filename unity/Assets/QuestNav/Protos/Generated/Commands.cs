@@ -27,34 +27,33 @@ namespace QuestNav.Protos.Generated {
             "Cg5jb21tYW5kcy5wcm90bxIYcXVlc3RuYXYucHJvdG9zLmNvbW1hbmRzGhBn",
             "ZW9tZXRyeTJkLnByb3RvIlIKIFByb3RvYnVmUXVlc3ROYXZQb3NlUmVzZXRQ",
             "YXlsb2FkEi4KC3RhcmdldF9wb3NlGAEgASgLMhkud3BpLnByb3RvLlByb3Rv",
-            "YnVmUG9zZTJkIhsKCkludFBheWxvYWQSDQoFdmFsdWUYASABKAUiVQoSQ2Fs",
-            "aWJyYXRpb25QYXlsb2FkEg4KBnRhZ19pZBgBIAEoBRIvCgxoZWFkc2V0X3Bv",
-            "c2UYAiABKAsyGS53cGkucHJvdG8uUHJvdG9idWZQb3NlMmQi9QMKF1Byb3Rv",
-            "YnVmUXVlc3ROYXZDb21tYW5kEjsKBHR5cGUYASABKA4yLS5xdWVzdG5hdi5w",
-            "cm90b3MuY29tbWFuZHMuUXVlc3ROYXZDb21tYW5kVHlwZRISCgpjb21tYW5k",
-            "X2lkGAIgASgNElgKEnBvc2VfcmVzZXRfcGF5bG9hZBgKIAEoCzI6LnF1ZXN0",
-            "bmF2LnByb3Rvcy5jb21tYW5kcy5Qcm90b2J1ZlF1ZXN0TmF2UG9zZVJlc2V0",
-            "UGF5bG9hZEgAEkMKE2ZpZWxkX2luZGV4X3BheWxvYWQYDyABKAsyJC5xdWVz",
-            "dG5hdi5wcm90b3MuY29tbWFuZHMuSW50UGF5bG9hZEgAEkoKGmZpZWxkX2xh",
-            "eW91dF9pbmRleF9wYXlsb2FkGBAgASgLMiQucXVlc3RuYXYucHJvdG9zLmNv",
-            "bW1hbmRzLkludFBheWxvYWRIABJGChZhcHJpbHRhZ19pbmRleF9wYXlsb2Fk",
-            "GBEgASgLMiQucXVlc3RuYXYucHJvdG9zLmNvbW1hbmRzLkludFBheWxvYWRI",
-            "ABJLChNjYWxpYnJhdGlvbl9wYXlsb2FkGBIgASgLMiwucXVlc3RuYXYucHJv",
-            "dG9zLmNvbW1hbmRzLkNhbGlicmF0aW9uUGF5bG9hZEgAQgkKB3BheWxvYWQi",
-            "XQofUHJvdG9idWZRdWVzdE5hdkNvbW1hbmRSZXNwb25zZRISCgpjb21tYW5k",
-            "X2lkGAEgASgNEg8KB3N1Y2Nlc3MYAiABKAgSFQoNZXJyb3JfbWVzc2FnZRgD",
-            "IAEoCSqbAQoTUXVlc3ROYXZDb21tYW5kVHlwZRIcChhDT01NQU5EX1RZUEVf",
-            "VU5TUEVDSUZJRUQQABIOCgpQT1NFX1JFU0VUEAESEwoPU0VUX0ZJRUxEX0lO",
-            "REVYEAUSGgoWU0VUX0ZJRUxEX0xBWU9VVF9JTkRFWBAGEhEKDUNBTElCUkFU",
-            "RV9UQUcQBxISCg5TRVRfQUNUSVZFX1RBRxAIQkMKJWdnLnF1ZXN0bmF2LnF1",
-            "ZXN0bmF2LnByb3Rvcy5nZW5lcmF0ZWSqAhlRdWVzdE5hdi5Qcm90b3MuR2Vu",
-            "ZXJhdGVkYgZwcm90bzM="));
+            "YnVmUG9zZTJkIhsKCkludFBheWxvYWQSDQoFdmFsdWUYASABKAUiRQoSQ2Fs",
+            "aWJyYXRpb25QYXlsb2FkEi8KDGhlYWRzZXRfcG9zZRgCIAEoCzIZLndwaS5w",
+            "cm90by5Qcm90b2J1ZlBvc2UyZCL1AwoXUHJvdG9idWZRdWVzdE5hdkNvbW1h",
+            "bmQSOwoEdHlwZRgBIAEoDjItLnF1ZXN0bmF2LnByb3Rvcy5jb21tYW5kcy5R",
+            "dWVzdE5hdkNvbW1hbmRUeXBlEhIKCmNvbW1hbmRfaWQYAiABKA0SWAoScG9z",
+            "ZV9yZXNldF9wYXlsb2FkGAogASgLMjoucXVlc3RuYXYucHJvdG9zLmNvbW1h",
+            "bmRzLlByb3RvYnVmUXVlc3ROYXZQb3NlUmVzZXRQYXlsb2FkSAASQwoTZmll",
+            "bGRfaW5kZXhfcGF5bG9hZBgPIAEoCzIkLnF1ZXN0bmF2LnByb3Rvcy5jb21t",
+            "YW5kcy5JbnRQYXlsb2FkSAASSgoaZmllbGRfbGF5b3V0X2luZGV4X3BheWxv",
+            "YWQYECABKAsyJC5xdWVzdG5hdi5wcm90b3MuY29tbWFuZHMuSW50UGF5bG9h",
+            "ZEgAEkYKFmFwcmlsdGFnX2luZGV4X3BheWxvYWQYESABKAsyJC5xdWVzdG5h",
+            "di5wcm90b3MuY29tbWFuZHMuSW50UGF5bG9hZEgAEksKE2NhbGlicmF0aW9u",
+            "X3BheWxvYWQYEiABKAsyLC5xdWVzdG5hdi5wcm90b3MuY29tbWFuZHMuQ2Fs",
+            "aWJyYXRpb25QYXlsb2FkSABCCQoHcGF5bG9hZCJdCh9Qcm90b2J1ZlF1ZXN0",
+            "TmF2Q29tbWFuZFJlc3BvbnNlEhIKCmNvbW1hbmRfaWQYASABKA0SDwoHc3Vj",
+            "Y2VzcxgCIAEoCBIVCg1lcnJvcl9tZXNzYWdlGAMgASgJKpsBChNRdWVzdE5h",
+            "dkNvbW1hbmRUeXBlEhwKGENPTU1BTkRfVFlQRV9VTlNQRUNJRklFRBAAEg4K",
+            "ClBPU0VfUkVTRVQQARITCg9TRVRfRklFTERfSU5ERVgQBRIaChZTRVRfRklF",
+            "TERfTEFZT1VUX0lOREVYEAYSEQoNQ0FMSUJSQVRFX1RBRxAHEhIKDlNFVF9B",
+            "Q1RJVkVfVEFHEAhCQwolZ2cucXVlc3RuYXYucXVlc3RuYXYucHJvdG9zLmdl",
+            "bmVyYXRlZKoCGVF1ZXN0TmF2LlByb3Rvcy5HZW5lcmF0ZWRiBnByb3RvMw=="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { global::Wpi.Proto.Geometry2DReflection.Descriptor, },
           new pbr::GeneratedClrTypeInfo(new[] {typeof(global::QuestNav.Protos.Generated.QuestNavCommandType), }, null, new pbr::GeneratedClrTypeInfo[] {
             new pbr::GeneratedClrTypeInfo(typeof(global::QuestNav.Protos.Generated.ProtobufQuestNavPoseResetPayload), global::QuestNav.Protos.Generated.ProtobufQuestNavPoseResetPayload.Parser, new[]{ "TargetPose" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::QuestNav.Protos.Generated.IntPayload), global::QuestNav.Protos.Generated.IntPayload.Parser, new[]{ "Value" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::QuestNav.Protos.Generated.CalibrationPayload), global::QuestNav.Protos.Generated.CalibrationPayload.Parser, new[]{ "TagId", "HeadsetPose" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::QuestNav.Protos.Generated.CalibrationPayload), global::QuestNav.Protos.Generated.CalibrationPayload.Parser, new[]{ "HeadsetPose" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::QuestNav.Protos.Generated.ProtobufQuestNavCommand), global::QuestNav.Protos.Generated.ProtobufQuestNavCommand.Parser, new[]{ "Type", "CommandId", "PoseResetPayload", "FieldIndexPayload", "FieldLayoutIndexPayload", "ApriltagIndexPayload", "CalibrationPayload" }, new[]{ "Payload" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::QuestNav.Protos.Generated.ProtobufQuestNavCommandResponse), global::QuestNav.Protos.Generated.ProtobufQuestNavCommandResponse.Parser, new[]{ "CommandId", "Success", "ErrorMessage" }, null, null, null, null)
           }));
@@ -523,7 +522,6 @@ namespace QuestNav.Protos.Generated {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public CalibrationPayload(CalibrationPayload other) : this() {
-      tagId_ = other.tagId_;
       headsetPose_ = other.headsetPose_ != null ? other.headsetPose_.Clone() : null;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
@@ -532,21 +530,6 @@ namespace QuestNav.Protos.Generated {
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public CalibrationPayload Clone() {
       return new CalibrationPayload(this);
-    }
-
-    /// <summary>Field number for the "tag_id" field.</summary>
-    public const int TagIdFieldNumber = 1;
-    private int tagId_;
-    /// <summary>
-    /// The ID of the tag to calibrate
-    /// </summary>
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public int TagId {
-      get { return tagId_; }
-      set {
-        tagId_ = value;
-      }
     }
 
     /// <summary>Field number for the "headset_pose" field.</summary>
@@ -579,7 +562,6 @@ namespace QuestNav.Protos.Generated {
       if (ReferenceEquals(other, this)) {
         return true;
       }
-      if (TagId != other.TagId) return false;
       if (!object.Equals(HeadsetPose, other.HeadsetPose)) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
@@ -588,7 +570,6 @@ namespace QuestNav.Protos.Generated {
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public override int GetHashCode() {
       int hash = 1;
-      if (TagId != 0) hash ^= TagId.GetHashCode();
       if (headsetPose_ != null) hash ^= HeadsetPose.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
@@ -608,10 +589,6 @@ namespace QuestNav.Protos.Generated {
     #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       output.WriteRawMessage(this);
     #else
-      if (TagId != 0) {
-        output.WriteRawTag(8);
-        output.WriteInt32(TagId);
-      }
       if (headsetPose_ != null) {
         output.WriteRawTag(18);
         output.WriteMessage(HeadsetPose);
@@ -626,10 +603,6 @@ namespace QuestNav.Protos.Generated {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
-      if (TagId != 0) {
-        output.WriteRawTag(8);
-        output.WriteInt32(TagId);
-      }
       if (headsetPose_ != null) {
         output.WriteRawTag(18);
         output.WriteMessage(HeadsetPose);
@@ -644,9 +617,6 @@ namespace QuestNav.Protos.Generated {
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public int CalculateSize() {
       int size = 0;
-      if (TagId != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeInt32Size(TagId);
-      }
       if (headsetPose_ != null) {
         size += 1 + pb::CodedOutputStream.ComputeMessageSize(HeadsetPose);
       }
@@ -661,9 +631,6 @@ namespace QuestNav.Protos.Generated {
     public void MergeFrom(CalibrationPayload other) {
       if (other == null) {
         return;
-      }
-      if (other.TagId != 0) {
-        TagId = other.TagId;
       }
       if (other.headsetPose_ != null) {
         if (headsetPose_ == null) {
@@ -686,10 +653,6 @@ namespace QuestNav.Protos.Generated {
           default:
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
             break;
-          case 8: {
-            TagId = input.ReadInt32();
-            break;
-          }
           case 18: {
             if (headsetPose_ == null) {
               HeadsetPose = new global::Wpi.Proto.ProtobufPose2d();
@@ -712,10 +675,6 @@ namespace QuestNav.Protos.Generated {
           default:
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
             break;
-          case 8: {
-            TagId = input.ReadInt32();
-            break;
-          }
           case 18: {
             if (headsetPose_ == null) {
               HeadsetPose = new global::Wpi.Proto.ProtobufPose2d();
