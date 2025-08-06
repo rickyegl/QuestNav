@@ -29,7 +29,7 @@ namespace QuestNav.Protos.Generated {
             "YXlsb2FkEi4KC3RhcmdldF9wb3NlGAEgASgLMhkud3BpLnByb3RvLlByb3Rv",
             "YnVmUG9zZTJkIhsKCkludFBheWxvYWQSDQoFdmFsdWUYASABKAUiRQoSQ2Fs",
             "aWJyYXRpb25QYXlsb2FkEi8KDGhlYWRzZXRfcG9zZRgCIAEoCzIZLndwaS5w",
-            "cm90by5Qcm90b2J1ZlBvc2UyZCL1AwoXUHJvdG9idWZRdWVzdE5hdkNvbW1h",
+            "cm90by5Qcm90b2J1ZlBvc2UyZCK+BAoXUHJvdG9idWZRdWVzdE5hdkNvbW1h",
             "bmQSOwoEdHlwZRgBIAEoDjItLnF1ZXN0bmF2LnByb3Rvcy5jb21tYW5kcy5R",
             "dWVzdE5hdkNvbW1hbmRUeXBlEhIKCmNvbW1hbmRfaWQYAiABKA0SWAoScG9z",
             "ZV9yZXNldF9wYXlsb2FkGAogASgLMjoucXVlc3RuYXYucHJvdG9zLmNvbW1h",
@@ -40,21 +40,23 @@ namespace QuestNav.Protos.Generated {
             "ZEgAEkYKFmFwcmlsdGFnX2luZGV4X3BheWxvYWQYESABKAsyJC5xdWVzdG5h",
             "di5wcm90b3MuY29tbWFuZHMuSW50UGF5bG9hZEgAEksKE2NhbGlicmF0aW9u",
             "X3BheWxvYWQYEiABKAsyLC5xdWVzdG5hdi5wcm90b3MuY29tbWFuZHMuQ2Fs",
-            "aWJyYXRpb25QYXlsb2FkSABCCQoHcGF5bG9hZCJdCh9Qcm90b2J1ZlF1ZXN0",
-            "TmF2Q29tbWFuZFJlc3BvbnNlEhIKCmNvbW1hbmRfaWQYASABKA0SDwoHc3Vj",
-            "Y2VzcxgCIAEoCBIVCg1lcnJvcl9tZXNzYWdlGAMgASgJKpsBChNRdWVzdE5h",
-            "dkNvbW1hbmRUeXBlEhwKGENPTU1BTkRfVFlQRV9VTlNQRUNJRklFRBAAEg4K",
-            "ClBPU0VfUkVTRVQQARITCg9TRVRfRklFTERfSU5ERVgQBRIaChZTRVRfRklF",
-            "TERfTEFZT1VUX0lOREVYEAYSEQoNQ0FMSUJSQVRFX1RBRxAHEhIKDlNFVF9B",
-            "Q1RJVkVfVEFHEAhCQwolZ2cucXVlc3RuYXYucXVlc3RuYXYucHJvdG9zLmdl",
-            "bmVyYXRlZKoCGVF1ZXN0TmF2LlByb3Rvcy5HZW5lcmF0ZWRiBnByb3RvMw=="));
+            "aWJyYXRpb25QYXlsb2FkSAASRwoXZGVsZXRlX2FwcmlsdGFnX3BheWxvYWQY",
+            "EyABKAsyJC5xdWVzdG5hdi5wcm90b3MuY29tbWFuZHMuSW50UGF5bG9hZEgA",
+            "QgkKB3BheWxvYWQiXQofUHJvdG9idWZRdWVzdE5hdkNvbW1hbmRSZXNwb25z",
+            "ZRISCgpjb21tYW5kX2lkGAEgASgNEg8KB3N1Y2Nlc3MYAiABKAgSFQoNZXJy",
+            "b3JfbWVzc2FnZRgDIAEoCSqrAQoTUXVlc3ROYXZDb21tYW5kVHlwZRIcChhD",
+            "T01NQU5EX1RZUEVfVU5TUEVDSUZJRUQQABIOCgpQT1NFX1JFU0VUEAESEwoP",
+            "U0VUX0ZJRUxEX0lOREVYEAUSGgoWU0VUX0ZJRUxEX0xBWU9VVF9JTkRFWBAG",
+            "EhEKDUNBTElCUkFURV9UQUcQBxISCg5TRVRfQUNUSVZFX1RBRxAIEg4KCkRF",
+            "TEVURV9UQUcQCUJDCiVnZy5xdWVzdG5hdi5xdWVzdG5hdi5wcm90b3MuZ2Vu",
+            "ZXJhdGVkqgIZUXVlc3ROYXYuUHJvdG9zLkdlbmVyYXRlZGIGcHJvdG8z"));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { global::Wpi.Proto.Geometry2DReflection.Descriptor, },
           new pbr::GeneratedClrTypeInfo(new[] {typeof(global::QuestNav.Protos.Generated.QuestNavCommandType), }, null, new pbr::GeneratedClrTypeInfo[] {
             new pbr::GeneratedClrTypeInfo(typeof(global::QuestNav.Protos.Generated.ProtobufQuestNavPoseResetPayload), global::QuestNav.Protos.Generated.ProtobufQuestNavPoseResetPayload.Parser, new[]{ "TargetPose" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::QuestNav.Protos.Generated.IntPayload), global::QuestNav.Protos.Generated.IntPayload.Parser, new[]{ "Value" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::QuestNav.Protos.Generated.CalibrationPayload), global::QuestNav.Protos.Generated.CalibrationPayload.Parser, new[]{ "HeadsetPose" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::QuestNav.Protos.Generated.ProtobufQuestNavCommand), global::QuestNav.Protos.Generated.ProtobufQuestNavCommand.Parser, new[]{ "Type", "CommandId", "PoseResetPayload", "FieldIndexPayload", "FieldLayoutIndexPayload", "ApriltagIndexPayload", "CalibrationPayload" }, new[]{ "Payload" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::QuestNav.Protos.Generated.ProtobufQuestNavCommand), global::QuestNav.Protos.Generated.ProtobufQuestNavCommand.Parser, new[]{ "Type", "CommandId", "PoseResetPayload", "FieldIndexPayload", "FieldLayoutIndexPayload", "ApriltagIndexPayload", "CalibrationPayload", "DeleteApriltagPayload" }, new[]{ "Payload" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::QuestNav.Protos.Generated.ProtobufQuestNavCommandResponse), global::QuestNav.Protos.Generated.ProtobufQuestNavCommandResponse.Parser, new[]{ "CommandId", "Success", "ErrorMessage" }, null, null, null, null)
           }));
     }
@@ -90,6 +92,10 @@ namespace QuestNav.Protos.Generated {
     /// Set the field layout index
     /// </summary>
     [pbr::OriginalName("SET_ACTIVE_TAG")] SetActiveTag = 8,
+    /// <summary>
+    /// Delete a tag anchor
+    /// </summary>
+    [pbr::OriginalName("DELETE_TAG")] DeleteTag = 9,
   }
 
   #endregion
@@ -744,6 +750,9 @@ namespace QuestNav.Protos.Generated {
         case PayloadOneofCase.CalibrationPayload:
           CalibrationPayload = other.CalibrationPayload.Clone();
           break;
+        case PayloadOneofCase.DeleteApriltagPayload:
+          DeleteApriltagPayload = other.DeleteApriltagPayload.Clone();
+          break;
       }
 
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
@@ -848,6 +857,21 @@ namespace QuestNav.Protos.Generated {
       }
     }
 
+    /// <summary>Field number for the "delete_apriltag_payload" field.</summary>
+    public const int DeleteApriltagPayloadFieldNumber = 19;
+    /// <summary>
+    /// Payload for deleting a tag
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public global::QuestNav.Protos.Generated.IntPayload DeleteApriltagPayload {
+      get { return payloadCase_ == PayloadOneofCase.DeleteApriltagPayload ? (global::QuestNav.Protos.Generated.IntPayload) payload_ : null; }
+      set {
+        payload_ = value;
+        payloadCase_ = value == null ? PayloadOneofCase.None : PayloadOneofCase.DeleteApriltagPayload;
+      }
+    }
+
     private object payload_;
     /// <summary>Enum of possible cases for the "payload" oneof.</summary>
     public enum PayloadOneofCase {
@@ -857,6 +881,7 @@ namespace QuestNav.Protos.Generated {
       FieldLayoutIndexPayload = 16,
       ApriltagIndexPayload = 17,
       CalibrationPayload = 18,
+      DeleteApriltagPayload = 19,
     }
     private PayloadOneofCase payloadCase_ = PayloadOneofCase.None;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -894,6 +919,7 @@ namespace QuestNav.Protos.Generated {
       if (!object.Equals(FieldLayoutIndexPayload, other.FieldLayoutIndexPayload)) return false;
       if (!object.Equals(ApriltagIndexPayload, other.ApriltagIndexPayload)) return false;
       if (!object.Equals(CalibrationPayload, other.CalibrationPayload)) return false;
+      if (!object.Equals(DeleteApriltagPayload, other.DeleteApriltagPayload)) return false;
       if (PayloadCase != other.PayloadCase) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
@@ -909,6 +935,7 @@ namespace QuestNav.Protos.Generated {
       if (payloadCase_ == PayloadOneofCase.FieldLayoutIndexPayload) hash ^= FieldLayoutIndexPayload.GetHashCode();
       if (payloadCase_ == PayloadOneofCase.ApriltagIndexPayload) hash ^= ApriltagIndexPayload.GetHashCode();
       if (payloadCase_ == PayloadOneofCase.CalibrationPayload) hash ^= CalibrationPayload.GetHashCode();
+      if (payloadCase_ == PayloadOneofCase.DeleteApriltagPayload) hash ^= DeleteApriltagPayload.GetHashCode();
       hash ^= (int) payloadCase_;
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
@@ -956,6 +983,10 @@ namespace QuestNav.Protos.Generated {
         output.WriteRawTag(146, 1);
         output.WriteMessage(CalibrationPayload);
       }
+      if (payloadCase_ == PayloadOneofCase.DeleteApriltagPayload) {
+        output.WriteRawTag(154, 1);
+        output.WriteMessage(DeleteApriltagPayload);
+      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
       }
@@ -994,6 +1025,10 @@ namespace QuestNav.Protos.Generated {
         output.WriteRawTag(146, 1);
         output.WriteMessage(CalibrationPayload);
       }
+      if (payloadCase_ == PayloadOneofCase.DeleteApriltagPayload) {
+        output.WriteRawTag(154, 1);
+        output.WriteMessage(DeleteApriltagPayload);
+      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
       }
@@ -1024,6 +1059,9 @@ namespace QuestNav.Protos.Generated {
       }
       if (payloadCase_ == PayloadOneofCase.CalibrationPayload) {
         size += 2 + pb::CodedOutputStream.ComputeMessageSize(CalibrationPayload);
+      }
+      if (payloadCase_ == PayloadOneofCase.DeleteApriltagPayload) {
+        size += 2 + pb::CodedOutputStream.ComputeMessageSize(DeleteApriltagPayload);
       }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
@@ -1073,6 +1111,12 @@ namespace QuestNav.Protos.Generated {
             CalibrationPayload = new global::QuestNav.Protos.Generated.CalibrationPayload();
           }
           CalibrationPayload.MergeFrom(other.CalibrationPayload);
+          break;
+        case PayloadOneofCase.DeleteApriltagPayload:
+          if (DeleteApriltagPayload == null) {
+            DeleteApriltagPayload = new global::QuestNav.Protos.Generated.IntPayload();
+          }
+          DeleteApriltagPayload.MergeFrom(other.DeleteApriltagPayload);
           break;
       }
 
@@ -1144,6 +1188,15 @@ namespace QuestNav.Protos.Generated {
             CalibrationPayload = subBuilder;
             break;
           }
+          case 154: {
+            global::QuestNav.Protos.Generated.IntPayload subBuilder = new global::QuestNav.Protos.Generated.IntPayload();
+            if (payloadCase_ == PayloadOneofCase.DeleteApriltagPayload) {
+              subBuilder.MergeFrom(DeleteApriltagPayload);
+            }
+            input.ReadMessage(subBuilder);
+            DeleteApriltagPayload = subBuilder;
+            break;
+          }
         }
       }
     #endif
@@ -1210,6 +1263,15 @@ namespace QuestNav.Protos.Generated {
             }
             input.ReadMessage(subBuilder);
             CalibrationPayload = subBuilder;
+            break;
+          }
+          case 154: {
+            global::QuestNav.Protos.Generated.IntPayload subBuilder = new global::QuestNav.Protos.Generated.IntPayload();
+            if (payloadCase_ == PayloadOneofCase.DeleteApriltagPayload) {
+              subBuilder.MergeFrom(DeleteApriltagPayload);
+            }
+            input.ReadMessage(subBuilder);
+            DeleteApriltagPayload = subBuilder;
             break;
           }
         }

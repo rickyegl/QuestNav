@@ -18,12 +18,12 @@ import us.hebi.quickbuf.RepeatedByte;
 import us.hebi.quickbuf.Utf8String;
 
 public final class Commands {
-    private static final RepeatedByte descriptorData = ProtoUtil.decodeBase64(3226,
+    private static final RepeatedByte descriptorData = ProtoUtil.decodeBase64(3487,
         "Cg5jb21tYW5kcy5wcm90bxIYcXVlc3RuYXYucHJvdG9zLmNvbW1hbmRzGhBnZW9tZXRyeTJkLnByb3Rv" + 
         "Il4KIFByb3RvYnVmUXVlc3ROYXZQb3NlUmVzZXRQYXlsb2FkEjoKC3RhcmdldF9wb3NlGAEgASgLMhku" + 
         "d3BpLnByb3RvLlByb3RvYnVmUG9zZTJkUgp0YXJnZXRQb3NlIiIKCkludFBheWxvYWQSFAoFdmFsdWUY" + 
         "ASABKAVSBXZhbHVlIlIKEkNhbGlicmF0aW9uUGF5bG9hZBI8CgxoZWFkc2V0X3Bvc2UYAiABKAsyGS53" + 
-        "cGkucHJvdG8uUHJvdG9idWZQb3NlMmRSC2hlYWRzZXRQb3NlIu4EChdQcm90b2J1ZlF1ZXN0TmF2Q29t" + 
+        "cGkucHJvdG8uUHJvdG9idWZQb3NlMmRSC2hlYWRzZXRQb3NlIs4FChdQcm90b2J1ZlF1ZXN0TmF2Q29t" + 
         "bWFuZBJBCgR0eXBlGAEgASgOMi0ucXVlc3RuYXYucHJvdG9zLmNvbW1hbmRzLlF1ZXN0TmF2Q29tbWFu" + 
         "ZFR5cGVSBHR5cGUSHQoKY29tbWFuZF9pZBgCIAEoDVIJY29tbWFuZElkEmoKEnBvc2VfcmVzZXRfcGF5" + 
         "bG9hZBgKIAEoCzI6LnF1ZXN0bmF2LnByb3Rvcy5jb21tYW5kcy5Qcm90b2J1ZlF1ZXN0TmF2UG9zZVJl" + 
@@ -33,46 +33,51 @@ public final class Commands {
         "cy5JbnRQYXlsb2FkSABSF2ZpZWxkTGF5b3V0SW5kZXhQYXlsb2FkElwKFmFwcmlsdGFnX2luZGV4X3Bh" + 
         "eWxvYWQYESABKAsyJC5xdWVzdG5hdi5wcm90b3MuY29tbWFuZHMuSW50UGF5bG9hZEgAUhRhcHJpbHRh" + 
         "Z0luZGV4UGF5bG9hZBJfChNjYWxpYnJhdGlvbl9wYXlsb2FkGBIgASgLMiwucXVlc3RuYXYucHJvdG9z" + 
-        "LmNvbW1hbmRzLkNhbGlicmF0aW9uUGF5bG9hZEgAUhJjYWxpYnJhdGlvblBheWxvYWRCCQoHcGF5bG9h" + 
-        "ZCJ/Ch9Qcm90b2J1ZlF1ZXN0TmF2Q29tbWFuZFJlc3BvbnNlEh0KCmNvbW1hbmRfaWQYASABKA1SCWNv" + 
-        "bW1hbmRJZBIYCgdzdWNjZXNzGAIgASgIUgdzdWNjZXNzEiMKDWVycm9yX21lc3NhZ2UYAyABKAlSDGVy" + 
-        "cm9yTWVzc2FnZSqbAQoTUXVlc3ROYXZDb21tYW5kVHlwZRIcChhDT01NQU5EX1RZUEVfVU5TUEVDSUZJ" + 
-        "RUQQABIOCgpQT1NFX1JFU0VUEAESEwoPU0VUX0ZJRUxEX0lOREVYEAUSGgoWU0VUX0ZJRUxEX0xBWU9V" + 
-        "VF9JTkRFWBAGEhEKDUNBTElCUkFURV9UQUcQBxISCg5TRVRfQUNUSVZFX1RBRxAIQkMKJWdnLnF1ZXN0",
-        "bmF2LnF1ZXN0bmF2LnByb3Rvcy5nZW5lcmF0ZWSqAhlRdWVzdE5hdi5Qcm90b3MuR2VuZXJhdGVkSqYP" + 
-        "CgYSBAADQAEKCAoBDBIDAAMVCggKAQISAwIAIQoICgEIEgMDADYKCQoCCCUSAwMANgoICgEIEgMEAD4K" + 
-        "CQoCCAESAwQAPgolCgIDABIDBwAaGhogSW1wb3J0IGdlb21ldHJ5IG1lc3NhZ2VzCgpFCgIFABIECgAS" + 
-        "ARo5IEVudW0gZm9yIGNvbW1hbmQgdHlwZXMgKGV4dGVuc2libGUgZm9yIGZ1dHVyZSBjb21tYW5kcykK" + 
-        "CgoKAwUAARIDCgUYCi8KBAUAAgASAwsCHyIiIERlZmF1bHQgdmFsdWUgcmVxdWlyZWQgaW4gcHJvdG8z" + 
-        "CgoMCgUFAAIAARIDCwIaCgwKBQUAAgACEgMLHR4KLgoEBQACARIDDAIRIiEgUmVzZXQgcm9ib3QgcG9z" + 
-        "ZSB0byB0YXJnZXQgcG9zZQoKDAoFBQACAQESAwwCDAoMCgUFAAIBAhIDDA8QCiIKBAUAAgISAw0CFiIV" + 
-        "IFNldCB0aGUgZmllbGQgaW5kZXgKCgwKBQUAAgIBEgMNAhEKDAoFBQACAgISAw0UFQopCgQFAAIDEgMO" + 
-        "Ah0iHCBTZXQgdGhlIGZpZWxkIGxheW91dCBpbmRleAoKDAoFBQACAwESAw4CGAoMCgUFAAIDAhIDDhsc" + 
-        "CikKBAUAAgQSAw8CFCIcIFNldCB0aGUgZmllbGQgbGF5b3V0IGluZGV4CgoMCgUFAAIEARIDDwIPCgwK" + 
-        "BQUAAgQCEgMPEhMKKQoEBQACBRIDEAIVIhwgU2V0IHRoZSBmaWVsZCBsYXlvdXQgaW5kZXgKCgwKBQUA" + 
-        "AgUBEgMQAhAKDAoFBQACBQISAxATFAosCgIEABIEFQAYARogIFBheWxvYWQgZm9yIHBvc2UgcmVzZXQg" + 
-        "Y29tbWFuZAoKCgoDBAABEgMVCCgKZwoEBAACABIDFwIrGlogVGFyZ2V0IHBvc2UgaW4gZmllbGQtcmVs" + 
-        "YXRpdmUgV1BJTGliIGNvb3JkaW5hdGUgc3BhY2UgKHggZm9yd2FyZCwgeSBsZWZ0LCByb3RhdGlvbiBD" + 
-        "Q1crKQoKDAoFBAACAAYSAxcCGgoMCgUEAAIAARIDFxsmCgwKBQQAAgADEgMXKSoKCgoCBAESBBoAHAEK" + 
-        "CgoDBAEBEgMaCBIKCwoEBAECABIDGwISCgwKBQQBAgAFEgMbAgcKDAoFBAECAAESAxsIDQoMCgUEAQIA" + 
-        "AxIDGxARCgoKAgQCEgQeACABCgoKAwQCARIDHggaChoKBAQCAgASAx8CLCINIFRoZSBwb3NlIG9mCgoM" + 
-        "CgUEAgIABhIDHwIaCgwKBQQCAgABEgMfGycKDAoFBAICAAMSAx8qKwoiCgIEAxIEIwA0ARoWIE1haW4g" + 
-        "Q29tbWFuZCBtZXNzYWdlCgoKCgMEAwESAyMIHwoiCgQEAwIAEgMlAh8aFSBUaGUgdHlwZSBvZiBjb21t" + 
-        "YW5kCgoMCgUEAwIABhIDJQIVCgwKBQQDAgABEgMlFhoKDAoFBAMCAAMSAyUdHgowCgQEAwIBEgMoAhga",
-        "IyBDb21tYW5kIElEIGZvciB0cmFja2luZy9yZXNwb25zZXMKCgwKBQQDAgEFEgMoAggKDAoFBAMCAQES" + 
-        "AygJEwoMCgUEAwIBAxIDKBYXClUKBAQDCAASBCsCMwMaRyBDb21tYW5kLXNwZWNpZmljIHBheWxvYWQg" + 
-        "KG9ubHkgb25lIHdpbGwgYmUgc2V0IGJhc2VkIG9uIGNvbW1hbmQgdHlwZSkKCgwKBQQDCAABEgMrCA8K" + 
-        "CwoEBAMCAhIDLAQ9CgwKBQQDAgIGEgMsBCQKDAoFBAMCAgESAywlNwoMCgUEAwICAxIDLDo8CgsKBAQD" + 
-        "AgMSAy0EKAoMCgUEAwIDBhIDLQQOCgwKBQQDAgMBEgMtDyIKDAoFBAMCAwMSAy0lJwoLCgQEAwIEEgMu" + 
-        "BC8KDAoFBAMCBAYSAy4EDgoMCgUEAwIEARIDLg8pCgwKBQQDAgQDEgMuLC4KCwoEBAMCBRIDLwQrCgwK" + 
-        "BQQDAgUGEgMvBA4KDAoFBAMCBQESAy8PJQoMCgUEAwIFAxIDLygqCiwKBAQDAgYSAzAEMCIfIFBheWxv" + 
-        "YWQgZm9yIGNhbGlicmF0aW5nIGEgdGFnCgoMCgUEAwIGBhIDMAQWCgwKBQQDAgYBEgMwFyoKDAoFBAMC" + 
-        "BgMSAzAtLworCgIEBBIENwBAARofIFJlc3BvbnNlIG1lc3NhZ2UgZm9yIGNvbW1hbmRzCgoKCgMEBAES" + 
-        "AzcIJwouCgQEBAIAEgM5AhgaISBNYXRjaGVzIHRoZSBvcmlnaW5hbCBjb21tYW5kIElECgoMCgUEBAIA" + 
-        "BRIDOQIICgwKBQQEAgABEgM5CRMKDAoFBAQCAAMSAzkWFwoxCgQEBAIBEgM8AhMaJCBXaGV0aGVyIHRo" + 
-        "ZSBjb21tYW5kIHdhcyBzdWNjZXNzZnVsCgoMCgUEBAIBBRIDPAIGCgwKBQQEAgEBEgM8Bw4KDAoFBAQC" + 
-        "AQMSAzwREgovCgQEBAICEgM/AhsaIiBFcnJvciBtZXNzYWdlIGlmIHN1Y2Nlc3MgPSBmYWxzZQoKDAoF" + 
-        "BAQCAgUSAz8CCAoMCgUEBAICARIDPwkWCgwKBQQEAgIDEgM/GRpiBnByb3RvMw==");
+        "LmNvbW1hbmRzLkNhbGlicmF0aW9uUGF5bG9hZEgAUhJjYWxpYnJhdGlvblBheWxvYWQSXgoXZGVsZXRl" + 
+        "X2FwcmlsdGFnX3BheWxvYWQYEyABKAsyJC5xdWVzdG5hdi5wcm90b3MuY29tbWFuZHMuSW50UGF5bG9h" + 
+        "ZEgAUhVkZWxldGVBcHJpbHRhZ1BheWxvYWRCCQoHcGF5bG9hZCJ/Ch9Qcm90b2J1ZlF1ZXN0TmF2Q29t" + 
+        "bWFuZFJlc3BvbnNlEh0KCmNvbW1hbmRfaWQYASABKA1SCWNvbW1hbmRJZBIYCgdzdWNjZXNzGAIgASgI" + 
+        "UgdzdWNjZXNzEiMKDWVycm9yX21lc3NhZ2UYAyABKAlSDGVycm9yTWVzc2FnZSqrAQoTUXVlc3ROYXZD" + 
+        "b21tYW5kVHlwZRIcChhDT01NQU5EX1RZUEVfVU5TUEVDSUZJRUQQABIOCgpQT1NFX1JFU0VUEAESEwoP",
+        "U0VUX0ZJRUxEX0lOREVYEAUSGgoWU0VUX0ZJRUxEX0xBWU9VVF9JTkRFWBAGEhEKDUNBTElCUkFURV9U" + 
+        "QUcQBxISCg5TRVRfQUNUSVZFX1RBRxAIEg4KCkRFTEVURV9UQUcQCUJDCiVnZy5xdWVzdG5hdi5xdWVz" + 
+        "dG5hdi5wcm90b3MuZ2VuZXJhdGVkqgIZUXVlc3ROYXYuUHJvdG9zLkdlbmVyYXRlZEq7EAoGEgQAA0IB" + 
+        "CggKAQwSAwADFQoICgECEgMCACEKCAoBCBIDAwA2CgkKAgglEgMDADYKCAoBCBIDBAA+CgkKAggBEgME" + 
+        "AD4KJQoCAwASAwcAGhoaIEltcG9ydCBnZW9tZXRyeSBtZXNzYWdlcwoKRQoCBQASBAoAEwEaOSBFbnVt" + 
+        "IGZvciBjb21tYW5kIHR5cGVzIChleHRlbnNpYmxlIGZvciBmdXR1cmUgY29tbWFuZHMpCgoKCgMFAAES" + 
+        "AwoFGAovCgQFAAIAEgMLAh8iIiBEZWZhdWx0IHZhbHVlIHJlcXVpcmVkIGluIHByb3RvMwoKDAoFBQAC" + 
+        "AAESAwsCGgoMCgUFAAIAAhIDCx0eCi4KBAUAAgESAwwCESIhIFJlc2V0IHJvYm90IHBvc2UgdG8gdGFy" + 
+        "Z2V0IHBvc2UKCgwKBQUAAgEBEgMMAgwKDAoFBQACAQISAwwPEAoiCgQFAAICEgMNAhYiFSBTZXQgdGhl" + 
+        "IGZpZWxkIGluZGV4CgoMCgUFAAICARIDDQIRCgwKBQUAAgICEgMNFBUKKQoEBQACAxIDDgIdIhwgU2V0" + 
+        "IHRoZSBmaWVsZCBsYXlvdXQgaW5kZXgKCgwKBQUAAgMBEgMOAhgKDAoFBQACAwISAw4bHAopCgQFAAIE" + 
+        "EgMPAhQiHCBTZXQgdGhlIGZpZWxkIGxheW91dCBpbmRleAoKDAoFBQACBAESAw8CDwoMCgUFAAIEAhID" + 
+        "DxITCikKBAUAAgUSAxACFSIcIFNldCB0aGUgZmllbGQgbGF5b3V0IGluZGV4CgoMCgUFAAIFARIDEAIQ" + 
+        "CgwKBQUAAgUCEgMQExQKIgoEBQACBhIDEQIRIhUgRGVsZXRlIGEgdGFnIGFuY2hvcgoKDAoFBQACBgES" + 
+        "AxECDAoMCgUFAAIGAhIDEQ8QCiwKAgQAEgQWABkBGiAgUGF5bG9hZCBmb3IgcG9zZSByZXNldCBjb21t" + 
+        "YW5kCgoKCgMEAAESAxYIKApnCgQEAAIAEgMYAisaWiBUYXJnZXQgcG9zZSBpbiBmaWVsZC1yZWxhdGl2" + 
+        "ZSBXUElMaWIgY29vcmRpbmF0ZSBzcGFjZSAoeCBmb3J3YXJkLCB5IGxlZnQsIHJvdGF0aW9uIENDVysp" + 
+        "CgoMCgUEAAIABhIDGAIaCgwKBQQAAgABEgMYGyYKDAoFBAACAAMSAxgpKgoKCgIEARIEGwAdAQoKCgME" + 
+        "AQESAxsIEgoLCgQEAQIAEgMcAhIKDAoFBAECAAUSAxwCBwoMCgUEAQIAARIDHAgNCgwKBQQBAgADEgMc" + 
+        "EBEKCgoCBAISBB8AIQEKCgoDBAIBEgMfCBoKGgoEBAICABIDIAIsIg0gVGhlIHBvc2Ugb2YKCgwKBQQC",
+        "AgAGEgMgAhoKDAoFBAICAAESAyAbJwoMCgUEAgIAAxIDICorCiIKAgQDEgQkADYBGhYgTWFpbiBDb21t" + 
+        "YW5kIG1lc3NhZ2UKCgoKAwQDARIDJAgfCiIKBAQDAgASAyYCHxoVIFRoZSB0eXBlIG9mIGNvbW1hbmQK" + 
+        "CgwKBQQDAgAGEgMmAhUKDAoFBAMCAAESAyYWGgoMCgUEAwIAAxIDJh0eCjAKBAQDAgESAykCGBojIENv" + 
+        "bW1hbmQgSUQgZm9yIHRyYWNraW5nL3Jlc3BvbnNlcwoKDAoFBAMCAQUSAykCCAoMCgUEAwIBARIDKQkT" + 
+        "CgwKBQQDAgEDEgMpFhcKVQoEBAMIABIELAI1AxpHIENvbW1hbmQtc3BlY2lmaWMgcGF5bG9hZCAob25s" + 
+        "eSBvbmUgd2lsbCBiZSBzZXQgYmFzZWQgb24gY29tbWFuZCB0eXBlKQoKDAoFBAMIAAESAywIDwoLCgQE" + 
+        "AwICEgMtBD0KDAoFBAMCAgYSAy0EJAoMCgUEAwICARIDLSU3CgwKBQQDAgIDEgMtOjwKCwoEBAMCAxID" + 
+        "LgQoCgwKBQQDAgMGEgMuBA4KDAoFBAMCAwESAy4PIgoMCgUEAwIDAxIDLiUnCgsKBAQDAgQSAy8ELwoM" + 
+        "CgUEAwIEBhIDLwQOCgwKBQQDAgQBEgMvDykKDAoFBAMCBAMSAy8sLgoLCgQEAwIFEgMwBCsKDAoFBAMC" + 
+        "BQYSAzAEDgoMCgUEAwIFARIDMA8lCgwKBQQDAgUDEgMwKCoKLAoEBAMCBhIDMQQwIh8gUGF5bG9hZCBm" + 
+        "b3IgY2FsaWJyYXRpbmcgYSB0YWcKCgwKBQQDAgYGEgMxBBYKDAoFBAMCBgESAzEXKgoMCgUEAwIGAxID" + 
+        "MS0vCikKBAQDAgcSAzIELCIcIFBheWxvYWQgZm9yIGRlbGV0aW5nIGEgdGFnCgoMCgUEAwIHBhIDMgQO" + 
+        "CgwKBQQDAgcBEgMyDyYKDAoFBAMCBwMSAzIpKworCgIEBBIEOQBCARofIFJlc3BvbnNlIG1lc3NhZ2Ug" + 
+        "Zm9yIGNvbW1hbmRzCgoKCgMEBAESAzkIJwouCgQEBAIAEgM7AhgaISBNYXRjaGVzIHRoZSBvcmlnaW5h" + 
+        "bCBjb21tYW5kIElECgoMCgUEBAIABRIDOwIICgwKBQQEAgABEgM7CRMKDAoFBAQCAAMSAzsWFwoxCgQE" + 
+        "BAIBEgM+AhMaJCBXaGV0aGVyIHRoZSBjb21tYW5kIHdhcyBzdWNjZXNzZnVsCgoMCgUEBAIBBRIDPgIG" + 
+        "CgwKBQQEAgEBEgM+Bw4KDAoFBAQCAQMSAz4REgovCgQEBAICEgNBAhsaIiBFcnJvciBtZXNzYWdlIGlm" + 
+        "IHN1Y2Nlc3MgPSBmYWxzZQoKDAoFBAQCAgUSA0ECCAoMCgUEBAICARIDQQkWCgwKBQQEAgIDEgNBGRpi" + 
+        "BnByb3RvMw==");
 
     static final Descriptors.FileDescriptor descriptor = Descriptors.FileDescriptor.internalBuildGeneratedFileFrom("commands.proto", "questnav.protos.commands", descriptorData, Geometry2D.getDescriptor());
 
@@ -82,9 +87,9 @@ public final class Commands {
 
     static final Descriptors.Descriptor questnav_protos_commands_CalibrationPayload_descriptor = descriptor.internalContainedType(194, 82, "CalibrationPayload", "questnav.protos.commands.CalibrationPayload");
 
-    static final Descriptors.Descriptor questnav_protos_commands_ProtobufQuestNavCommand_descriptor = descriptor.internalContainedType(279, 622, "ProtobufQuestNavCommand", "questnav.protos.commands.ProtobufQuestNavCommand");
+    static final Descriptors.Descriptor questnav_protos_commands_ProtobufQuestNavCommand_descriptor = descriptor.internalContainedType(279, 718, "ProtobufQuestNavCommand", "questnav.protos.commands.ProtobufQuestNavCommand");
 
-    static final Descriptors.Descriptor questnav_protos_commands_ProtobufQuestNavCommandResponse_descriptor = descriptor.internalContainedType(903, 127, "ProtobufQuestNavCommandResponse", "questnav.protos.commands.ProtobufQuestNavCommandResponse");
+    static final Descriptors.Descriptor questnav_protos_commands_ProtobufQuestNavCommandResponse_descriptor = descriptor.internalContainedType(999, 127, "ProtobufQuestNavCommandResponse", "questnav.protos.commands.ProtobufQuestNavCommandResponse");
 
     /**
      * @return this proto file's descriptor.
@@ -153,7 +158,16 @@ public final class Commands {
          *
          * <code>SET_ACTIVE_TAG = 8;</code>
          */
-        SET_ACTIVE_TAG("SET_ACTIVE_TAG", 8);
+        SET_ACTIVE_TAG("SET_ACTIVE_TAG", 8),
+
+        /**
+         * <pre>
+         *  Delete a tag anchor
+         * </pre>
+         *
+         * <code>DELETE_TAG = 9;</code>
+         */
+        DELETE_TAG("DELETE_TAG", 9);
 
         /**
          * <pre>
@@ -209,6 +223,15 @@ public final class Commands {
          */
         public static final int SET_ACTIVE_TAG_VALUE = 8;
 
+        /**
+         * <pre>
+         *  Delete a tag anchor
+         * </pre>
+         *
+         * <code>DELETE_TAG = 9;</code>
+         */
+        public static final int DELETE_TAG_VALUE = 9;
+
         private final String name;
 
         private final int number;
@@ -262,7 +285,7 @@ public final class Commands {
         enum QuestNavCommandTypeConverter implements ProtoEnum.EnumConverter<QuestNavCommandType> {
             INSTANCE;
 
-            private static final QuestNavCommandType[] lookup = new QuestNavCommandType[9];
+            private static final QuestNavCommandType[] lookup = new QuestNavCommandType[10];
 
             static {
                 lookup[0] = COMMAND_TYPE_UNSPECIFIED;
@@ -271,6 +294,7 @@ public final class Commands {
                 lookup[6] = SET_FIELD_LAYOUT_INDEX;
                 lookup[7] = CALIBRATE_TAG;
                 lookup[8] = SET_ACTIVE_TAG;
+                lookup[9] = DELETE_TAG;
             }
 
             @Override
@@ -287,6 +311,9 @@ public final class Commands {
                     case 10: {
                         if (ProtoUtil.isEqual("POSE_RESET", value)) {
                             return POSE_RESET;
+                        }
+                        if (ProtoUtil.isEqual("DELETE_TAG", value)) {
+                            return DELETE_TAG;
                         }
                         break;
                     }
@@ -1246,6 +1273,15 @@ public final class Commands {
          */
         private final CalibrationPayload calibrationPayload = CalibrationPayload.newInstance();
 
+        /**
+         * <pre>
+         *  Payload for deleting a tag
+         * </pre>
+         *
+         * <code>optional .questnav.protos.commands.IntPayload delete_apriltag_payload = 19;</code>
+         */
+        private final IntPayload deleteApriltagPayload = IntPayload.newInstance();
+
         private ProtobufQuestNavCommand() {
         }
 
@@ -1261,7 +1297,7 @@ public final class Commands {
         }
 
         public boolean hasPayload() {
-            return (((bitField0_ & 0x0000001f)) != 0);
+            return (((bitField0_ & 0x0000003f)) != 0);
         }
 
         public ProtobufQuestNavCommand clearPayload() {
@@ -1271,52 +1307,68 @@ public final class Commands {
                 clearFieldLayoutIndexPayload();
                 clearApriltagIndexPayload();
                 clearCalibrationPayload();
+                clearDeleteApriltagPayload();
             }
             return this;
         }
 
         private void clearPayloadOtherPoseResetPayload() {
-            if ((((bitField0_ & 0x0000001e)) != 0)) {
+            if ((((bitField0_ & 0x0000003e)) != 0)) {
                 clearFieldIndexPayload();
                 clearFieldLayoutIndexPayload();
                 clearApriltagIndexPayload();
                 clearCalibrationPayload();
+                clearDeleteApriltagPayload();
             }
         }
 
         private void clearPayloadOtherFieldIndexPayload() {
-            if ((((bitField0_ & 0x0000001d)) != 0)) {
+            if ((((bitField0_ & 0x0000003d)) != 0)) {
                 clearPoseResetPayload();
                 clearFieldLayoutIndexPayload();
                 clearApriltagIndexPayload();
                 clearCalibrationPayload();
+                clearDeleteApriltagPayload();
             }
         }
 
         private void clearPayloadOtherFieldLayoutIndexPayload() {
-            if ((((bitField0_ & 0x0000001b)) != 0)) {
+            if ((((bitField0_ & 0x0000003b)) != 0)) {
                 clearPoseResetPayload();
                 clearFieldIndexPayload();
                 clearApriltagIndexPayload();
                 clearCalibrationPayload();
+                clearDeleteApriltagPayload();
             }
         }
 
         private void clearPayloadOtherApriltagIndexPayload() {
-            if ((((bitField0_ & 0x00000017)) != 0)) {
+            if ((((bitField0_ & 0x00000037)) != 0)) {
                 clearPoseResetPayload();
                 clearFieldIndexPayload();
                 clearFieldLayoutIndexPayload();
                 clearCalibrationPayload();
+                clearDeleteApriltagPayload();
             }
         }
 
         private void clearPayloadOtherCalibrationPayload() {
-            if ((((bitField0_ & 0x0000000f)) != 0)) {
+            if ((((bitField0_ & 0x0000002f)) != 0)) {
                 clearPoseResetPayload();
                 clearFieldIndexPayload();
                 clearFieldLayoutIndexPayload();
                 clearApriltagIndexPayload();
+                clearDeleteApriltagPayload();
+            }
+        }
+
+        private void clearPayloadOtherDeleteApriltagPayload() {
+            if ((((bitField0_ & 0x0000001f)) != 0)) {
+                clearPoseResetPayload();
+                clearFieldIndexPayload();
+                clearFieldLayoutIndexPayload();
+                clearApriltagIndexPayload();
+                clearCalibrationPayload();
             }
         }
 
@@ -1329,7 +1381,7 @@ public final class Commands {
          * @return whether the commandId field is set
          */
         public boolean hasCommandId() {
-            return (bitField0_ & 0x00000020) != 0;
+            return (bitField0_ & 0x00000040) != 0;
         }
 
         /**
@@ -1341,7 +1393,7 @@ public final class Commands {
          * @return this
          */
         public ProtobufQuestNavCommand clearCommandId() {
-            bitField0_ &= ~0x00000020;
+            bitField0_ &= ~0x00000040;
             commandId = 0;
             return this;
         }
@@ -1368,7 +1420,7 @@ public final class Commands {
          * @return this
          */
         public ProtobufQuestNavCommand setCommandId(final int value) {
-            bitField0_ |= 0x00000020;
+            bitField0_ |= 0x00000040;
             commandId = value;
             return this;
         }
@@ -1382,7 +1434,7 @@ public final class Commands {
          * @return whether the type field is set
          */
         public boolean hasType() {
-            return (bitField0_ & 0x00000040) != 0;
+            return (bitField0_ & 0x00000080) != 0;
         }
 
         /**
@@ -1394,7 +1446,7 @@ public final class Commands {
          * @return this
          */
         public ProtobufQuestNavCommand clearType() {
-            bitField0_ &= ~0x00000040;
+            bitField0_ &= ~0x00000080;
             type = 0;
             return this;
         }
@@ -1431,7 +1483,7 @@ public final class Commands {
          * @return this
          */
         public ProtobufQuestNavCommand setTypeValue(final int value) {
-            bitField0_ |= 0x00000040;
+            bitField0_ |= 0x00000080;
             type = value;
             return this;
         }
@@ -1446,7 +1498,7 @@ public final class Commands {
          * @return this
          */
         public ProtobufQuestNavCommand setType(final QuestNavCommandType value) {
-            bitField0_ |= 0x00000040;
+            bitField0_ |= 0x00000080;
             type = value.getNumber();
             return this;
         }
@@ -1767,6 +1819,85 @@ public final class Commands {
             return this;
         }
 
+        /**
+         * <pre>
+         *  Payload for deleting a tag
+         * </pre>
+         *
+         * <code>optional .questnav.protos.commands.IntPayload delete_apriltag_payload = 19;</code>
+         * @return whether the deleteApriltagPayload field is set
+         */
+        public boolean hasDeleteApriltagPayload() {
+            return (bitField0_ & 0x00000020) != 0;
+        }
+
+        /**
+         * <pre>
+         *  Payload for deleting a tag
+         * </pre>
+         *
+         * <code>optional .questnav.protos.commands.IntPayload delete_apriltag_payload = 19;</code>
+         * @return this
+         */
+        public ProtobufQuestNavCommand clearDeleteApriltagPayload() {
+            bitField0_ &= ~0x00000020;
+            deleteApriltagPayload.clear();
+            return this;
+        }
+
+        /**
+         * <pre>
+         *  Payload for deleting a tag
+         * </pre>
+         *
+         * <code>optional .questnav.protos.commands.IntPayload delete_apriltag_payload = 19;</code>
+         *
+         * This method returns the internal storage object without modifying any has state.
+         * The returned object should not be modified and be treated as read-only.
+         *
+         * Use {@link #getMutableDeleteApriltagPayload()} if you want to modify it.
+         *
+         * @return internal storage object for reading
+         */
+        public IntPayload getDeleteApriltagPayload() {
+            return deleteApriltagPayload;
+        }
+
+        /**
+         * <pre>
+         *  Payload for deleting a tag
+         * </pre>
+         *
+         * <code>optional .questnav.protos.commands.IntPayload delete_apriltag_payload = 19;</code>
+         *
+         * This method returns the internal storage object and sets the corresponding
+         * has state. The returned object will become part of this message and its
+         * contents may be modified as long as the has state is not cleared.
+         *
+         * @return internal storage object for modifications
+         */
+        public IntPayload getMutableDeleteApriltagPayload() {
+            clearPayloadOtherDeleteApriltagPayload();
+            bitField0_ |= 0x00000020;
+            return deleteApriltagPayload;
+        }
+
+        /**
+         * <pre>
+         *  Payload for deleting a tag
+         * </pre>
+         *
+         * <code>optional .questnav.protos.commands.IntPayload delete_apriltag_payload = 19;</code>
+         * @param value the deleteApriltagPayload to set
+         * @return this
+         */
+        public ProtobufQuestNavCommand setDeleteApriltagPayload(final IntPayload value) {
+            clearPayloadOtherDeleteApriltagPayload();
+            bitField0_ |= 0x00000020;
+            deleteApriltagPayload.copyFrom(value);
+            return this;
+        }
+
         @Override
         public ProtobufQuestNavCommand copyFrom(final ProtobufQuestNavCommand other) {
             cachedSize = other.cachedSize;
@@ -1779,6 +1910,7 @@ public final class Commands {
                 fieldLayoutIndexPayload.copyFrom(other.fieldLayoutIndexPayload);
                 apriltagIndexPayload.copyFrom(other.apriltagIndexPayload);
                 calibrationPayload.copyFrom(other.calibrationPayload);
+                deleteApriltagPayload.copyFrom(other.deleteApriltagPayload);
             }
             return this;
         }
@@ -1810,6 +1942,9 @@ public final class Commands {
             if (other.hasCalibrationPayload()) {
                 getMutableCalibrationPayload().mergeFrom(other.calibrationPayload);
             }
+            if (other.hasDeleteApriltagPayload()) {
+                getMutableDeleteApriltagPayload().mergeFrom(other.deleteApriltagPayload);
+            }
             return this;
         }
 
@@ -1827,6 +1962,7 @@ public final class Commands {
             fieldLayoutIndexPayload.clear();
             apriltagIndexPayload.clear();
             calibrationPayload.clear();
+            deleteApriltagPayload.clear();
             return this;
         }
 
@@ -1842,6 +1978,7 @@ public final class Commands {
             fieldLayoutIndexPayload.clearQuick();
             apriltagIndexPayload.clearQuick();
             calibrationPayload.clearQuick();
+            deleteApriltagPayload.clearQuick();
             return this;
         }
 
@@ -1861,16 +1998,17 @@ public final class Commands {
                 && (!hasFieldIndexPayload() || fieldIndexPayload.equals(other.fieldIndexPayload))
                 && (!hasFieldLayoutIndexPayload() || fieldLayoutIndexPayload.equals(other.fieldLayoutIndexPayload))
                 && (!hasApriltagIndexPayload() || apriltagIndexPayload.equals(other.apriltagIndexPayload))
-                && (!hasCalibrationPayload() || calibrationPayload.equals(other.calibrationPayload));
+                && (!hasCalibrationPayload() || calibrationPayload.equals(other.calibrationPayload))
+                && (!hasDeleteApriltagPayload() || deleteApriltagPayload.equals(other.deleteApriltagPayload));
         }
 
         @Override
         public void writeTo(final ProtoSink output) throws IOException {
-            if ((bitField0_ & 0x00000020) != 0) {
+            if ((bitField0_ & 0x00000040) != 0) {
                 output.writeRawByte((byte) 16);
                 output.writeUInt32NoTag(commandId);
             }
-            if ((bitField0_ & 0x00000040) != 0) {
+            if ((bitField0_ & 0x00000080) != 0) {
                 output.writeRawByte((byte) 8);
                 output.writeEnumNoTag(type);
             }
@@ -1894,15 +2032,19 @@ public final class Commands {
                 output.writeRawLittleEndian16((short) 402);
                 output.writeMessageNoTag(calibrationPayload);
             }
+            if ((bitField0_ & 0x00000020) != 0) {
+                output.writeRawLittleEndian16((short) 410);
+                output.writeMessageNoTag(deleteApriltagPayload);
+            }
         }
 
         @Override
         protected int computeSerializedSize() {
             int size = 0;
-            if ((bitField0_ & 0x00000020) != 0) {
+            if ((bitField0_ & 0x00000040) != 0) {
                 size += 1 + ProtoSink.computeUInt32SizeNoTag(commandId);
             }
-            if ((bitField0_ & 0x00000040) != 0) {
+            if ((bitField0_ & 0x00000080) != 0) {
                 size += 1 + ProtoSink.computeEnumSizeNoTag(type);
             }
             if ((bitField0_ & 0x00000001) != 0) {
@@ -1920,6 +2062,9 @@ public final class Commands {
             if ((bitField0_ & 0x00000010) != 0) {
                 size += 2 + ProtoSink.computeMessageSizeNoTag(calibrationPayload);
             }
+            if ((bitField0_ & 0x00000020) != 0) {
+                size += 2 + ProtoSink.computeMessageSizeNoTag(deleteApriltagPayload);
+            }
             return size;
         }
 
@@ -1933,7 +2078,7 @@ public final class Commands {
                     case 16: {
                         // commandId
                         commandId = input.readUInt32();
-                        bitField0_ |= 0x00000020;
+                        bitField0_ |= 0x00000040;
                         tag = input.readTag();
                         if (tag != 8) {
                             break;
@@ -1944,7 +2089,7 @@ public final class Commands {
                         final int value = input.readInt32();
                         if (QuestNavCommandType.forNumber(value) != null) {
                             type = value;
-                            bitField0_ |= 0x00000040;
+                            bitField0_ |= 0x00000080;
                         }
                         tag = input.readTag();
                         if (tag != 82) {
@@ -1997,6 +2142,16 @@ public final class Commands {
                         input.readMessage(calibrationPayload);
                         bitField0_ |= 0x00000010;
                         tag = input.readTag();
+                        if (tag != 154) {
+                            break;
+                        }
+                    }
+                    case 154: {
+                        // deleteApriltagPayload
+                        clearPayloadOtherDeleteApriltagPayload();
+                        input.readMessage(deleteApriltagPayload);
+                        bitField0_ |= 0x00000020;
+                        tag = input.readTag();
                         if (tag != 0) {
                             break;
                         }
@@ -2018,10 +2173,10 @@ public final class Commands {
         @Override
         public void writeTo(final JsonSink output) throws IOException {
             output.beginObject();
-            if ((bitField0_ & 0x00000020) != 0) {
+            if ((bitField0_ & 0x00000040) != 0) {
                 output.writeUInt32(FieldNames.commandId, commandId);
             }
-            if ((bitField0_ & 0x00000040) != 0) {
+            if ((bitField0_ & 0x00000080) != 0) {
                 output.writeEnum(FieldNames.type, type, QuestNavCommandType.converter());
             }
             if ((bitField0_ & 0x00000001) != 0) {
@@ -2039,6 +2194,9 @@ public final class Commands {
             if ((bitField0_ & 0x00000010) != 0) {
                 output.writeMessage(FieldNames.calibrationPayload, calibrationPayload);
             }
+            if ((bitField0_ & 0x00000020) != 0) {
+                output.writeMessage(FieldNames.deleteApriltagPayload, deleteApriltagPayload);
+            }
             output.endObject();
         }
 
@@ -2054,7 +2212,7 @@ public final class Commands {
                         if (input.isAtField(FieldNames.commandId)) {
                             if (!input.trySkipNullValue()) {
                                 commandId = input.readUInt32();
-                                bitField0_ |= 0x00000020;
+                                bitField0_ |= 0x00000040;
                             }
                         } else {
                             input.skipUnknownField();
@@ -2067,7 +2225,7 @@ public final class Commands {
                                 final QuestNavCommandType value = input.readEnum(QuestNavCommandType.converter());
                                 if (value != null) {
                                     type = value.getNumber();
-                                    bitField0_ |= 0x00000040;
+                                    bitField0_ |= 0x00000080;
                                 } else {
                                     input.skipUnknownEnumValue();
                                 }
@@ -2136,6 +2294,19 @@ public final class Commands {
                                 clearPayloadOtherCalibrationPayload();
                                 input.readMessage(calibrationPayload);
                                 bitField0_ |= 0x00000010;
+                            }
+                        } else {
+                            input.skipUnknownField();
+                        }
+                        break;
+                    }
+                    case -618644881:
+                    case -340829257: {
+                        if (input.isAtField(FieldNames.deleteApriltagPayload)) {
+                            if (!input.trySkipNullValue()) {
+                                clearPayloadOtherDeleteApriltagPayload();
+                                input.readMessage(deleteApriltagPayload);
+                                bitField0_ |= 0x00000020;
                             }
                         } else {
                             input.skipUnknownField();
@@ -2216,6 +2387,8 @@ public final class Commands {
             static final FieldName apriltagIndexPayload = FieldName.forField("apriltagIndexPayload", "apriltag_index_payload");
 
             static final FieldName calibrationPayload = FieldName.forField("calibrationPayload", "calibration_payload");
+
+            static final FieldName deleteApriltagPayload = FieldName.forField("deleteApriltagPayload", "delete_apriltag_payload");
         }
     }
 
