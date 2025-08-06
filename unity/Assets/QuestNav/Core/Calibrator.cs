@@ -625,28 +625,28 @@ public class Calibrator : MonoBehaviour
     }
 
     /// <summary>
-/// Computes and places a Spatial Anchor at the real‑world position of the
-/// currently‑selected AprilTag, using only the robot’s planar (x‑z) pose
-/// and yaw, plus the theoretical tag pose from the JSON layout.
-/// Pitch / roll are taken from the JSON definition; in the robot pose
-/// they are ignored (assumed to be 0).
-///
-/// Required coordinate conversions are performed with Conversions.Frc* helpers.
-/// </summary>
-/// <param name="frcRobotPose">
-///     The robot’s pose in *field* (FRC) coordinates – only
-///     X, Z and yaw are used.
-/// </param>
-/// <param name="ovrHeadsetPose">
-///     The corresponding Unity‑world pose of the HMD (or any tracked
-///     headset‑fixed object).  This gives us the world‑space origin of the
-///     robot pose.
-/// </param>
-/// <returns>The UUID of the created Spatial Anchor, or Guid.Empty on failure.</returns>
-public async Task<Guid> AnchorTagFromHeadset2DAsync(Pose frcRobotPose)
-{
-    Pose ovrHeadsetPose = cameraRig.centerEyeAnchor.GetPose();
-    // 0. Preconditions -------------------------------------------------------
+    /// Computes and places a Spatial Anchor at the real‑world position of the
+    /// currently‑selected AprilTag, using only the robot’s planar (x‑z) pose
+    /// and yaw, plus the theoretical tag pose from the JSON layout.
+    /// Pitch / roll are taken from the JSON definition; in the robot pose
+    /// they are ignored (assumed to be 0).
+    ///
+    /// Required coordinate conversions are performed with Conversions.Frc* helpers.
+    /// </summary>
+    /// <param name="frcRobotPose">
+    ///     The robot’s pose in *field* (FRC) coordinates – only
+    ///     X, Z and yaw are used.
+    /// </param>
+    /// <param name="ovrHeadsetPose">
+    ///     The corresponding Unity‑world pose of the HMD (or any tracked
+    ///     headset‑fixed object).  This gives us the world‑space origin of the
+    ///     robot pose.
+    /// </param>
+    /// <returns>The UUID of the created Spatial Anchor, or Guid.Empty on failure.</returns>
+    public async Task<Guid> AnchorTagFromHeadset2DAsync(Pose frcRobotPose)
+    {
+        Pose ovrHeadsetPose = cameraRig.centerEyeAnchor.GetPose();
+        // 0. Preconditions -------------------------------------------------------
         if (selectedTag == null)
         {
             Debug.LogWarning(
@@ -654,82 +654,120 @@ public async Task<Guid> AnchorTagFromHeadset2DAsync(Pose frcRobotPose)
             return Guid.Empty;
         }
 
-    // 1. Convert everything that lives in FRC space to Unity field space -----
-    //    (i.e. the field centred at (0,0,0) but expressed with Unity's axes)
-    Pose  tagFieldPoseUnity   = Conversions.FrcPoseToUnity(
-                                   selectedTag.pose.translation.toVector3(),
-                                   selectedTag.pose.rotation.toQuaternion());
+        // 1. Convert everything that lives in FRC space to Unity field space -----
+        //    (i.e. the field centred at (0,0,0) but expressed with Unity's axes)
+        Pose tagFieldPoseUnity = Conversions.FrcPoseToUnity(
+                                       selectedTag.pose.translation.toVector3(),
+                                       selectedTag.pose.rotation.toQuaternion());
 
-    Vector3 robotFieldPosUnity = Conversions.FrcTranslationToUnity(
-                                     frcRobotPose.position);
+        Vector3 robotFieldPosUnity = Conversions.FrcTranslationToUnity(
+                                         frcRobotPose.position);
 
-    Quaternion robotFieldRotUnity = Conversions.FrcQuaternionToUnity(
-                                        frcRobotPose.rotation);
+        Quaternion robotFieldRotUnity = Conversions.FrcQuaternionToUnity(
+                                            frcRobotPose.rotation);
 
-    // 2. How much has the robot *actually* rotated w.r.t. the Unity world?
-    float   worldYaw  = ovrHeadsetPose.rotation.eulerAngles.y;
-    float   fieldYaw  = robotFieldRotUnity.eulerAngles.y;
-    float   deltaYaw  = Mathf.DeltaAngle(fieldYaw, worldYaw);   // shortest‑arc
-    Quaternion yawDelta = Quaternion.Euler(0f, deltaYaw, 0f);
+        // 2. How much has the robot *actually* rotated w.r.t. the Unity world?
+        float worldYaw = ovrHeadsetPose.rotation.eulerAngles.y;
+        float fieldYaw = robotFieldRotUnity.eulerAngles.y;
+        float deltaYaw = Mathf.DeltaAngle(fieldYaw, worldYaw);   // shortest‑arc
+        Quaternion yawDelta = Quaternion.Euler(0f, deltaYaw, 0f);
 
-    // 3. Planar offset robot → tag, then rotate it into world space ----------
-    Vector3 planarOffsetField = new Vector3(
-        tagFieldPoseUnity.position.x - robotFieldPosUnity.x,
-        0f,
-        tagFieldPoseUnity.position.z - robotFieldPosUnity.z);
+        // 3. Planar offset robot → tag, then rotate it into world space ----------
+        Vector3 planarOffsetField = new Vector3(
+            tagFieldPoseUnity.position.x - robotFieldPosUnity.x,
+            0f,
+            tagFieldPoseUnity.position.z - robotFieldPosUnity.z);
 
-    Vector3 planarOffsetWorld = yawDelta * planarOffsetField;
+        Vector3 planarOffsetWorld = yawDelta * planarOffsetField;
 
-    // 4. Build the final world‑space pose for the anchor ---------------------
-    Vector3 anchorPosWorld = ovrHeadsetPose.position + planarOffsetWorld;
+        // 4. Build the final world‑space pose for the anchor ---------------------
+        Vector3 anchorPosWorld = ovrHeadsetPose.position + planarOffsetWorld;
 
-    //   – height: keep the theoretical tag height relative to field
-    float  yOffset = tagFieldPoseUnity.position.y - robotFieldPosUnity.y;
-    anchorPosWorld.y = ovrHeadsetPose.position.y + yOffset;
+        //   – height: keep the theoretical tag height relative to field
+        float yOffset = tagFieldPoseUnity.position.y - robotFieldPosUnity.y;
+        anchorPosWorld.y = ovrHeadsetPose.position.y + yOffset;
 
-    //   – rotation: keep pitch / roll from JSON, correct yaw with deltaYaw
-    Quaternion anchorRotWorld = yawDelta *
-                                Conversions.FrcQuaternionToUnity(
-                                    selectedTag.pose.rotation.toQuaternion());
+        //   – rotation: keep pitch / roll from JSON, correct yaw with deltaYaw
+        Quaternion anchorRotWorld = yawDelta *
+                                    Conversions.FrcQuaternionToUnity(
+                                        selectedTag.pose.rotation.toQuaternion());
 
-    Pose anchorWorldPose = new Pose(anchorPosWorld, anchorRotWorld);
+        Pose anchorWorldPose = new Pose(anchorPosWorld, anchorRotWorld);
 
-    // 5. Actually create / persist the Spatial Anchor ------------------------
-    Guid uuid;
-    try
-    {
-        uuid = await CreateAnchorAt(anchorWorldPose);   // existing helper
-    }
-    catch (Exception ex)
-    {
-        Debug.LogError(
-            $"[AnchorTagFromHeadset2DAsync] Failed to create anchor – {ex}");
-        return Guid.Empty;
-    }
-
-    // 6. Keep runtime & persistent data in sync ------------------------------
-    poseMap[selectedTag.ID] = anchorWorldPose;     // so Update() can use it
-
-    if (activeField != null)
-    {
-        // replace any previous entry for this tag
-        activeField.tags.RemoveAll(t => t.ID == selectedTag.ID);
-
-        activeField.tags.Add(new TagData
+        // 5. Actually create / persist the Spatial Anchor ------------------------
+        Guid uuid;
+        try
         {
-            ID         = selectedTag.ID,
-            anchorUuid = uuid.ToString()
-        });
+            uuid = await CreateAnchorAt(anchorWorldPose);   // existing helper
+        }
+        catch (Exception ex)
+        {
+            Debug.LogError(
+                $"[AnchorTagFromHeadset2DAsync] Failed to create anchor – {ex}");
+            return Guid.Empty;
+        }
 
-        saveActiveField();                         // serialise to disk
+        // 6. Keep runtime & persistent data in sync ------------------------------
+        poseMap[selectedTag.ID] = anchorWorldPose;     // so Update() can use it
+
+        if (activeField != null)
+        {
+            // replace any previous entry for this tag
+            activeField.tags.RemoveAll(t => t.ID == selectedTag.ID);
+
+            activeField.tags.Add(new TagData
+            {
+                ID = selectedTag.ID,
+                anchorUuid = uuid.ToString()
+            });
+
+            saveActiveField();                         // serialise to disk
+        }
+
+        Debug.Log(
+            $"[AnchorTagFromHeadset2DAsync] Anchored tag {selectedTag.ID} at " +
+            $"{anchorWorldPose.position} (uuid {uuid}).");
+
+        return uuid;
     }
 
-    Debug.Log(
-        $"[AnchorTagFromHeadset2DAsync] Anchored tag {selectedTag.ID} at " +
-        $"{anchorWorldPose.position} (uuid {uuid}).");
+    public async void DeleteTag(int tagId)
+    {
+        // 1. Pre-condition check: Ensure there is an active field to modify.
+        if (activeField == null)
+        {
+            Debug.LogWarning("Cannot delete tag: No active field selected.");
+            return;
+        }
 
-    return uuid;
-}
+        // 2. Find the tag's data in the active field's list of saved tags.
+        TagData tagToDelete = activeField.tags.Find(t => t.ID == tagId);
+        if (tagToDelete == null)
+        {
+            Debug.LogWarning($"Tag with ID {tagId} is not saved in the current field '{activeField.fieldName}'. Nothing to delete.");
+            return;
+        }
+
+        activeField.tags.Remove(tagToDelete);
+
+        if (poseMap.ContainsKey(tagId))
+        {
+            poseMap.Remove(tagId);
+        }
+
+        // Destroy the visual representation in the scene.
+        Transform anchorVisual = anchorsLocation.transform.Find(tagId.ToString());
+        if (anchorVisual != null)
+        {
+            Destroy(anchorVisual.gameObject);
+        }
+
+        // 5. Persist the changes and update the UI.
+        saveActiveField();
+        showExistingTags(); // This will update the button color to white.
+
+        Debug.Log($"Tag {tagId} and its associated data have been deleted from field '{activeField.fieldName}'.");
+    }
 
 
 }

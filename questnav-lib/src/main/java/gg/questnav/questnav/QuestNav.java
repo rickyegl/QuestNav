@@ -112,6 +112,18 @@ public class QuestNav {
     request.set(requestToSend);
   }
 
+  public void deleteActiveTag(int tagId) {
+    cachedIntPayload.clear().setValue(tagId); // Clear instead of creating new
+    cachedCommandRequest.clear();
+    var requestToSend =
+        cachedCommandRequest
+            .setType(Commands.QuestNavCommandType.DELETE_TAG)
+            .setCommandId(++lastSentRequestId)
+            .setDeleteApriltagPayload(cachedIntPayload);
+
+    request.set(requestToSend);
+  }
+
   public void setActiveTag(int tagId) {
     cachedIntPayload.clear().setValue(tagId); // Clear instead of creating new
     cachedCommandRequest.clear();

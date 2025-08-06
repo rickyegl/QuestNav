@@ -25,6 +25,7 @@ namespace QuestNav.Commands
         private PoseResetCommand poseResetCommand;
         private SetActiveTagCommand setActiveTagCommand;
         private CalibrateTagCommand calibrateTagCommand;
+        private DeleteTagCommand deleteTagCommand;
 
         // Processed command variable
         private uint lastCommandIdProcessed;
@@ -49,6 +50,7 @@ namespace QuestNav.Commands
             );
             setActiveTagCommand = new SetActiveTagCommand(networkTableConnection, calibrator);
             calibrateTagCommand = new CalibrateTagCommand(networkTableConnection, calibrator);
+            deleteTagCommand = new DeleteTagCommand(networkTableConnection, calibrator);
         }
 
         public void ProcessCommands()
@@ -71,6 +73,10 @@ namespace QuestNav.Commands
                     case QuestNavCommandType.CalibrateTag:
                         QueuedLogger.Log("Executing Calibrate Tag Command");
                         calibrateTagCommand.Execute(receivedCommand);
+                        break;
+                    case QuestNavCommandType.DeleteTag:
+                        QueuedLogger.Log("Executing Delete Tag Command");
+                        deleteTagCommand.Execute(receivedCommand);
                         break;
                     default:
                         QueuedLogger.Log(

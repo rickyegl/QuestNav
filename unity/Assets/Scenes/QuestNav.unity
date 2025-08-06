@@ -3803,6 +3803,7 @@ MonoBehaviour:
   debugAprilTag: {fileID: 1666643978}
   fieldObject: {fileID: 7915589834410190965}
   anchorsLocation: {fileID: 464122414}
+  cameraRig: {fileID: 1567031737}
   TrackedTag: 18
 --- !u!114 &1225235752362889346
 MonoBehaviour:
