@@ -81,8 +81,8 @@ public class QuestNav {
   private final Commands.ProtobufQuestNavPoseResetPayload cachedPoseResetPayload =
       Commands.ProtobufQuestNavPoseResetPayload.newInstance();
 
-  private final Commands.ProtobufQuestNavPoseResetPayload cachedPoseCalibrationPayload =
-      Commands.ProtobufQuestNavPoseResetPayload.newInstance();
+  private final Commands.CalibrationPayload cachedPoseCalibrationPayload =
+      Commands.CalibrationPayload.newInstance();
 
   /** Cached proto pose (for reset requests) to lessen GC pressure */
   private final Geometry2D.ProtobufPose2d cachedProtoPose = Geometry2D.ProtobufPose2d.newInstance();
@@ -106,9 +106,8 @@ public class QuestNav {
         cachedCommandRequest
             .setType(Commands.QuestNavCommandType.CALIBRATE_TAG)
             .setCommandId(++lastSentRequestId)
-            .setApriltagIndexPayload(cachedIntPayload)
-            .setPoseResetPayload(
-                cachedPoseCalibrationPayload.clear().setTargetPose(cachedProtoPose));
+            .setCalibrationPayload(
+                cachedPoseCalibrationPayload.clear().setHeadsetPose(cachedProtoPose));
 
     request.set(requestToSend);
   }

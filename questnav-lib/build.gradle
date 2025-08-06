@@ -18,7 +18,7 @@ ext {
     // Vendor dependency configuration
     vendorUuid = 'a706fe68-86e5-4aed-92c5-ce05aca007f0'
     mavenGroupId = 'gg.questnav'
-    artifactId = 'questnavlib-java'
+    artifactId = 'questnavx'
 
     // Repository configuration
     mavenRepoUrl = project.findProperty('mavenRepoUrl') ?: 'https://maven.questnav.gg/'
@@ -122,7 +122,7 @@ publishing {
     publications {
         questnavlib(MavenPublication) {
             groupId = mavenGroupId
-            artifactId = 'questnavlib-java'
+            artifactId = 'questnavx'
             version = questnavVersion
 
             from components.java

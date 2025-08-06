@@ -40,14 +40,15 @@ namespace QuestNav.Commands.Commands
             double xWorld = receivedCommand.CalibrationPayload.HeadsetPose.Translation.X;
             double yWorld = receivedCommand.CalibrationPayload.HeadsetPose.Translation.Y;
             double yawDeg = receivedCommand.CalibrationPayload.HeadsetPose.Rotation.Value;
-            
-            Pose pose = Conversions.FrcPoseToUnity(new Vector3((float)xWorld, (float)yWorld, 0f), Quaternion.Euler(0f, 0f, (float)yawDeg));
 
-            Vector3 posXZ = pose.position;
-            Quaternion yawOnly = pose.rotation;
-            Pose headsetPose2D = new Pose(posXZ, yawOnly);
+            //Pose pose = Conversions.FrcPoseToUnity(new Vector3((float)xWorld, (float)yWorld, 0f), Quaternion.Euler(0f, 0f, (float)yawDeg));
+            Pose pose = new Pose(
+                new Vector3((float)xWorld, (float)yWorld, 0f),
+                Quaternion.Euler(0f, 0f, (float)yawDeg)
+            );
+            QueuedLogger.Log($"Received calibration data: ({xWorld}, {yWorld}, {yawDeg})");
 
-            calibrator.CalibrateTagFromHeadset2DAsync(headsetPose2D);
+            calibrator.CalibrateTagFromHeadset2DAsync(pose);
         }
     }
 }
