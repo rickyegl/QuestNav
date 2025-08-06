@@ -39,7 +39,7 @@ namespace QuestNav.Commands.Commands
             // Read pose data from network tables
             double xWorld = receivedCommand.CalibrationPayload.HeadsetPose.Translation.X;
             double yWorld = receivedCommand.CalibrationPayload.HeadsetPose.Translation.Y;
-            double yawDeg = receivedCommand.CalibrationPayload.HeadsetPose.Rotation.Value;
+            double yawDeg = receivedCommand.CalibrationPayload.HeadsetPose.Rotation.Value * Mathf.Rad2Deg;
 
             //Pose pose = Conversions.FrcPoseToUnity(new Vector3((float)xWorld, (float)yWorld, 0f), Quaternion.Euler(0f, 0f, (float)yawDeg));
             Pose pose = new Pose(
