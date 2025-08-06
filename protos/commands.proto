@@ -15,6 +15,7 @@ enum QuestNavCommandType {
   SET_FIELD_LAYOUT_INDEX = 6;   // Set the field layout index
   CALIBRATE_TAG = 7;   // Set the field layout index
   SET_ACTIVE_TAG = 8;   // Set the field layout index
+  DELETE_TAG = 9;   // Delete a tag anchor
   // Future commands can be added here:
 }
 
@@ -47,6 +48,7 @@ message ProtobufQuestNavCommand {
     IntPayload field_layout_index_payload = 16;
     IntPayload apriltag_index_payload = 17;
     CalibrationPayload calibration_payload = 18; // Payload for calibrating a tag
+    IntPayload delete_apriltag_payload = 19; // Payload for deleting a tag
     // Future payloads can be added here:
     // (Commands with no payload don't need an entry)
   }
