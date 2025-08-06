@@ -626,10 +626,9 @@ public class Calibrator : MonoBehaviour
 
     /// <summary>
 /// Computes and places a Spatial Anchor at the real‑world position of the
-/// currently‑selected AprilTag, using only the robot’s planar (x‑z) pose
-/// and yaw, plus the theoretical tag pose from the JSON layout.
-/// Pitch / roll are taken from the JSON definition; in the robot pose
-/// they are ignored (assumed to be 0).
+/// currently‑selected AprilTag using the robot's FRC coordinates.
+/// Only planar (x‑z) position and yaw are considered; pitch and roll are
+/// ignored.
 ///
 /// Required coordinate conversions are performed with Conversions.Frc* helpers.
 /// </summary>
@@ -656,41 +655,39 @@ public async Task<Guid> AnchorTagFromHeadset2DAsync(Pose frcRobotPose)
 
     // 1. Convert everything that lives in FRC space to Unity field space -----
     //    (i.e. the field centred at (0,0,0) but expressed with Unity's axes)
-    Pose  tagFieldPoseUnity   = Conversions.FrcPoseToUnity(
-                                   selectedTag.pose.translation.toVector3(),
-                                   selectedTag.pose.rotation.toQuaternion());
+    Pose tagFieldPoseUnity = Conversions.FrcPoseToUnity(
+        selectedTag.pose.translation.toVector3(),
+        selectedTag.pose.rotation.toQuaternion()
+    );
 
-    Vector3 robotFieldPosUnity = Conversions.FrcTranslationToUnity(
-                                     frcRobotPose.position);
+    Pose robotFieldPoseUnity = Conversions.FrcPoseToUnity(
+        frcRobotPose.position,
+        frcRobotPose.rotation
+    );
 
-    Quaternion robotFieldRotUnity = Conversions.FrcQuaternionToUnity(
-                                        frcRobotPose.rotation);
+    // 2. Determine how the robot is rotated in the real world ----------------
+    float worldYaw = ovrHeadsetPose.rotation.eulerAngles.y;
+    float robotFieldYaw = robotFieldPoseUnity.rotation.eulerAngles.y;
+    float yawDelta = Mathf.DeltaAngle(robotFieldYaw, worldYaw);
+    Quaternion yawDeltaQuat = Quaternion.Euler(0f, yawDelta, 0f);
 
-    // 2. How much has the robot *actually* rotated w.r.t. the Unity world?
-    float   worldYaw  = ovrHeadsetPose.rotation.eulerAngles.y;
-    float   fieldYaw  = robotFieldRotUnity.eulerAngles.y;
-    float   deltaYaw  = Mathf.DeltaAngle(fieldYaw, worldYaw);   // shortest‑arc
-    Quaternion yawDelta = Quaternion.Euler(0f, deltaYaw, 0f);
-
-    // 3. Planar offset robot → tag, then rotate it into world space ----------
+    // 3. Compute planar offset robot → tag in field space and rotate to world
     Vector3 planarOffsetField = new Vector3(
-        tagFieldPoseUnity.position.x - robotFieldPosUnity.x,
+        tagFieldPoseUnity.position.x - robotFieldPoseUnity.position.x,
         0f,
-        tagFieldPoseUnity.position.z - robotFieldPosUnity.z);
-
-    Vector3 planarOffsetWorld = yawDelta * planarOffsetField;
+        tagFieldPoseUnity.position.z - robotFieldPoseUnity.position.z
+    );
+    Vector3 planarOffsetWorld = yawDeltaQuat * planarOffsetField;
 
     // 4. Build the final world‑space pose for the anchor ---------------------
     Vector3 anchorPosWorld = ovrHeadsetPose.position + planarOffsetWorld;
+    // Only X/Z are meaningful; keep current headset height
+    anchorPosWorld.y = ovrHeadsetPose.position.y;
 
-    //   – height: keep the theoretical tag height relative to field
-    float  yOffset = tagFieldPoseUnity.position.y - robotFieldPosUnity.y;
-    anchorPosWorld.y = ovrHeadsetPose.position.y + yOffset;
-
-    //   – rotation: keep pitch / roll from JSON, correct yaw with deltaYaw
-    Quaternion anchorRotWorld = yawDelta *
-                                Conversions.FrcQuaternionToUnity(
-                                    selectedTag.pose.rotation.toQuaternion());
+    float tagFieldYaw = tagFieldPoseUnity.rotation.eulerAngles.y;
+    float yawOffsetField = Mathf.DeltaAngle(robotFieldYaw, tagFieldYaw);
+    float anchorYawWorld = worldYaw + yawOffsetField;
+    Quaternion anchorRotWorld = Quaternion.Euler(0f, anchorYawWorld, 0f);
 
     Pose anchorWorldPose = new Pose(anchorPosWorld, anchorRotWorld);
 
