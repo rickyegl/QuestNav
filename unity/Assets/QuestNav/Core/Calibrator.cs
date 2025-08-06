@@ -72,6 +72,12 @@ public class Calibrator : MonoBehaviour
     [SerializeField]
     private GameObject anchorsLocation;
 
+    /// <summary>
+    /// Reference to the OVR Camera Rig for tracking
+    /// </summary>
+    [SerializeField]
+    private OVRCameraRig cameraRig;
+
     public int TrackedTag = 18;
 
     void Start()
@@ -619,88 +625,113 @@ public class Calibrator : MonoBehaviour
     }
 
     /// <summary>
-    /// Given a tagId and the current real-world headset pose (2D on floor + yaw),
-    /// compute the real-world pose of the tag using the known field-layout pose,
-    /// create an anchor there, and save it to the active field.
-    /// 
-    /// headsetWorldPose: the headset/world pose when the tag was observed. If you only have 2D+Yaw,
-    /// provide position.y=0 and rotation=(0,yaw,0). We will align the tag's world Y to the tag's field Y height.
-    /// </summary>
-    public async Task<bool> CalibrateTagFromHeadset2DAsync(Pose headsetWorldPose)
-    {
-        if (activeFieldLayoutData == null)
-        {
-            Debug.LogWarning("No activeFieldLayoutData set.");
-            return false;
-        }
-        if (activeField == null)
-        {
-            Debug.LogWarning("No active field selected.");
-            return false;
-        }
+/// Computes and places a Spatial Anchor at the real‑world position of the
+/// currently‑selected AprilTag, using only the robot’s planar (x‑z) pose
+/// and yaw, plus the theoretical tag pose from the JSON layout.
+/// Pitch / roll are taken from the JSON definition; in the robot pose
+/// they are ignored (assumed to be 0).
+///
+/// Required coordinate conversions are performed with Conversions.Frc* helpers.
+/// </summary>
+/// <param name="frcRobotPose">
+///     The robot’s pose in *field* (FRC) coordinates – only
+///     X, Z and yaw are used.
+/// </param>
+/// <param name="ovrHeadsetPose">
+///     The corresponding Unity‑world pose of the HMD (or any tracked
+///     headset‑fixed object).  This gives us the world‑space origin of the
+///     robot pose.
+/// </param>
+/// <returns>The UUID of the created Spatial Anchor, or Guid.Empty on failure.</returns>
+public async Task<Guid> AnchorTagFromHeadset2DAsync(Pose frcRobotPose)
+{
+    Pose ovrHeadsetPose = cameraRig.centerEyeAnchor.GetPose();
+    // 0. Preconditions -------------------------------------------------------
         if (selectedTag == null)
         {
-            Debug.LogWarning("No active tag selected. Please select a tag first.");
-            return false;
+            Debug.LogWarning(
+                "[AnchorTagFromHeadset2DAsync] No tag selected – aborting.");
+            return Guid.Empty;
         }
 
+    // 1. Convert everything that lives in FRC space to Unity field space -----
+    //    (i.e. the field centred at (0,0,0) but expressed with Unity's axes)
+    Pose  tagFieldPoseUnity   = Conversions.FrcPoseToUnity(
+                                   selectedTag.pose.translation.toVector3(),
+                                   selectedTag.pose.rotation.toQuaternion());
 
-        int tagId = selectedTag.ID;
+    Vector3 robotFieldPosUnity = Conversions.FrcTranslationToUnity(
+                                     frcRobotPose.position);
 
-        // Tag pose in field coordinates (Unity)
-        Vector3 tagPosField = Conversions.FrcTranslationToUnity(selectedTag.pose.translation.toVector3());
-        Quaternion tagRotField = Conversions.FrcQuaternionToUnity(selectedTag.pose.rotation.toQuaternion());
-        Pose tagFieldPose = new Pose(tagPosField, tagRotField);
+    Quaternion robotFieldRotUnity = Conversions.FrcQuaternionToUnity(
+                                        frcRobotPose.rotation);
 
-        // Use provided 2D+Yaw headset pose as the measured tag world pose.
-        Vector3 headsetPosWorld = headsetWorldPose.position;
-        Quaternion headsetRotWorld = headsetWorldPose.rotation;
+    // 2. How much has the robot *actually* rotated w.r.t. the Unity world?
+    float   worldYaw  = ovrHeadsetPose.rotation.eulerAngles.y;
+    float   fieldYaw  = robotFieldRotUnity.eulerAngles.y;
+    float   deltaYaw  = Mathf.DeltaAngle(fieldYaw, worldYaw);   // shortest‑arc
+    Quaternion yawDelta = Quaternion.Euler(0f, deltaYaw, 0f);
 
-        Pose measuredTagWorldPose = new Pose(headsetPosWorld, headsetRotWorld);
+    // 3. Planar offset robot → tag, then rotate it into world space ----------
+    Vector3 planarOffsetField = new Vector3(
+        tagFieldPoseUnity.position.x - robotFieldPosUnity.x,
+        0f,
+        tagFieldPoseUnity.position.z - robotFieldPosUnity.z);
 
-        // Align the measured tag world Y to the tag's field Y
-        measuredTagWorldPose.position = new Vector3(
-            measuredTagWorldPose.position.x,
-            tagPosField.y,
-            measuredTagWorldPose.position.z
-        );
+    Vector3 planarOffsetWorld = yawDelta * planarOffsetField;
 
-        // Debug visualization
-        if (debugAprilTag != null)
-        {
-            debugAprilTag.transform.position = measuredTagWorldPose.position;
-            debugAprilTag.transform.rotation = measuredTagWorldPose.rotation;
-            foreach (Transform c in debugAprilTag.transform) c.gameObject.SetActive(false);
-        }
+    // 4. Build the final world‑space pose for the anchor ---------------------
+    Vector3 anchorPosWorld = ovrHeadsetPose.position + planarOffsetWorld;
 
-        // Save pose
-        poseMap[tagId] = measuredTagWorldPose;
+    //   – height: keep the theoretical tag height relative to field
+    float  yOffset = tagFieldPoseUnity.position.y - robotFieldPosUnity.y;
+    anchorPosWorld.y = ovrHeadsetPose.position.y + yOffset;
 
-        try
-        {
-            Guid guid = await CreateAnchorAt(measuredTagWorldPose);
+    //   – rotation: keep pitch / roll from JSON, correct yaw with deltaYaw
+    Quaternion anchorRotWorld = yawDelta *
+                                Conversions.FrcQuaternionToUnity(
+                                    selectedTag.pose.rotation.toQuaternion());
 
-            // Replace existing entry for this tag in the field
-            var existing = activeField.tags.Find(t => t.ID == tagId);
-            if (existing != null) activeField.tags.Remove(existing);
+    Pose anchorWorldPose = new Pose(anchorPosWorld, anchorRotWorld);
 
-            activeField.tags.Add(new TagData
-            {
-                ID = tagId,
-                anchorUuid = guid.ToString(),
-            });
-
-            saveActiveField();
-            TrackedTag = tagId;
-            return true;
-        }
-        catch (Exception e)
-        {
-            Debug.LogError($"Failed to create/save anchor for tag {tagId}: {e}");
-            return false;
-        }
-
+    // 5. Actually create / persist the Spatial Anchor ------------------------
+    Guid uuid;
+    try
+    {
+        uuid = await CreateAnchorAt(anchorWorldPose);   // existing helper
     }
+    catch (Exception ex)
+    {
+        Debug.LogError(
+            $"[AnchorTagFromHeadset2DAsync] Failed to create anchor – {ex}");
+        return Guid.Empty;
+    }
+
+    // 6. Keep runtime & persistent data in sync ------------------------------
+    poseMap[selectedTag.ID] = anchorWorldPose;     // so Update() can use it
+
+    if (activeField != null)
+    {
+        // replace any previous entry for this tag
+        activeField.tags.RemoveAll(t => t.ID == selectedTag.ID);
+
+        activeField.tags.Add(new TagData
+        {
+            ID         = selectedTag.ID,
+            anchorUuid = uuid.ToString()
+        });
+
+        saveActiveField();                         // serialise to disk
+    }
+
+    Debug.Log(
+        $"[AnchorTagFromHeadset2DAsync] Anchored tag {selectedTag.ID} at " +
+        $"{anchorWorldPose.position} (uuid {uuid}).");
+
+    return uuid;
+}
+
+
 }
 
 

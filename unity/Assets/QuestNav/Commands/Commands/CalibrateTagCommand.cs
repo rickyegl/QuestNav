@@ -48,7 +48,7 @@ namespace QuestNav.Commands.Commands
             );
             QueuedLogger.Log($"Received calibration data: ({xWorld}, {yWorld}, {yawDeg})");
 
-            calibrator.CalibrateTagFromHeadset2DAsync(pose);
+            calibrator.AnchorTagFromHeadset2DAsync(pose);
         }
     }
 }
