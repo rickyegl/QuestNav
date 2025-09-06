@@ -140,14 +140,20 @@ public class Calibrator : MonoBehaviour
         Debug.Log("Loaded " + fields.Count + " fields");
     }
 
-    void setActiveField(int index)
+    public void setActiveField(int index)
     {
         // Guard against an invalid index from the dropdown.
-        if (index < 0 || index >= fieldSelector.options.Count)
+        if (index < 0)
         {
             Debug.LogWarning($"setActiveField called with an invalid index: {index}.");
-            activeField = null;
+           activeField = null;
             return;
+        }
+        if (index >= fieldSelector.options.Count) {
+            Debug.Log("Creating new field");
+            activeField = new Field("Field " + index.ToString(), index);
+            saveActiveField();
+            loadFields();
         }
 
         // Find the field by name and assign it directly to activeField.
@@ -164,7 +170,8 @@ public class Calibrator : MonoBehaviour
         }
         else
         {
-            Debug.LogWarning($"Field '{fieldName}' selected but not found in data list.");
+            Debug.LogWarning($"Field '{fieldName}' selected but not found in data list. Creating a new field.");
+            
         }
     }
 

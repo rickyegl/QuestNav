@@ -26,6 +26,7 @@ namespace QuestNav.Commands
         private SetActiveTagCommand setActiveTagCommand;
         private CalibrateTagCommand calibrateTagCommand;
         private DeleteTagCommand deleteTagCommand;
+        private SetFieldCommand setFieldCommand;
 
         // Processed command variable
         private uint lastCommandIdProcessed;
@@ -51,6 +52,7 @@ namespace QuestNav.Commands
             setActiveTagCommand = new SetActiveTagCommand(networkTableConnection, calibrator);
             calibrateTagCommand = new CalibrateTagCommand(networkTableConnection, calibrator);
             deleteTagCommand = new DeleteTagCommand(networkTableConnection, calibrator);
+            setFieldCommand = new SetFieldCommand(networkTableConnection, calibrator);
         }
 
         public void ProcessCommands()
@@ -78,6 +80,11 @@ namespace QuestNav.Commands
                         QueuedLogger.Log("Executing Delete Tag Command");
                         deleteTagCommand.Execute(receivedCommand);
                         break;
+                    case QuestNavCommandType.SetFieldIndex:
+                        QueuedLogger.Log("Executing Set Field Index Command");
+                        setFieldCommand.Execute(receivedCommand);
+                        break;
+
                     default:
                         QueuedLogger.Log(
                             "Execute called with unknown command type: " + receivedCommand.Type,

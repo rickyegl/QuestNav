@@ -18,7 +18,7 @@ namespace QuestNav.Core
             /// <summary>
             /// Tells NT4 to connect to this IP instead of via team number if not empty. DEBUGGING PURPOSES ONLY!
             /// </summary>
-            public const string DEBUG_NT_SERVER_ADDRESS_OVERRIDE = "127.0.0.1";
+            public const string DEBUG_NT_SERVER_ADDRESS_OVERRIDE = "10.66.47.2";
 
             /// <summary>
             /// NetworkTables server port
