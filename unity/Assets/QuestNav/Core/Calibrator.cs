@@ -537,7 +537,7 @@ public class Calibrator : MonoBehaviour
         // corresponds to the tag's local X-axis (or -X), and you're rotating it
         // so that the tag's conceptual "forward" (what JSON considers Z-forward) aligns.
         // Ensure this correctly reflects your tag's physical orientation vs. JSON definition.
-        definiteTransform.rotation = Quaternion.Euler(definiteTransform.rotation.eulerAngles.x, definiteTransform.rotation.eulerAngles.y + 90f, 0f);
+        definiteTransform.rotation = Quaternion.Euler(definiteTransform.rotation.eulerAngles.x, definiteTransform.rotation.eulerAngles.y + 90f, 0f);//+0f
 
         // These are the *actual measured* world coordinates of the tag
         Vector3 tagWorldPosition = definiteTransform.position;

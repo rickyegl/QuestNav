@@ -271,8 +271,10 @@ namespace QuestNav.Core
                 return;
             }
 
+            Vector3 prePosition = fieldTransform.InverseTransformPoint(targetTransform.position);
+
             // Relative Position
-            relativePosition = fieldTransform.InverseTransformPoint(targetTransform.position);
+            relativePosition = new Vector3(-prePosition.z, prePosition.y, prePosition.x);
 
             // Relative Rotation
             // relativeRotation = Inverse(fieldRotation) * targetRotation
