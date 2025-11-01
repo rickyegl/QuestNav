@@ -202,8 +202,9 @@ namespace QuestNav.Core
                 calibrator.TrackedTag,
                 calibrator.activeFieldLayoutIndex,
                 calibrator.activeFieldIndex,
-                calibrator.GetPoseMap()
-
+                calibrator.GetPoseMap(),
+                calibrator.TrackedAnchorsCount,
+                calibrator.UntrackedAnchorsCount
             );
 
             // Flush logs

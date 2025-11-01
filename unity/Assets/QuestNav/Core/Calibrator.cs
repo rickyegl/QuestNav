@@ -80,6 +80,9 @@ public class Calibrator : MonoBehaviour
 
     public int TrackedTag = 18;
 
+    public int TrackedAnchorsCount => poseMap.Count;
+    public int UntrackedAnchorsCount => activeFieldLayoutData != null ? activeFieldLayoutData.tags.Count - poseMap.Count : 0;
+
     void Start()
     {
         layoutSelector.ClearOptions();
@@ -327,22 +330,37 @@ public class Calibrator : MonoBehaviour
         }
         if (poseMap.Count > 0)
         {
-            if (poseMap.ContainsKey(TrackedTag))
+            int closestTagId = FindClosestTag();
+            if (closestTagId != -1)
             {
-                //SetSelectedTag(TrackedTag);
-                Pose originPose = getFieldOrigin(poseMap[TrackedTag], Conversions.FrcPoseToUnity(getTagFromId(TrackedTag).pose.translation.toVector3(), getTagFromId(TrackedTag).pose.rotation.toQuaternion()));
-                setField(poseMap[TrackedTag], originPose);
+                Pose originPose = getFieldOrigin(poseMap[closestTagId], Conversions.FrcPoseToUnity(getTagFromId(closestTagId).pose.translation.toVector3(), getTagFromId(closestTagId).pose.rotation.toQuaternion()));
+                setField(poseMap[closestTagId], originPose);
             }
-            else
-            {
-                int backupTagId = poseMap.Keys.First();
-                //SetSelectedTag(backupTagId);
-                Pose originPose = getFieldOrigin(poseMap[backupTagId], Conversions.FrcPoseToUnity(getTagFromId(backupTagId).pose.translation.toVector3(), getTagFromId(backupTagId).pose.rotation.toQuaternion()));
-                setField(poseMap[backupTagId], originPose);
-            }
-
         }
 
+    }
+
+    private int FindClosestTag()
+    {
+        if (poseMap.Count == 0)
+        {
+            return -1;
+        }
+
+        Vector3 headPosition = cameraRig.centerEyeAnchor.position;
+        float minDistance = float.MaxValue;
+        int closestTagId = -1;
+
+        foreach (var tagPose in poseMap)
+        {
+            float distance = Vector3.Distance(headPosition, tagPose.Value.position);
+            if (distance < minDistance)
+            {
+                minDistance = distance;
+                closestTagId = tagPose.Key;
+            }
+        }
+        return closestTagId;
     }
 
     private List<OVRSpatialAnchor> _anchorInstances = new List<OVRSpatialAnchor>();

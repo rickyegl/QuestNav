@@ -271,6 +271,32 @@ public class QuestNav {
   }
 
   /**
+   * Gets the number of tracked anchors.
+   *
+   * @return The number of tracked anchors
+   */
+  public int getTrackedAnchorsCount() {
+    Data.ProtobufQuestNavDeviceData latestDeviceData = deviceData.get();
+    if (latestDeviceData != null) {
+      return latestDeviceData.getTrackedAnchorsCount();
+    }
+    return -1; // Return -1 to indicate no data available
+  }
+
+  /**
+   * Gets the number of untracked anchors.
+   *
+   * @return The number of untracked anchors
+   */
+  public int getUntrackedAnchorsCount() {
+    Data.ProtobufQuestNavDeviceData latestDeviceData = deviceData.get();
+    if (latestDeviceData != null) {
+      return latestDeviceData.getUntrackedAnchorsCount();
+    }
+    return -1; // Return -1 to indicate no data available
+  }
+
+  /**
    * Determines if the Quest headset is currently connected to the robot. Connection is determined
    * by how stale the last received frame from the Quest is.
    *

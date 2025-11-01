@@ -67,6 +67,7 @@ class QuestNavManagerDashboard:
         self.table = self.inst.getTable(NT_TABLE_NAME)
         self.tags_subtable = self.table.getSubTable("Tags")
         self.command_topic = self.table.getRawTopic("Command").publish("raw")
+        self.robot_pose_sub = self.inst.getRawTopic("AdvantageKit/RealOutputs/Drive/Pose").subscribe("raw")
 
         self.inst.startClient4("dashboard")
         self.inst.setServer(nt_server_ip)
@@ -153,8 +154,43 @@ class QuestNavManagerDashboard:
             messagebox.showwarning("Not Connected", "Cannot set active tag. Not connected to NetworkTables.")
             return
 
-        print(f"Clicked Tag {tag_id}. Setting 'SetActiveTag' on NetworkTables.")
-        self.table.getDoubleTopic("SetActiveTag").publish().set(float(tag_id))
+        print(f"Clicked Tag {tag_id}. Sending 'CALIBRATE_TAG' on NetworkTables.")
+        
+        # Create the main command message
+        command = commands_pb2.ProtobufQuestNavCommand()
+        command.type = commands_pb2.CALIBRATE_TAG
+        command.command_id = int(time.time()) # Use timestamp for a unique ID
+
+        # Create the calibration payload
+        calibration_payload = commands_pb2.CalibrationPayload()
+
+        # Read robot pose from AdvantageKit/RealOutputs/Drive/Pose
+        robot_pose_data = self.robot_pose_sub.get()
+        if robot_pose_data:
+            # Assuming it's a ProtobufPose2d
+            robot_pose = geometry2d_pb2.ProtobufPose2d()
+            robot_pose.ParseFromString(robot_pose_data)
+            calibration_payload.headset_pose.CopyFrom(robot_pose)
+        else:
+            print("Warning: Could not get robot pose from AdvantageKit/RealOutputs/Drive/Pose. Sending default pose.")
+            # If no pose is available, send a default (0,0,0) pose
+            default_pose = geometry2d_pb2.ProtobufPose2d()
+            default_pose.translation.X = 0.0
+            default_pose.translation.Y = 0.0
+            default_pose.rotation.value = 0.0
+            calibration_payload.headset_pose.CopyFrom(default_pose)
+
+        # Assign the payload to the command
+        command.calibration_payload.CopyFrom(calibration_payload)
+
+        # Set the active tag in the payload
+        command.apriltag_index_payload.value = tag_id
+
+        # Serialize the command to a byte string
+        serialized_command = command.SerializeToString()
+
+        # Publish the command
+        self.command_topic.set(serialized_command)
 
     def on_tag_enter(self, event):
         """Changes the cursor to a hand to show the tag is clickable."""

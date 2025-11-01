@@ -36,6 +36,10 @@ namespace QuestNav.Commands.Commands
         {
             QueuedLogger.Log("Received active tag set request, initiating reset...");
 
+            // Get the tag to calibrate from the command
+            int tagId = receivedCommand.ApriltagIndexPayload.Value;
+            calibrator.SetSelectedTag(tagId);
+
             // Read pose data from network tables
             double xWorld = receivedCommand.CalibrationPayload.HeadsetPose.Translation.X;
             double yWorld = receivedCommand.CalibrationPayload.HeadsetPose.Translation.Y;
