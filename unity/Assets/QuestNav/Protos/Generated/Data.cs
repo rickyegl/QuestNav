@@ -27,22 +27,25 @@ namespace QuestNav.Protos.Generated {
             "CgpkYXRhLnByb3RvEhRxdWVzdG5hdi5wcm90b3MuZGF0YRoQZ2VvbWV0cnky",
             "ZC5wcm90byJuChlQcm90b2J1ZlF1ZXN0TmF2RnJhbWVEYXRhEhMKC2ZyYW1l",
             "X2NvdW50GAEgASgFEhEKCXRpbWVzdGFtcBgCIAEoARIpCgZwb3NlMmQYAyAB",
-            "KAsyGS53cGkucHJvdG8uUHJvdG9idWZQb3NlMmQi+AIKGlByb3RvYnVmUXVl",
+            "KAsyGS53cGkucHJvdG8uUHJvdG9idWZQb3NlMmQi/wMKGlByb3RvYnVmUXVl",
             "c3ROYXZEZXZpY2VEYXRhEh0KFXRyYWNraW5nX2xvc3RfY291bnRlchgBIAEo",
             "BRIaChJjdXJyZW50bHlfdHJhY2tpbmcYAiABKAgSFwoPYmF0dGVyeV9wZXJj",
             "ZW50GAMgASgFEhIKCmFjdGl2ZV90YWcYBCABKAUSFQoNYWN0aXZlX2xheW91",
             "dBgFIAEoBRIUCgxhY3RpdmVfZmllbGQYBiABKAUSUwoKc2F2ZWRfdGFncxgH",
             "IAMoCzI/LnF1ZXN0bmF2LnByb3Rvcy5kYXRhLlByb3RvYnVmUXVlc3ROYXZE",
-            "ZXZpY2VEYXRhLlNhdmVkVGFnc0VudHJ5Eh0KFXRyYWNrZWRfYW5jaG9yc19j",
-            "b3VudBgIIAEoBRIfChd1bnRyYWNrZWRfYW5jaG9yc19jb3VudBgJIAEoBRow",
-            "Cg5TYXZlZFRhZ3NFbnRyeRILCgNrZXkYASABKAUSDQoFdmFsdWUYAiABKAU6",
+            "ZXZpY2VEYXRhLlNhdmVkVGFnc0VudHJ5ElMKCnRhZ19zdGF0dXMYCiADKAsy",
+            "Py5xdWVzdG5hdi5wcm90b3MuZGF0YS5Qcm90b2J1ZlF1ZXN0TmF2RGV2aWNl",
+            "RGF0YS5UYWdTdGF0dXNFbnRyeRIdChV0cmFja2VkX2FuY2hvcnNfY291bnQY",
+            "CCABKAUSHwoXdW50cmFja2VkX2FuY2hvcnNfY291bnQYCSABKAUaMAoOU2F2",
+            "ZWRUYWdzRW50cnkSCwoDa2V5GAEgASgFEg0KBXZhbHVlGAIgASgFOgI4ARow",
+            "Cg5UYWdTdGF0dXNFbnRyeRILCgNrZXkYASABKAUSDQoFdmFsdWUYAiABKAU6",
             "AjgBQkMKJWdnLnF1ZXN0bmF2LnF1ZXN0bmF2LnByb3Rvcy5nZW5lcmF0ZWSq",
             "AhlRdWVzdE5hdi5Qcm90b3MuR2VuZXJhdGVkYgZwcm90bzM="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { global::Wpi.Proto.Geometry2DReflection.Descriptor, },
           new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {
             new pbr::GeneratedClrTypeInfo(typeof(global::QuestNav.Protos.Generated.ProtobufQuestNavFrameData), global::QuestNav.Protos.Generated.ProtobufQuestNavFrameData.Parser, new[]{ "FrameCount", "Timestamp", "Pose2D" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::QuestNav.Protos.Generated.ProtobufQuestNavDeviceData), global::QuestNav.Protos.Generated.ProtobufQuestNavDeviceData.Parser, new[]{ "TrackingLostCounter", "CurrentlyTracking", "BatteryPercent", "ActiveTag", "ActiveLayout", "ActiveField", "SavedTags", "TrackedAnchorsCount", "UntrackedAnchorsCount" }, null, null, null, new pbr::GeneratedClrTypeInfo[] { null, })
+            new pbr::GeneratedClrTypeInfo(typeof(global::QuestNav.Protos.Generated.ProtobufQuestNavDeviceData), global::QuestNav.Protos.Generated.ProtobufQuestNavDeviceData.Parser, new[]{ "TrackingLostCounter", "CurrentlyTracking", "BatteryPercent", "ActiveTag", "ActiveLayout", "ActiveField", "SavedTags", "TagStatus", "TrackedAnchorsCount", "UntrackedAnchorsCount" }, null, null, null, new pbr::GeneratedClrTypeInfo[] { null, null, })
           }));
     }
     #endregion
@@ -52,7 +55,6 @@ namespace QuestNav.Protos.Generated {
   /// <summary>
   /// Tracking data that is sent every loop
   /// </summary>
-  [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
   public sealed partial class ProtobufQuestNavFrameData : pb::IMessage<ProtobufQuestNavFrameData>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -278,11 +280,7 @@ namespace QuestNav.Protos.Generated {
     #else
       uint tag;
       while ((tag = input.ReadTag()) != 0) {
-      if ((tag & 7) == 4) {
-        // Abort on any end group tag.
-        return;
-      }
-      switch(tag) {
+        switch(tag) {
           default:
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
             break;
@@ -312,11 +310,7 @@ namespace QuestNav.Protos.Generated {
     void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
       uint tag;
       while ((tag = input.ReadTag()) != 0) {
-      if ((tag & 7) == 4) {
-        // Abort on any end group tag.
-        return;
-      }
-      switch(tag) {
+        switch(tag) {
           default:
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
             break;
@@ -345,7 +339,6 @@ namespace QuestNav.Protos.Generated {
   /// <summary>
   /// Device data that is sent slower
   /// </summary>
-  [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
   public sealed partial class ProtobufQuestNavDeviceData : pb::IMessage<ProtobufQuestNavDeviceData>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -387,6 +380,7 @@ namespace QuestNav.Protos.Generated {
       activeLayout_ = other.activeLayout_;
       activeField_ = other.activeField_;
       savedTags_ = other.savedTags_.Clone();
+      tagStatus_ = other.tagStatus_.Clone();
       trackedAnchorsCount_ = other.trackedAnchorsCount_;
       untrackedAnchorsCount_ = other.untrackedAnchorsCount_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
@@ -502,6 +496,17 @@ namespace QuestNav.Protos.Generated {
       get { return savedTags_; }
     }
 
+    /// <summary>Field number for the "tag_status" field.</summary>
+    public const int TagStatusFieldNumber = 10;
+    private static readonly pbc::MapField<int, int>.Codec _map_tagStatus_codec
+        = new pbc::MapField<int, int>.Codec(pb::FieldCodec.ForInt32(8, 0), pb::FieldCodec.ForInt32(16, 0), 82);
+    private readonly pbc::MapField<int, int> tagStatus_ = new pbc::MapField<int, int>();
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public pbc::MapField<int, int> TagStatus {
+      get { return tagStatus_; }
+    }
+
     /// <summary>Field number for the "tracked_anchors_count" field.</summary>
     public const int TrackedAnchorsCountFieldNumber = 8;
     private int trackedAnchorsCount_;
@@ -548,6 +553,7 @@ namespace QuestNav.Protos.Generated {
       if (ActiveLayout != other.ActiveLayout) return false;
       if (ActiveField != other.ActiveField) return false;
       if (!SavedTags.Equals(other.SavedTags)) return false;
+      if (!TagStatus.Equals(other.TagStatus)) return false;
       if (TrackedAnchorsCount != other.TrackedAnchorsCount) return false;
       if (UntrackedAnchorsCount != other.UntrackedAnchorsCount) return false;
       return Equals(_unknownFields, other._unknownFields);
@@ -564,6 +570,7 @@ namespace QuestNav.Protos.Generated {
       if (ActiveLayout != 0) hash ^= ActiveLayout.GetHashCode();
       if (ActiveField != 0) hash ^= ActiveField.GetHashCode();
       hash ^= SavedTags.GetHashCode();
+      hash ^= TagStatus.GetHashCode();
       if (TrackedAnchorsCount != 0) hash ^= TrackedAnchorsCount.GetHashCode();
       if (UntrackedAnchorsCount != 0) hash ^= UntrackedAnchorsCount.GetHashCode();
       if (_unknownFields != null) {
@@ -617,6 +624,7 @@ namespace QuestNav.Protos.Generated {
         output.WriteRawTag(72);
         output.WriteInt32(UntrackedAnchorsCount);
       }
+      tagStatus_.WriteTo(output, _map_tagStatus_codec);
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
       }
@@ -660,6 +668,7 @@ namespace QuestNav.Protos.Generated {
         output.WriteRawTag(72);
         output.WriteInt32(UntrackedAnchorsCount);
       }
+      tagStatus_.WriteTo(ref output, _map_tagStatus_codec);
       if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
       }
@@ -689,6 +698,7 @@ namespace QuestNav.Protos.Generated {
         size += 1 + pb::CodedOutputStream.ComputeInt32Size(ActiveField);
       }
       size += savedTags_.CalculateSize(_map_savedTags_codec);
+      size += tagStatus_.CalculateSize(_map_tagStatus_codec);
       if (TrackedAnchorsCount != 0) {
         size += 1 + pb::CodedOutputStream.ComputeInt32Size(TrackedAnchorsCount);
       }
@@ -726,6 +736,7 @@ namespace QuestNav.Protos.Generated {
         ActiveField = other.ActiveField;
       }
       savedTags_.MergeFrom(other.savedTags_);
+      tagStatus_.MergeFrom(other.tagStatus_);
       if (other.TrackedAnchorsCount != 0) {
         TrackedAnchorsCount = other.TrackedAnchorsCount;
       }
@@ -743,11 +754,7 @@ namespace QuestNav.Protos.Generated {
     #else
       uint tag;
       while ((tag = input.ReadTag()) != 0) {
-      if ((tag & 7) == 4) {
-        // Abort on any end group tag.
-        return;
-      }
-      switch(tag) {
+        switch(tag) {
           default:
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
             break;
@@ -787,6 +794,10 @@ namespace QuestNav.Protos.Generated {
             UntrackedAnchorsCount = input.ReadInt32();
             break;
           }
+          case 82: {
+            tagStatus_.AddEntriesFrom(input, _map_tagStatus_codec);
+            break;
+          }
         }
       }
     #endif
@@ -798,11 +809,7 @@ namespace QuestNav.Protos.Generated {
     void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
       uint tag;
       while ((tag = input.ReadTag()) != 0) {
-      if ((tag & 7) == 4) {
-        // Abort on any end group tag.
-        return;
-      }
-      switch(tag) {
+        switch(tag) {
           default:
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
             break;
@@ -840,6 +847,10 @@ namespace QuestNav.Protos.Generated {
           }
           case 72: {
             UntrackedAnchorsCount = input.ReadInt32();
+            break;
+          }
+          case 82: {
+            tagStatus_.AddEntriesFrom(ref input, _map_tagStatus_codec);
             break;
           }
         }

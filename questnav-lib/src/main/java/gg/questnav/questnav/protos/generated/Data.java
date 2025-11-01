@@ -17,51 +17,57 @@ import us.hebi.quickbuf.RepeatedByte;
 import us.hebi.quickbuf.RepeatedMessage;
 
 public final class Data {
-    private static final RepeatedByte descriptorData = ProtoUtil.decodeBase64(2155,
+    private static final RepeatedByte descriptorData = ProtoUtil.decodeBase64(2368,
         "CgpkYXRhLnByb3RvEhRxdWVzdG5hdi5wcm90b3MuZGF0YRoQZ2VvbWV0cnkyZC5wcm90byKNAQoZUHJv" + 
         "dG9idWZRdWVzdE5hdkZyYW1lRGF0YRIfCgtmcmFtZV9jb3VudBgBIAEoBVIKZnJhbWVDb3VudBIcCgl0" + 
         "aW1lc3RhbXAYAiABKAFSCXRpbWVzdGFtcBIxCgZwb3NlMmQYAyABKAsyGS53cGkucHJvdG8uUHJvdG9i" + 
-        "dWZQb3NlMmRSBnBvc2UyZCKZBAoaUHJvdG9idWZRdWVzdE5hdkRldmljZURhdGESMgoVdHJhY2tpbmdf" + 
+        "dWZQb3NlMmRSBnBvc2UyZCK3BQoaUHJvdG9idWZRdWVzdE5hdkRldmljZURhdGESMgoVdHJhY2tpbmdf" + 
         "bG9zdF9jb3VudGVyGAEgASgFUhN0cmFja2luZ0xvc3RDb3VudGVyEi0KEmN1cnJlbnRseV90cmFja2lu" + 
         "ZxgCIAEoCFIRY3VycmVudGx5VHJhY2tpbmcSJwoPYmF0dGVyeV9wZXJjZW50GAMgASgFUg5iYXR0ZXJ5" + 
         "UGVyY2VudBIdCgphY3RpdmVfdGFnGAQgASgFUglhY3RpdmVUYWcSIwoNYWN0aXZlX2xheW91dBgFIAEo" + 
         "BVIMYWN0aXZlTGF5b3V0EiEKDGFjdGl2ZV9maWVsZBgGIAEoBVILYWN0aXZlRmllbGQSXgoKc2F2ZWRf" + 
         "dGFncxgHIAMoCzI/LnF1ZXN0bmF2LnByb3Rvcy5kYXRhLlByb3RvYnVmUXVlc3ROYXZEZXZpY2VEYXRh" + 
-        "LlNhdmVkVGFnc0VudHJ5UglzYXZlZFRhZ3MSMgoVdHJhY2tlZF9hbmNob3JzX2NvdW50GAggASgFUhN0" + 
-        "cmFja2VkQW5jaG9yc0NvdW50EjYKF3VudHJhY2tlZF9hbmNob3JzX2NvdW50GAkgASgFUhV1bnRyYWNr" + 
-        "ZWRBbmNob3JzQ291bnQaPAoOU2F2ZWRUYWdzRW50cnkSEAoDa2V5GAEgASgFUgNrZXkSFAoFdmFsdWUY" + 
-        "AiABKAVSBXZhbHVlOgI4AUJDCiVnZy5xdWVzdG5hdi5xdWVzdG5hdi5wcm90b3MuZ2VuZXJhdGVkqgIZ" + 
-        "UXVlc3ROYXYuUHJvdG9zLkdlbmVyYXRlZEq7CgoGEgQAAy8BCggKAQwSAwADFQoICgECEgMCAB0KCAoB" + 
-        "CBIDAwA2CgkKAgglEgMDADYKCAoBCBIDBAA+CgkKAggBEgMEAD4KJQoCAwASAwcAGhoaIEltcG9ydCBn" + 
-        "ZW9tZXRyeSBtZXNzYWdlcwoKMwoCBAASBAoAEwEaJyBUcmFja2luZyBkYXRhIHRoYXQgaXMgc2VudCBl" + 
-        "dmVyeSBsb29wCgoKCgMEAAESAwoIIQo2CgQEAAIAEgMMAhgaKSBOdW1iZXIgb2YgZnJhbWVzIHByb2Nl" + 
-        "c3NlZCBieSB0aGUgUXVlc3QKCgwKBQQAAgAFEgMMAgcKDAoFBAACAAESAwwIEwoMCgUEAAIAAxIDDBYX" + 
-        "Cj8KBAQAAgESAw8CFxoyIFRpbWUgKGluIHNlY29uZHMpIHNpbmNlIHRoZSBRdWVzdE5hdiBhcHAgc3Rh" + 
-        "cnRlZAoKDAoFBAACAQUSAw8CCAoMCgUEAAIBARIDDwkSCgwKBQQAAgEDEgMPFRYKOgoEBAACAhIDEgIm",
-        "Gi0gVGhlIDJkIGZpZWxkLXJlbGF0aXZlIHBvc2l0aW9uIG9mIHRoZSBxdWVzdAoKDAoFBAACAgYSAxIC" + 
-        "GgoMCgUEAAICARIDEhshCgwKBQQAAgIDEgMSJCUKLQoCBAESBBYALwEaISBEZXZpY2UgZGF0YSB0aGF0" + 
-        "IGlzIHNlbnQgc2xvd2VyCgoKCgMEAQESAxYIIgpgCgQEAQIAEgMYAiIaUyBOdW1iZXIgb2YgdGltZXMg" + 
-        "dGhlIFF1ZXN0IGhhcyBsb3N0IHRyYWNraW5nIGFmdGVyIGhhdmluZyBpdCBzaW5jZSB0aGUgYXBwIHN0" + 
-        "YXJ0ZWQKCgwKBQQBAgAFEgMYAgcKDAoFBAECAAESAxgIHQoMCgUEAQIAAxIDGCAhCjIKBAQBAgESAxsC" + 
-        "HholIElmIHRoZSBRdWVzdCBpcyBjdXJyZW50bHkgdHJhY2tpbmc/CgoMCgUEAQIBBRIDGwIGCgwKBQQB" + 
-        "AgEBEgMbBxkKDAoFBAECAQMSAxscHQoyCgQEAQICEgMeAhwaJSBUaGUgYmF0dGVyeSBwZXJjZW50YWdl" + 
-        "IG9mIHRoZSBRdWVzdAoKDAoFBAECAgUSAx4CBwoMCgUEAQICARIDHggXCgwKBQQBAgIDEgMeGhsKKgoE" + 
-        "BAECAxIDIQIXGh0gVGhlIGluZGV4IG9mIHRoZSBhY3RpdmUgdGFnCgoMCgUEAQIDBRIDIQIHCgwKBQQB" + 
-        "AgMBEgMhCBIKDAoFBAECAwMSAyEVFgoxCgQEAQIEEgMkAhoaJCBUaGUgaW5kZXggb2YgdGhlIGFjdGl2" + 
-        "ZSB0YWcgbGF5b3V0CgoMCgUEAQIEBRIDJAIHCgwKBQQBAgQBEgMkCBUKDAoFBAECBAMSAyQYGQo0CgQE" + 
-        "AQIFEgMnAhkaJyBUaGUgaW5kZXggb2YgdGhlIGFjdGl2ZSBmaWVsZCBwcm9maWxlCgoMCgUEAQIFBRID" + 
-        "JwIHCgwKBQQBAgUBEgMnCBQKDAoFBAECBQMSAycXGAoqCgQEAQIGEgMqAiMaHSBUaGUgYXJyYXkgb2Yg" + 
-        "YWxsIHNhdmVkIHRhZ3MKCgwKBQQBAgYGEgMqAhMKDAoFBAECBgESAyoUHgoMCgUEAQIGAxIDKiEiCgsK" + 
-        "BAQBAgcSAysCIgoMCgUEAQIHBRIDKwIHCgwKBQQBAgcBEgMrCB0KDAoFBAECBwMSAysgIQoLCgQEAQII" + 
-        "EgMsAiQKDAoFBAECCAUSAywCBwoMCgUEAQIIARIDLAgfCgwKBQQBAggDEgMsIiNiBnByb3RvMw==");
+        "LlNhdmVkVGFnc0VudHJ5UglzYXZlZFRhZ3MSXgoKdGFnX3N0YXR1cxgKIAMoCzI/LnF1ZXN0bmF2LnBy" + 
+        "b3Rvcy5kYXRhLlByb3RvYnVmUXVlc3ROYXZEZXZpY2VEYXRhLlRhZ1N0YXR1c0VudHJ5Ugl0YWdTdGF0" + 
+        "dXMSMgoVdHJhY2tlZF9hbmNob3JzX2NvdW50GAggASgFUhN0cmFja2VkQW5jaG9yc0NvdW50EjYKF3Vu" + 
+        "dHJhY2tlZF9hbmNob3JzX2NvdW50GAkgASgFUhV1bnRyYWNrZWRBbmNob3JzQ291bnQaPAoOU2F2ZWRU" + 
+        "YWdzRW50cnkSEAoDa2V5GAEgASgFUgNrZXkSFAoFdmFsdWUYAiABKAVSBXZhbHVlOgI4ARo8Cg5UYWdT" + 
+        "dGF0dXNFbnRyeRIQCgNrZXkYASABKAVSA2tleRIUCgV2YWx1ZRgCIAEoBVIFdmFsdWU6AjgBQkMKJWdn" + 
+        "LnF1ZXN0bmF2LnF1ZXN0bmF2LnByb3Rvcy5nZW5lcmF0ZWSqAhlRdWVzdE5hdi5Qcm90b3MuR2VuZXJh" + 
+        "dGVkSvIKCgYSBAADMAEKCAoBDBIDAAMVCggKAQISAwIAHQoICgEIEgMDADYKCQoCCCUSAwMANgoICgEI" + 
+        "EgMEAD4KCQoCCAESAwQAPgolCgIDABIDBwAaGhogSW1wb3J0IGdlb21ldHJ5IG1lc3NhZ2VzCgozCgIE" + 
+        "ABIECgATARonIFRyYWNraW5nIGRhdGEgdGhhdCBpcyBzZW50IGV2ZXJ5IGxvb3AKCgoKAwQAARIDCggh" + 
+        "CjYKBAQAAgASAwwCGBopIE51bWJlciBvZiBmcmFtZXMgcHJvY2Vzc2VkIGJ5IHRoZSBRdWVzdAoKDAoF",
+        "BAACAAUSAwwCBwoMCgUEAAIAARIDDAgTCgwKBQQAAgADEgMMFhcKPwoEBAACARIDDwIXGjIgVGltZSAo" + 
+        "aW4gc2Vjb25kcykgc2luY2UgdGhlIFF1ZXN0TmF2IGFwcCBzdGFydGVkCgoMCgUEAAIBBRIDDwIICgwK" + 
+        "BQQAAgEBEgMPCRIKDAoFBAACAQMSAw8VFgo6CgQEAAICEgMSAiYaLSBUaGUgMmQgZmllbGQtcmVsYXRp" + 
+        "dmUgcG9zaXRpb24gb2YgdGhlIHF1ZXN0CgoMCgUEAAICBhIDEgIaCgwKBQQAAgIBEgMSGyEKDAoFBAAC" + 
+        "AgMSAxIkJQotCgIEARIEFgAwARohIERldmljZSBkYXRhIHRoYXQgaXMgc2VudCBzbG93ZXIKCgoKAwQB" + 
+        "ARIDFggiCmAKBAQBAgASAxgCIhpTIE51bWJlciBvZiB0aW1lcyB0aGUgUXVlc3QgaGFzIGxvc3QgdHJh" + 
+        "Y2tpbmcgYWZ0ZXIgaGF2aW5nIGl0IHNpbmNlIHRoZSBhcHAgc3RhcnRlZAoKDAoFBAECAAUSAxgCBwoM" + 
+        "CgUEAQIAARIDGAgdCgwKBQQBAgADEgMYICEKMgoEBAECARIDGwIeGiUgSWYgdGhlIFF1ZXN0IGlzIGN1" + 
+        "cnJlbnRseSB0cmFja2luZz8KCgwKBQQBAgEFEgMbAgYKDAoFBAECAQESAxsHGQoMCgUEAQIBAxIDGxwd" + 
+        "CjIKBAQBAgISAx4CHBolIFRoZSBiYXR0ZXJ5IHBlcmNlbnRhZ2Ugb2YgdGhlIFF1ZXN0CgoMCgUEAQIC" + 
+        "BRIDHgIHCgwKBQQBAgIBEgMeCBcKDAoFBAECAgMSAx4aGwoqCgQEAQIDEgMhAhcaHSBUaGUgaW5kZXgg" + 
+        "b2YgdGhlIGFjdGl2ZSB0YWcKCgwKBQQBAgMFEgMhAgcKDAoFBAECAwESAyEIEgoMCgUEAQIDAxIDIRUW" + 
+        "CjEKBAQBAgQSAyQCGhokIFRoZSBpbmRleCBvZiB0aGUgYWN0aXZlIHRhZyBsYXlvdXQKCgwKBQQBAgQF" + 
+        "EgMkAgcKDAoFBAECBAESAyQIFQoMCgUEAQIEAxIDJBgZCjQKBAQBAgUSAycCGRonIFRoZSBpbmRleCBv" + 
+        "ZiB0aGUgYWN0aXZlIGZpZWxkIHByb2ZpbGUKCgwKBQQBAgUFEgMnAgcKDAoFBAECBQESAycIFAoMCgUE" + 
+        "AQIFAxIDJxcYCioKBAQBAgYSAyoCIxodIFRoZSBhcnJheSBvZiBhbGwgc2F2ZWQgdGFncwoKDAoFBAEC" + 
+        "BgYSAyoCEwoMCgUEAQIGARIDKhQeCgwKBQQBAgYDEgMqISIKCwoEBAECBxIDKwIkCgwKBQQBAgcGEgMr" + 
+        "AhMKDAoFBAECBwESAysUHgoMCgUEAQIHAxIDKyEjCgsKBAQBAggSAywCIgoMCgUEAQIIBRIDLAIHCgwK" + 
+        "BQQBAggBEgMsCB0KDAoFBAECCAMSAywgIQoLCgQEAQIJEgMtAiQKDAoFBAECCQUSAy0CBwoMCgUEAQIJ" + 
+        "ARIDLQgfCgwKBQQBAgkDEgMtIiNiBnByb3RvMw==");
 
     static final Descriptors.FileDescriptor descriptor = Descriptors.FileDescriptor.internalBuildGeneratedFileFrom("data.proto", "questnav.protos.data", descriptorData, Geometry2D.getDescriptor());
 
     static final Descriptors.Descriptor questnav_protos_data_ProtobufQuestNavFrameData_descriptor = descriptor.internalContainedType(55, 141, "ProtobufQuestNavFrameData", "questnav.protos.data.ProtobufQuestNavFrameData");
 
-    static final Descriptors.Descriptor questnav_protos_data_ProtobufQuestNavDeviceData_descriptor = descriptor.internalContainedType(199, 537, "ProtobufQuestNavDeviceData", "questnav.protos.data.ProtobufQuestNavDeviceData");
+    static final Descriptors.Descriptor questnav_protos_data_ProtobufQuestNavDeviceData_descriptor = descriptor.internalContainedType(199, 695, "ProtobufQuestNavDeviceData", "questnav.protos.data.ProtobufQuestNavDeviceData");
 
-    static final Descriptors.Descriptor questnav_protos_data_ProtobufQuestNavDeviceData_SavedTagsEntry_descriptor = descriptor.internalContainedType(676, 60, "SavedTagsEntry", "questnav.protos.data.ProtobufQuestNavDeviceData.SavedTagsEntry");
+    static final Descriptors.Descriptor questnav_protos_data_ProtobufQuestNavDeviceData_SavedTagsEntry_descriptor = descriptor.internalContainedType(772, 60, "SavedTagsEntry", "questnav.protos.data.ProtobufQuestNavDeviceData.SavedTagsEntry");
+
+    static final Descriptors.Descriptor questnav_protos_data_ProtobufQuestNavDeviceData_TagStatusEntry_descriptor = descriptor.internalContainedType(834, 60, "TagStatusEntry", "questnav.protos.data.ProtobufQuestNavDeviceData.TagStatusEntry");
 
     /**
      * @return this proto file's descriptor.
@@ -661,6 +667,11 @@ public final class Data {
          */
         private final RepeatedMessage<SavedTagsEntry> savedTags = RepeatedMessage.newEmptyInstance(SavedTagsEntry.getFactory());
 
+        /**
+         * <code>repeated .questnav.protos.data.ProtobufQuestNavDeviceData.TagStatusEntry tag_status = 10;</code>
+         */
+        private final RepeatedMessage<TagStatusEntry> tagStatus = RepeatedMessage.newEmptyInstance(TagStatusEntry.getFactory());
+
         private ProtobufQuestNavDeviceData() {
         }
 
@@ -1159,6 +1170,74 @@ public final class Data {
             return this;
         }
 
+        /**
+         * <code>repeated .questnav.protos.data.ProtobufQuestNavDeviceData.TagStatusEntry tag_status = 10;</code>
+         * @return whether the tagStatus field is set
+         */
+        public boolean hasTagStatus() {
+            return (bitField0_ & 0x00000200) != 0;
+        }
+
+        /**
+         * <code>repeated .questnav.protos.data.ProtobufQuestNavDeviceData.TagStatusEntry tag_status = 10;</code>
+         * @return this
+         */
+        public ProtobufQuestNavDeviceData clearTagStatus() {
+            bitField0_ &= ~0x00000200;
+            tagStatus.clear();
+            return this;
+        }
+
+        /**
+         * <code>repeated .questnav.protos.data.ProtobufQuestNavDeviceData.TagStatusEntry tag_status = 10;</code>
+         *
+         * This method returns the internal storage object without modifying any has state.
+         * The returned object should not be modified and be treated as read-only.
+         *
+         * Use {@link #getMutableTagStatus()} if you want to modify it.
+         *
+         * @return internal storage object for reading
+         */
+        public RepeatedMessage<TagStatusEntry> getTagStatus() {
+            return tagStatus;
+        }
+
+        /**
+         * <code>repeated .questnav.protos.data.ProtobufQuestNavDeviceData.TagStatusEntry tag_status = 10;</code>
+         *
+         * This method returns the internal storage object and sets the corresponding
+         * has state. The returned object will become part of this message and its
+         * contents may be modified as long as the has state is not cleared.
+         *
+         * @return internal storage object for modifications
+         */
+        public RepeatedMessage<TagStatusEntry> getMutableTagStatus() {
+            bitField0_ |= 0x00000200;
+            return tagStatus;
+        }
+
+        /**
+         * <code>repeated .questnav.protos.data.ProtobufQuestNavDeviceData.TagStatusEntry tag_status = 10;</code>
+         * @param value the tagStatus to add
+         * @return this
+         */
+        public ProtobufQuestNavDeviceData addTagStatus(final TagStatusEntry value) {
+            bitField0_ |= 0x00000200;
+            tagStatus.add(value);
+            return this;
+        }
+
+        /**
+         * <code>repeated .questnav.protos.data.ProtobufQuestNavDeviceData.TagStatusEntry tag_status = 10;</code>
+         * @param values the tagStatus to add
+         * @return this
+         */
+        public ProtobufQuestNavDeviceData addAllTagStatus(final TagStatusEntry... values) {
+            bitField0_ |= 0x00000200;
+            tagStatus.addAll(values);
+            return this;
+        }
+
         @Override
         public ProtobufQuestNavDeviceData copyFrom(final ProtobufQuestNavDeviceData other) {
             cachedSize = other.cachedSize;
@@ -1173,6 +1252,7 @@ public final class Data {
                 untrackedAnchorsCount = other.untrackedAnchorsCount;
                 currentlyTracking = other.currentlyTracking;
                 savedTags.copyFrom(other.savedTags);
+                tagStatus.copyFrom(other.tagStatus);
             }
             return this;
         }
@@ -1210,6 +1290,9 @@ public final class Data {
             if (other.hasSavedTags()) {
                 getMutableSavedTags().addAll(other.savedTags);
             }
+            if (other.hasTagStatus()) {
+                getMutableTagStatus().addAll(other.tagStatus);
+            }
             return this;
         }
 
@@ -1229,6 +1312,7 @@ public final class Data {
             untrackedAnchorsCount = 0;
             currentlyTracking = false;
             savedTags.clear();
+            tagStatus.clear();
             return this;
         }
 
@@ -1240,6 +1324,7 @@ public final class Data {
             cachedSize = -1;
             bitField0_ = 0;
             savedTags.clearQuick();
+            tagStatus.clearQuick();
             return this;
         }
 
@@ -1261,7 +1346,8 @@ public final class Data {
                 && (!hasTrackedAnchorsCount() || trackedAnchorsCount == other.trackedAnchorsCount)
                 && (!hasUntrackedAnchorsCount() || untrackedAnchorsCount == other.untrackedAnchorsCount)
                 && (!hasCurrentlyTracking() || currentlyTracking == other.currentlyTracking)
-                && (!hasSavedTags() || savedTags.equals(other.savedTags));
+                && (!hasSavedTags() || savedTags.equals(other.savedTags))
+                && (!hasTagStatus() || tagStatus.equals(other.tagStatus));
         }
 
         @Override
@@ -1304,6 +1390,12 @@ public final class Data {
                     output.writeMessageNoTag(savedTags.get(i));
                 }
             }
+            if ((bitField0_ & 0x00000200) != 0) {
+                for (int i = 0; i < tagStatus.length(); i++) {
+                    output.writeRawByte((byte) 82);
+                    output.writeMessageNoTag(tagStatus.get(i));
+                }
+            }
         }
 
         @Override
@@ -1335,6 +1427,9 @@ public final class Data {
             }
             if ((bitField0_ & 0x00000100) != 0) {
                 size += (1 * savedTags.length()) + ProtoSink.computeRepeatedMessageSizeNoTag(savedTags);
+            }
+            if ((bitField0_ & 0x00000200) != 0) {
+                size += (1 * tagStatus.length()) + ProtoSink.computeRepeatedMessageSizeNoTag(tagStatus);
             }
             return size;
         }
@@ -1422,6 +1517,14 @@ public final class Data {
                         // savedTags
                         tag = input.readRepeatedMessage(savedTags, tag);
                         bitField0_ |= 0x00000100;
+                        if (tag != 82) {
+                            break;
+                        }
+                    }
+                    case 82: {
+                        // tagStatus
+                        tag = input.readRepeatedMessage(tagStatus, tag);
+                        bitField0_ |= 0x00000200;
                         if (tag != 0) {
                             break;
                         }
@@ -1469,6 +1572,9 @@ public final class Data {
             }
             if ((bitField0_ & 0x00000100) != 0) {
                 output.writeRepeatedMessage(FieldNames.savedTags, savedTags);
+            }
+            if ((bitField0_ & 0x00000200) != 0) {
+                output.writeRepeatedMessage(FieldNames.tagStatus, tagStatus);
             }
             output.endObject();
         }
@@ -1582,6 +1688,18 @@ public final class Data {
                             if (!input.trySkipNullValue()) {
                                 input.readRepeatedMessage(savedTags);
                                 bitField0_ |= 0x00000100;
+                            }
+                        } else {
+                            input.skipUnknownField();
+                        }
+                        break;
+                    }
+                    case 1747509292:
+                    case 386673719: {
+                        if (input.isAtField(FieldNames.tagStatus)) {
+                            if (!input.trySkipNullValue()) {
+                                input.readRepeatedMessage(tagStatus);
+                                bitField0_ |= 0x00000200;
                             }
                         } else {
                             input.skipUnknownField();
@@ -1969,6 +2087,338 @@ public final class Data {
             }
         }
 
+        /**
+         * Protobuf type {@code TagStatusEntry}
+         */
+        public static final class TagStatusEntry extends ProtoMessage<TagStatusEntry> implements Cloneable {
+            private static final long serialVersionUID = 0L;
+
+            /**
+             * <code>optional int32 key = 1;</code>
+             */
+            private int key;
+
+            /**
+             * <code>optional int32 value = 2;</code>
+             */
+            private int value_;
+
+            private TagStatusEntry() {
+            }
+
+            /**
+             * @return a new empty instance of {@code TagStatusEntry}
+             */
+            public static TagStatusEntry newInstance() {
+                return new TagStatusEntry();
+            }
+
+            /**
+             * <code>optional int32 key = 1;</code>
+             * @return whether the key field is set
+             */
+            public boolean hasKey() {
+                return (bitField0_ & 0x00000001) != 0;
+            }
+
+            /**
+             * <code>optional int32 key = 1;</code>
+             * @return this
+             */
+            public TagStatusEntry clearKey() {
+                bitField0_ &= ~0x00000001;
+                key = 0;
+                return this;
+            }
+
+            /**
+             * <code>optional int32 key = 1;</code>
+             * @return the key
+             */
+            public int getKey() {
+                return key;
+            }
+
+            /**
+             * <code>optional int32 key = 1;</code>
+             * @param value the key to set
+             * @return this
+             */
+            public TagStatusEntry setKey(final int value) {
+                bitField0_ |= 0x00000001;
+                key = value;
+                return this;
+            }
+
+            /**
+             * <code>optional int32 value = 2;</code>
+             * @return whether the value_ field is set
+             */
+            public boolean hasValue() {
+                return (bitField0_ & 0x00000002) != 0;
+            }
+
+            /**
+             * <code>optional int32 value = 2;</code>
+             * @return this
+             */
+            public TagStatusEntry clearValue() {
+                bitField0_ &= ~0x00000002;
+                value_ = 0;
+                return this;
+            }
+
+            /**
+             * <code>optional int32 value = 2;</code>
+             * @return the value_
+             */
+            public int getValue() {
+                return value_;
+            }
+
+            /**
+             * <code>optional int32 value = 2;</code>
+             * @param value the value_ to set
+             * @return this
+             */
+            public TagStatusEntry setValue(final int value) {
+                bitField0_ |= 0x00000002;
+                value_ = value;
+                return this;
+            }
+
+            @Override
+            public TagStatusEntry copyFrom(final TagStatusEntry other) {
+                cachedSize = other.cachedSize;
+                if ((bitField0_ | other.bitField0_) != 0) {
+                    bitField0_ = other.bitField0_;
+                    key = other.key;
+                    value_ = other.value_;
+                }
+                return this;
+            }
+
+            @Override
+            public TagStatusEntry mergeFrom(final TagStatusEntry other) {
+                if (other.isEmpty()) {
+                    return this;
+                }
+                cachedSize = -1;
+                if (other.hasKey()) {
+                    setKey(other.key);
+                }
+                if (other.hasValue()) {
+                    setValue(other.value_);
+                }
+                return this;
+            }
+
+            @Override
+            public TagStatusEntry clear() {
+                if (isEmpty()) {
+                    return this;
+                }
+                cachedSize = -1;
+                bitField0_ = 0;
+                key = 0;
+                value_ = 0;
+                return this;
+            }
+
+            @Override
+            public TagStatusEntry clearQuick() {
+                if (isEmpty()) {
+                    return this;
+                }
+                cachedSize = -1;
+                bitField0_ = 0;
+                return this;
+            }
+
+            @Override
+            public boolean equals(Object o) {
+                if (o == this) {
+                    return true;
+                }
+                if (!(o instanceof TagStatusEntry)) {
+                    return false;
+                }
+                TagStatusEntry other = (TagStatusEntry) o;
+                return bitField0_ == other.bitField0_
+                    && (!hasKey() || key == other.key)
+                    && (!hasValue() || value_ == other.value_);
+            }
+
+            @Override
+            public void writeTo(final ProtoSink output) throws IOException {
+                if ((bitField0_ & 0x00000001) != 0) {
+                    output.writeRawByte((byte) 8);
+                    output.writeInt32NoTag(key);
+                }
+                if ((bitField0_ & 0x00000002) != 0) {
+                    output.writeRawByte((byte) 16);
+                    output.writeInt32NoTag(value_);
+                }
+            }
+
+            @Override
+            protected int computeSerializedSize() {
+                int size = 0;
+                if ((bitField0_ & 0x00000001) != 0) {
+                    size += 1 + ProtoSink.computeInt32SizeNoTag(key);
+                }
+                if ((bitField0_ & 0x00000002) != 0) {
+                    size += 1 + ProtoSink.computeInt32SizeNoTag(value_);
+                }
+                return size;
+            }
+
+            @Override
+            @SuppressWarnings("fallthrough")
+            public TagStatusEntry mergeFrom(final ProtoSource input) throws IOException {
+                // Enabled Fall-Through Optimization (QuickBuffers)
+                int tag = input.readTag();
+                while (true) {
+                    switch (tag) {
+                        case 8: {
+                            // key
+                            key = input.readInt32();
+                            bitField0_ |= 0x00000001;
+                            tag = input.readTag();
+                            if (tag != 16) {
+                                break;
+                            }
+                        }
+                        case 16: {
+                            // value_
+                            value_ = input.readInt32();
+                            bitField0_ |= 0x00000002;
+                            tag = input.readTag();
+                            if (tag != 0) {
+                                break;
+                            }
+                        }
+                        case 0: {
+                            return this;
+                        }
+                        default: {
+                            if (!input.skipField(tag)) {
+                                return this;
+                            }
+                            tag = input.readTag();
+                            break;
+                        }
+                    }
+                }
+            }
+
+            @Override
+            public void writeTo(final JsonSink output) throws IOException {
+                output.beginObject();
+                if ((bitField0_ & 0x00000001) != 0) {
+                    output.writeInt32(FieldNames.key, key);
+                }
+                if ((bitField0_ & 0x00000002) != 0) {
+                    output.writeInt32(FieldNames.value_, value_);
+                }
+                output.endObject();
+            }
+
+            @Override
+            public TagStatusEntry mergeFrom(final JsonSource input) throws IOException {
+                if (!input.beginObject()) {
+                    return this;
+                }
+                while (!input.isAtEnd()) {
+                    switch (input.readFieldHash()) {
+                        case 106079: {
+                            if (input.isAtField(FieldNames.key)) {
+                                if (!input.trySkipNullValue()) {
+                                    key = input.readInt32();
+                                    bitField0_ |= 0x00000001;
+                                }
+                            } else {
+                                input.skipUnknownField();
+                            }
+                            break;
+                        }
+                        case 111972721: {
+                            if (input.isAtField(FieldNames.value_)) {
+                                if (!input.trySkipNullValue()) {
+                                    value_ = input.readInt32();
+                                    bitField0_ |= 0x00000002;
+                                }
+                            } else {
+                                input.skipUnknownField();
+                            }
+                            break;
+                        }
+                        default: {
+                            input.skipUnknownField();
+                            break;
+                        }
+                    }
+                }
+                input.endObject();
+                return this;
+            }
+
+            @Override
+            public TagStatusEntry clone() {
+                return new TagStatusEntry().copyFrom(this);
+            }
+
+            @Override
+            public boolean isEmpty() {
+                return ((bitField0_) == 0);
+            }
+
+            public static TagStatusEntry parseFrom(final byte[] data) throws
+                    InvalidProtocolBufferException {
+                return ProtoMessage.mergeFrom(new TagStatusEntry(), data).checkInitialized();
+            }
+
+            public static TagStatusEntry parseFrom(final ProtoSource input) throws IOException {
+                return ProtoMessage.mergeFrom(new TagStatusEntry(), input).checkInitialized();
+            }
+
+            public static TagStatusEntry parseFrom(final JsonSource input) throws IOException {
+                return ProtoMessage.mergeFrom(new TagStatusEntry(), input).checkInitialized();
+            }
+
+            /**
+             * @return factory for creating TagStatusEntry messages
+             */
+            public static MessageFactory<TagStatusEntry> getFactory() {
+                return TagStatusEntryFactory.INSTANCE;
+            }
+
+            /**
+             * @return this type's descriptor.
+             */
+            public static Descriptors.Descriptor getDescriptor() {
+                return Data.questnav_protos_data_ProtobufQuestNavDeviceData_TagStatusEntry_descriptor;
+            }
+
+            private enum TagStatusEntryFactory implements MessageFactory<TagStatusEntry> {
+                INSTANCE;
+
+                @Override
+                public TagStatusEntry create() {
+                    return TagStatusEntry.newInstance();
+                }
+            }
+
+            /**
+             * Contains name constants used for serializing JSON
+             */
+            static class FieldNames {
+                static final FieldName key = FieldName.forField("key");
+
+                static final FieldName value_ = FieldName.forField("value");
+            }
+        }
+
         private enum ProtobufQuestNavDeviceDataFactory implements MessageFactory<ProtobufQuestNavDeviceData> {
             INSTANCE;
 
@@ -1999,6 +2449,8 @@ public final class Data {
             static final FieldName currentlyTracking = FieldName.forField("currentlyTracking", "currently_tracking");
 
             static final FieldName savedTags = FieldName.forField("savedTags", "saved_tags");
+
+            static final FieldName tagStatus = FieldName.forField("tagStatus", "tag_status");
         }
     }
 }
