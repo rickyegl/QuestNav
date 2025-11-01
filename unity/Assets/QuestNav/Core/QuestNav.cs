@@ -187,6 +187,9 @@ namespace QuestNav.Core
             // Log internal NetworkTable info
             networkTableConnection.LoggerPeriodic();
 
+            // Update network connection
+            networkTableConnection.NetworkPeriodic();
+
             // Update UI periodically
             uiManager.UIPeriodic();
 

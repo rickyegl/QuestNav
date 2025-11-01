@@ -59,6 +59,8 @@ namespace QuestNav.Network
         void SetCommandResponse(ProtobufQuestNavCommandResponse response);
 
         void LoggerPeriodic();
+
+        void NetworkPeriodic();
     }
 }
 
@@ -86,7 +88,23 @@ public class NetworkTableConnection : INetworkTableConnection
     // Ready state variables
     private bool teamNumberSet = false;
     private bool ipAddressSet = false;
+    
+    private int _currentIpIndex = 0;
+    private readonly (string addr, int port)[] _ipAddresses =
+    {
+        (QuestNavConstants.Network.DEBUG_NT_SERVER_ADDRESS_OVERRIDE, QuestNavConstants.Network.NT_SERVER_PORT),
+        ("127.0.0.1", QuestNavConstants.Network.NT_SERVER_PORT)
+    };
     #endregion
+
+    public void NetworkPeriodic()
+    {
+        if (ipAddressSet && !ntInstance.IsConnected())
+        {
+            _currentIpIndex = (_currentIpIndex + 1) % _ipAddresses.Length;
+            ntInstance.SetAddresses(new [] { _ipAddresses[_currentIpIndex] });
+        }
+    }
 
     public NetworkTableConnection()
     {
@@ -148,21 +166,14 @@ public class NetworkTableConnection : INetworkTableConnection
             QueuedLogger.Log($"Setting Team number to {teamNumber}");
             ntInstance.SetTeamNumber(teamNumber);
             teamNumberSet = true;
+            ipAddressSet = false;
         }
         else
         {
             QueuedLogger.Log(
                 "Running with NetworkTables IP Override! This should only be used for debugging!"
             );
-            ntInstance.SetAddresses(
-                new (string addr, int port)[]
-                {
-                    (
-                        QuestNavConstants.Network.DEBUG_NT_SERVER_ADDRESS_OVERRIDE,
-                        QuestNavConstants.Network.NT_SERVER_PORT
-                    ),
-                }
-            );
+            teamNumberSet = false;
             ipAddressSet = true;
         }
     }
