@@ -41,6 +41,8 @@ message ProtobufQuestNavDeviceData {
 
   // The array of all saved tags
   map<int32, int32> saved_tags = 7;
+  int32 tracked_anchors_count = 8;
+  int32 untracked_anchors_count = 9;
   
 
 }
