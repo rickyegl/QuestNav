@@ -27,21 +27,22 @@ namespace QuestNav.Protos.Generated {
             "CgpkYXRhLnByb3RvEhRxdWVzdG5hdi5wcm90b3MuZGF0YRoQZ2VvbWV0cnky",
             "ZC5wcm90byJuChlQcm90b2J1ZlF1ZXN0TmF2RnJhbWVEYXRhEhMKC2ZyYW1l",
             "X2NvdW50GAEgASgFEhEKCXRpbWVzdGFtcBgCIAEoARIpCgZwb3NlMmQYAyAB",
-            "KAsyGS53cGkucHJvdG8uUHJvdG9idWZQb3NlMmQiuAIKGlByb3RvYnVmUXVl",
+            "KAsyGS53cGkucHJvdG8uUHJvdG9idWZQb3NlMmQi+AIKGlByb3RvYnVmUXVl",
             "c3ROYXZEZXZpY2VEYXRhEh0KFXRyYWNraW5nX2xvc3RfY291bnRlchgBIAEo",
             "BRIaChJjdXJyZW50bHlfdHJhY2tpbmcYAiABKAgSFwoPYmF0dGVyeV9wZXJj",
             "ZW50GAMgASgFEhIKCmFjdGl2ZV90YWcYBCABKAUSFQoNYWN0aXZlX2xheW91",
             "dBgFIAEoBRIUCgxhY3RpdmVfZmllbGQYBiABKAUSUwoKc2F2ZWRfdGFncxgH",
             "IAMoCzI/LnF1ZXN0bmF2LnByb3Rvcy5kYXRhLlByb3RvYnVmUXVlc3ROYXZE",
-            "ZXZpY2VEYXRhLlNhdmVkVGFnc0VudHJ5GjAKDlNhdmVkVGFnc0VudHJ5EgsK",
-            "A2tleRgBIAEoBRINCgV2YWx1ZRgCIAEoBToCOAFCQwolZ2cucXVlc3RuYXYu",
-            "cXVlc3RuYXYucHJvdG9zLmdlbmVyYXRlZKoCGVF1ZXN0TmF2LlByb3Rvcy5H",
-            "ZW5lcmF0ZWRiBnByb3RvMw=="));
+            "ZXZpY2VEYXRhLlNhdmVkVGFnc0VudHJ5Eh0KFXRyYWNrZWRfYW5jaG9yc19j",
+            "b3VudBgIIAEoBRIfChd1bnRyYWNrZWRfYW5jaG9yc19jb3VudBgJIAEoBRow",
+            "Cg5TYXZlZFRhZ3NFbnRyeRILCgNrZXkYASABKAUSDQoFdmFsdWUYAiABKAU6",
+            "AjgBQkMKJWdnLnF1ZXN0bmF2LnF1ZXN0bmF2LnByb3Rvcy5nZW5lcmF0ZWSq",
+            "AhlRdWVzdE5hdi5Qcm90b3MuR2VuZXJhdGVkYgZwcm90bzM="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { global::Wpi.Proto.Geometry2DReflection.Descriptor, },
           new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {
             new pbr::GeneratedClrTypeInfo(typeof(global::QuestNav.Protos.Generated.ProtobufQuestNavFrameData), global::QuestNav.Protos.Generated.ProtobufQuestNavFrameData.Parser, new[]{ "FrameCount", "Timestamp", "Pose2D" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::QuestNav.Protos.Generated.ProtobufQuestNavDeviceData), global::QuestNav.Protos.Generated.ProtobufQuestNavDeviceData.Parser, new[]{ "TrackingLostCounter", "CurrentlyTracking", "BatteryPercent", "ActiveTag", "ActiveLayout", "ActiveField", "SavedTags" }, null, null, null, new pbr::GeneratedClrTypeInfo[] { null, })
+            new pbr::GeneratedClrTypeInfo(typeof(global::QuestNav.Protos.Generated.ProtobufQuestNavDeviceData), global::QuestNav.Protos.Generated.ProtobufQuestNavDeviceData.Parser, new[]{ "TrackingLostCounter", "CurrentlyTracking", "BatteryPercent", "ActiveTag", "ActiveLayout", "ActiveField", "SavedTags", "TrackedAnchorsCount", "UntrackedAnchorsCount" }, null, null, null, new pbr::GeneratedClrTypeInfo[] { null, })
           }));
     }
     #endregion
@@ -376,6 +377,8 @@ namespace QuestNav.Protos.Generated {
       activeLayout_ = other.activeLayout_;
       activeField_ = other.activeField_;
       savedTags_ = other.savedTags_.Clone();
+      trackedAnchorsCount_ = other.trackedAnchorsCount_;
+      untrackedAnchorsCount_ = other.untrackedAnchorsCount_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -489,6 +492,30 @@ namespace QuestNav.Protos.Generated {
       get { return savedTags_; }
     }
 
+    /// <summary>Field number for the "tracked_anchors_count" field.</summary>
+    public const int TrackedAnchorsCountFieldNumber = 8;
+    private int trackedAnchorsCount_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public int TrackedAnchorsCount {
+      get { return trackedAnchorsCount_; }
+      set {
+        trackedAnchorsCount_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "untracked_anchors_count" field.</summary>
+    public const int UntrackedAnchorsCountFieldNumber = 9;
+    private int untrackedAnchorsCount_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public int UntrackedAnchorsCount {
+      get { return untrackedAnchorsCount_; }
+      set {
+        untrackedAnchorsCount_ = value;
+      }
+    }
+
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public override bool Equals(object other) {
@@ -511,6 +538,8 @@ namespace QuestNav.Protos.Generated {
       if (ActiveLayout != other.ActiveLayout) return false;
       if (ActiveField != other.ActiveField) return false;
       if (!SavedTags.Equals(other.SavedTags)) return false;
+      if (TrackedAnchorsCount != other.TrackedAnchorsCount) return false;
+      if (UntrackedAnchorsCount != other.UntrackedAnchorsCount) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
@@ -525,6 +554,8 @@ namespace QuestNav.Protos.Generated {
       if (ActiveLayout != 0) hash ^= ActiveLayout.GetHashCode();
       if (ActiveField != 0) hash ^= ActiveField.GetHashCode();
       hash ^= SavedTags.GetHashCode();
+      if (TrackedAnchorsCount != 0) hash ^= TrackedAnchorsCount.GetHashCode();
+      if (UntrackedAnchorsCount != 0) hash ^= UntrackedAnchorsCount.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -568,6 +599,14 @@ namespace QuestNav.Protos.Generated {
         output.WriteInt32(ActiveField);
       }
       savedTags_.WriteTo(output, _map_savedTags_codec);
+      if (TrackedAnchorsCount != 0) {
+        output.WriteRawTag(64);
+        output.WriteInt32(TrackedAnchorsCount);
+      }
+      if (UntrackedAnchorsCount != 0) {
+        output.WriteRawTag(72);
+        output.WriteInt32(UntrackedAnchorsCount);
+      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
       }
@@ -603,6 +642,14 @@ namespace QuestNav.Protos.Generated {
         output.WriteInt32(ActiveField);
       }
       savedTags_.WriteTo(ref output, _map_savedTags_codec);
+      if (TrackedAnchorsCount != 0) {
+        output.WriteRawTag(64);
+        output.WriteInt32(TrackedAnchorsCount);
+      }
+      if (UntrackedAnchorsCount != 0) {
+        output.WriteRawTag(72);
+        output.WriteInt32(UntrackedAnchorsCount);
+      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
       }
@@ -632,6 +679,12 @@ namespace QuestNav.Protos.Generated {
         size += 1 + pb::CodedOutputStream.ComputeInt32Size(ActiveField);
       }
       size += savedTags_.CalculateSize(_map_savedTags_codec);
+      if (TrackedAnchorsCount != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(TrackedAnchorsCount);
+      }
+      if (UntrackedAnchorsCount != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(UntrackedAnchorsCount);
+      }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
       }
@@ -663,6 +716,12 @@ namespace QuestNav.Protos.Generated {
         ActiveField = other.ActiveField;
       }
       savedTags_.MergeFrom(other.savedTags_);
+      if (other.TrackedAnchorsCount != 0) {
+        TrackedAnchorsCount = other.TrackedAnchorsCount;
+      }
+      if (other.UntrackedAnchorsCount != 0) {
+        UntrackedAnchorsCount = other.UntrackedAnchorsCount;
+      }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
 
@@ -706,6 +765,14 @@ namespace QuestNav.Protos.Generated {
             savedTags_.AddEntriesFrom(input, _map_savedTags_codec);
             break;
           }
+          case 64: {
+            TrackedAnchorsCount = input.ReadInt32();
+            break;
+          }
+          case 72: {
+            UntrackedAnchorsCount = input.ReadInt32();
+            break;
+          }
         }
       }
     #endif
@@ -747,6 +814,14 @@ namespace QuestNav.Protos.Generated {
           }
           case 58: {
             savedTags_.AddEntriesFrom(ref input, _map_savedTags_codec);
+            break;
+          }
+          case 64: {
+            TrackedAnchorsCount = input.ReadInt32();
+            break;
+          }
+          case 72: {
+            UntrackedAnchorsCount = input.ReadInt32();
             break;
           }
         }

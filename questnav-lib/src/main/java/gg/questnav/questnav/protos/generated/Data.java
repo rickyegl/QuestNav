@@ -17,48 +17,51 @@ import us.hebi.quickbuf.RepeatedByte;
 import us.hebi.quickbuf.RepeatedMessage;
 
 public final class Data {
-    private static final RepeatedByte descriptorData = ProtoUtil.decodeBase64(1937,
+    private static final RepeatedByte descriptorData = ProtoUtil.decodeBase64(2155,
         "CgpkYXRhLnByb3RvEhRxdWVzdG5hdi5wcm90b3MuZGF0YRoQZ2VvbWV0cnkyZC5wcm90byKNAQoZUHJv" + 
         "dG9idWZRdWVzdE5hdkZyYW1lRGF0YRIfCgtmcmFtZV9jb3VudBgBIAEoBVIKZnJhbWVDb3VudBIcCgl0" + 
         "aW1lc3RhbXAYAiABKAFSCXRpbWVzdGFtcBIxCgZwb3NlMmQYAyABKAsyGS53cGkucHJvdG8uUHJvdG9i" + 
-        "dWZQb3NlMmRSBnBvc2UyZCKtAwoaUHJvdG9idWZRdWVzdE5hdkRldmljZURhdGESMgoVdHJhY2tpbmdf" + 
+        "dWZQb3NlMmRSBnBvc2UyZCKZBAoaUHJvdG9idWZRdWVzdE5hdkRldmljZURhdGESMgoVdHJhY2tpbmdf" + 
         "bG9zdF9jb3VudGVyGAEgASgFUhN0cmFja2luZ0xvc3RDb3VudGVyEi0KEmN1cnJlbnRseV90cmFja2lu" + 
         "ZxgCIAEoCFIRY3VycmVudGx5VHJhY2tpbmcSJwoPYmF0dGVyeV9wZXJjZW50GAMgASgFUg5iYXR0ZXJ5" + 
         "UGVyY2VudBIdCgphY3RpdmVfdGFnGAQgASgFUglhY3RpdmVUYWcSIwoNYWN0aXZlX2xheW91dBgFIAEo" + 
         "BVIMYWN0aXZlTGF5b3V0EiEKDGFjdGl2ZV9maWVsZBgGIAEoBVILYWN0aXZlRmllbGQSXgoKc2F2ZWRf" + 
         "dGFncxgHIAMoCzI/LnF1ZXN0bmF2LnByb3Rvcy5kYXRhLlByb3RvYnVmUXVlc3ROYXZEZXZpY2VEYXRh" + 
-        "LlNhdmVkVGFnc0VudHJ5UglzYXZlZFRhZ3MaPAoOU2F2ZWRUYWdzRW50cnkSEAoDa2V5GAEgASgFUgNr" + 
-        "ZXkSFAoFdmFsdWUYAiABKAVSBXZhbHVlOgI4AUJDCiVnZy5xdWVzdG5hdi5xdWVzdG5hdi5wcm90b3Mu" + 
-        "Z2VuZXJhdGVkqgIZUXVlc3ROYXYuUHJvdG9zLkdlbmVyYXRlZErNCQoGEgQAAy0BCggKAQwSAwADFQoI" + 
-        "CgECEgMCAB0KCAoBCBIDAwA2CgkKAgglEgMDADYKCAoBCBIDBAA+CgkKAggBEgMEAD4KJQoCAwASAwcA" + 
-        "GhoaIEltcG9ydCBnZW9tZXRyeSBtZXNzYWdlcwoKMwoCBAASBAoAEwEaJyBUcmFja2luZyBkYXRhIHRo" + 
-        "YXQgaXMgc2VudCBldmVyeSBsb29wCgoKCgMEAAESAwoIIQo2CgQEAAIAEgMMAhgaKSBOdW1iZXIgb2Yg" + 
-        "ZnJhbWVzIHByb2Nlc3NlZCBieSB0aGUgUXVlc3QKCgwKBQQAAgAFEgMMAgcKDAoFBAACAAESAwwIEwoM" + 
-        "CgUEAAIAAxIDDBYXCj8KBAQAAgESAw8CFxoyIFRpbWUgKGluIHNlY29uZHMpIHNpbmNlIHRoZSBRdWVz" + 
-        "dE5hdiBhcHAgc3RhcnRlZAoKDAoFBAACAQUSAw8CCAoMCgUEAAIBARIDDwkSCgwKBQQAAgEDEgMPFRYK" + 
-        "OgoEBAACAhIDEgImGi0gVGhlIDJkIGZpZWxkLXJlbGF0aXZlIHBvc2l0aW9uIG9mIHRoZSBxdWVzdAoK" + 
-        "DAoFBAACAgYSAxICGgoMCgUEAAICARIDEhshCgwKBQQAAgIDEgMSJCUKLQoCBAESBBYALQEaISBEZXZp",
-        "Y2UgZGF0YSB0aGF0IGlzIHNlbnQgc2xvd2VyCgoKCgMEAQESAxYIIgpgCgQEAQIAEgMYAiIaUyBOdW1i" + 
-        "ZXIgb2YgdGltZXMgdGhlIFF1ZXN0IGhhcyBsb3N0IHRyYWNraW5nIGFmdGVyIGhhdmluZyBpdCBzaW5j" + 
-        "ZSB0aGUgYXBwIHN0YXJ0ZWQKCgwKBQQBAgAFEgMYAgcKDAoFBAECAAESAxgIHQoMCgUEAQIAAxIDGCAh" + 
-        "CjIKBAQBAgESAxsCHholIElmIHRoZSBRdWVzdCBpcyBjdXJyZW50bHkgdHJhY2tpbmc/CgoMCgUEAQIB" + 
-        "BRIDGwIGCgwKBQQBAgEBEgMbBxkKDAoFBAECAQMSAxscHQoyCgQEAQICEgMeAhwaJSBUaGUgYmF0dGVy" + 
-        "eSBwZXJjZW50YWdlIG9mIHRoZSBRdWVzdAoKDAoFBAECAgUSAx4CBwoMCgUEAQICARIDHggXCgwKBQQB" + 
-        "AgIDEgMeGhsKKgoEBAECAxIDIQIXGh0gVGhlIGluZGV4IG9mIHRoZSBhY3RpdmUgdGFnCgoMCgUEAQID" + 
-        "BRIDIQIHCgwKBQQBAgMBEgMhCBIKDAoFBAECAwMSAyEVFgoxCgQEAQIEEgMkAhoaJCBUaGUgaW5kZXgg" + 
-        "b2YgdGhlIGFjdGl2ZSB0YWcgbGF5b3V0CgoMCgUEAQIEBRIDJAIHCgwKBQQBAgQBEgMkCBUKDAoFBAEC" + 
-        "BAMSAyQYGQo0CgQEAQIFEgMnAhkaJyBUaGUgaW5kZXggb2YgdGhlIGFjdGl2ZSBmaWVsZCBwcm9maWxl" + 
-        "CgoMCgUEAQIFBRIDJwIHCgwKBQQBAgUBEgMnCBQKDAoFBAECBQMSAycXGAoqCgQEAQIGEgMqAiMaHSBU" + 
-        "aGUgYXJyYXkgb2YgYWxsIHNhdmVkIHRhZ3MKCgwKBQQBAgYGEgMqAhMKDAoFBAECBgESAyoUHgoMCgUE" + 
-        "AQIGAxIDKiEiYgZwcm90bzM=");
+        "LlNhdmVkVGFnc0VudHJ5UglzYXZlZFRhZ3MSMgoVdHJhY2tlZF9hbmNob3JzX2NvdW50GAggASgFUhN0" + 
+        "cmFja2VkQW5jaG9yc0NvdW50EjYKF3VudHJhY2tlZF9hbmNob3JzX2NvdW50GAkgASgFUhV1bnRyYWNr" + 
+        "ZWRBbmNob3JzQ291bnQaPAoOU2F2ZWRUYWdzRW50cnkSEAoDa2V5GAEgASgFUgNrZXkSFAoFdmFsdWUY" + 
+        "AiABKAVSBXZhbHVlOgI4AUJDCiVnZy5xdWVzdG5hdi5xdWVzdG5hdi5wcm90b3MuZ2VuZXJhdGVkqgIZ" + 
+        "UXVlc3ROYXYuUHJvdG9zLkdlbmVyYXRlZEq7CgoGEgQAAy8BCggKAQwSAwADFQoICgECEgMCAB0KCAoB" + 
+        "CBIDAwA2CgkKAgglEgMDADYKCAoBCBIDBAA+CgkKAggBEgMEAD4KJQoCAwASAwcAGhoaIEltcG9ydCBn" + 
+        "ZW9tZXRyeSBtZXNzYWdlcwoKMwoCBAASBAoAEwEaJyBUcmFja2luZyBkYXRhIHRoYXQgaXMgc2VudCBl" + 
+        "dmVyeSBsb29wCgoKCgMEAAESAwoIIQo2CgQEAAIAEgMMAhgaKSBOdW1iZXIgb2YgZnJhbWVzIHByb2Nl" + 
+        "c3NlZCBieSB0aGUgUXVlc3QKCgwKBQQAAgAFEgMMAgcKDAoFBAACAAESAwwIEwoMCgUEAAIAAxIDDBYX" + 
+        "Cj8KBAQAAgESAw8CFxoyIFRpbWUgKGluIHNlY29uZHMpIHNpbmNlIHRoZSBRdWVzdE5hdiBhcHAgc3Rh" + 
+        "cnRlZAoKDAoFBAACAQUSAw8CCAoMCgUEAAIBARIDDwkSCgwKBQQAAgEDEgMPFRYKOgoEBAACAhIDEgIm",
+        "Gi0gVGhlIDJkIGZpZWxkLXJlbGF0aXZlIHBvc2l0aW9uIG9mIHRoZSBxdWVzdAoKDAoFBAACAgYSAxIC" + 
+        "GgoMCgUEAAICARIDEhshCgwKBQQAAgIDEgMSJCUKLQoCBAESBBYALwEaISBEZXZpY2UgZGF0YSB0aGF0" + 
+        "IGlzIHNlbnQgc2xvd2VyCgoKCgMEAQESAxYIIgpgCgQEAQIAEgMYAiIaUyBOdW1iZXIgb2YgdGltZXMg" + 
+        "dGhlIFF1ZXN0IGhhcyBsb3N0IHRyYWNraW5nIGFmdGVyIGhhdmluZyBpdCBzaW5jZSB0aGUgYXBwIHN0" + 
+        "YXJ0ZWQKCgwKBQQBAgAFEgMYAgcKDAoFBAECAAESAxgIHQoMCgUEAQIAAxIDGCAhCjIKBAQBAgESAxsC" + 
+        "HholIElmIHRoZSBRdWVzdCBpcyBjdXJyZW50bHkgdHJhY2tpbmc/CgoMCgUEAQIBBRIDGwIGCgwKBQQB" + 
+        "AgEBEgMbBxkKDAoFBAECAQMSAxscHQoyCgQEAQICEgMeAhwaJSBUaGUgYmF0dGVyeSBwZXJjZW50YWdl" + 
+        "IG9mIHRoZSBRdWVzdAoKDAoFBAECAgUSAx4CBwoMCgUEAQICARIDHggXCgwKBQQBAgIDEgMeGhsKKgoE" + 
+        "BAECAxIDIQIXGh0gVGhlIGluZGV4IG9mIHRoZSBhY3RpdmUgdGFnCgoMCgUEAQIDBRIDIQIHCgwKBQQB" + 
+        "AgMBEgMhCBIKDAoFBAECAwMSAyEVFgoxCgQEAQIEEgMkAhoaJCBUaGUgaW5kZXggb2YgdGhlIGFjdGl2" + 
+        "ZSB0YWcgbGF5b3V0CgoMCgUEAQIEBRIDJAIHCgwKBQQBAgQBEgMkCBUKDAoFBAECBAMSAyQYGQo0CgQE" + 
+        "AQIFEgMnAhkaJyBUaGUgaW5kZXggb2YgdGhlIGFjdGl2ZSBmaWVsZCBwcm9maWxlCgoMCgUEAQIFBRID" + 
+        "JwIHCgwKBQQBAgUBEgMnCBQKDAoFBAECBQMSAycXGAoqCgQEAQIGEgMqAiMaHSBUaGUgYXJyYXkgb2Yg" + 
+        "YWxsIHNhdmVkIHRhZ3MKCgwKBQQBAgYGEgMqAhMKDAoFBAECBgESAyoUHgoMCgUEAQIGAxIDKiEiCgsK" + 
+        "BAQBAgcSAysCIgoMCgUEAQIHBRIDKwIHCgwKBQQBAgcBEgMrCB0KDAoFBAECBwMSAysgIQoLCgQEAQII" + 
+        "EgMsAiQKDAoFBAECCAUSAywCBwoMCgUEAQIIARIDLAgfCgwKBQQBAggDEgMsIiNiBnByb3RvMw==");
 
     static final Descriptors.FileDescriptor descriptor = Descriptors.FileDescriptor.internalBuildGeneratedFileFrom("data.proto", "questnav.protos.data", descriptorData, Geometry2D.getDescriptor());
 
     static final Descriptors.Descriptor questnav_protos_data_ProtobufQuestNavFrameData_descriptor = descriptor.internalContainedType(55, 141, "ProtobufQuestNavFrameData", "questnav.protos.data.ProtobufQuestNavFrameData");
 
-    static final Descriptors.Descriptor questnav_protos_data_ProtobufQuestNavDeviceData_descriptor = descriptor.internalContainedType(199, 429, "ProtobufQuestNavDeviceData", "questnav.protos.data.ProtobufQuestNavDeviceData");
+    static final Descriptors.Descriptor questnav_protos_data_ProtobufQuestNavDeviceData_descriptor = descriptor.internalContainedType(199, 537, "ProtobufQuestNavDeviceData", "questnav.protos.data.ProtobufQuestNavDeviceData");
 
-    static final Descriptors.Descriptor questnav_protos_data_ProtobufQuestNavDeviceData_SavedTagsEntry_descriptor = descriptor.internalContainedType(568, 60, "SavedTagsEntry", "questnav.protos.data.ProtobufQuestNavDeviceData.SavedTagsEntry");
+    static final Descriptors.Descriptor questnav_protos_data_ProtobufQuestNavDeviceData_SavedTagsEntry_descriptor = descriptor.internalContainedType(676, 60, "SavedTagsEntry", "questnav.protos.data.ProtobufQuestNavDeviceData.SavedTagsEntry");
 
     /**
      * @return this proto file's descriptor.
@@ -631,6 +634,16 @@ public final class Data {
         private int activeField;
 
         /**
+         * <code>optional int32 tracked_anchors_count = 8;</code>
+         */
+        private int trackedAnchorsCount;
+
+        /**
+         * <code>optional int32 untracked_anchors_count = 9;</code>
+         */
+        private int untrackedAnchorsCount;
+
+        /**
          * <pre>
          *  If the Quest is currently tracking?
          * </pre>
@@ -928,6 +941,80 @@ public final class Data {
         }
 
         /**
+         * <code>optional int32 tracked_anchors_count = 8;</code>
+         * @return whether the trackedAnchorsCount field is set
+         */
+        public boolean hasTrackedAnchorsCount() {
+            return (bitField0_ & 0x00000020) != 0;
+        }
+
+        /**
+         * <code>optional int32 tracked_anchors_count = 8;</code>
+         * @return this
+         */
+        public ProtobufQuestNavDeviceData clearTrackedAnchorsCount() {
+            bitField0_ &= ~0x00000020;
+            trackedAnchorsCount = 0;
+            return this;
+        }
+
+        /**
+         * <code>optional int32 tracked_anchors_count = 8;</code>
+         * @return the trackedAnchorsCount
+         */
+        public int getTrackedAnchorsCount() {
+            return trackedAnchorsCount;
+        }
+
+        /**
+         * <code>optional int32 tracked_anchors_count = 8;</code>
+         * @param value the trackedAnchorsCount to set
+         * @return this
+         */
+        public ProtobufQuestNavDeviceData setTrackedAnchorsCount(final int value) {
+            bitField0_ |= 0x00000020;
+            trackedAnchorsCount = value;
+            return this;
+        }
+
+        /**
+         * <code>optional int32 untracked_anchors_count = 9;</code>
+         * @return whether the untrackedAnchorsCount field is set
+         */
+        public boolean hasUntrackedAnchorsCount() {
+            return (bitField0_ & 0x00000040) != 0;
+        }
+
+        /**
+         * <code>optional int32 untracked_anchors_count = 9;</code>
+         * @return this
+         */
+        public ProtobufQuestNavDeviceData clearUntrackedAnchorsCount() {
+            bitField0_ &= ~0x00000040;
+            untrackedAnchorsCount = 0;
+            return this;
+        }
+
+        /**
+         * <code>optional int32 untracked_anchors_count = 9;</code>
+         * @return the untrackedAnchorsCount
+         */
+        public int getUntrackedAnchorsCount() {
+            return untrackedAnchorsCount;
+        }
+
+        /**
+         * <code>optional int32 untracked_anchors_count = 9;</code>
+         * @param value the untrackedAnchorsCount to set
+         * @return this
+         */
+        public ProtobufQuestNavDeviceData setUntrackedAnchorsCount(final int value) {
+            bitField0_ |= 0x00000040;
+            untrackedAnchorsCount = value;
+            return this;
+        }
+
+        /**
          * <pre>
          *  If the Quest is currently tracking?
          * </pre>
@@ -936,7 +1023,7 @@ public final class Data {
          * @return whether the currentlyTracking field is set
          */
         public boolean hasCurrentlyTracking() {
-            return (bitField0_ & 0x00000020) != 0;
+            return (bitField0_ & 0x00000080) != 0;
         }
 
         /**
@@ -948,7 +1035,7 @@ public final class Data {
          * @return this
          */
         public ProtobufQuestNavDeviceData clearCurrentlyTracking() {
-            bitField0_ &= ~0x00000020;
+            bitField0_ &= ~0x00000080;
             currentlyTracking = false;
             return this;
         }
@@ -975,7 +1062,7 @@ public final class Data {
          * @return this
          */
         public ProtobufQuestNavDeviceData setCurrentlyTracking(final boolean value) {
-            bitField0_ |= 0x00000020;
+            bitField0_ |= 0x00000080;
             currentlyTracking = value;
             return this;
         }
@@ -989,7 +1076,7 @@ public final class Data {
          * @return whether the savedTags field is set
          */
         public boolean hasSavedTags() {
-            return (bitField0_ & 0x00000040) != 0;
+            return (bitField0_ & 0x00000100) != 0;
         }
 
         /**
@@ -1001,7 +1088,7 @@ public final class Data {
          * @return this
          */
         public ProtobufQuestNavDeviceData clearSavedTags() {
-            bitField0_ &= ~0x00000040;
+            bitField0_ &= ~0x00000100;
             savedTags.clear();
             return this;
         }
@@ -1038,7 +1125,7 @@ public final class Data {
          * @return internal storage object for modifications
          */
         public RepeatedMessage<SavedTagsEntry> getMutableSavedTags() {
-            bitField0_ |= 0x00000040;
+            bitField0_ |= 0x00000100;
             return savedTags;
         }
 
@@ -1052,7 +1139,7 @@ public final class Data {
          * @return this
          */
         public ProtobufQuestNavDeviceData addSavedTags(final SavedTagsEntry value) {
-            bitField0_ |= 0x00000040;
+            bitField0_ |= 0x00000100;
             savedTags.add(value);
             return this;
         }
@@ -1067,7 +1154,7 @@ public final class Data {
          * @return this
          */
         public ProtobufQuestNavDeviceData addAllSavedTags(final SavedTagsEntry... values) {
-            bitField0_ |= 0x00000040;
+            bitField0_ |= 0x00000100;
             savedTags.addAll(values);
             return this;
         }
@@ -1082,6 +1169,8 @@ public final class Data {
                 activeTag = other.activeTag;
                 activeLayout = other.activeLayout;
                 activeField = other.activeField;
+                trackedAnchorsCount = other.trackedAnchorsCount;
+                untrackedAnchorsCount = other.untrackedAnchorsCount;
                 currentlyTracking = other.currentlyTracking;
                 savedTags.copyFrom(other.savedTags);
             }
@@ -1109,6 +1198,12 @@ public final class Data {
             if (other.hasActiveField()) {
                 setActiveField(other.activeField);
             }
+            if (other.hasTrackedAnchorsCount()) {
+                setTrackedAnchorsCount(other.trackedAnchorsCount);
+            }
+            if (other.hasUntrackedAnchorsCount()) {
+                setUntrackedAnchorsCount(other.untrackedAnchorsCount);
+            }
             if (other.hasCurrentlyTracking()) {
                 setCurrentlyTracking(other.currentlyTracking);
             }
@@ -1130,6 +1225,8 @@ public final class Data {
             activeTag = 0;
             activeLayout = 0;
             activeField = 0;
+            trackedAnchorsCount = 0;
+            untrackedAnchorsCount = 0;
             currentlyTracking = false;
             savedTags.clear();
             return this;
@@ -1161,6 +1258,8 @@ public final class Data {
                 && (!hasActiveTag() || activeTag == other.activeTag)
                 && (!hasActiveLayout() || activeLayout == other.activeLayout)
                 && (!hasActiveField() || activeField == other.activeField)
+                && (!hasTrackedAnchorsCount() || trackedAnchorsCount == other.trackedAnchorsCount)
+                && (!hasUntrackedAnchorsCount() || untrackedAnchorsCount == other.untrackedAnchorsCount)
                 && (!hasCurrentlyTracking() || currentlyTracking == other.currentlyTracking)
                 && (!hasSavedTags() || savedTags.equals(other.savedTags));
         }
@@ -1188,10 +1287,18 @@ public final class Data {
                 output.writeInt32NoTag(activeField);
             }
             if ((bitField0_ & 0x00000020) != 0) {
+                output.writeRawByte((byte) 64);
+                output.writeInt32NoTag(trackedAnchorsCount);
+            }
+            if ((bitField0_ & 0x00000040) != 0) {
+                output.writeRawByte((byte) 72);
+                output.writeInt32NoTag(untrackedAnchorsCount);
+            }
+            if ((bitField0_ & 0x00000080) != 0) {
                 output.writeRawByte((byte) 16);
                 output.writeBoolNoTag(currentlyTracking);
             }
-            if ((bitField0_ & 0x00000040) != 0) {
+            if ((bitField0_ & 0x00000100) != 0) {
                 for (int i = 0; i < savedTags.length(); i++) {
                     output.writeRawByte((byte) 58);
                     output.writeMessageNoTag(savedTags.get(i));
@@ -1218,9 +1325,15 @@ public final class Data {
                 size += 1 + ProtoSink.computeInt32SizeNoTag(activeField);
             }
             if ((bitField0_ & 0x00000020) != 0) {
-                size += 2;
+                size += 1 + ProtoSink.computeInt32SizeNoTag(trackedAnchorsCount);
             }
             if ((bitField0_ & 0x00000040) != 0) {
+                size += 1 + ProtoSink.computeInt32SizeNoTag(untrackedAnchorsCount);
+            }
+            if ((bitField0_ & 0x00000080) != 0) {
+                size += 2;
+            }
+            if ((bitField0_ & 0x00000100) != 0) {
                 size += (1 * savedTags.length()) + ProtoSink.computeRepeatedMessageSizeNoTag(savedTags);
             }
             return size;
@@ -1274,6 +1387,24 @@ public final class Data {
                         activeField = input.readInt32();
                         bitField0_ |= 0x00000010;
                         tag = input.readTag();
+                        if (tag != 64) {
+                            break;
+                        }
+                    }
+                    case 64: {
+                        // trackedAnchorsCount
+                        trackedAnchorsCount = input.readInt32();
+                        bitField0_ |= 0x00000020;
+                        tag = input.readTag();
+                        if (tag != 72) {
+                            break;
+                        }
+                    }
+                    case 72: {
+                        // untrackedAnchorsCount
+                        untrackedAnchorsCount = input.readInt32();
+                        bitField0_ |= 0x00000040;
+                        tag = input.readTag();
                         if (tag != 16) {
                             break;
                         }
@@ -1281,7 +1412,7 @@ public final class Data {
                     case 16: {
                         // currentlyTracking
                         currentlyTracking = input.readBool();
-                        bitField0_ |= 0x00000020;
+                        bitField0_ |= 0x00000080;
                         tag = input.readTag();
                         if (tag != 58) {
                             break;
@@ -1290,7 +1421,7 @@ public final class Data {
                     case 58: {
                         // savedTags
                         tag = input.readRepeatedMessage(savedTags, tag);
-                        bitField0_ |= 0x00000040;
+                        bitField0_ |= 0x00000100;
                         if (tag != 0) {
                             break;
                         }
@@ -1328,9 +1459,15 @@ public final class Data {
                 output.writeInt32(FieldNames.activeField, activeField);
             }
             if ((bitField0_ & 0x00000020) != 0) {
-                output.writeBool(FieldNames.currentlyTracking, currentlyTracking);
+                output.writeInt32(FieldNames.trackedAnchorsCount, trackedAnchorsCount);
             }
             if ((bitField0_ & 0x00000040) != 0) {
+                output.writeInt32(FieldNames.untrackedAnchorsCount, untrackedAnchorsCount);
+            }
+            if ((bitField0_ & 0x00000080) != 0) {
+                output.writeBool(FieldNames.currentlyTracking, currentlyTracking);
+            }
+            if ((bitField0_ & 0x00000100) != 0) {
                 output.writeRepeatedMessage(FieldNames.savedTags, savedTags);
             }
             output.endObject();
@@ -1403,12 +1540,36 @@ public final class Data {
                         }
                         break;
                     }
+                    case 1613992859:
+                    case -447880807: {
+                        if (input.isAtField(FieldNames.trackedAnchorsCount)) {
+                            if (!input.trySkipNullValue()) {
+                                trackedAnchorsCount = input.readInt32();
+                                bitField0_ |= 0x00000020;
+                            }
+                        } else {
+                            input.skipUnknownField();
+                        }
+                        break;
+                    }
+                    case -1448745886:
+                    case -1687216992: {
+                        if (input.isAtField(FieldNames.untrackedAnchorsCount)) {
+                            if (!input.trySkipNullValue()) {
+                                untrackedAnchorsCount = input.readInt32();
+                                bitField0_ |= 0x00000040;
+                            }
+                        } else {
+                            input.skipUnknownField();
+                        }
+                        break;
+                    }
                     case 879013277:
                     case 106200592: {
                         if (input.isAtField(FieldNames.currentlyTracking)) {
                             if (!input.trySkipNullValue()) {
                                 currentlyTracking = input.readBool();
-                                bitField0_ |= 0x00000020;
+                                bitField0_ |= 0x00000080;
                             }
                         } else {
                             input.skipUnknownField();
@@ -1420,7 +1581,7 @@ public final class Data {
                         if (input.isAtField(FieldNames.savedTags)) {
                             if (!input.trySkipNullValue()) {
                                 input.readRepeatedMessage(savedTags);
-                                bitField0_ |= 0x00000040;
+                                bitField0_ |= 0x00000100;
                             }
                         } else {
                             input.skipUnknownField();
@@ -1830,6 +1991,10 @@ public final class Data {
             static final FieldName activeLayout = FieldName.forField("activeLayout", "active_layout");
 
             static final FieldName activeField = FieldName.forField("activeField", "active_field");
+
+            static final FieldName trackedAnchorsCount = FieldName.forField("trackedAnchorsCount", "tracked_anchors_count");
+
+            static final FieldName untrackedAnchorsCount = FieldName.forField("untrackedAnchorsCount", "untracked_anchors_count");
 
             static final FieldName currentlyTracking = FieldName.forField("currentlyTracking", "currently_tracking");
 
