@@ -333,6 +333,7 @@ public class Calibrator : MonoBehaviour
             int closestTagId = FindClosestTag();
             if (closestTagId != -1)
             {
+                TrackedTag = closestTagId;
                 Pose originPose = getFieldOrigin(poseMap[closestTagId], Conversions.FrcPoseToUnity(getTagFromId(closestTagId).pose.translation.toVector3(), getTagFromId(closestTagId).pose.rotation.toQuaternion()));
                 setField(poseMap[closestTagId], originPose);
             }
