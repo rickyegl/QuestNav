@@ -60,6 +60,9 @@ namespace QuestNav.Commands
             ProtobufQuestNavCommand receivedCommand = networkTableConnection.GetCommandRequest();
             if (receivedCommand.CommandId != lastCommandIdProcessed)
             {
+                // Don't double process
+                lastCommandIdProcessed = receivedCommand.CommandId;
+
                 switch (receivedCommand.Type)
                 {
                     case QuestNavCommandType.CommandTypeUnspecified:
@@ -93,8 +96,6 @@ namespace QuestNav.Commands
                         break;
                 }
             }
-            // Don't double process
-            lastCommandIdProcessed = networkTableConnection.GetCommandRequest().CommandId;
         }
     }
 }
