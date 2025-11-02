@@ -492,9 +492,24 @@ public class Calibrator : MonoBehaviour
             //unboundAnchor.Uuid
             int tagId = getTagIdFromAnchorUuid(unboundAnchor.Uuid);
             poseMap[tagId] = pose;
-            GameObject debugTag = Instantiate(debugAprilTag);
-            debugTag.name = tagId.ToString();
-            debugTag.transform.parent = anchorsLocation.transform;
+
+            // Check if debug tag already exists for this tagId
+            Transform existingTag = anchorsLocation.transform.Find(tagId.ToString());
+            GameObject debugTag;
+
+            if (existingTag != null)
+            {
+                // Update existing tag instead of creating a new one
+                debugTag = existingTag.gameObject;
+            }
+            else
+            {
+                // Create new tag only if it doesn't exist
+                debugTag = Instantiate(debugAprilTag);
+                debugTag.name = tagId.ToString();
+                debugTag.transform.parent = anchorsLocation.transform;
+            }
+
             debugTag.transform.position = pose.position;
             debugTag.transform.rotation = pose.rotation;
 
@@ -628,7 +643,7 @@ public class Calibrator : MonoBehaviour
         //setField(definiteTransform.transform.GetPose(), fieldOrigin);
         poseMap[TrackedTag] = definiteTransform.transform.GetPose();
         Debug.Log("Creating anchor at position: " + definiteTransform.transform.position + " with rotation: " + definiteTransform.transform.rotation);
-        Guid guid = await CreateAnchorAt(definiteTransform.transform.GetPose());
+        Guid guid = await CreateAnchorAt(definiteTransform.transform.GetPose(), TrackedTag);
         //sout if every object in the if below is null
         Debug.Log("Active field: " + activeField.fieldName);
         Debug.Log("Selected tag ID: " + selectedTag.ID);
@@ -667,9 +682,10 @@ public class Calibrator : MonoBehaviour
         //Debug.Log("Set field position to: " + vrCameraRoot.transform.position + " and rotation to: " + vrCameraRoot.transform.rotation);
     }
 
-    async Task<Guid> CreateAnchorAt(Pose saveLocation)
+    async Task<Guid> CreateAnchorAt(Pose saveLocation, int tagId)
     {
         GameObject anchorObject = Instantiate(debugAprilTag);
+        anchorObject.name = tagId.ToString();  // Name the tag with its ID
 
         anchorObject.transform.parent = anchorsLocation.transform;
         anchorObject.transform.position = saveLocation.position;
@@ -678,7 +694,7 @@ public class Calibrator : MonoBehaviour
         OVRSpatialAnchor anchor = anchorObject.GetComponent<OVRSpatialAnchor>();
         anchor.enabled = true;
         Guid guid = await SetupAnchorAsync(anchor, true);
-        Debug.Log("Created anchor with UUID: " + guid);
+        Debug.Log("Created anchor with UUID: " + guid + " for tag ID: " + tagId);
         return guid;
     }
 
@@ -756,7 +772,7 @@ public class Calibrator : MonoBehaviour
         Guid uuid;
         try
         {
-            uuid = await CreateAnchorAt(anchorWorldPose);   // existing helper
+            uuid = await CreateAnchorAt(anchorWorldPose, selectedTag.ID);   // existing helper
         }
         catch (Exception ex)
         {

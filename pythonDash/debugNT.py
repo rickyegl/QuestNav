@@ -12,14 +12,10 @@ import os
 # Add the generated protobuf code to the path
 #sys.path.append(os.path.join(os.path.dirname(__file__), "../questnav-lib/src/generate/main/python"))
 
-import commands_pb2
-import data_pb2
 import geometry2d_pb2
 from testResults import TestResults
 
 # Configuration
-NT_TABLE_NAME = "SmartDashboard/QuestNavManager"
-QN_TABLE_NAME = "QuestNav"
 NT_SIM_IP = "127.0.0.1"
 NT_ROBOT_IP = "10.66.47.2"
 TEST_SERVER = NT_SIM_IP  # Change this to test different servers
@@ -28,11 +24,8 @@ class NetworkTablesDebugger:
     def __init__(self, server_ip, results=None):
         self.server_ip = server_ip
         self.inst = None
-        self.robotTable = None
-        self.headsetTable = None
-        self.command_topic = None
-        self.device_data_sub = None
-        self.results = results or TestResults("NetworkTables Debug")
+        self.robot_pose_sub = None
+        self.results = results or TestResults("NetworkTables Debug - Robot Pose Only")
 
     def print(self, message=""):
         """Print using results handler if available, otherwise regular print"""
@@ -72,10 +65,10 @@ class NetworkTablesDebugger:
             self.print(f"✗ EXCEPTION: {type(e).__name__}: {e}")
             return False
 
-    def test_2_get_table(self):
-        """Test 2: Get NetworkTables table"""
+    def test_2_create_robot_pose_subscriber(self):
+        """Test 2: Subscribe to robot_pose_sub topic"""
         self.print("\n" + "="*60)
-        self.print("TEST 2: Get NetworkTables Table")
+        self.print("TEST 2: Subscribe to Robot Pose Topic")
         self.print("="*60)
 
         try:
@@ -83,180 +76,112 @@ class NetworkTablesDebugger:
                 self.print("✗ FAILED: Not connected to server (prerequisite failed)")
                 return False
 
-            self.robotTable = self.inst.getTable(NT_TABLE_NAME)
-            self.headsetTable = self.inst.getTable(QN_TABLE_NAME)
-            self.print(f"Table name: {NT_TABLE_NAME}")
-            self.print(f"✓ SUCCESS: Got table reference")
-            return True
-
-        except Exception as e:
-            self.print(f"✗ EXCEPTION: {type(e).__name__}: {e}")
-            return False
-
-    def test_3_create_command_publisher(self):
-        """Test 3: Create command topic publisher"""
-        self.print("\n" + "="*60)
-        self.print("TEST 3: Create Command Topic Publisher")
-        self.print("="*60)
-
-        try:
-            if not self.robotTable:
-                self.print("✗ FAILED: Table not initialized (prerequisite failed)")
-                return False
-
-            self.command_topic = self.headsetTable.getRawTopic("request").publish("raw")
-            self.print(f"Topic: {QN_TABLE_NAME}/request")
+            self.robot_pose_sub = self.inst.getTable("AdvantageKit/RealOutputs/Drive").getRawTopic("Pose").subscribe("raw", b'')
+            self.print(f"Topic: AdvantageKit/RealOutputs/Drive/Pose")
             self.print(f"Type: raw")
-            self.print(f"✓ SUCCESS: Created command publisher")
+            self.print(f"✓ SUCCESS: Created robot_pose_sub subscriber")
+            self.print(self.robot_pose_sub.get())
             return True
 
         except Exception as e:
             self.print(f"✗ EXCEPTION: {type(e).__name__}: {e}")
             return False
 
-    def test_4_create_device_data_subscriber(self):
-        """Test 4: Subscribe to device_data topic"""
+    def test_3_read_robot_pose(self):
+        """Test 3: Read robot_pose_sub data"""
         self.print("\n" + "="*60)
-        self.print("TEST 4: Subscribe to device_data Topic")
+        self.print("TEST 3: Read Robot Pose Data")
         self.print("="*60)
 
         try:
-            if not self.robotTable:
-                self.print("✗ FAILED: Table not initialized (prerequisite failed)")
-                return False
-
-            empty_device_data = data_pb2.ProtobufQuestNavDeviceData()
-            self.device_data_sub = self.headsetTable.getRawTopic("deviceData").subscribe(
-                "questnav.protos.data.ProtobufQuestNavDeviceData",
-                empty_device_data.SerializeToString()
-            )
-            self.print(f"Topic: {QN_TABLE_NAME}/deviceData")
-            self.print(f"Type: questnav.protos.data.ProtobufQuestNavDeviceData")
-            self.print(f"✓ SUCCESS: Created device_data subscriber")
-            return True
-
-        except Exception as e:
-            self.print(f"✗ EXCEPTION: {type(e).__name__}: {e}")
-            return False
-
-    def test_5_read_device_data(self):
-        """Test 5: Read device_data"""
-        self.print("\n" + "="*60)
-        self.print("TEST 5: Read device_data")
-        self.print("="*60)
-
-        try:
-            if not self.device_data_sub:
-                self.print("✗ FAILED: device_data subscriber not initialized")
+            if not self.robot_pose_sub:
+                self.print("✗ FAILED: robot_pose_sub subscriber not initialized")
                 return False
 
             # Wait a bit for data
             time.sleep(0.5)
 
-            device_data_raw = self.device_data_sub.get()
-            if device_data_raw:
-                device_data = data_pb2.ProtobufQuestNavDeviceData()
-                device_data.ParseFromString(device_data_raw)
-                #self.print(str(device_data))
-                self.print(f"✓ SUCCESS: Received device data")
-                self.print(f"  Active tag: {device_data.active_tag}")
-                self.print(f"  Active layout: {device_data.active_layout}")
-                self.print(f"  Active field: {device_data.active_field}")
-                self.print(f"  Currently tracking: {device_data.currently_tracking}")
-                self.print(f"  Battery percent: {device_data.battery_percent}%")
-                self.print(f"  Tracked anchors: {device_data.tracked_anchors_count}")
-                self.print(f"  Untracked anchors: {device_data.untracked_anchors_count}")
+            robot_pose_data = self.robot_pose_sub.get()
+            if robot_pose_data:
+                self.print(f"Raw data received ({len(robot_pose_data)} bytes)")
+                # Parse as ProtobufPose2d
+                robot_pose = geometry2d_pb2.ProtobufPose2d()
+                robot_pose.ParseFromString(robot_pose_data)
 
-                self.print(f"\n  Saved tags count: {len(device_data.saved_tags)}")
-                if device_data.saved_tags:
-                    self.print(f"  Saved tags (1=saved with UUID, 0=not saved):")
-                    saved_tags = [tag_id for tag_id, status in device_data.saved_tags.items() if status == 1]
-                    not_saved_tags = [tag_id for tag_id, status in device_data.saved_tags.items() if status == 0]
-                    if saved_tags:
-                        self.print(f"    Saved: {saved_tags}")
-                    if not_saved_tags:
-                        self.print(f"    Not saved: {not_saved_tags}")
-
-                self.print(f"\n  Tag status count: {len(device_data.tag_status)}")
-                if device_data.tag_status:
-                    self.print(f"  Tag status (1=tracked/localized, 0=not tracked):")
-                    tracked_tags = [tag_id for tag_id, status in device_data.tag_status.items() if status == 1]
-                    untracked_tags = [tag_id for tag_id, status in device_data.tag_status.items() if status == 0]
-                    if tracked_tags:
-                        self.print(f"    Tracked: {tracked_tags}")
-                    if untracked_tags:
-                        self.print(f"    Not tracked: {untracked_tags}")
-
+                self.print(f"✓ SUCCESS: Received robot pose data")
+                self.print(f"  Translation X: {robot_pose.translation.x}")
+                self.print(f"  Translation Y: {robot_pose.translation.y}")
+                self.print(f"  Rotation: {robot_pose.rotation.value} radians")
                 return True
             else:
-                self.print(f"⚠ WARNING: No device data available yet")
-                self.print(f"  This may be normal if QuestNav hasn't published data")
+                self.print(f"⚠ WARNING: No robot pose data available yet")
+                self.print(f"  This may be normal if AdvantageKit hasn't published data")
+                self.print(f"  Make sure the robot code is running and publishing to this topic")
                 return True  # Not a failure, just no data yet
 
         except Exception as e:
             self.print(f"✗ EXCEPTION: {type(e).__name__}: {e}")
+            import traceback
+            self.print(traceback.format_exc())
             return False
 
-    def test_6_publish_calibrate_command(self):
-        """Test 6: Publish CALIBRATE_TAG command"""
+    def test_4_continuous_read_robot_pose(self):
+        """Test 4: Continuously read robot_pose_sub data for 10 seconds"""
         self.print("\n" + "="*60)
-        self.print("TEST 6: Publish CALIBRATE_TAG Command")
+        self.print("TEST 4: Continuous Read Robot Pose Data (10 seconds)")
         self.print("="*60)
 
         try:
-            if not self.command_topic:
-                self.print("✗ FAILED: Command topic not initialized")
+            if not self.robot_pose_sub:
+                self.print("✗ FAILED: robot_pose_sub subscriber not initialized")
                 return False
 
-            # Create the main command message
-            command = commands_pb2.ProtobufQuestNavCommand()
-            command.type = commands_pb2.CALIBRATE_TAG
-            command.command_id = int(time.time())
+            self.print("Reading robot pose data continuously for 10 seconds...")
+            self.print("Press Ctrl+C to stop early\n")
 
-            # Create the calibration payload
-            calibration_payload = commands_pb2.CalibrationPayload()
+            start_time = time.time()
+            read_count = 0
+            last_pose = None
 
-            # Create a test headset pose
-            headset_pose = geometry2d_pb2.ProtobufPose2d()
-            headset_pose.translation.x = 1.0
-            headset_pose.translation.y = 2.0
-            headset_pose.rotation.value = 0.5
+            while (time.time() - start_time) < 10.0:
+                robot_pose_data = self.robot_pose_sub.get()
+                if robot_pose_data:
+                    robot_pose = geometry2d_pb2.ProtobufPose2d()
+                    robot_pose.ParseFromString(robot_pose_data)
 
-            calibration_payload.headset_pose.CopyFrom(headset_pose)
-            command.calibration_payload.CopyFrom(calibration_payload)
+                    # Only print if pose changed
+                    current_pose = (robot_pose.translation.x, robot_pose.translation.y, robot_pose.rotation.value)
+                    if current_pose != last_pose:
+                        read_count += 1
+                        self.print(f"[{read_count}] X: {robot_pose.translation.x:.3f}, Y: {robot_pose.translation.y:.3f}, Rot: {robot_pose.rotation.value:.3f} rad")
+                        last_pose = current_pose
 
-            # Set test tag ID
-            test_tag_id = 1
-            command.apriltag_index_payload.value = test_tag_id
+                time.sleep(0.1)  # Read at 10 Hz
 
-            # Serialize and publish
-            serialized_command = command.SerializeToString()
-            self.command_topic.set(serialized_command)
-
-            self.print(f"✓ SUCCESS: Published CALIBRATE_TAG command")
-            self.print(f"  Command ID: {command.command_id}")
-            self.print(f"  Tag ID: {test_tag_id}")
-            self.print(f"  Pose: x={headset_pose.translation.x}, y={headset_pose.translation.y}, rot={headset_pose.rotation.value}")
+            self.print(f"\n✓ SUCCESS: Read {read_count} pose updates over 10 seconds")
             return True
 
+        except KeyboardInterrupt:
+            self.print(f"\n⚠ Stopped by user")
+            return True
         except Exception as e:
             self.print(f"✗ EXCEPTION: {type(e).__name__}: {e}")
+            import traceback
+            self.print(traceback.format_exc())
             return False
 
     def run_all_tests(self):
         """Run all NetworkTables tests in sequence"""
         self.print("\n" + "#"*60)
-        self.print("# NetworkTables Debug Tests for QuestNav")
+        self.print("# NetworkTables Debug Tests - Robot Pose Only")
         self.print(f"# Testing against server: {self.server_ip}")
         self.print("#"*60)
 
         tests = [
             self.test_1_connection,
-            self.test_2_get_table,
-            self.test_3_create_command_publisher,
-            self.test_4_create_device_data_subscriber,
-            self.test_5_read_device_data,
-            self.test_6_publish_calibrate_command,
+            self.test_2_create_robot_pose_subscriber,
+            self.test_3_read_robot_pose,
+            self.test_4_continuous_read_robot_pose,
         ]
 
         for test in tests:
@@ -291,8 +216,8 @@ class NetworkTablesDebugger:
 
 
 def main():
-    print("QuestNav NetworkTables Debugger")
-    print("================================\n")
+    print("QuestNav NetworkTables Debugger - Robot Pose Only")
+    print("=================================================\n")
 
     # Allow command-line override of server
     if len(sys.argv) > 1:
@@ -301,7 +226,7 @@ def main():
         server = TEST_SERVER
 
     # Create results handler
-    results = TestResults(f"QuestNav NetworkTables Debug - {server}")
+    results = TestResults(f"QuestNav Robot Pose Debug - {server}")
     debugger = NetworkTablesDebugger(server, results)
 
     try:

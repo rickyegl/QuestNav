@@ -40,6 +40,8 @@ namespace QuestNav.Commands.Commands
             int tagId = receivedCommand.ApriltagIndexPayload.Value;
             calibrator.SetSelectedTag(tagId);
 
+            Debug.Log("Payload: " + receivedCommand.ToString());
+
             // Read pose data from network tables
             double xWorld = receivedCommand.CalibrationPayload.HeadsetPose.Translation.X;
             double yWorld = receivedCommand.CalibrationPayload.HeadsetPose.Translation.Y;

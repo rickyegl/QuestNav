@@ -255,12 +255,7 @@ namespace QuestNav.Core
 
         public static void GetPoseRelativeTo(Transform fieldTransform, Transform targetTransform, out Vector3 relativePosition, out Quaternion relativeRotation)
         {
-            Transform offsetTransform = new GameObject().transform;
-            //offsetTransform.rotation = fieldTransform.rotation;
-            //Vector3 offsetTransformEuler = offsetTransform.eulerAngles;
-            //offsetTransformEuler.y = offsetTransformEuler.y - 90f;
-            //offsetTransform.rotation = Quaternion.Euler(offsetTransformEuler);
-            //offsetTransform.position = fieldTransform.position;
+            // Removed unused GameObject creation that was causing memory leak
             if (fieldTransform == null)
             {
                 Debug.LogError("Field Transform is null. Cannot calculate relative pose.");
