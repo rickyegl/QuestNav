@@ -46,7 +46,7 @@ namespace QuestNav.Network
         /// <param name="currentlyTracking">Is the quest tracking currently</param>
         /// <param name="trackingLostCounter">Number of tracking lost events this session</param>
         /// <param name="batteryPercent">Current battery percentage</param>
-        void PublishDeviceData(bool currentlyTracking, int trackingLostCounter, int batteryPercent, int activeTag, int activeLayout, int activeField, MapField<int, int> savedTags, int trackedAnchorsCount, int untrackedAnchorsCount);
+        void PublishDeviceData(bool currentlyTracking, int trackingLostCounter, int batteryPercent, int activeTag, int activeLayout, int activeField, MapField<int, int> savedTags, MapField<int, int> tagStatus, int trackedAnchorsCount, int untrackedAnchorsCount);
 
         /// <summary>
         /// Updates the team number.
@@ -214,6 +214,7 @@ public class NetworkTableConnection : INetworkTableConnection
         int activeLayout,
         int activeField,
         MapField<int, int> savedTags,
+        MapField<int, int> tagStatus,
         int trackedAnchorsCount,
         int untrackedAnchorsCount
     )
@@ -226,6 +227,8 @@ public class NetworkTableConnection : INetworkTableConnection
         deviceData.ActiveField = activeField;
         deviceData.SavedTags.Clear();
         deviceData.SavedTags.Add(savedTags);
+        deviceData.TagStatus.Clear();
+        deviceData.TagStatus.Add(tagStatus);
         deviceData.TrackedAnchorsCount = trackedAnchorsCount;
         deviceData.UntrackedAnchorsCount = untrackedAnchorsCount;
 

@@ -6,9 +6,10 @@ import time
 import sys
 
 # Add the generated protobuf code to the path
-sys.path.append(os.path.join(os.path.dirname(__file__), "../questnav-lib/src/generate/main/python"))
+#sys.path.append(os.path.join(os.path.dirname(__file__), "../questnav-lib/src/generate/main/python"))
 
 import commands_pb2
+import data_pb2
 import geometry2d_pb2
 
 
@@ -24,6 +25,7 @@ except ImportError:
 # --- Configuration ---
 
 NT_TABLE_NAME = "SmartDashboard/QuestNavManager"
+QN_TABLE_NAME = "QuestNav"
 UPDATE_PERIOD_MS = 500
 
 nt_sim_ip = "127.0.0.1"
@@ -64,10 +66,15 @@ class QuestNavManagerDashboard:
         self._setup_ui()
 
         self.inst = ntcore.NetworkTableInstance.getDefault()
-        self.table = self.inst.getTable(NT_TABLE_NAME)
-        self.tags_subtable = self.table.getSubTable("Tags")
-        self.command_topic = self.table.getRawTopic("Command").publish("raw")
-        self.robot_pose_sub = self.inst.getRawTopic("AdvantageKit/RealOutputs/Drive/Pose").subscribe("raw")
+        self.robotTable = self.inst.getTable(NT_TABLE_NAME)
+        self.headsetTable = self.inst.getTable(QN_TABLE_NAME)
+        self.command_topic = self.headsetTable.getRawTopic("request").publish("raw")
+        self.robot_pose_sub = self.inst.getRawTopic("AdvantageKit/RealOutputs/Drive/Pose").subscribe("raw", b'')
+        empty_device_data = data_pb2.ProtobufQuestNavDeviceData()
+        self.device_data_sub = self.headsetTable.getRawTopic("deviceData").subscribe(
+            "questnav.protos.data.ProtobufQuestNavDeviceData",
+            empty_device_data.SerializeToString()
+        )
 
         self.inst.startClient4("dashboard")
         self.inst.setServer(nt_server_ip)
@@ -130,7 +137,7 @@ class QuestNavManagerDashboard:
 
                 with Image.open(img_path) as img:
                     resized_img = img.resize(self.TAG_DISPLAY_SIZE, Image.Resampling.NEAREST)
-                    self._draw_id_on_image(resized_img, tag_id)
+                    self._draw_id_on_image(resized_img, tag_id, is_active=False)
                     original_photo = ImageTk.PhotoImage(resized_img)
 
                 canvas_tag = f"clickable_tag_{tag_id}"
@@ -175,8 +182,8 @@ class QuestNavManagerDashboard:
             print("Warning: Could not get robot pose from AdvantageKit/RealOutputs/Drive/Pose. Sending default pose.")
             # If no pose is available, send a default (0,0,0) pose
             default_pose = geometry2d_pb2.ProtobufPose2d()
-            default_pose.translation.X = 0.0
-            default_pose.translation.Y = 0.0
+            default_pose.translation.x = 0.0
+            default_pose.translation.y = 0.0
             default_pose.rotation.value = 0.0
             calibration_payload.headset_pose.CopyFrom(default_pose)
 
@@ -200,7 +207,7 @@ class QuestNavManagerDashboard:
         """Changes the cursor back to the default."""
         self.canvas.config(cursor="")
 
-    def _draw_id_on_image(self, image, tag_id):
+    def _draw_id_on_image(self, image, tag_id, is_active=False):
         if not Image: return
         d = ImageDraw.Draw(image)
         text_to_draw = str(tag_id)
@@ -216,12 +223,15 @@ class QuestNavManagerDashboard:
         x = (self.TAG_DISPLAY_SIZE[0] - text_width) / 2
         y = (self.TAG_DISPLAY_SIZE[1] - text_height) / 2 - (text_bbox[1] * 0.5)
 
+        # Choose text color based on active state
+        text_color = "white" if is_active else self.TAG_ID_FONT_COLOR
+
         outline_thickness = 2
         for i in range(-outline_thickness, outline_thickness + 1):
             for j in range(-outline_thickness, outline_thickness + 1):
                  if i != 0 or j != 0:
                     d.text((x + i, y + j), text_to_draw, font=font, fill=self.TAG_ID_OUTLINE_COLOR)
-        d.text((x, y), text_to_draw, font=font, fill=self.TAG_ID_FONT_COLOR)
+        d.text((x, y), text_to_draw, font=font, fill=text_color)
 
     def on_calibrate_clicked(self):
         """Called when the Calibrate button is clicked. Sends a command to calibrate the tag."""
@@ -239,8 +249,8 @@ class QuestNavManagerDashboard:
 
         # Create and populate the headset pose
         headset_pose = geometry2d_pb2.ProtobufPose2d()
-        headset_pose.translation.X = 0.0  # Replace with actual headset X
-        headset_pose.translation.Y = 0.0  # Replace with actual headset Y
+        headset_pose.translation.x = 0.0  # Replace with actual headset X
+        headset_pose.translation.y = 0.0  # Replace with actual headset Y
         headset_pose.rotation.value = 0.0    # Replace with actual headset rotation in radians
 
         # Assign the pose to the payload
@@ -262,13 +272,13 @@ class QuestNavManagerDashboard:
         if not self.inst.isConnected():
             messagebox.showwarning("Not Connected", "Cannot change 'Enabled' state. Not connected to NetworkTables.")
             # Revert the checkbox to prevent the UI from being out of sync with the server
-            last_known_state = self.table.getBoolean("Enabled", self.enabled_var.get())
+            last_known_state = self.robotTable.getBoolean("Enabled", self.enabled_var.get())
             self.enabled_var.set(last_known_state)
             return
 
         is_enabled = self.enabled_var.get()
         print(f"Setting 'Enabled' to {is_enabled} on NetworkTables.")
-        self.table.getBooleanTopic("enabled").publish().set(is_enabled)
+        self.robotTable.getBooleanTopic("enabled").publish().set(is_enabled)
 
     def on_apply_clicked(self):
         if not self.inst.isConnected():
@@ -281,9 +291,9 @@ class QuestNavManagerDashboard:
             messagebox.showerror("Invalid Input", "Field and Layout must be integer numbers.")
             return
 
-        # self.table.getDoubleTopic("SelectedFieldIndex").publish().set(field_index)
-        # self.table.getDoubleTopic("SelectedLayoutIndex").publish().set(layout_index)
-        self.table.getBooleanTopic("Changed").publish().set(True)
+        # self.robotTable.getDoubleTopic("SelectedFieldIndex").publish().set(field_index)
+        # self.robotTable.getDoubleTopic("SelectedLayoutIndex").publish().set(layout_index)
+        self.robotTable.getBooleanTopic("Changed").publish().set(True)
 
     # --- ADDED --- Method for the delete button
     def on_delete_clicked(self):
@@ -297,7 +307,7 @@ class QuestNavManagerDashboard:
         if messagebox.askyesno("Confirm Delete", "Are you sure you want to delete the currently selected layout? This cannot be undone."):
             # 3. If user confirms, publish to NetworkTables
             print("Delete confirmed. Setting 'SetDelete' to 1.")
-            self.table.getBooleanTopic("SetDelete").publish().set(True)
+            self.robotTable.getBooleanTopic("SetDelete").publish().set(True)
         else:
             # 4. If user cancels, do nothing (optional: print a message)
             print("Delete action cancelled by user.")
@@ -310,10 +320,17 @@ class QuestNavManagerDashboard:
         """Main loop called periodically to update connection status and sync data."""
         if self.inst.isConnected():
             self.status_label.config(text=f"Connected to {nt_server_ip}", fg="#39FF14")
-            if not self.initial_sync_done:
-                self.sync_inputs_from_nt()
-                self.initial_sync_done = True
-            self.update_tag_colors_from_nt()
+
+            device_data_raw = self.device_data_sub.get()
+            if device_data_raw:
+                device_data = data_pb2.ProtobufQuestNavDeviceData()
+                device_data.ParseFromString(device_data_raw)
+
+                if not self.initial_sync_done:
+                    self.sync_inputs_from_nt(device_data)
+                    self.initial_sync_done = True
+
+                self.update_tag_colors_from_nt(device_data)
         else:
             self.status_label.config(text=f"Disconnected - trying to connect to {nt_server_ip}", fg="#FF4136")
             self.initial_sync_done = False
@@ -324,16 +341,16 @@ class QuestNavManagerDashboard:
             self.inst.setServer(nt_server_ip)
         self.master.after(UPDATE_PERIOD_MS, self.periodic_update)
 
-    def sync_inputs_from_nt(self):
+    def sync_inputs_from_nt(self, device_data):
         print("Syncing UI with NetworkTables values...")
-        # while self.table.getNumber("SelectedFieldIndex", None) is None or self.table.getNumber("SelectedLayoutIndex", None) is None:
+        # while self.robotTable.getNumber("SelectedFieldIndex", None) is None or self.robotTable.getNumber("SelectedLayoutIndex", None) is None:
         #     print("Waiting for Field/Layout keys to be published on NT server...")
         #     time.sleep(0.1)
 
-        # field_index = int(self.table.getNumber("SelectedFieldIndex", -1))
-        # layout_index = int(self.table.getNumber("SelectedLayoutIndex", -1))
+        # field_index = int(self.robotTable.getNumber("SelectedFieldIndex", -1))
+        # layout_index = int(self.robotTable.getNumber("SelectedLayoutIndex", -1))
         # Sync the enabled state from NT, defaulting to True if not present
-        enabled_state = self.table.getBoolean("Enabled", True)
+        enabled_state = self.robotTable.getBoolean("Enabled", True)
 
         # self.field_var.set(str(field_index))
         # self.layout_var.set(str(layout_index))
@@ -341,24 +358,22 @@ class QuestNavManagerDashboard:
 
         # print(f"Synced. Field: {field_index}, Layout: {layout_index}, Enabled: {enabled_state}")
 
-    def update_tag_colors_from_nt(self):
-        active_tag_id = self.table.getNumber("ActiveTag", -1)
+    def update_tag_colors_from_nt(self, device_data):
+        active_tag_id = device_data.active_tag
         for tag_id, tag_info in self.tag_data.items():
-            tag_status = self.tags_subtable.getNumber(str(tag_id), -1)
-            is_red_status = (tag_status == 0)
-            is_blue_status = (active_tag_id == tag_id)
+            tag_status = device_data.tag_status.get(tag_id, -1)
+            is_saved = (tag_status == 1)  # 1 = tracked/saved
+            is_active = (active_tag_id == tag_id)
 
-            required_filter = None
-            if is_red_status and is_blue_status: required_filter = 'magenta'
-            elif is_red_status: required_filter = 'red'
-            elif is_blue_status: required_filter = 'blue'
+            # Create filter state tuple: (is_saved, is_active)
+            required_filter = (is_saved, is_active)
 
             if tag_info['current_filter'] != required_filter:
-                if required_filter is None: self.reset_tag_visual(tag_id)
-                else: self.update_tag_visual(tag_id, required_filter)
+                self.update_tag_visual(tag_id, required_filter)
                 tag_info['current_filter'] = required_filter
 
-    def _apply_filter_to_image(self, img_path, filter_color):
+    def _apply_split_filter_to_image(self, img_path, tag_id, is_saved, is_active):
+        """Apply a split-color filter: left half for saved status, right half for tracking status."""
         if not Image: return None
         try:
             with Image.open(img_path).convert("RGBA") as img:
@@ -368,31 +383,48 @@ class QuestNavManagerDashboard:
                 l = resized_img.convert('L')
                 grey_bleed = l.point(lambda i: int(i * self.DESATURATION_FACTOR))
 
-                if filter_color == 'red':
-                    filtered_img = Image.merge('RGBA', (r, grey_bleed, grey_bleed, a))
-                elif filter_color == 'blue':
-                    filtered_img = Image.merge('RGBA', (grey_bleed, grey_bleed, b, a))
-                elif filter_color == 'magenta':
-                    filtered_img = Image.merge('RGBA', (r, grey_bleed, b, a))
-                else:
-                    return None
+                # Split the image in half
+                width, height = resized_img.size
+                mid_x = width // 2
 
-                self._draw_id_on_image(filtered_img, int(os.path.basename(img_path).split('.')[0]))
+                # Left half: green if saved, red if not saved
+                if is_saved:
+                    left_img = Image.merge('RGBA', (grey_bleed, g, grey_bleed, a))
+                else:
+                    left_img = Image.merge('RGBA', (r, grey_bleed, grey_bleed, a))
+
+                # Right half: green if tracking, red if not tracking
+                # For this implementation, we'll use the same is_saved for tracking
+                # (You can modify this if tracking has a different status)
+                if is_saved:  # tracking
+                    right_img = Image.merge('RGBA', (grey_bleed, g, grey_bleed, a))
+                else:  # not tracking
+                    right_img = Image.merge('RGBA', (r, grey_bleed, grey_bleed, a))
+
+                # Create the final combined image
+                filtered_img = Image.new('RGBA', self.TAG_DISPLAY_SIZE)
+                filtered_img.paste(left_img.crop((0, 0, mid_x, height)), (0, 0))
+                filtered_img.paste(right_img.crop((mid_x, 0, width, height)), (mid_x, 0))
+
+                self._draw_id_on_image(filtered_img, tag_id, is_active)
                 return ImageTk.PhotoImage(filtered_img)
         except (FileNotFoundError, ValueError) as e:
             print(f"Warning: Could not process/filter image {img_path}: {e}")
             return None
 
-    def update_tag_visual(self, tag_id, filter_name):
+    def update_tag_visual(self, tag_id, filter_state):
         if tag_id not in self.tag_data: return
         tag_info = self.tag_data[tag_id]
-        if filter_name in tag_info['filtered_photos']:
-            photo_to_show = tag_info['filtered_photos'][filter_name]
+        
+        is_saved, is_active = filter_state
+        
+        if filter_state in tag_info['filtered_photos']:
+            photo_to_show = tag_info['filtered_photos'][filter_state]
         else:
             img_path = f"apriltags/{tag_id}.png"
-            new_photo = self._apply_filter_to_image(img_path, filter_name)
+            new_photo = self._apply_split_filter_to_image(img_path, tag_id, is_saved, is_active)
             if new_photo:
-                tag_info['filtered_photos'][filter_name] = new_photo
+                tag_info['filtered_photos'][filter_state] = new_photo
                 photo_to_show = new_photo
             else: return
         self.canvas.itemconfig(tag_info['canvas_id'], image=photo_to_show)
@@ -407,7 +439,7 @@ class QuestNavManagerDashboard:
         if not os.path.exists("apriltags"): os.makedirs("apriltags")
         img_path = f"apriltags/{tag_id}.png"
         img = Image.new('RGB', self.TAG_DISPLAY_SIZE, color = 'darkgrey')
-        self._draw_id_on_image(img, tag_id)
+        self._draw_id_on_image(img, tag_id, is_active=False)
         img.save(img_path)
 
 if __name__ == "__main__":

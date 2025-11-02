@@ -202,7 +202,8 @@ namespace QuestNav.Core
                 calibrator.TrackedTag,
                 calibrator.activeFieldLayoutIndex,
                 calibrator.activeFieldIndex,
-                calibrator.GetPoseMap(),
+                calibrator.GetSavedTags(),
+                calibrator.GetTagStatus(),
                 calibrator.TrackedAnchorsCount,
                 calibrator.UntrackedAnchorsCount
             );

@@ -392,18 +392,50 @@ public class Calibrator : MonoBehaviour
     private Dictionary<int, OVRSpatialAnchor.UnboundAnchor> _unboundAnchorMap = new Dictionary<int, OVRSpatialAnchor.UnboundAnchor>();
     private Dictionary<int, Pose> poseMap = new Dictionary<int, Pose>();
 
-    public MapField<int, int> GetPoseMap()
+    /// <summary>
+    /// Gets the status of all tags in the active layout.
+    /// Returns a map where 1 means the tag is currently tracked/localized, 0 means not tracked.
+    /// </summary>
+    public MapField<int, int> GetTagStatus()
     {
         MapField<int, int> map = new MapField<int, int>();
-        foreach (var kvp in activeFieldLayoutData.tags)
+        if (activeFieldLayoutData != null)
         {
-            int state = 0;
-            int tagId = kvp.ID;
-            if (poseMap.ContainsKey(tagId))
+            foreach (var kvp in activeFieldLayoutData.tags)
             {
-                state = 1;
+                int state = 0;
+                int tagId = kvp.ID;
+                if (poseMap.ContainsKey(tagId))
+                {
+                    state = 1;
+                }
+                map.Add(tagId, state);
             }
-            map.Add(tagId, state);
+        }
+        return map;
+    }
+
+    /// <summary>
+    /// Gets the saved status of all tags in the active layout.
+    /// Returns a map where 1 means the tag is saved (has anchor UUID), 0 means not saved.
+    /// Includes ALL tags from the active layout.
+    /// </summary>
+    public MapField<int, int> GetSavedTags()
+    {
+        MapField<int, int> map = new MapField<int, int>();
+        if (activeFieldLayoutData != null && activeField != null)
+        {
+            foreach (var layoutTag in activeFieldLayoutData.tags)
+            {
+                int state = 0;
+                // Check if this tag has been saved to the active field (has anchor UUID)
+                if (activeField.tags.Exists(savedTag => savedTag.ID == layoutTag.ID))
+                {
+                    state = 1; // Tag is saved
+                }
+                // else state = 0: Tag is not saved
+                map.Add(layoutTag.ID, state);
+            }
         }
         return map;
     }
