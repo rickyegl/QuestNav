@@ -145,6 +145,7 @@ class QuestNavManagerDashboard:
                 canvas_id = self.canvas.create_image(coords[0], coords[1], image=original_photo, tags=canvas_tag)
 
                 self.canvas.tag_bind(canvas_tag, "<Button-1>", lambda event, id=tag_id: self.handle_tag_click(event, id))
+                self.canvas.tag_bind(canvas_tag, "<Button-3>", lambda event, id=tag_id: self.handle_tag_right_click(event, id))
                 self.canvas.tag_bind(canvas_tag, "<Enter>", self.on_tag_enter)
                 self.canvas.tag_bind(canvas_tag, "<Leave>", self.on_tag_leave)
 
@@ -200,6 +201,35 @@ class QuestNavManagerDashboard:
 
         # Publish the command
         self.command_topic.set(serialized_command)
+
+    def handle_tag_right_click(self, event, tag_id):
+        """Called when a tag is right-clicked. Shows confirmation and sends DELETE_TAG command."""
+        if not self.inst.isConnected():
+            print(f"Right-clicked Tag {tag_id}, but not connected to NT server.")
+            messagebox.showwarning("Not Connected", "Cannot delete tag. Not connected to NetworkTables.")
+            return
+
+        # Show confirmation dialog
+        if not messagebox.askyesno("Confirm Delete", f"Are you sure you want to delete Tag {tag_id}?\n\nThis action will remove the tag anchor and cannot be undone."):
+            print(f"Delete action cancelled for Tag {tag_id}.")
+            return
+
+        print(f"Right-clicked Tag {tag_id}. Sending 'DELETE_TAG' command.")
+
+        # Create the main command message
+        command = commands_pb2.ProtobufQuestNavCommand()
+        command.type = commands_pb2.DELETE_TAG
+        command.command_id = int(time.time())  # Use timestamp for a unique ID
+
+        # Create and set the delete payload with the tag ID
+        delete_payload = commands_pb2.IntPayload()
+        delete_payload.value = tag_id
+        command.delete_apriltag_payload.CopyFrom(delete_payload)
+
+        # Serialize and publish the command
+        serialized_command = command.SerializeToString()
+        self.command_topic.set(serialized_command)
+        print(f"DELETE_TAG command sent for Tag {tag_id}.")
 
     def on_tag_enter(self, event):
         """Changes the cursor to a hand to show the tag is clickable."""
