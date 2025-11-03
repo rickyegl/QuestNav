@@ -27,35 +27,36 @@ namespace QuestNav.Protos.Generated {
             "Cg5jb21tYW5kcy5wcm90bxIYcXVlc3RuYXYucHJvdG9zLmNvbW1hbmRzGhBn",
             "ZW9tZXRyeTJkLnByb3RvIlIKIFByb3RvYnVmUXVlc3ROYXZQb3NlUmVzZXRQ",
             "YXlsb2FkEi4KC3RhcmdldF9wb3NlGAEgASgLMhkud3BpLnByb3RvLlByb3Rv",
-            "YnVmUG9zZTJkIhsKCkludFBheWxvYWQSDQoFdmFsdWUYASABKAUiRQoSQ2Fs",
+            "YnVmUG9zZTJkIhsKCkludFBheWxvYWQSDQoFdmFsdWUYASABKAUiXQoSQ2Fs",
             "aWJyYXRpb25QYXlsb2FkEi8KDGhlYWRzZXRfcG9zZRgCIAEoCzIZLndwaS5w",
-            "cm90by5Qcm90b2J1ZlBvc2UyZCK+BAoXUHJvdG9idWZRdWVzdE5hdkNvbW1h",
-            "bmQSOwoEdHlwZRgBIAEoDjItLnF1ZXN0bmF2LnByb3Rvcy5jb21tYW5kcy5R",
-            "dWVzdE5hdkNvbW1hbmRUeXBlEhIKCmNvbW1hbmRfaWQYAiABKA0SWAoScG9z",
-            "ZV9yZXNldF9wYXlsb2FkGAogASgLMjoucXVlc3RuYXYucHJvdG9zLmNvbW1h",
-            "bmRzLlByb3RvYnVmUXVlc3ROYXZQb3NlUmVzZXRQYXlsb2FkSAASQwoTZmll",
-            "bGRfaW5kZXhfcGF5bG9hZBgPIAEoCzIkLnF1ZXN0bmF2LnByb3Rvcy5jb21t",
-            "YW5kcy5JbnRQYXlsb2FkSAASSgoaZmllbGRfbGF5b3V0X2luZGV4X3BheWxv",
-            "YWQYECABKAsyJC5xdWVzdG5hdi5wcm90b3MuY29tbWFuZHMuSW50UGF5bG9h",
-            "ZEgAEkYKFmFwcmlsdGFnX2luZGV4X3BheWxvYWQYESABKAsyJC5xdWVzdG5h",
-            "di5wcm90b3MuY29tbWFuZHMuSW50UGF5bG9hZEgAEksKE2NhbGlicmF0aW9u",
-            "X3BheWxvYWQYEiABKAsyLC5xdWVzdG5hdi5wcm90b3MuY29tbWFuZHMuQ2Fs",
-            "aWJyYXRpb25QYXlsb2FkSAASRwoXZGVsZXRlX2FwcmlsdGFnX3BheWxvYWQY",
-            "EyABKAsyJC5xdWVzdG5hdi5wcm90b3MuY29tbWFuZHMuSW50UGF5bG9hZEgA",
-            "QgkKB3BheWxvYWQiXQofUHJvdG9idWZRdWVzdE5hdkNvbW1hbmRSZXNwb25z",
-            "ZRISCgpjb21tYW5kX2lkGAEgASgNEg8KB3N1Y2Nlc3MYAiABKAgSFQoNZXJy",
-            "b3JfbWVzc2FnZRgDIAEoCSqrAQoTUXVlc3ROYXZDb21tYW5kVHlwZRIcChhD",
-            "T01NQU5EX1RZUEVfVU5TUEVDSUZJRUQQABIOCgpQT1NFX1JFU0VUEAESEwoP",
-            "U0VUX0ZJRUxEX0lOREVYEAUSGgoWU0VUX0ZJRUxEX0xBWU9VVF9JTkRFWBAG",
-            "EhEKDUNBTElCUkFURV9UQUcQBxISCg5TRVRfQUNUSVZFX1RBRxAIEg4KCkRF",
-            "TEVURV9UQUcQCUJDCiVnZy5xdWVzdG5hdi5xdWVzdG5hdi5wcm90b3MuZ2Vu",
-            "ZXJhdGVkqgIZUXVlc3ROYXYuUHJvdG9zLkdlbmVyYXRlZGIGcHJvdG8z"));
+            "cm90by5Qcm90b2J1ZlBvc2UyZBIWCg5hcHJpbHRhZ19pbmRleBgDIAEoBSK+",
+            "BAoXUHJvdG9idWZRdWVzdE5hdkNvbW1hbmQSOwoEdHlwZRgBIAEoDjItLnF1",
+            "ZXN0bmF2LnByb3Rvcy5jb21tYW5kcy5RdWVzdE5hdkNvbW1hbmRUeXBlEhIK",
+            "CmNvbW1hbmRfaWQYAiABKA0SWAoScG9zZV9yZXNldF9wYXlsb2FkGAogASgL",
+            "MjoucXVlc3RuYXYucHJvdG9zLmNvbW1hbmRzLlByb3RvYnVmUXVlc3ROYXZQ",
+            "b3NlUmVzZXRQYXlsb2FkSAASQwoTZmllbGRfaW5kZXhfcGF5bG9hZBgPIAEo",
+            "CzIkLnF1ZXN0bmF2LnByb3Rvcy5jb21tYW5kcy5JbnRQYXlsb2FkSAASSgoa",
+            "ZmllbGRfbGF5b3V0X2luZGV4X3BheWxvYWQYECABKAsyJC5xdWVzdG5hdi5w",
+            "cm90b3MuY29tbWFuZHMuSW50UGF5bG9hZEgAEkYKFmFwcmlsdGFnX2luZGV4",
+            "X3BheWxvYWQYESABKAsyJC5xdWVzdG5hdi5wcm90b3MuY29tbWFuZHMuSW50",
+            "UGF5bG9hZEgAEksKE2NhbGlicmF0aW9uX3BheWxvYWQYEiABKAsyLC5xdWVz",
+            "dG5hdi5wcm90b3MuY29tbWFuZHMuQ2FsaWJyYXRpb25QYXlsb2FkSAASRwoX",
+            "ZGVsZXRlX2FwcmlsdGFnX3BheWxvYWQYEyABKAsyJC5xdWVzdG5hdi5wcm90",
+            "b3MuY29tbWFuZHMuSW50UGF5bG9hZEgAQgkKB3BheWxvYWQiXQofUHJvdG9i",
+            "dWZRdWVzdE5hdkNvbW1hbmRSZXNwb25zZRISCgpjb21tYW5kX2lkGAEgASgN",
+            "Eg8KB3N1Y2Nlc3MYAiABKAgSFQoNZXJyb3JfbWVzc2FnZRgDIAEoCSqrAQoT",
+            "UXVlc3ROYXZDb21tYW5kVHlwZRIcChhDT01NQU5EX1RZUEVfVU5TUEVDSUZJ",
+            "RUQQABIOCgpQT1NFX1JFU0VUEAESEwoPU0VUX0ZJRUxEX0lOREVYEAUSGgoW",
+            "U0VUX0ZJRUxEX0xBWU9VVF9JTkRFWBAGEhEKDUNBTElCUkFURV9UQUcQBxIS",
+            "Cg5TRVRfQUNUSVZFX1RBRxAIEg4KCkRFTEVURV9UQUcQCUJDCiVnZy5xdWVz",
+            "dG5hdi5xdWVzdG5hdi5wcm90b3MuZ2VuZXJhdGVkqgIZUXVlc3ROYXYuUHJv",
+            "dG9zLkdlbmVyYXRlZGIGcHJvdG8z"));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { global::Wpi.Proto.Geometry2DReflection.Descriptor, },
           new pbr::GeneratedClrTypeInfo(new[] {typeof(global::QuestNav.Protos.Generated.QuestNavCommandType), }, null, new pbr::GeneratedClrTypeInfo[] {
             new pbr::GeneratedClrTypeInfo(typeof(global::QuestNav.Protos.Generated.ProtobufQuestNavPoseResetPayload), global::QuestNav.Protos.Generated.ProtobufQuestNavPoseResetPayload.Parser, new[]{ "TargetPose" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::QuestNav.Protos.Generated.IntPayload), global::QuestNav.Protos.Generated.IntPayload.Parser, new[]{ "Value" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::QuestNav.Protos.Generated.CalibrationPayload), global::QuestNav.Protos.Generated.CalibrationPayload.Parser, new[]{ "HeadsetPose" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::QuestNav.Protos.Generated.CalibrationPayload), global::QuestNav.Protos.Generated.CalibrationPayload.Parser, new[]{ "HeadsetPose", "ApriltagIndex" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::QuestNav.Protos.Generated.ProtobufQuestNavCommand), global::QuestNav.Protos.Generated.ProtobufQuestNavCommand.Parser, new[]{ "Type", "CommandId", "PoseResetPayload", "FieldIndexPayload", "FieldLayoutIndexPayload", "ApriltagIndexPayload", "CalibrationPayload", "DeleteApriltagPayload" }, new[]{ "Payload" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::QuestNav.Protos.Generated.ProtobufQuestNavCommandResponse), global::QuestNav.Protos.Generated.ProtobufQuestNavCommandResponse.Parser, new[]{ "CommandId", "Success", "ErrorMessage" }, null, null, null, null)
           }));
@@ -529,6 +530,7 @@ namespace QuestNav.Protos.Generated {
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public CalibrationPayload(CalibrationPayload other) : this() {
       headsetPose_ = other.headsetPose_ != null ? other.headsetPose_.Clone() : null;
+      apriltagIndex_ = other.apriltagIndex_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -542,7 +544,7 @@ namespace QuestNav.Protos.Generated {
     public const int HeadsetPoseFieldNumber = 2;
     private global::Wpi.Proto.ProtobufPose2d headsetPose_;
     /// <summary>
-    /// The pose of
+    /// The pose of the headset
     /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
@@ -550,6 +552,21 @@ namespace QuestNav.Protos.Generated {
       get { return headsetPose_; }
       set {
         headsetPose_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "apriltag_index" field.</summary>
+    public const int ApriltagIndexFieldNumber = 3;
+    private int apriltagIndex_;
+    /// <summary>
+    /// The index of the AprilTag being calibrated
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public int ApriltagIndex {
+      get { return apriltagIndex_; }
+      set {
+        apriltagIndex_ = value;
       }
     }
 
@@ -569,6 +586,7 @@ namespace QuestNav.Protos.Generated {
         return true;
       }
       if (!object.Equals(HeadsetPose, other.HeadsetPose)) return false;
+      if (ApriltagIndex != other.ApriltagIndex) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
@@ -577,6 +595,7 @@ namespace QuestNav.Protos.Generated {
     public override int GetHashCode() {
       int hash = 1;
       if (headsetPose_ != null) hash ^= HeadsetPose.GetHashCode();
+      if (ApriltagIndex != 0) hash ^= ApriltagIndex.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -599,6 +618,10 @@ namespace QuestNav.Protos.Generated {
         output.WriteRawTag(18);
         output.WriteMessage(HeadsetPose);
       }
+      if (ApriltagIndex != 0) {
+        output.WriteRawTag(24);
+        output.WriteInt32(ApriltagIndex);
+      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
       }
@@ -613,6 +636,10 @@ namespace QuestNav.Protos.Generated {
         output.WriteRawTag(18);
         output.WriteMessage(HeadsetPose);
       }
+      if (ApriltagIndex != 0) {
+        output.WriteRawTag(24);
+        output.WriteInt32(ApriltagIndex);
+      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
       }
@@ -625,6 +652,9 @@ namespace QuestNav.Protos.Generated {
       int size = 0;
       if (headsetPose_ != null) {
         size += 1 + pb::CodedOutputStream.ComputeMessageSize(HeadsetPose);
+      }
+      if (ApriltagIndex != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(ApriltagIndex);
       }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
@@ -643,6 +673,9 @@ namespace QuestNav.Protos.Generated {
           HeadsetPose = new global::Wpi.Proto.ProtobufPose2d();
         }
         HeadsetPose.MergeFrom(other.HeadsetPose);
+      }
+      if (other.ApriltagIndex != 0) {
+        ApriltagIndex = other.ApriltagIndex;
       }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
@@ -666,6 +699,10 @@ namespace QuestNav.Protos.Generated {
             input.ReadMessage(HeadsetPose);
             break;
           }
+          case 24: {
+            ApriltagIndex = input.ReadInt32();
+            break;
+          }
         }
       }
     #endif
@@ -686,6 +723,10 @@ namespace QuestNav.Protos.Generated {
               HeadsetPose = new global::Wpi.Proto.ProtobufPose2d();
             }
             input.ReadMessage(HeadsetPose);
+            break;
+          }
+          case 24: {
+            ApriltagIndex = input.ReadInt32();
             break;
           }
         }

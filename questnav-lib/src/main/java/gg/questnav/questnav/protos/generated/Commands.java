@@ -18,66 +18,68 @@ import us.hebi.quickbuf.RepeatedByte;
 import us.hebi.quickbuf.Utf8String;
 
 public final class Commands {
-    private static final RepeatedByte descriptorData = ProtoUtil.decodeBase64(3487,
+    private static final RepeatedByte descriptorData = ProtoUtil.decodeBase64(3639,
         "Cg5jb21tYW5kcy5wcm90bxIYcXVlc3RuYXYucHJvdG9zLmNvbW1hbmRzGhBnZW9tZXRyeTJkLnByb3Rv" + 
         "Il4KIFByb3RvYnVmUXVlc3ROYXZQb3NlUmVzZXRQYXlsb2FkEjoKC3RhcmdldF9wb3NlGAEgASgLMhku" + 
         "d3BpLnByb3RvLlByb3RvYnVmUG9zZTJkUgp0YXJnZXRQb3NlIiIKCkludFBheWxvYWQSFAoFdmFsdWUY" + 
-        "ASABKAVSBXZhbHVlIlIKEkNhbGlicmF0aW9uUGF5bG9hZBI8CgxoZWFkc2V0X3Bvc2UYAiABKAsyGS53" + 
-        "cGkucHJvdG8uUHJvdG9idWZQb3NlMmRSC2hlYWRzZXRQb3NlIs4FChdQcm90b2J1ZlF1ZXN0TmF2Q29t" + 
-        "bWFuZBJBCgR0eXBlGAEgASgOMi0ucXVlc3RuYXYucHJvdG9zLmNvbW1hbmRzLlF1ZXN0TmF2Q29tbWFu" + 
-        "ZFR5cGVSBHR5cGUSHQoKY29tbWFuZF9pZBgCIAEoDVIJY29tbWFuZElkEmoKEnBvc2VfcmVzZXRfcGF5" + 
-        "bG9hZBgKIAEoCzI6LnF1ZXN0bmF2LnByb3Rvcy5jb21tYW5kcy5Qcm90b2J1ZlF1ZXN0TmF2UG9zZVJl" + 
-        "c2V0UGF5bG9hZEgAUhBwb3NlUmVzZXRQYXlsb2FkElYKE2ZpZWxkX2luZGV4X3BheWxvYWQYDyABKAsy" + 
-        "JC5xdWVzdG5hdi5wcm90b3MuY29tbWFuZHMuSW50UGF5bG9hZEgAUhFmaWVsZEluZGV4UGF5bG9hZBJj" + 
-        "ChpmaWVsZF9sYXlvdXRfaW5kZXhfcGF5bG9hZBgQIAEoCzIkLnF1ZXN0bmF2LnByb3Rvcy5jb21tYW5k" + 
-        "cy5JbnRQYXlsb2FkSABSF2ZpZWxkTGF5b3V0SW5kZXhQYXlsb2FkElwKFmFwcmlsdGFnX2luZGV4X3Bh" + 
-        "eWxvYWQYESABKAsyJC5xdWVzdG5hdi5wcm90b3MuY29tbWFuZHMuSW50UGF5bG9hZEgAUhRhcHJpbHRh" + 
-        "Z0luZGV4UGF5bG9hZBJfChNjYWxpYnJhdGlvbl9wYXlsb2FkGBIgASgLMiwucXVlc3RuYXYucHJvdG9z" + 
-        "LmNvbW1hbmRzLkNhbGlicmF0aW9uUGF5bG9hZEgAUhJjYWxpYnJhdGlvblBheWxvYWQSXgoXZGVsZXRl" + 
-        "X2FwcmlsdGFnX3BheWxvYWQYEyABKAsyJC5xdWVzdG5hdi5wcm90b3MuY29tbWFuZHMuSW50UGF5bG9h" + 
-        "ZEgAUhVkZWxldGVBcHJpbHRhZ1BheWxvYWRCCQoHcGF5bG9hZCJ/Ch9Qcm90b2J1ZlF1ZXN0TmF2Q29t" + 
-        "bWFuZFJlc3BvbnNlEh0KCmNvbW1hbmRfaWQYASABKA1SCWNvbW1hbmRJZBIYCgdzdWNjZXNzGAIgASgI" + 
-        "UgdzdWNjZXNzEiMKDWVycm9yX21lc3NhZ2UYAyABKAlSDGVycm9yTWVzc2FnZSqrAQoTUXVlc3ROYXZD" + 
-        "b21tYW5kVHlwZRIcChhDT01NQU5EX1RZUEVfVU5TUEVDSUZJRUQQABIOCgpQT1NFX1JFU0VUEAESEwoP",
-        "U0VUX0ZJRUxEX0lOREVYEAUSGgoWU0VUX0ZJRUxEX0xBWU9VVF9JTkRFWBAGEhEKDUNBTElCUkFURV9U" + 
-        "QUcQBxISCg5TRVRfQUNUSVZFX1RBRxAIEg4KCkRFTEVURV9UQUcQCUJDCiVnZy5xdWVzdG5hdi5xdWVz" + 
-        "dG5hdi5wcm90b3MuZ2VuZXJhdGVkqgIZUXVlc3ROYXYuUHJvdG9zLkdlbmVyYXRlZEq7EAoGEgQAA0IB" + 
-        "CggKAQwSAwADFQoICgECEgMCACEKCAoBCBIDAwA2CgkKAgglEgMDADYKCAoBCBIDBAA+CgkKAggBEgME" + 
-        "AD4KJQoCAwASAwcAGhoaIEltcG9ydCBnZW9tZXRyeSBtZXNzYWdlcwoKRQoCBQASBAoAEwEaOSBFbnVt" + 
-        "IGZvciBjb21tYW5kIHR5cGVzIChleHRlbnNpYmxlIGZvciBmdXR1cmUgY29tbWFuZHMpCgoKCgMFAAES" + 
-        "AwoFGAovCgQFAAIAEgMLAh8iIiBEZWZhdWx0IHZhbHVlIHJlcXVpcmVkIGluIHByb3RvMwoKDAoFBQAC" + 
-        "AAESAwsCGgoMCgUFAAIAAhIDCx0eCi4KBAUAAgESAwwCESIhIFJlc2V0IHJvYm90IHBvc2UgdG8gdGFy" + 
-        "Z2V0IHBvc2UKCgwKBQUAAgEBEgMMAgwKDAoFBQACAQISAwwPEAoiCgQFAAICEgMNAhYiFSBTZXQgdGhl" + 
-        "IGZpZWxkIGluZGV4CgoMCgUFAAICARIDDQIRCgwKBQUAAgICEgMNFBUKKQoEBQACAxIDDgIdIhwgU2V0" + 
-        "IHRoZSBmaWVsZCBsYXlvdXQgaW5kZXgKCgwKBQUAAgMBEgMOAhgKDAoFBQACAwISAw4bHAopCgQFAAIE" + 
-        "EgMPAhQiHCBTZXQgdGhlIGZpZWxkIGxheW91dCBpbmRleAoKDAoFBQACBAESAw8CDwoMCgUFAAIEAhID" + 
-        "DxITCikKBAUAAgUSAxACFSIcIFNldCB0aGUgZmllbGQgbGF5b3V0IGluZGV4CgoMCgUFAAIFARIDEAIQ" + 
-        "CgwKBQUAAgUCEgMQExQKIgoEBQACBhIDEQIRIhUgRGVsZXRlIGEgdGFnIGFuY2hvcgoKDAoFBQACBgES" + 
-        "AxECDAoMCgUFAAIGAhIDEQ8QCiwKAgQAEgQWABkBGiAgUGF5bG9hZCBmb3IgcG9zZSByZXNldCBjb21t" + 
-        "YW5kCgoKCgMEAAESAxYIKApnCgQEAAIAEgMYAisaWiBUYXJnZXQgcG9zZSBpbiBmaWVsZC1yZWxhdGl2" + 
-        "ZSBXUElMaWIgY29vcmRpbmF0ZSBzcGFjZSAoeCBmb3J3YXJkLCB5IGxlZnQsIHJvdGF0aW9uIENDVysp" + 
-        "CgoMCgUEAAIABhIDGAIaCgwKBQQAAgABEgMYGyYKDAoFBAACAAMSAxgpKgoKCgIEARIEGwAdAQoKCgME" + 
-        "AQESAxsIEgoLCgQEAQIAEgMcAhIKDAoFBAECAAUSAxwCBwoMCgUEAQIAARIDHAgNCgwKBQQBAgADEgMc" + 
-        "EBEKCgoCBAISBB8AIQEKCgoDBAIBEgMfCBoKGgoEBAICABIDIAIsIg0gVGhlIHBvc2Ugb2YKCgwKBQQC",
-        "AgAGEgMgAhoKDAoFBAICAAESAyAbJwoMCgUEAgIAAxIDICorCiIKAgQDEgQkADYBGhYgTWFpbiBDb21t" + 
-        "YW5kIG1lc3NhZ2UKCgoKAwQDARIDJAgfCiIKBAQDAgASAyYCHxoVIFRoZSB0eXBlIG9mIGNvbW1hbmQK" + 
-        "CgwKBQQDAgAGEgMmAhUKDAoFBAMCAAESAyYWGgoMCgUEAwIAAxIDJh0eCjAKBAQDAgESAykCGBojIENv" + 
-        "bW1hbmQgSUQgZm9yIHRyYWNraW5nL3Jlc3BvbnNlcwoKDAoFBAMCAQUSAykCCAoMCgUEAwIBARIDKQkT" + 
-        "CgwKBQQDAgEDEgMpFhcKVQoEBAMIABIELAI1AxpHIENvbW1hbmQtc3BlY2lmaWMgcGF5bG9hZCAob25s" + 
-        "eSBvbmUgd2lsbCBiZSBzZXQgYmFzZWQgb24gY29tbWFuZCB0eXBlKQoKDAoFBAMIAAESAywIDwoLCgQE" + 
-        "AwICEgMtBD0KDAoFBAMCAgYSAy0EJAoMCgUEAwICARIDLSU3CgwKBQQDAgIDEgMtOjwKCwoEBAMCAxID" + 
-        "LgQoCgwKBQQDAgMGEgMuBA4KDAoFBAMCAwESAy4PIgoMCgUEAwIDAxIDLiUnCgsKBAQDAgQSAy8ELwoM" + 
-        "CgUEAwIEBhIDLwQOCgwKBQQDAgQBEgMvDykKDAoFBAMCBAMSAy8sLgoLCgQEAwIFEgMwBCsKDAoFBAMC" + 
-        "BQYSAzAEDgoMCgUEAwIFARIDMA8lCgwKBQQDAgUDEgMwKCoKLAoEBAMCBhIDMQQwIh8gUGF5bG9hZCBm" + 
-        "b3IgY2FsaWJyYXRpbmcgYSB0YWcKCgwKBQQDAgYGEgMxBBYKDAoFBAMCBgESAzEXKgoMCgUEAwIGAxID" + 
-        "MS0vCikKBAQDAgcSAzIELCIcIFBheWxvYWQgZm9yIGRlbGV0aW5nIGEgdGFnCgoMCgUEAwIHBhIDMgQO" + 
-        "CgwKBQQDAgcBEgMyDyYKDAoFBAMCBwMSAzIpKworCgIEBBIEOQBCARofIFJlc3BvbnNlIG1lc3NhZ2Ug" + 
-        "Zm9yIGNvbW1hbmRzCgoKCgMEBAESAzkIJwouCgQEBAIAEgM7AhgaISBNYXRjaGVzIHRoZSBvcmlnaW5h" + 
-        "bCBjb21tYW5kIElECgoMCgUEBAIABRIDOwIICgwKBQQEAgABEgM7CRMKDAoFBAQCAAMSAzsWFwoxCgQE" + 
-        "BAIBEgM+AhMaJCBXaGV0aGVyIHRoZSBjb21tYW5kIHdhcyBzdWNjZXNzZnVsCgoMCgUEBAIBBRIDPgIG" + 
-        "CgwKBQQEAgEBEgM+Bw4KDAoFBAQCAQMSAz4REgovCgQEBAICEgNBAhsaIiBFcnJvciBtZXNzYWdlIGlm" + 
-        "IHN1Y2Nlc3MgPSBmYWxzZQoKDAoFBAQCAgUSA0ECCAoMCgUEBAICARIDQQkWCgwKBQQEAgIDEgNBGRpi" + 
-        "BnByb3RvMw==");
+        "ASABKAVSBXZhbHVlInkKEkNhbGlicmF0aW9uUGF5bG9hZBI8CgxoZWFkc2V0X3Bvc2UYAiABKAsyGS53" + 
+        "cGkucHJvdG8uUHJvdG9idWZQb3NlMmRSC2hlYWRzZXRQb3NlEiUKDmFwcmlsdGFnX2luZGV4GAMgASgF" + 
+        "Ug1hcHJpbHRhZ0luZGV4Is4FChdQcm90b2J1ZlF1ZXN0TmF2Q29tbWFuZBJBCgR0eXBlGAEgASgOMi0u" + 
+        "cXVlc3RuYXYucHJvdG9zLmNvbW1hbmRzLlF1ZXN0TmF2Q29tbWFuZFR5cGVSBHR5cGUSHQoKY29tbWFu" + 
+        "ZF9pZBgCIAEoDVIJY29tbWFuZElkEmoKEnBvc2VfcmVzZXRfcGF5bG9hZBgKIAEoCzI6LnF1ZXN0bmF2" + 
+        "LnByb3Rvcy5jb21tYW5kcy5Qcm90b2J1ZlF1ZXN0TmF2UG9zZVJlc2V0UGF5bG9hZEgAUhBwb3NlUmVz" + 
+        "ZXRQYXlsb2FkElYKE2ZpZWxkX2luZGV4X3BheWxvYWQYDyABKAsyJC5xdWVzdG5hdi5wcm90b3MuY29t" + 
+        "bWFuZHMuSW50UGF5bG9hZEgAUhFmaWVsZEluZGV4UGF5bG9hZBJjChpmaWVsZF9sYXlvdXRfaW5kZXhf" + 
+        "cGF5bG9hZBgQIAEoCzIkLnF1ZXN0bmF2LnByb3Rvcy5jb21tYW5kcy5JbnRQYXlsb2FkSABSF2ZpZWxk" + 
+        "TGF5b3V0SW5kZXhQYXlsb2FkElwKFmFwcmlsdGFnX2luZGV4X3BheWxvYWQYESABKAsyJC5xdWVzdG5h" + 
+        "di5wcm90b3MuY29tbWFuZHMuSW50UGF5bG9hZEgAUhRhcHJpbHRhZ0luZGV4UGF5bG9hZBJfChNjYWxp" + 
+        "YnJhdGlvbl9wYXlsb2FkGBIgASgLMiwucXVlc3RuYXYucHJvdG9zLmNvbW1hbmRzLkNhbGlicmF0aW9u" + 
+        "UGF5bG9hZEgAUhJjYWxpYnJhdGlvblBheWxvYWQSXgoXZGVsZXRlX2FwcmlsdGFnX3BheWxvYWQYEyAB" + 
+        "KAsyJC5xdWVzdG5hdi5wcm90b3MuY29tbWFuZHMuSW50UGF5bG9hZEgAUhVkZWxldGVBcHJpbHRhZ1Bh" + 
+        "eWxvYWRCCQoHcGF5bG9hZCJ/Ch9Qcm90b2J1ZlF1ZXN0TmF2Q29tbWFuZFJlc3BvbnNlEh0KCmNvbW1h" + 
+        "bmRfaWQYASABKA1SCWNvbW1hbmRJZBIYCgdzdWNjZXNzGAIgASgIUgdzdWNjZXNzEiMKDWVycm9yX21l" + 
+        "c3NhZ2UYAyABKAlSDGVycm9yTWVzc2FnZSqrAQoTUXVlc3ROYXZDb21tYW5kVHlwZRIcChhDT01NQU5E",
+        "X1RZUEVfVU5TUEVDSUZJRUQQABIOCgpQT1NFX1JFU0VUEAESEwoPU0VUX0ZJRUxEX0lOREVYEAUSGgoW" + 
+        "U0VUX0ZJRUxEX0xBWU9VVF9JTkRFWBAGEhEKDUNBTElCUkFURV9UQUcQBxISCg5TRVRfQUNUSVZFX1RB" + 
+        "RxAIEg4KCkRFTEVURV9UQUcQCUJDCiVnZy5xdWVzdG5hdi5xdWVzdG5hdi5wcm90b3MuZ2VuZXJhdGVk" + 
+        "qgIZUXVlc3ROYXYuUHJvdG9zLkdlbmVyYXRlZEqsEQoGEgQAA0MBCggKAQwSAwADFQoICgECEgMCACEK" + 
+        "CAoBCBIDAwA2CgkKAgglEgMDADYKCAoBCBIDBAA+CgkKAggBEgMEAD4KJQoCAwASAwcAGhoaIEltcG9y" + 
+        "dCBnZW9tZXRyeSBtZXNzYWdlcwoKRQoCBQASBAoAEwEaOSBFbnVtIGZvciBjb21tYW5kIHR5cGVzIChl" + 
+        "eHRlbnNpYmxlIGZvciBmdXR1cmUgY29tbWFuZHMpCgoKCgMFAAESAwoFGAovCgQFAAIAEgMLAh8iIiBE" + 
+        "ZWZhdWx0IHZhbHVlIHJlcXVpcmVkIGluIHByb3RvMwoKDAoFBQACAAESAwsCGgoMCgUFAAIAAhIDCx0e" + 
+        "Ci4KBAUAAgESAwwCESIhIFJlc2V0IHJvYm90IHBvc2UgdG8gdGFyZ2V0IHBvc2UKCgwKBQUAAgEBEgMM" + 
+        "AgwKDAoFBQACAQISAwwPEAoiCgQFAAICEgMNAhYiFSBTZXQgdGhlIGZpZWxkIGluZGV4CgoMCgUFAAIC" + 
+        "ARIDDQIRCgwKBQUAAgICEgMNFBUKKQoEBQACAxIDDgIdIhwgU2V0IHRoZSBmaWVsZCBsYXlvdXQgaW5k" + 
+        "ZXgKCgwKBQUAAgMBEgMOAhgKDAoFBQACAwISAw4bHAopCgQFAAIEEgMPAhQiHCBTZXQgdGhlIGZpZWxk" + 
+        "IGxheW91dCBpbmRleAoKDAoFBQACBAESAw8CDwoMCgUFAAIEAhIDDxITCikKBAUAAgUSAxACFSIcIFNl" + 
+        "dCB0aGUgZmllbGQgbGF5b3V0IGluZGV4CgoMCgUFAAIFARIDEAIQCgwKBQUAAgUCEgMQExQKIgoEBQAC" + 
+        "BhIDEQIRIhUgRGVsZXRlIGEgdGFnIGFuY2hvcgoKDAoFBQACBgESAxECDAoMCgUFAAIGAhIDEQ8QCiwK" + 
+        "AgQAEgQWABkBGiAgUGF5bG9hZCBmb3IgcG9zZSByZXNldCBjb21tYW5kCgoKCgMEAAESAxYIKApnCgQE" + 
+        "AAIAEgMYAisaWiBUYXJnZXQgcG9zZSBpbiBmaWVsZC1yZWxhdGl2ZSBXUElMaWIgY29vcmRpbmF0ZSBz" + 
+        "cGFjZSAoeCBmb3J3YXJkLCB5IGxlZnQsIHJvdGF0aW9uIENDVyspCgoMCgUEAAIABhIDGAIaCgwKBQQA" + 
+        "AgABEgMYGyYKDAoFBAACAAMSAxgpKgoKCgIEARIEGwAdAQoKCgMEAQESAxsIEgoLCgQEAQIAEgMcAhIK" + 
+        "DAoFBAECAAUSAxwCBwoMCgUEAQIAARIDHAgNCgwKBQQBAgADEgMcEBEKCgoCBAISBB8AIgEKCgoDBAIB",
+        "EgMfCBoKJgoEBAICABIDIAIsIhkgVGhlIHBvc2Ugb2YgdGhlIGhlYWRzZXQKCgwKBQQCAgAGEgMgAhoK" + 
+        "DAoFBAICAAESAyAbJwoMCgUEAgIAAxIDICorCjkKBAQCAgESAyECGyIsIFRoZSBpbmRleCBvZiB0aGUg" + 
+        "QXByaWxUYWcgYmVpbmcgY2FsaWJyYXRlZAoKDAoFBAICAQUSAyECBwoMCgUEAgIBARIDIQgWCgwKBQQC" + 
+        "AgEDEgMhGRoKIgoCBAMSBCUANwEaFiBNYWluIENvbW1hbmQgbWVzc2FnZQoKCgoDBAMBEgMlCB8KIgoE" + 
+        "BAMCABIDJwIfGhUgVGhlIHR5cGUgb2YgY29tbWFuZAoKDAoFBAMCAAYSAycCFQoMCgUEAwIAARIDJxYa" + 
+        "CgwKBQQDAgADEgMnHR4KMAoEBAMCARIDKgIYGiMgQ29tbWFuZCBJRCBmb3IgdHJhY2tpbmcvcmVzcG9u" + 
+        "c2VzCgoMCgUEAwIBBRIDKgIICgwKBQQDAgEBEgMqCRMKDAoFBAMCAQMSAyoWFwpVCgQEAwgAEgQtAjYD" + 
+        "GkcgQ29tbWFuZC1zcGVjaWZpYyBwYXlsb2FkIChvbmx5IG9uZSB3aWxsIGJlIHNldCBiYXNlZCBvbiBj" + 
+        "b21tYW5kIHR5cGUpCgoMCgUEAwgAARIDLQgPCgsKBAQDAgISAy4EPQoMCgUEAwICBhIDLgQkCgwKBQQD" + 
+        "AgIBEgMuJTcKDAoFBAMCAgMSAy46PAoLCgQEAwIDEgMvBCgKDAoFBAMCAwYSAy8EDgoMCgUEAwIDARID" + 
+        "Lw8iCgwKBQQDAgMDEgMvJScKCwoEBAMCBBIDMAQvCgwKBQQDAgQGEgMwBA4KDAoFBAMCBAESAzAPKQoM" + 
+        "CgUEAwIEAxIDMCwuCgsKBAQDAgUSAzEEKwoMCgUEAwIFBhIDMQQOCgwKBQQDAgUBEgMxDyUKDAoFBAMC" + 
+        "BQMSAzEoKgosCgQEAwIGEgMyBDAiHyBQYXlsb2FkIGZvciBjYWxpYnJhdGluZyBhIHRhZwoKDAoFBAMC" + 
+        "BgYSAzIEFgoMCgUEAwIGARIDMhcqCgwKBQQDAgYDEgMyLS8KKQoEBAMCBxIDMwQsIhwgUGF5bG9hZCBm" + 
+        "b3IgZGVsZXRpbmcgYSB0YWcKCgwKBQQDAgcGEgMzBA4KDAoFBAMCBwESAzMPJgoMCgUEAwIHAxIDMykr" + 
+        "CisKAgQEEgQ6AEMBGh8gUmVzcG9uc2UgbWVzc2FnZSBmb3IgY29tbWFuZHMKCgoKAwQEARIDOggnCi4K" + 
+        "BAQEAgASAzwCGBohIE1hdGNoZXMgdGhlIG9yaWdpbmFsIGNvbW1hbmQgSUQKCgwKBQQEAgAFEgM8AggK" + 
+        "DAoFBAQCAAESAzwJEwoMCgUEBAIAAxIDPBYXCjEKBAQEAgESAz8CExokIFdoZXRoZXIgdGhlIGNvbW1h" + 
+        "bmQgd2FzIHN1Y2Nlc3NmdWwKCgwKBQQEAgEFEgM/AgYKDAoFBAQCAQESAz8HDgoMCgUEBAIBAxIDPxES" + 
+        "Ci8KBAQEAgISA0ICGxoiIEVycm9yIG1lc3NhZ2UgaWYgc3VjY2VzcyA9IGZhbHNlCgoMCgUEBAICBRID",
+        "QgIICgwKBQQEAgIBEgNCCRYKDAoFBAQCAgMSA0IZGmIGcHJvdG8z");
 
     static final Descriptors.FileDescriptor descriptor = Descriptors.FileDescriptor.internalBuildGeneratedFileFrom("commands.proto", "questnav.protos.commands", descriptorData, Geometry2D.getDescriptor());
 
@@ -85,11 +87,11 @@ public final class Commands {
 
     static final Descriptors.Descriptor questnav_protos_commands_IntPayload_descriptor = descriptor.internalContainedType(158, 34, "IntPayload", "questnav.protos.commands.IntPayload");
 
-    static final Descriptors.Descriptor questnav_protos_commands_CalibrationPayload_descriptor = descriptor.internalContainedType(194, 82, "CalibrationPayload", "questnav.protos.commands.CalibrationPayload");
+    static final Descriptors.Descriptor questnav_protos_commands_CalibrationPayload_descriptor = descriptor.internalContainedType(194, 121, "CalibrationPayload", "questnav.protos.commands.CalibrationPayload");
 
-    static final Descriptors.Descriptor questnav_protos_commands_ProtobufQuestNavCommand_descriptor = descriptor.internalContainedType(279, 718, "ProtobufQuestNavCommand", "questnav.protos.commands.ProtobufQuestNavCommand");
+    static final Descriptors.Descriptor questnav_protos_commands_ProtobufQuestNavCommand_descriptor = descriptor.internalContainedType(318, 718, "ProtobufQuestNavCommand", "questnav.protos.commands.ProtobufQuestNavCommand");
 
-    static final Descriptors.Descriptor questnav_protos_commands_ProtobufQuestNavCommandResponse_descriptor = descriptor.internalContainedType(999, 127, "ProtobufQuestNavCommandResponse", "questnav.protos.commands.ProtobufQuestNavCommandResponse");
+    static final Descriptors.Descriptor questnav_protos_commands_ProtobufQuestNavCommandResponse_descriptor = descriptor.internalContainedType(1038, 127, "ProtobufQuestNavCommandResponse", "questnav.protos.commands.ProtobufQuestNavCommandResponse");
 
     /**
      * @return this proto file's descriptor.
@@ -926,7 +928,16 @@ public final class Commands {
 
         /**
          * <pre>
-         *  The pose of
+         *  The index of the AprilTag being calibrated
+         * </pre>
+         *
+         * <code>optional int32 apriltag_index = 3;</code>
+         */
+        private int apriltagIndex;
+
+        /**
+         * <pre>
+         *  The pose of the headset
          * </pre>
          *
          * <code>optional .wpi.proto.ProtobufPose2d headset_pose = 2;</code>
@@ -945,33 +956,86 @@ public final class Commands {
 
         /**
          * <pre>
-         *  The pose of
+         *  The index of the AprilTag being calibrated
+         * </pre>
+         *
+         * <code>optional int32 apriltag_index = 3;</code>
+         * @return whether the apriltagIndex field is set
+         */
+        public boolean hasApriltagIndex() {
+            return (bitField0_ & 0x00000001) != 0;
+        }
+
+        /**
+         * <pre>
+         *  The index of the AprilTag being calibrated
+         * </pre>
+         *
+         * <code>optional int32 apriltag_index = 3;</code>
+         * @return this
+         */
+        public CalibrationPayload clearApriltagIndex() {
+            bitField0_ &= ~0x00000001;
+            apriltagIndex = 0;
+            return this;
+        }
+
+        /**
+         * <pre>
+         *  The index of the AprilTag being calibrated
+         * </pre>
+         *
+         * <code>optional int32 apriltag_index = 3;</code>
+         * @return the apriltagIndex
+         */
+        public int getApriltagIndex() {
+            return apriltagIndex;
+        }
+
+        /**
+         * <pre>
+         *  The index of the AprilTag being calibrated
+         * </pre>
+         *
+         * <code>optional int32 apriltag_index = 3;</code>
+         * @param value the apriltagIndex to set
+         * @return this
+         */
+        public CalibrationPayload setApriltagIndex(final int value) {
+            bitField0_ |= 0x00000001;
+            apriltagIndex = value;
+            return this;
+        }
+
+        /**
+         * <pre>
+         *  The pose of the headset
          * </pre>
          *
          * <code>optional .wpi.proto.ProtobufPose2d headset_pose = 2;</code>
          * @return whether the headsetPose field is set
          */
         public boolean hasHeadsetPose() {
-            return (bitField0_ & 0x00000001) != 0;
+            return (bitField0_ & 0x00000002) != 0;
         }
 
         /**
          * <pre>
-         *  The pose of
+         *  The pose of the headset
          * </pre>
          *
          * <code>optional .wpi.proto.ProtobufPose2d headset_pose = 2;</code>
          * @return this
          */
         public CalibrationPayload clearHeadsetPose() {
-            bitField0_ &= ~0x00000001;
+            bitField0_ &= ~0x00000002;
             headsetPose.clear();
             return this;
         }
 
         /**
          * <pre>
-         *  The pose of
+         *  The pose of the headset
          * </pre>
          *
          * <code>optional .wpi.proto.ProtobufPose2d headset_pose = 2;</code>
@@ -989,7 +1053,7 @@ public final class Commands {
 
         /**
          * <pre>
-         *  The pose of
+         *  The pose of the headset
          * </pre>
          *
          * <code>optional .wpi.proto.ProtobufPose2d headset_pose = 2;</code>
@@ -1001,13 +1065,13 @@ public final class Commands {
          * @return internal storage object for modifications
          */
         public Geometry2D.ProtobufPose2d getMutableHeadsetPose() {
-            bitField0_ |= 0x00000001;
+            bitField0_ |= 0x00000002;
             return headsetPose;
         }
 
         /**
          * <pre>
-         *  The pose of
+         *  The pose of the headset
          * </pre>
          *
          * <code>optional .wpi.proto.ProtobufPose2d headset_pose = 2;</code>
@@ -1015,7 +1079,7 @@ public final class Commands {
          * @return this
          */
         public CalibrationPayload setHeadsetPose(final Geometry2D.ProtobufPose2d value) {
-            bitField0_ |= 0x00000001;
+            bitField0_ |= 0x00000002;
             headsetPose.copyFrom(value);
             return this;
         }
@@ -1025,6 +1089,7 @@ public final class Commands {
             cachedSize = other.cachedSize;
             if ((bitField0_ | other.bitField0_) != 0) {
                 bitField0_ = other.bitField0_;
+                apriltagIndex = other.apriltagIndex;
                 headsetPose.copyFrom(other.headsetPose);
             }
             return this;
@@ -1036,6 +1101,9 @@ public final class Commands {
                 return this;
             }
             cachedSize = -1;
+            if (other.hasApriltagIndex()) {
+                setApriltagIndex(other.apriltagIndex);
+            }
             if (other.hasHeadsetPose()) {
                 getMutableHeadsetPose().mergeFrom(other.headsetPose);
             }
@@ -1049,6 +1117,7 @@ public final class Commands {
             }
             cachedSize = -1;
             bitField0_ = 0;
+            apriltagIndex = 0;
             headsetPose.clear();
             return this;
         }
@@ -1074,12 +1143,17 @@ public final class Commands {
             }
             CalibrationPayload other = (CalibrationPayload) o;
             return bitField0_ == other.bitField0_
+                && (!hasApriltagIndex() || apriltagIndex == other.apriltagIndex)
                 && (!hasHeadsetPose() || headsetPose.equals(other.headsetPose));
         }
 
         @Override
         public void writeTo(final ProtoSink output) throws IOException {
             if ((bitField0_ & 0x00000001) != 0) {
+                output.writeRawByte((byte) 24);
+                output.writeInt32NoTag(apriltagIndex);
+            }
+            if ((bitField0_ & 0x00000002) != 0) {
                 output.writeRawByte((byte) 18);
                 output.writeMessageNoTag(headsetPose);
             }
@@ -1089,6 +1163,9 @@ public final class Commands {
         protected int computeSerializedSize() {
             int size = 0;
             if ((bitField0_ & 0x00000001) != 0) {
+                size += 1 + ProtoSink.computeInt32SizeNoTag(apriltagIndex);
+            }
+            if ((bitField0_ & 0x00000002) != 0) {
                 size += 1 + ProtoSink.computeMessageSizeNoTag(headsetPose);
             }
             return size;
@@ -1101,10 +1178,19 @@ public final class Commands {
             int tag = input.readTag();
             while (true) {
                 switch (tag) {
+                    case 24: {
+                        // apriltagIndex
+                        apriltagIndex = input.readInt32();
+                        bitField0_ |= 0x00000001;
+                        tag = input.readTag();
+                        if (tag != 18) {
+                            break;
+                        }
+                    }
                     case 18: {
                         // headsetPose
                         input.readMessage(headsetPose);
-                        bitField0_ |= 0x00000001;
+                        bitField0_ |= 0x00000002;
                         tag = input.readTag();
                         if (tag != 0) {
                             break;
@@ -1128,6 +1214,9 @@ public final class Commands {
         public void writeTo(final JsonSink output) throws IOException {
             output.beginObject();
             if ((bitField0_ & 0x00000001) != 0) {
+                output.writeInt32(FieldNames.apriltagIndex, apriltagIndex);
+            }
+            if ((bitField0_ & 0x00000002) != 0) {
                 output.writeMessage(FieldNames.headsetPose, headsetPose);
             }
             output.endObject();
@@ -1140,12 +1229,24 @@ public final class Commands {
             }
             while (!input.isAtEnd()) {
                 switch (input.readFieldHash()) {
+                    case -1686909474:
+                    case -129065945: {
+                        if (input.isAtField(FieldNames.apriltagIndex)) {
+                            if (!input.trySkipNullValue()) {
+                                apriltagIndex = input.readInt32();
+                                bitField0_ |= 0x00000001;
+                            }
+                        } else {
+                            input.skipUnknownField();
+                        }
+                        break;
+                    }
                     case 370449971:
                     case -1387073490: {
                         if (input.isAtField(FieldNames.headsetPose)) {
                             if (!input.trySkipNullValue()) {
                                 input.readMessage(headsetPose);
-                                bitField0_ |= 0x00000001;
+                                bitField0_ |= 0x00000002;
                             }
                         } else {
                             input.skipUnknownField();
@@ -1212,6 +1313,8 @@ public final class Commands {
          * Contains name constants used for serializing JSON
          */
         static class FieldNames {
+            static final FieldName apriltagIndex = FieldName.forField("apriltagIndex", "apriltag_index");
+
             static final FieldName headsetPose = FieldName.forField("headsetPose", "headset_pose");
         }
     }
