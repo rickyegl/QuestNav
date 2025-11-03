@@ -30,7 +30,8 @@ message IntPayload {
 }
 
 message CalibrationPayload {
-  wpi.proto.ProtobufPose2d headset_pose = 2; // The pose of
+  wpi.proto.ProtobufPose2d headset_pose = 2; // The pose of the headset
+  int32 apriltag_index = 3; // The index of the AprilTag being calibrated
 }
 
 // Main Command message
