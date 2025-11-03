@@ -135,26 +135,26 @@
     <div class="container">
         <h1>QuestNav Robot Pose Debug - 127.0.0.1</h1>
 
-        <div class="summary ">
+        <div class="summary failed">
             <div class="summary-grid">
                 <div class="summary-item">
                     <div class="summary-label">Start Time</div>
-                    <div class="summary-value timestamp">2025-11-02 11:49:39</div>
+                    <div class="summary-value timestamp">2025-11-02 23:35:52</div>
                 </div>
                 <div class="summary-item">
                     <div class="summary-label">Duration</div>
-                    <div class="summary-value">10.65s</div>
+                    <div class="summary-value">5.03s</div>
                 </div>
                 <div class="summary-item">
                     <div class="summary-label">Tests Passed</div>
-                    <div class="summary-value success">
-                        4 / 4
+                    <div class="summary-value fail">
+                        0 / 4
                     </div>
                 </div>
                 <div class="summary-item">
                     <div class="summary-label">Success Rate</div>
-                    <div class="summary-value success">
-                        100.0%
+                    <div class="summary-value fail">
+                        0.0%
                     </div>
                 </div>
             </div>
@@ -162,10 +162,10 @@
 
         <h2>Test Details</h2>
 
-        <div class="test passed">
+        <div class="test failed">
             <div class="test-header" onclick="this.parentElement.classList.toggle('expanded')">
                 <span class="test-name">test_1_connection</span>
-                <span class="test-status">PASS</span>
+                <span class="test-status">FAIL</span>
             </div>
             <div class="test-output">
                 <pre><span class="separator">
@@ -174,57 +174,49 @@ TEST 1: Connection to NetworkTables Server
 <span class="separator">============================================================</span>
 Attempting to connect to: 127.0.0.1
 Waiting for connection...
-<span class="success">✓ SUCCESS: Connected to 127.0.0.1</span></pre>
+<span class="fail">✗ FAILED: Could not connect to 127.0.0.1 within 5.0s</span></pre>
             </div>
         </div>
 
-        <div class="test passed">
+        <div class="test failed">
             <div class="test-header" onclick="this.parentElement.classList.toggle('expanded')">
                 <span class="test-name">test_2_create_robot_pose_subscriber</span>
-                <span class="test-status">PASS</span>
+                <span class="test-status">FAIL</span>
             </div>
             <div class="test-output">
                 <pre><span class="separator">
 ============================================================</span>
 TEST 2: Subscribe to Robot Pose Topic
 <span class="separator">============================================================</span>
-Topic: AdvantageKit/RealOutputs/Drive/Pose
-Type: raw
-<span class="success">✓ SUCCESS: Created robot_pose_sub subscriber</span></pre>
+<span class="fail">✗ FAILED: Not connected to server (prerequisite failed)</span></pre>
             </div>
         </div>
 
-        <div class="test passed">
+        <div class="test failed">
             <div class="test-header" onclick="this.parentElement.classList.toggle('expanded')">
                 <span class="test-name">test_3_read_robot_pose</span>
-                <span class="test-status">PASS</span>
+                <span class="test-status">FAIL</span>
             </div>
             <div class="test-output">
                 <pre><span class="separator">
 ============================================================</span>
 TEST 3: Read Robot Pose Data
 <span class="separator">============================================================</span>
-<span class="warning">⚠ WARNING: No robot pose data available yet</span>
-  This may be normal if AdvantageKit hasn&#39;t published data
-  Make sure the robot code is running and publishing to this topic</pre>
+<span class="fail">✗ FAILED: robot_pose_sub subscriber not initialized</span></pre>
             </div>
         </div>
 
-        <div class="test passed">
+        <div class="test failed">
             <div class="test-header" onclick="this.parentElement.classList.toggle('expanded')">
                 <span class="test-name">test_4_continuous_read_robot_pose</span>
-                <span class="test-status">PASS</span>
+                <span class="test-status">FAIL</span>
             </div>
             <div class="test-output">
                 <pre><span class="separator">
 ============================================================</span>
 TEST 4: Continuous Read Robot Pose Data (10 seconds)
 <span class="separator">============================================================</span>
-Reading robot pose data continuously for 10 seconds...
-Press Ctrl+C to stop early
-
-<span class="success">
-✓ SUCCESS: Read 0 pose updates over 10 seconds</span></pre>
+<span class="fail">✗ FAILED: robot_pose_sub subscriber not initialized</span></pre>
             </div>
         </div>
 

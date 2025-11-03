@@ -4,6 +4,7 @@ import ntcore
 import os
 import time
 import sys
+import wpimath.geometry
 
 # Add the generated protobuf code to the path
 #sys.path.append(os.path.join(os.path.dirname(__file__), "../questnav-lib/src/generate/main/python"))
@@ -69,7 +70,7 @@ class QuestNavManagerDashboard:
         self.robotTable = self.inst.getTable(NT_TABLE_NAME)
         self.headsetTable = self.inst.getTable(QN_TABLE_NAME)
         self.command_topic = self.headsetTable.getRawTopic("request").publish("raw")
-        self.robot_pose_sub = self.inst.getRawTopic("AdvantageKit/RealOutputs/Drive/Pose").subscribe("raw", b'')
+        self.robot_pose_sub = self.inst.getTable("AdvantageKit/RealOutputs/Drive").getStructTopic("Pose", wpimath.geometry.Pose2d).subscribe(wpimath.geometry.Pose2d())
         empty_device_data = data_pb2.ProtobufQuestNavDeviceData()
         self.device_data_sub = self.headsetTable.getRawTopic("deviceData").subscribe(
             "questnav.protos.data.ProtobufQuestNavDeviceData",
@@ -174,9 +175,15 @@ class QuestNavManagerDashboard:
         # Read robot pose from AdvantageKit/RealOutputs/Drive/Pose
         robot_pose_data = self.robot_pose_sub.get()
         if robot_pose_data:
-            # Assuming it's a ProtobufPose2d
+            # Parse as Pose2d struct
+            x = robot_pose_data.X()
+            y = robot_pose_data.Y()
+            rotation = robot_pose_data.rotation().radians()
+
             robot_pose = geometry2d_pb2.ProtobufPose2d()
-            robot_pose.ParseFromString(robot_pose_data)
+            robot_pose.translation.x = x
+            robot_pose.translation.y = y
+            robot_pose.rotation.value = rotation
             calibration_payload.headset_pose.CopyFrom(robot_pose)
         else:
             print("Warning: Could not get robot pose from AdvantageKit/RealOutputs/Drive/Pose. Sending default pose.")

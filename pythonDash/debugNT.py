@@ -8,11 +8,11 @@ import ntcore
 import time
 import sys
 import os
+import wpimath.geometry
 
 # Add the generated protobuf code to the path
 #sys.path.append(os.path.join(os.path.dirname(__file__), "../questnav-lib/src/generate/main/python"))
 
-import geometry2d_pb2
 from testResults import TestResults
 
 # Configuration
@@ -76,9 +76,9 @@ class NetworkTablesDebugger:
                 self.print("✗ FAILED: Not connected to server (prerequisite failed)")
                 return False
 
-            self.robot_pose_sub = self.inst.getTable("AdvantageKit/RealOutputs/Drive").getRawTopic("Pose").subscribe("raw", b'')
+            self.robot_pose_sub = self.inst.getTable("AdvantageKit/RealOutputs/Drive").getStructTopic("Pose",wpimath.geometry.Pose2d).subscribe(wpimath.geometry.Pose2d())
             self.print(f"Topic: AdvantageKit/RealOutputs/Drive/Pose")
-            self.print(f"Type: raw")
+            self.print(f"Type: Pose2d struct")
             self.print(f"✓ SUCCESS: Created robot_pose_sub subscriber")
             self.print(self.robot_pose_sub.get())
             return True
@@ -103,15 +103,19 @@ class NetworkTablesDebugger:
 
             robot_pose_data = self.robot_pose_sub.get()
             if robot_pose_data:
-                self.print(f"Raw data received ({len(robot_pose_data)} bytes)")
-                # Parse as ProtobufPose2d
-                robot_pose = geometry2d_pb2.ProtobufPose2d()
-                robot_pose.ParseFromString(robot_pose_data)
+                self.print(f"Raw data received (Pose2d struct)")
+                self.print(f"  Type: {type(robot_pose_data)}")
+                self.print(f"  Value: {robot_pose_data}")
+                
+                # Parse as Pose2d struct
+                x = robot_pose_data.X()
+                y = robot_pose_data.Y()
+                rotation = robot_pose_data.rotation().radians()
 
                 self.print(f"✓ SUCCESS: Received robot pose data")
-                self.print(f"  Translation X: {robot_pose.translation.x}")
-                self.print(f"  Translation Y: {robot_pose.translation.y}")
-                self.print(f"  Rotation: {robot_pose.rotation.value} radians")
+                self.print(f"  X: {x}")
+                self.print(f"  Y: {y}")
+                self.print(f"  Rotation: {rotation} radians")
                 return True
             else:
                 self.print(f"⚠ WARNING: No robot pose data available yet")
@@ -146,14 +150,16 @@ class NetworkTablesDebugger:
             while (time.time() - start_time) < 10.0:
                 robot_pose_data = self.robot_pose_sub.get()
                 if robot_pose_data:
-                    robot_pose = geometry2d_pb2.ProtobufPose2d()
-                    robot_pose.ParseFromString(robot_pose_data)
+                    # Parse as Pose2d struct
+                    x = robot_pose_data.X()
+                    y = robot_pose_data.Y()
+                    rotation = robot_pose_data.rotation().radians()
 
                     # Only print if pose changed
-                    current_pose = (robot_pose.translation.x, robot_pose.translation.y, robot_pose.rotation.value)
+                    current_pose = (x, y, rotation)
                     if current_pose != last_pose:
                         read_count += 1
-                        self.print(f"[{read_count}] X: {robot_pose.translation.x:.3f}, Y: {robot_pose.translation.y:.3f}, Rot: {robot_pose.rotation.value:.3f} rad")
+                        self.print(f"[{read_count}] X: {x:.3f}, Y: {y:.3f}, Rot: {rotation:.3f} rad")
                         last_pose = current_pose
 
                 time.sleep(0.1)  # Read at 10 Hz
