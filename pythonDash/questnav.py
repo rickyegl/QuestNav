@@ -186,19 +186,14 @@ class QuestNavManagerDashboard:
             robot_pose.rotation.value = rotation
             calibration_payload.headset_pose.CopyFrom(robot_pose)
         else:
-            print("Warning: Could not get robot pose from AdvantageKit/RealOutputs/Drive/Pose. Sending default pose.")
-            # If no pose is available, send a default (0,0,0) pose
-            default_pose = geometry2d_pb2.ProtobufPose2d()
-            default_pose.translation.x = 0.0
-            default_pose.translation.y = 0.0
-            default_pose.rotation.value = 0.0
-            calibration_payload.headset_pose.CopyFrom(default_pose)
+            return
 
         # Assign the payload to the command
         command.calibration_payload.CopyFrom(calibration_payload)
+        command.calibration_payload.apriltag_index = tag_id
 
         # Set the active tag in the payload
-        command.apriltag_index_payload.value = tag_id
+        #command.apriltag_index_payload.value = tag_id
 
         # Serialize the command to a byte string
         serialized_command = command.SerializeToString()

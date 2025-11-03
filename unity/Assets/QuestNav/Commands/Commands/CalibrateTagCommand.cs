@@ -37,7 +37,7 @@ namespace QuestNav.Commands.Commands
             QueuedLogger.Log("Received active tag set request, initiating reset...");
 
             // Get the tag to calibrate from the command
-            int tagId = receivedCommand.ApriltagIndexPayload.Value;
+            int tagId = receivedCommand.CalibrationPayload.ApriltagIndex;
             calibrator.SetSelectedTag(tagId);
 
             Debug.Log("Payload: " + receivedCommand.ToString());

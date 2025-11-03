@@ -25,7 +25,7 @@ _sym_db = _symbol_database.Default()
 import geometry2d_pb2 as geometry2d__pb2
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x0e\x63ommands.proto\x12\x18questnav.protos.commands\x1a\x10geometry2d.proto\"R\n ProtobufQuestNavPoseResetPayload\x12.\n\x0btarget_pose\x18\x01 \x01(\x0b\x32\x19.wpi.proto.ProtobufPose2d\"\x1b\n\nIntPayload\x12\r\n\x05value\x18\x01 \x01(\x05\"E\n\x12\x43\x61librationPayload\x12/\n\x0cheadset_pose\x18\x02 \x01(\x0b\x32\x19.wpi.proto.ProtobufPose2d\"\xbe\x04\n\x17ProtobufQuestNavCommand\x12;\n\x04type\x18\x01 \x01(\x0e\x32-.questnav.protos.commands.QuestNavCommandType\x12\x12\n\ncommand_id\x18\x02 \x01(\r\x12X\n\x12pose_reset_payload\x18\n \x01(\x0b\x32:.questnav.protos.commands.ProtobufQuestNavPoseResetPayloadH\x00\x12\x43\n\x13\x66ield_index_payload\x18\x0f \x01(\x0b\x32$.questnav.protos.commands.IntPayloadH\x00\x12J\n\x1a\x66ield_layout_index_payload\x18\x10 \x01(\x0b\x32$.questnav.protos.commands.IntPayloadH\x00\x12\x46\n\x16\x61priltag_index_payload\x18\x11 \x01(\x0b\x32$.questnav.protos.commands.IntPayloadH\x00\x12K\n\x13\x63\x61libration_payload\x18\x12 \x01(\x0b\x32,.questnav.protos.commands.CalibrationPayloadH\x00\x12G\n\x17\x64\x65lete_apriltag_payload\x18\x13 \x01(\x0b\x32$.questnav.protos.commands.IntPayloadH\x00\x42\t\n\x07payload\"]\n\x1fProtobufQuestNavCommandResponse\x12\x12\n\ncommand_id\x18\x01 \x01(\r\x12\x0f\n\x07success\x18\x02 \x01(\x08\x12\x15\n\rerror_message\x18\x03 \x01(\t*\xab\x01\n\x13QuestNavCommandType\x12\x1c\n\x18\x43OMMAND_TYPE_UNSPECIFIED\x10\x00\x12\x0e\n\nPOSE_RESET\x10\x01\x12\x13\n\x0fSET_FIELD_INDEX\x10\x05\x12\x1a\n\x16SET_FIELD_LAYOUT_INDEX\x10\x06\x12\x11\n\rCALIBRATE_TAG\x10\x07\x12\x12\n\x0eSET_ACTIVE_TAG\x10\x08\x12\x0e\n\nDELETE_TAG\x10\tBC\n%gg.questnav.questnav.protos.generated\xaa\x02\x19QuestNav.Protos.Generatedb\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x0e\x63ommands.proto\x12\x18questnav.protos.commands\x1a\x10geometry2d.proto\"R\n ProtobufQuestNavPoseResetPayload\x12.\n\x0btarget_pose\x18\x01 \x01(\x0b\x32\x19.wpi.proto.ProtobufPose2d\"\x1b\n\nIntPayload\x12\r\n\x05value\x18\x01 \x01(\x05\"]\n\x12\x43\x61librationPayload\x12/\n\x0cheadset_pose\x18\x02 \x01(\x0b\x32\x19.wpi.proto.ProtobufPose2d\x12\x16\n\x0e\x61priltag_index\x18\x03 \x01(\x05\"\xbe\x04\n\x17ProtobufQuestNavCommand\x12;\n\x04type\x18\x01 \x01(\x0e\x32-.questnav.protos.commands.QuestNavCommandType\x12\x12\n\ncommand_id\x18\x02 \x01(\r\x12X\n\x12pose_reset_payload\x18\n \x01(\x0b\x32:.questnav.protos.commands.ProtobufQuestNavPoseResetPayloadH\x00\x12\x43\n\x13\x66ield_index_payload\x18\x0f \x01(\x0b\x32$.questnav.protos.commands.IntPayloadH\x00\x12J\n\x1a\x66ield_layout_index_payload\x18\x10 \x01(\x0b\x32$.questnav.protos.commands.IntPayloadH\x00\x12\x46\n\x16\x61priltag_index_payload\x18\x11 \x01(\x0b\x32$.questnav.protos.commands.IntPayloadH\x00\x12K\n\x13\x63\x61libration_payload\x18\x12 \x01(\x0b\x32,.questnav.protos.commands.CalibrationPayloadH\x00\x12G\n\x17\x64\x65lete_apriltag_payload\x18\x13 \x01(\x0b\x32$.questnav.protos.commands.IntPayloadH\x00\x42\t\n\x07payload\"]\n\x1fProtobufQuestNavCommandResponse\x12\x12\n\ncommand_id\x18\x01 \x01(\r\x12\x0f\n\x07success\x18\x02 \x01(\x08\x12\x15\n\rerror_message\x18\x03 \x01(\t*\xab\x01\n\x13QuestNavCommandType\x12\x1c\n\x18\x43OMMAND_TYPE_UNSPECIFIED\x10\x00\x12\x0e\n\nPOSE_RESET\x10\x01\x12\x13\n\x0fSET_FIELD_INDEX\x10\x05\x12\x1a\n\x16SET_FIELD_LAYOUT_INDEX\x10\x06\x12\x11\n\rCALIBRATE_TAG\x10\x07\x12\x12\n\x0eSET_ACTIVE_TAG\x10\x08\x12\x0e\n\nDELETE_TAG\x10\tBC\n%gg.questnav.questnav.protos.generated\xaa\x02\x19QuestNav.Protos.Generatedb\x06proto3')
 
 _globals = globals()
 _builder.BuildMessageAndEnumDescriptors(DESCRIPTOR, _globals)
@@ -33,16 +33,16 @@ _builder.BuildTopDescriptorsAndMessages(DESCRIPTOR, 'commands_pb2', _globals)
 if not _descriptor._USE_C_DESCRIPTORS:
   _globals['DESCRIPTOR']._loaded_options = None
   _globals['DESCRIPTOR']._serialized_options = b'\n%gg.questnav.questnav.protos.generated\252\002\031QuestNav.Protos.Generated'
-  _globals['_QUESTNAVCOMMANDTYPE']._serialized_start=919
-  _globals['_QUESTNAVCOMMANDTYPE']._serialized_end=1090
+  _globals['_QUESTNAVCOMMANDTYPE']._serialized_start=943
+  _globals['_QUESTNAVCOMMANDTYPE']._serialized_end=1114
   _globals['_PROTOBUFQUESTNAVPOSERESETPAYLOAD']._serialized_start=62
   _globals['_PROTOBUFQUESTNAVPOSERESETPAYLOAD']._serialized_end=144
   _globals['_INTPAYLOAD']._serialized_start=146
   _globals['_INTPAYLOAD']._serialized_end=173
   _globals['_CALIBRATIONPAYLOAD']._serialized_start=175
-  _globals['_CALIBRATIONPAYLOAD']._serialized_end=244
-  _globals['_PROTOBUFQUESTNAVCOMMAND']._serialized_start=247
-  _globals['_PROTOBUFQUESTNAVCOMMAND']._serialized_end=821
-  _globals['_PROTOBUFQUESTNAVCOMMANDRESPONSE']._serialized_start=823
-  _globals['_PROTOBUFQUESTNAVCOMMANDRESPONSE']._serialized_end=916
+  _globals['_CALIBRATIONPAYLOAD']._serialized_end=268
+  _globals['_PROTOBUFQUESTNAVCOMMAND']._serialized_start=271
+  _globals['_PROTOBUFQUESTNAVCOMMAND']._serialized_end=845
+  _globals['_PROTOBUFQUESTNAVCOMMANDRESPONSE']._serialized_start=847
+  _globals['_PROTOBUFQUESTNAVCOMMANDRESPONSE']._serialized_end=940
 # @@protoc_insertion_point(module_scope)
